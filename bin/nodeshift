@@ -1,0 +1,43 @@
+#! /usr/bin/env node
+'use strict';
+
+const currentDir = process.cwd();
+
+console.log(`Nodeshifting in ${currentDir}`);
+
+// Create The Docker build archive
+const dockerArchiver = require('../lib/docker-archiver');
+
+// High level steps that need to be done
+
+// Locate any openshift resource(?) files from the Users node application
+// There will be a default location where this plugin looks, ATM, i'm thinking the directory will be called "nodeshift"
+// perhaps a configuration option to change the location of where the files are located.
+// Not sure at which point we "enrich"(term from the java lib, not mine) them.
+
+// create a temp/build directory
+// Create a base Dockerfile
+// tar up the users project with that generated Dockerfile
+dockerArchiver.archiveAndTar().then(() => {
+  // Check for a BuildConfig, create or update if necesarry
+
+});
+
+// Check for an imagsestream, create or update if necesarry
+
+// Start the build process
+// Upload the .tar file
+// There is supposedly a Websocket endpoint we can connect to, to watch the build
+
+// Once the build is done, its time to create the service/deployments/routes
+
+// Service needs to come first
+// Create if needed
+
+// Then Deployment
+// Create deploymentConfig if needed
+
+// Then routes
+// Create Route if needed
+
+// I guess then we ping the service to see if it is fully loaded?
