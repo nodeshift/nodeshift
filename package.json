@@ -1,0 +1,62 @@
+{
+  "name": "nodeshift",
+  "version": "0.0.1",
+  "description": "Plugin for running openshift deployments",
+  "bin": {
+    "nodeshift": "./bin/nodeshift"
+  },
+  "scripts": {
+    "lint": "eslint bin/* lib/*.js test/*.js index.js",
+    "test": "tape test/*-test.js | tap-spec",
+    "prepublish": "nsp check",
+    "coverage": "istanbul cover tape -- test/**/*.js",
+    "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls"
+  },
+  "files": [
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "index.js",
+    "example.js",
+    "lib",
+    "bin"
+  ],
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "bucharest-gold/nodeshift.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/bucharest-gold/nodeshift/issues"
+  },
+  "homepage": "https://github.com/bucharest-gold/nodeshift#readme",
+  "dependencies": {
+    "mkdirp": "^0.5.1",
+    "openshift-rest-client": "0.0.2",
+    "rimraf": "^2.6.1",
+    "tar": "^3.1.3"
+  },
+  "devDependencies": {
+    "coveralls": "^2.13.1",
+    "eslint": "^3.19.0",
+    "eslint-config-semistandard": "^11.0.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.0.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "istanbul": "^0.4.5",
+    "nock": "^9.0.13",
+    "nsp": "^2.6.3",
+    "nyc": "^10.3.2",
+    "proxyquire": "^1.8.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.3"
+  }
+}
