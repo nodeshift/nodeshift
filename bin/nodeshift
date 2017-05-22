@@ -3,31 +3,78 @@
 
 const currentDir = process.cwd();
 
-console.log(`Nodeshifting in ${currentDir}`);
-
-// Create The Docker build archive
+const openshiftRestClient = require('openshift-rest-client');
 const dockerArchiver = require('../lib/docker-archiver');
+const buildConfigurator = require('../lib/build-config');
+const imageStreamConfigurator = require('../lib/image-stream');
 
+const projectPackage = require(`${currentDir}/package.json`);
+
+// TODO: if no name, then generate one
+const projectName = projectPackage.name;
+
+// Create what the image name will be,
+const buildName = `${projectName}-s2i`;
+
+// Docker archive location, maybe this should get set at another place?
+// Or get this from the dockerArchive module
+const dockerArhiveLocation = `${currentDir}/tmp/nodeshift/build`;
+
+console.log(`Nodeshifting in ${currentDir}`);
 // High level steps that need to be done
+
+// Need to load the config and setup
+openshiftRestClient().then((client) => {
+  // Create The Docker build archive
+  // create a temp/build directory
+  // Create a base Dockerfile
+  // tar up the users project with that generated Dockerfile
+  return dockerArchiver.archiveAndTar().then(() => {
+    console.log('Archive Created');
+    return client;
+  });
+}).then((client) => {
+  // Check for a BuildConfig, create or update if necesarry
+  // check for build config, create or update if necesarry
+  return client.buildconfigs.find(buildName).then((response) => {
+    if (response.code === 404) {
+      // Need to create the build config
+      console.log('Creating build config');
+      const buildConfig = buildConfigurator.enrich({buildName: buildName, name: projectName, version: projectPackage.version});
+      return client.buildconfigs.create(buildConfig).then(() => {
+        return client;
+      });
+    }
+
+    console.log('Using current buildConfig');
+    return client;
+  });
+}).then((client) => {
+  // Check for an imagsestream, create or update if necesarry
+  return client.imagestreams.find(projectName).then((imageStream) => {
+    if (imageStream.code === 404) {
+      // Need to create the image stream
+      console.log('Creating imagestream');
+      const imageStreamConfig = imageStreamConfigurator.enrich({name: projectName, version: projectPackage.version});
+      return client.imagestreams.create(imageStreamConfig).then((imageStream) => {
+        // The image stream status will contain the internal docker repo.  do we save that somewhere now?
+        return client;
+      });
+    }
+
+    return client;
+  });
+}).then((client) => {
+  // Start the build process
+  // Upload the .tar file
+  return client.buildconfigs.instantiateBinary(buildName, {dockerArchive: `${dockerArhiveLocation}/archive.tar`});
+  // There is supposedly a Websocket endpoint we can connect to, to watch the build
+});
 
 // Locate any openshift resource(?) files from the Users node application
 // There will be a default location where this plugin looks, ATM, i'm thinking the directory will be called "nodeshift"
 // perhaps a configuration option to change the location of where the files are located.
 // Not sure at which point we "enrich"(term from the java lib, not mine) them.
-
-// create a temp/build directory
-// Create a base Dockerfile
-// tar up the users project with that generated Dockerfile
-dockerArchiver.archiveAndTar().then(() => {
-  // Check for a BuildConfig, create or update if necesarry
-
-});
-
-// Check for an imagsestream, create or update if necesarry
-
-// Start the build process
-// Upload the .tar file
-// There is supposedly a Websocket endpoint we can connect to, to watch the build
 
 // Once the build is done, its time to create the service/deployments/routes
 
