@@ -1,6 +1,9 @@
 #! /usr/bin/env node
 'use strict';
 
+// Providing a title to the process in `ps`
+process.title = 'nodeshift'; // Thanks Ember-cli :)
+
 const currentDir = process.cwd();
 
 const openshiftRestClient = require('openshift-rest-client');
@@ -8,9 +11,10 @@ const dockerArchiver = require('../lib/docker-archiver');
 const buildConfigurator = require('../lib/build-config');
 const imageStreamConfigurator = require('../lib/image-stream');
 
-const serviceConfig = require('../lib/services')();
-const deploymentConfig = require('../lib/deployment-config')();
-const routeConfig = require('../lib/routes')();
+const resourceLoader = require('../lib/resource-loader');
+const serviceConfig = require('../lib/services');
+const deploymentConfig = require('../lib/deployment-config');
+const routeConfig = require('../lib/routes');
 
 const projectPackage = require(`${currentDir}/package.json`);
 
@@ -20,6 +24,9 @@ const projectName = projectPackage.name;
 // Create what the image name will be,
 const buildName = `${projectName}-s2i`;
 
+// placeholder for our resource list;
+let resourceList = [];
+
 // Docker archive location, maybe this should get set at another place?
 // Or get this from the dockerArchive module
 const dockerArhiveLocation = `${currentDir}/tmp/nodeshift/build`;
@@ -27,15 +34,22 @@ const dockerArhiveLocation = `${currentDir}/tmp/nodeshift/build`;
 console.log(`Nodeshifting in ${currentDir}`);
 // High level steps that need to be done
 
+console.log('Finding any resource files in nodeshift/');
+
 // Need to load the config and setup
 openshiftRestClient().then((client) => {
-  // Create The Docker build archive
-  // create a temp/build directory
-  // Create a base Dockerfile
-  // tar up the users project with that generated Dockerfile
-  return dockerArchiver.archiveAndTar().then(() => {
-    console.log('Archive Created');
-    return client;
+  // loading the resources here for now, just easier than re-indenting
+  return resourceLoader.loadResources().then((resources) => {
+    resourceList = resources;
+  }).then(() => {
+    // Create The Docker build archive
+    // create a temp/build directory
+    // Create a base Dockerfile
+    // tar up the users project with that generated Dockerfile
+    return dockerArchiver.archiveAndTar().then(() => {
+      console.log('Archive Created');
+      return client;
+    });
   });
 }).then((client) => {
   // Check for a BuildConfig, create or update if necesarry
@@ -103,7 +117,10 @@ openshiftRestClient().then((client) => {
     if (service.code === 404) {
       // No service, create one
       console.log('Need to create service');
-      return client.services.create(serviceConfig);
+      const serviceResource = resourceList.filter((r) => {
+        return r.kind === 'Service';
+      })[0];
+      return client.services.create(serviceConfig(serviceResource, projectName));
     }
 
     console.log('Serivce already created');
@@ -118,7 +135,11 @@ openshiftRestClient().then((client) => {
     // If no deploymentconfig, create one
     if (deployment.code === 404) {
       console.log('Need to create deployment');
-      return client.deploymentconfigs.create(deploymentConfig);
+      const deploymentResource = resourceList.filter((r) => {
+        return r.kind === 'Deployment';
+      })[0];
+      console.log(deploymentResource);
+      return client.deploymentconfigs.create(deploymentConfig(deploymentResource));
     }
 
     console.log('Deployment already created');
@@ -132,7 +153,10 @@ openshiftRestClient().then((client) => {
   return client.routes.find(projectName).then((route) => {
     if (route.code === 404) {
       console.log('Need to create a route');
-      return client.routes.create(routeConfig);
+      const routeResource = resourceList.filter((r) => {
+        return r.kind === 'Route';
+      })[0];
+      return client.routes.create(routeConfig(routeResource));
     }
 
     return route;
