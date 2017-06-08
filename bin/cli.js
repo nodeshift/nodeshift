@@ -13,7 +13,7 @@ const currentDir = process.cwd();
 
 module.exports = function run (options) {
   // Run setup, this loads the config file
-  return nodeshiftConfig().then(config => {
+  return nodeshiftConfig(options).then(config => {
     // Once we have the config file, we do everything else
 
     // Create The Docker build archive
