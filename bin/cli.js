@@ -38,7 +38,7 @@ module.exports = function run (options) {
       // Not sure about this
       config.dockerImageRepo = dockerImageRepo;
       // Load the resources. routes/services/deploymentConfigs
-      return resourceLoader.loadResources().then((resources) => {
+      return resourceLoader(config).then((resources) => {
         return applyResources(config, resources);
       }).then((resourcesApplied) => {
         console.log('Resources Applied');
