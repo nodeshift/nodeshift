@@ -36,6 +36,7 @@
   },
   "homepage": "https://github.com/bucharest-gold/nodeshift#readme",
   "dependencies": {
+    "commander": "^2.9.0",
     "js-yaml": "^3.8.4",
     "lodash": "^4.17.4",
     "mkdirp": "^0.5.1",

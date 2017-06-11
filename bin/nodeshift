@@ -4,179 +4,23 @@
 // Providing a title to the process in `ps`
 process.title = 'nodeshift'; // Thanks Ember-cli :)
 
-// const currentDir = process.cwd();
+const program = require('commander');
 
 const cli = require('./cli');
 
-cli();
+program
+  .version(require('../package.json').version)
+  .usage('[--options]')
+  .option('--projectLocation <project directory location>', 'change the default location of the project')
+  .option('--configLocation <configuration directory location>', 'change the default location of the config')
+  .option('--nodeshiftDirectory <nodeshift directory name>', 'change the default name of the directory nodeshift looks at for resource files');
 
-// const openshiftRestClient = require('openshift-rest-client');
-// const dockerArchiver = require('../lib/docker-archiver');
-// const buildConfigurator = require('../lib/build-config');
-// const imageStreamConfigurator = require('../lib/image-stream');
+program.parse(process.argv);
 
-// const resourceLoader = require('../lib/resource-loader');
-// const serviceConfig = require('../lib/services');
-// const deploymentConfig = require('../lib/deployment-config');
-// const routeConfig = require('../lib/routes');
+const options = {};
 
-// // placeholder for our resource list;
-// let resourceList = [];
+options.projectLocation = program.projectLocation;
+options.configLocation = program.configLocation;
+options.nodeshiftDirectory = program.nodeshiftDirectory;
 
-// // Docker archive location, maybe this should get set at another place?
-// // Or get this from the dockerArchive module
-// const dockerArhiveLocation = `${currentDir}/tmp/nodeshift/build`;
-
-// console.log(`Nodeshifting in ${currentDir}`);
-// // High level steps that need to be done
-
-// // Run setup, this loads the config file
-
-// // Create The Docker build archive
-// // create a temp/build directory
-// // Create a base Dockerfile
-// // tar up the users project with that generated Dockerfile
-// dockerArchiver.archiveAndTar().then(() => {
-//   console.log('Archive Created');
-// });
-
-// // console.log('Finding any resource files in nodeshift/');
-
-// // // Need to load the config and setup
-// // openshiftRestClient().then((client) => {
-// //   // loading the resources here for now, just easier than re-indenting
-// //   return resourceLoader.loadResources().then((resources) => {
-// //     resourceList = resources;
-// //   }).then(() => {
-// //     // Create The Docker build archive
-// //     // create a temp/build directory
-// //     // Create a base Dockerfile
-// //     // tar up the users project with that generated Dockerfile
-// //     return dockerArchiver.archiveAndTar().then(() => {
-// //       console.log('Archive Created');
-// //       return client;
-// //     });
-// //   });
-// // }).then((client) => {
-// //   // Check for a BuildConfig, create or update if necesarry
-// //   // check for build config, create or update if necesarry
-// //   return client.buildconfigs.find(buildName).then((response) => {
-// //     if (response.code === 404) {
-// //       // Need to create the build config
-// //       console.log('Creating build config');
-// //       const buildConfig = buildConfigurator.enrich({buildName: buildName, name: projectName, version: projectPackage.version});
-// //       return client.buildconfigs.create(buildConfig).then(() => {
-// //         return client;
-// //       });
-// //     }
-
-// //     console.log('Using current buildConfig');
-// //     return client;
-// //   });
-// // }).then((client) => {
-// //   // Check for an imagsestream, create or update if necesarry
-// //   return client.imagestreams.find(projectName).then((imageStream) => {
-// //     if (imageStream.code === 404) {
-// //       // Need to create the image stream
-// //       console.log('Creating imagestream');
-// //       const imageStreamConfig = imageStreamConfigurator.enrich({name: projectName, version: projectPackage.version});
-// //       return client.imagestreams.create(imageStreamConfig).then((imageStream) => {
-// //         // The image stream status will contain the internal docker repo.  do we save that somewhere now?
-// //         return client;
-// //       });
-// //     }
-
-// //     return client;
-// //   });
-// // }).then((client) => {
-// //   // Start the build process
-// //   // Upload the .tar file
-// //   return client.buildconfigs.instantiateBinary(buildName, {dockerArchive: `${dockerArhiveLocation}/archive.tar`}).then((response) => {
-// //     console.log('Uploaded successfully');
-// //     return new Promise((resolve, reject) => {
-// //       console.log('Waiting for build to finish');
-// //       const internvalId = setInterval(() => {
-// //         // find the current build
-// //         client.builds.find(response.metadata.name).then((buildStatus) => {
-// //           if (buildStatus.status.phase === 'Complete') {
-// //             clearInterval(internvalId);
-// //             return resolve(buildStatus);
-// //           }
-
-// //           console.log('Waiting for build to finish');
-// //         });
-// //       }, 2000);
-// //     });
-// //   }).then((buildStatus) => {
-// //     return client;
-// //   });
-// //   // There is supposedly a Websocket endpoint we can connect to, to watch the build and output the log
-// // }).then((client) => {
-// //   // Once the build is done, its time to create the service/deployments/routes
-// //   // Looks like the maven plugin gets the imagestream first
-// //   // return client.imagestreams.find(projectName).then((imageStream) => {
-// //   // });
-
-// //   // Service needs to come first
-// //   // Create if needed
-// //   return client.services.find(projectName).then((service) => {
-// //     if (service.code === 404) {
-// //       // No service, create one
-// //       console.log('Need to create service');
-// //       const serviceResource = resourceList.filter((r) => {
-// //         return r.kind === 'Service';
-// //       })[0];
-// //       return client.services.create(serviceConfig(serviceResource, projectName));
-// //     }
-
-// //     console.log('Serivce already created');
-// //     return service;
-// //   }).then(() => {
-// //     return client;
-// //   });
-// // }).then((client) => {
-// //   // Then Deployment
-// //   // Create deploymentConfig if needed
-// //   return client.deploymentconfigs.find(projectName).then(deployment => {
-// //     // If no deploymentconfig, create one
-// //     if (deployment.code === 404) {
-// //       console.log('Need to create deployment');
-// //       const deploymentResource = resourceList.filter((r) => {
-// //         return r.kind === 'Deployment';
-// //       })[0];
-// //       return client.deploymentconfigs.create(deploymentConfig(deploymentResource));
-// //     }
-
-// //     console.log('Deployment already created');
-// //     return deployment;
-// //   }).then(() => {
-// //     return client;
-// //   });
-// // }).then((client) => {
-// //   // Then routes
-// //   // Create Route if needed
-// //   return client.routes.find(projectName).then((route) => {
-// //     if (route.code === 404) {
-// //       console.log('Need to create a route');
-// //       const routeResource = resourceList.filter((r) => {
-// //         return r.kind === 'Route';
-// //       })[0];
-// //       return client.routes.create(routeConfig(routeResource));
-// //     }
-
-// //     return route;
-// //   }).then(() => {
-// //     return client;
-// //   });
-// // }).then((client) => {
-// //   console.log('Done?');
-// // }).catch((err) => {
-// //   console.log('GOT AN ERROR', err);
-// // });
-
-// // // Locate any openshift resource(?) files from the Users node application
-// // // There will be a default location where this plugin looks, ATM, i'm thinking the directory will be called "nodeshift"
-// // // perhaps a configuration option to change the location of where the files are located.
-// // // Not sure at which point we "enrich"(term from the java lib, not mine) them.
-
-// // // I guess then we ping the service to see if it is fully loaded?
+cli(options);
