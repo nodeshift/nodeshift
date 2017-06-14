@@ -13,7 +13,8 @@ program
   .usage('[--options]')
   .option('--projectLocation <project directory location>', 'change the default location of the project')
   .option('--configLocation <configuration directory location>', 'change the default location of the config')
-  .option('--nodeshiftDirectory <nodeshift directory name>', 'change the default name of the directory nodeshift looks at for resource files');
+  .option('--nodeshiftDirectory <nodeshift directory name>', 'change the default name of the directory nodeshift looks at for resource files')
+  .option('--osc.strictSSL [value]', 'setting to pass to the Openshift Rest Client. Set to false if using a self-sign cert');
 
 program.parse(process.argv);
 
@@ -22,5 +23,8 @@ const options = {};
 options.projectLocation = program.projectLocation;
 options.configLocation = program.configLocation;
 options.nodeshiftDirectory = program.nodeshiftDirectory;
+options.osc = {
+  strictSSL: (program['osc.strictSSL'] === 'false') ? false : true
+};
 
 cli(options);

@@ -106,6 +106,20 @@ The `.nodeshift` directory is responsible for holding your resource files.  Thes
 
 Currently, nodeshift will only create resources based on the files specified,  in the future, its possible somethings could be created by default
 
+### Advanced Options
+
+There are a few options available on the CLI or when using the API
+
+        Usage: nodeshift [--options]
+
+        Options:
+        --projectLocation <project directory location>       change the default location of the project
+        --configLocation <configuration directory location>  change the default location of the config
+        --nodeshiftDirectory <nodeshift directory name>      change the default name of the directory nodeshift looks at for resource files
+        --osc.strictSSL [value]                              setting to pass to the Openshift Rest Client. Set to false if using a self-sign cert
+
+Of course, there is also the standard `-V` and `--help` options for version and help
+
 ## Contributing
 
 Please read the [contributing guide](./CONTRIBUTING.md)
