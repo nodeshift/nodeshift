@@ -4,27 +4,42 @@
 // Providing a title to the process in `ps`
 process.title = 'nodeshift'; // Thanks Ember-cli :)
 
-const program = require('commander');
+const yargs = require('yargs');
 
 const cli = require('./cli');
 
-program
+yargs
   .version(require('../package.json').version)
   .usage('[--options]')
-  .option('--projectLocation <project directory location>', 'change the default location of the project')
-  .option('--configLocation <configuration directory location>', 'change the default location of the config')
-  .option('--nodeshiftDirectory <nodeshift directory name>', 'change the default name of the directory nodeshift looks at for resource files')
-  .option('--osc.strictSSL [value]', 'setting to pass to the Openshift Rest Client. Set to false if using a self-sign cert');
+  .option('projectLocation', {
+    describe: 'change the default location of the project',
+    type: 'string'
+  })
+  .option('configLocation', {
+    describe: 'change the default location of the config',
+    type: 'string'
+  })
+  .options('nodeshiftDirectory', {
+    describe: 'change the default name of the directory nodeshift looks at for resource files',
+    type: 'string'
+  })
+  .options('osc.strictSSL', {
+    describe: 'setting to pass to the Openshift Rest Client. Set to false if using a self-sign cert'
+  })
+  .help();
 
-program.parse(process.argv);
+const argv = yargs.argv;
 
 const options = {};
 
-options.projectLocation = program.projectLocation;
-options.configLocation = program.configLocation;
-options.nodeshiftDirectory = program.nodeshiftDirectory;
-options.osc = {
-  strictSSL: (program['osc.strictSSL'] === 'false') ? false : true
-};
+options.projectLocation = argv.projectLocation;
+options.configLocation = argv.configLocation;
+options.nodeshiftDirectory = argv.nodeshiftDirectory;
+
+if (argv.osc) {
+  options.osc = {
+    strictSSL: (argv.osc.strictSSL === 'false') ? false : true
+  };
+}
 
 cli(options);
