@@ -24,7 +24,12 @@ test('test no .nodeshift directory using defaults', (t) => {
     fs: mockedfs
   });
 
-  const result = resourceLoader().then((resourceList) => {
+  const config = {
+    projectLocation: process.cwd(),
+    nodeshiftDirectory: '.nodeshift'
+  };
+
+  const result = resourceLoader(config).then((resourceList) => {
     t.equals(Array.isArray(resourceList), true, 'returns an array');
     t.equal(resourceList.length, 0, 'should be length zero when no directory found');
     t.end();
@@ -34,16 +39,16 @@ test('test no .nodeshift directory using defaults', (t) => {
 });
 
 test('test using different nodeshift and projectLocation', (t) => {
-  const options = {
+  const config = {
     projectLocation: 'not_default',
-    nodeshiftDir: 'mavenshift'
+    nodeshiftDirectory: 'mavenshift'
   };
 
   const mockedfs = {
-    readFile: (locations, options, cb) => { return cb(null, null); },
+    readFile: (locations, config, cb) => { return cb(null, null); },
     readdir: (path, cb) => {
       // test default path
-      t.equals(path, `${options.projectLocation}/${options.nodeshiftDir}`, 'should be using non default locations');
+      t.equals(path, `${config.projectLocation}/${config.nodeshiftDirectory}`, 'should be using non default locations');
       return cb(null, []);
     }
   };
@@ -51,7 +56,7 @@ test('test using different nodeshift and projectLocation', (t) => {
     fs: mockedfs
   });
 
-  resourceLoader(options).then((resourceList) => {
+  resourceLoader(config).then((resourceList) => {
     t.end();
   });
 });
@@ -69,7 +74,12 @@ test('test error with readdir', (t) => {
     fs: mockedfs
   });
 
-  resourceLoader().catch(() => {
+  const config = {
+    projectLocation: process.cwd(),
+    nodeshiftDirectory: '.nodeshift'
+  };
+
+  resourceLoader(config).catch(() => {
     t.end();
   });
 });
@@ -95,7 +105,12 @@ test('test only return .ymls', (t) => {
     helpers: mockedHelper
   });
 
-  resourceLoader().then((resourceList) => {
+  const config = {
+    projectLocation: process.cwd(),
+    nodeshiftDirectory: '.nodeshift'
+  };
+
+  resourceLoader(config).then((resourceList) => {
     t.equals(Array.isArray(resourceList), true, 'returns an array');
     t.equal(resourceList.length, 2, 'should be length 2');
     t.end();
@@ -116,7 +131,12 @@ test('test error reading file from list', (t) => {
     fs: mockedfs
   });
 
-  resourceLoader().catch(() => {
+  const config = {
+    projectLocation: process.cwd(),
+    nodeshiftDirectory: '.nodeshift'
+  };
+
+  resourceLoader(config).catch(() => {
     t.pass();
     t.end();
   });

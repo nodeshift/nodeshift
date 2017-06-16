@@ -9,15 +9,13 @@ const binaryBuild = require('../lib/binary-build');
 const resourceLoader = require('../lib/resource-loader');
 const applyResources = require('../lib/apply-resources');
 
-const currentDir = process.cwd();
-
 module.exports = function run (options) {
   // Run setup, this loads the config file
   return nodeshiftConfig(options).then(config => {
     // Once we have the config file, we do everything else
 
     // Create The Docker build archive
-    return dockerArchiver.archiveAndTar().then(() => {
+    return dockerArchiver.archiveAndTar(config).then(() => {
       console.log('Archive Created');
     }).then(() => {
       // check for build config, create or update if necesarry
@@ -29,7 +27,7 @@ module.exports = function run (options) {
     }).then((imageStream) => {
       console.log('Image Stream Created/Updated');
       // Start the build process
-      return binaryBuild(config, `${currentDir}/${dockerArchiver.DEFAULT_BUILD_LOCATION}/archive.tar`);
+      return binaryBuild(config, `${config.projectLocation}/${dockerArchiver.DEFAULT_BUILD_LOCATION}/archive.tar`);
     }).then((buildStatus) => {
       console.log(`Build ${buildStatus.metadata.name} Complete`);
       // Query the image stream, we need to DockerImageRepo
