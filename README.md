@@ -113,12 +113,20 @@ There are a few options available on the CLI or when using the API
         Usage: nodeshift [--options]
 
         Options:
-        --projectLocation <project directory location>       change the default location of the project
-        --configLocation <configuration directory location>  change the default location of the config
-        --nodeshiftDirectory <nodeshift directory name>      change the default name of the directory nodeshift looks at for resource files
-        --osc.strictSSL [value]                              setting to pass to the Openshift Rest Client. Set to false if using a self-sign cert
+            --version             Show version number                            [boolean]
+            --projectLocation     change the default location of the project      [string]
+            --configLocation      change the default location of the config       [string]
+            --nodeshiftDirectory  change the default name of the directory nodeshift looks
+                                    at for resource files                           [string]
+            --osc.strictSSL       setting to pass to the Openshift Rest Client. Set to
+                                    false if using a self-sign cert
+            --nodeVersion, -n     the version of Node.js to use for the deployed
+                                    application.
+                [string] [choices: "latest", "8.x", "7.x", "6.x", "5.x", "4.x"] [default:
+                                                                                "latest"]
+            --help                Show help                                      [boolean]
 
-Of course, there is also the standard `-V` and `--help` options for version and help
+
 
 ## Contributing
 
