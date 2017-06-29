@@ -26,6 +26,14 @@ yargs
   .options('osc.strictSSL', {
     describe: 'setting to pass to the Openshift Rest Client. Set to false if using a self-sign cert'
   })
+  .options('nodeVersion', {
+    describe: 'the version of Node.js to use for the deployed application.',
+    alias: 'n',
+    type: 'string',
+    choices: ['latest', '8.x', '7.x', '6.x', '5.x', '4.x'],
+    default: 'latest',
+
+  })
   .help();
 
 const argv = yargs.argv;
@@ -35,6 +43,7 @@ const options = {};
 options.projectLocation = argv.projectLocation;
 options.configLocation = argv.configLocation;
 options.nodeshiftDirectory = argv.nodeshiftDirectory;
+options.nodeVersion = argv.nodeVersion;
 
 if (argv.osc) {
   options.osc = {
