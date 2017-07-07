@@ -50,4 +50,4 @@ if (argv.osc) {
   };
 }
 
-cli(options);
+cli(options).then(console.log).catch(console.error);

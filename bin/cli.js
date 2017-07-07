@@ -9,40 +9,25 @@ const binaryBuild = require('../lib/binary-build');
 const resourceLoader = require('../lib/resource-loader');
 const applyResources = require('../lib/apply-resources');
 
-module.exports = function run (options) {
-  // Run setup, this loads the config file
-  return nodeshiftConfig(options).then(config => {
-    // Once we have the config file, we do everything else
-
-    // Create The Docker build archive
-    return dockerArchiver.archiveAndTar(config).then(() => {
-      console.log('Archive Created');
-    }).then(() => {
-      // check for build config, create or update if necesarry
-      return buildConfigurator.createOrUpdateBuildConfig(config);
-    }).then((buildConfig) => {
-      console.log('Build Config Created/Updated');
-      // Check for an imagsestream, create or update if necesarry
-      return imageStreamConfigurator.createOrUpdateImageStream(config);
-    }).then((imageStream) => {
-      console.log('Image Stream Created/Updated');
-      // Start the build process
-      return binaryBuild(config, `${config.projectLocation}/${dockerArchiver.DEFAULT_BUILD_LOCATION}/archive.tar`);
-    }).then((buildStatus) => {
-      console.log(`Build ${buildStatus.metadata.name} Complete`);
-      // Query the image stream, we need to DockerImageRepo
-      return imageStreamConfigurator.getDockerImageRepo(config);
-    }).then((dockerImageRepo) => {
-      // Not sure about this
-      config.dockerImageRepo = dockerImageRepo;
-      // Load the resources. routes/services/deploymentConfigs
-      return resourceLoader(config).then((resources) => {
-        return applyResources(config, resources);
-      }).then((resourcesApplied) => {
-        console.log('Resources Applied');
-      });
-    });
-  }).catch((err) => {
-    console.log('Error:', err);
-  });
+module.exports = async function run (options) {
+  try {
+    const config = await nodeshiftConfig(options);
+    await dockerArchiver.archiveAndTar(config);
+    const buildConfig = await buildConfigurator.createOrUpdateBuildConfig(config);
+    console.log(`build configuration ${buildConfig.metadata.name} created/updated`);
+    const imageStream = await imageStreamConfigurator.createOrUpdateImageStream(config);
+    console.log(`application image stream ${imageStream.metadata.name} created/updated`);
+    const buildStatus = await binaryBuild(config, `${config.projectLocation}/${dockerArchiver.DEFAULT_BUILD_LOCATION}/archive.tar`);
+    console.log(`build ${buildStatus.metadata.name} complete`);
+    const dockerImageRepo = await imageStreamConfigurator.getDockerImageRepo(config);
+    // should we do this?
+    config.dockerImageRepo = dockerImageRepo;
+    console.log(`docker image repository ${dockerImageRepo}`);
+    const resources = await resourceLoader(config);
+    await applyResources(config, resources);
+    return('done');
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
 };
