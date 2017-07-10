@@ -9,8 +9,8 @@
     "lint": "eslint bin/* lib/*.js test/*.js index.js",
     "test": "tape test/*-test.js | tap-spec",
     "prepublish": "nsp check",
-    "coverage": "istanbul cover tape -- test/**/*.js",
-    "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls",
+    "coverage": "nyc npm test",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "ci": "npm run lint && npm run coveralls"
   },
   "files": [
@@ -58,10 +58,9 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^7.0.0",
     "eslint-plugin-standard": "^3.0.1",
-    "istanbul": "^0.4.5",
     "nock": "^9.0.13",
     "nsp": "^2.6.3",
-    "nyc": "^10.3.2",
+    "nyc": "~10.3.2",
     "proxyquire": "^1.8.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.7.0"
