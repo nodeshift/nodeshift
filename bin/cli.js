@@ -24,7 +24,7 @@ module.exports = async function run (options) {
     console.log(`docker image repository ${dockerImageRepo}`);
     const resources = await resourceLoader(config);
     await applyResources(config, resources);
-    return('done');
+    return 'done';
   } catch (err) {
     console.error(err);
     process.exit(1);
