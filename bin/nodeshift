@@ -31,8 +31,7 @@ yargs
     alias: 'n',
     type: 'string',
     choices: ['latest', '8.x', '7.x', '6.x', '5.x', '4.x'],
-    default: 'latest',
-
+    default: 'latest'
   })
   .help();
 

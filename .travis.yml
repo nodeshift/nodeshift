@@ -6,7 +6,7 @@ node_js:
   - "6"
   - "7"
 script:
-   - npm run coveralls
+   - npm run ci
 notifications:
   irc: "irc.freenode.org#brass-monkey"
 branches:
