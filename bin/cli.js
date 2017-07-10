@@ -17,8 +17,7 @@ module.exports = async function run (options) {
     console.log(`build configuration ${buildConfig.metadata.name} created/updated`);
     const imageStream = await imageStreamConfigurator.createOrUpdateImageStream(config);
     console.log(`application image stream ${imageStream.metadata.name} created/updated`);
-    const buildStatus = await binaryBuild(config, `${config.projectLocation}/${dockerArchiver.DEFAULT_BUILD_LOCATION}/archive.tar`);
-    console.log(`build ${buildStatus.metadata.name} complete`);
+    await binaryBuild(config, `${config.projectLocation}/${dockerArchiver.DEFAULT_BUILD_LOCATION}/archive.tar`);
     const dockerImageRepo = await imageStreamConfigurator.getDockerImageRepo(config);
     // should we do this?
     config.dockerImageRepo = dockerImageRepo;
