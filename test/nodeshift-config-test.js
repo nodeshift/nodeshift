@@ -50,7 +50,7 @@ test('nodeshift-config no package.json', (t) => {
   };
 
   nodeshiftConfig(options).catch((err) => {
-    t.equal(err.message, 'No package.json could be found', 'Error Should be "No package.json could be found"');
+    t.equal(err.message, 'Cannot find module \'./not-here/package.json\'', 'Error Should be "\'Cannot find module \'./not-here/package.json\'\'"');
     t.end();
   });
 });

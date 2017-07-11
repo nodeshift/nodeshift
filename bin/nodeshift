@@ -46,8 +46,8 @@ options.nodeVersion = argv.nodeVersion;
 
 if (argv.osc) {
   options.osc = {
-    strictSSL: (argv.osc.strictSSL === 'false') ? false : true
+    strictSSL: argv.osc.strictSSL !== 'false'
   };
 }
 
-cli(options);
+cli(options).then(console.log).catch(console.error);
