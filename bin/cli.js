@@ -5,7 +5,6 @@ const dockerArchiver = require('../lib/docker-archiver');
 const buildConfigurator = require('../lib/build-config');
 const imageStreamConfigurator = require('../lib/image-stream');
 const binaryBuild = require('../lib/binary-build');
-const logger = require('../lib/common-log');
 
 const resourceLoader = require('../lib/resource-loader');
 const applyResources = require('../lib/apply-resources');

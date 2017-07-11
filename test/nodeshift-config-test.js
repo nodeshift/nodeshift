@@ -4,12 +4,14 @@ const test = require('tape');
 const proxyquire = require('proxyquire');
 
 const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
-  'openshift-config-loader': () => { return Promise.resolve({
-    context: {
-      namespace: 'test-namespace'
-    },
-    cluster: 'http://mock-cluster'
-  }); },
+  'openshift-config-loader': () => {
+    return Promise.resolve({
+      context: {
+        namespace: 'test-namespace'
+      },
+      cluster: 'http://mock-cluster'
+    });
+  },
   'openshift-rest-client': () => { return Promise.resolve({}); }
 });
 
