@@ -7,6 +7,7 @@ process.title = 'nodeshift'; // Thanks Ember-cli :)
 const yargs = require('yargs');
 
 const cli = require('./cli');
+const logger = require('../lib/common-log');
 
 yargs
   .version(require('../package.json').version)
@@ -50,4 +51,4 @@ if (argv.osc) {
   };
 }
 
-cli(options).then(console.log).catch(console.error);
+cli(options).then(logger.info).catch(logger.error);
