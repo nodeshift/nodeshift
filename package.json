@@ -7,7 +7,7 @@
   },
   "scripts": {
     "lint": "eslint bin/* lib/*.js test/*.js index.js",
-    "test": "tape test/*-test.js | tap-spec",
+    "test": "NODESHIFT_QUIET=true tape test/*-test.js | tap-spec",
     "prepublish": "nsp check",
     "coverage": "nyc npm test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",

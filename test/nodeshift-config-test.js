@@ -4,7 +4,14 @@ const test = require('tape');
 const proxyquire = require('proxyquire');
 
 const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
-  'openshift-config-loader': () => { return Promise.resolve({}); },
+  'openshift-config-loader': () => {
+    return Promise.resolve({
+      context: {
+        namespace: 'test-namespace'
+      },
+      cluster: 'http://mock-cluster'
+    });
+  },
   'openshift-rest-client': () => { return Promise.resolve({}); }
 });
 
@@ -15,7 +22,7 @@ test('nodeshift-config basic setup', (t) => {
     t.ok(config.nodeshiftDirectory, 'nodeshiftDir prop should be here');
     t.equal(config.nodeshiftDirectory, '.nodeshift', 'nodeshiftDir prop should be .nodeshift by default');
     t.end();
-  });
+  }).catch(t.fail);
 
   t.equal(p instanceof Promise, true, 'should return a Promise');
 });

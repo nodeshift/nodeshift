@@ -6,8 +6,6 @@ process.title = 'nodeshift'; // Thanks Ember-cli :)
 
 const yargs = require('yargs');
 
-const cli = require('./cli');
-
 yargs
   .version(require('../package.json').version)
   .usage('[--options]')
@@ -33,16 +31,21 @@ yargs
     choices: ['latest', '8.x', '7.x', '6.x', '5.x', '4.x'],
     default: 'latest'
   })
+  .env('NODESHIFT')
+  .option('quiet', {
+    describe: 'supress INFO and TRACE lines from output logs',
+    type: 'boolean'
+  })
   .help();
 
 const argv = yargs.argv;
-
 const options = {};
 
 options.projectLocation = argv.projectLocation;
 options.configLocation = argv.configLocation;
 options.nodeshiftDirectory = argv.nodeshiftDirectory;
 options.nodeVersion = argv.nodeVersion;
+process.env['NODESHIFT_QUIET'] = argv.quiet === true;
 
 if (argv.osc) {
   options.osc = {
@@ -50,4 +53,5 @@ if (argv.osc) {
   };
 }
 
-cli(options).then(console.log).catch(console.error);
+const logger = require('../lib/common-log')();
+require('./cli')(options).then(logger.info).catch(logger.error);
