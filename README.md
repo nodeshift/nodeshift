@@ -72,27 +72,38 @@ Or just calling nodeshift directly if you have it installed globally
 
 Whatever is run, you will see output similiar to this:
 
-    > nodejs-rest-http@0.0.0 openshift /Users/lholmquist/develop/nodejs-boosters/nodejs-rest-http
-    > nodeshift
-
-    cleaned up
-    created
-    Archive Created
-    Creating Build Config nodejs-rest-http-s2i for Source build
-    Build Config Created/Updated
-    Creating ImageStream nodejs-rest-http
-    Image Stream Created/Updated
-    Binary Upload Complete
-    Waiting for build to finish
-    Waiting for build to finish
-    Waiting for build to finish
-    Waiting for build to finish
-    Build nodejs-rest-http-s2i-1 Complete
-    Creating New Serivce
-    Creating New Route
-    Need to create deployment
-    Resources Applied
-
+```term
+~/s/nodejs-rest-http ❯❯❯ nodeshift  --osc.strictSSL false
+2017-07-12T18:56:28.850Z INFO loading configuration
+2017-07-12T18:56:28.866Z INFO using namespace nodeshift-demo at https://192.168.99.100:8443
+2017-07-12T18:56:28.882Z INFO creating archive of package.json, README.md, app.js, public, bin
+2017-07-12T18:56:28.934Z INFO creating build configuration nodejs-rest-http-s2i
+2017-07-12T18:56:28.952Z INFO creating image stream nodejs-rest-http
+2017-07-12T18:56:28.962Z INFO uploading binary archive /usr/src/nodejs-rest-http/tmp/nodeshift/build/archive.tar
+2017-07-12T18:56:31.138Z INFO binary upload complete
+2017-07-12T18:56:31.138Z INFO waiting for build to finish
+2017-07-12T18:56:31.192Z TRACE Receiving source from STDIN as archive ...
+2017-07-12T18:56:31.399Z TRACE ---> Installing application source
+2017-07-12T18:56:31.418Z TRACE ---> Building your Node application from source
+2017-07-12T18:56:31.418Z TRACE ---> Using 'npm install'
+2017-07-12T18:56:34.294Z TRACE added 50 packages in 2.441s
+2017-07-12T18:56:34.913Z TRACE
+2017-07-12T18:56:34.913Z TRACE Pushing image 172.30.1.1:5000/nodeshift-demo/nodejs-rest-http:latest ...
+2017-07-12T18:56:34.986Z TRACE Pushed 3/8 layers, 38% complete
+2017-07-12T18:56:34.986Z TRACE Pushed 4/8 layers, 51% complete
+2017-07-12T18:56:35.000Z TRACE Pushed 5/8 layers, 64% complete
+2017-07-12T18:56:35.004Z TRACE Pushed 6/8 layers, 77% complete
+2017-07-12T18:56:35.006Z TRACE Pushed 7/8 layers, 89% complete
+2017-07-12T18:56:35.315Z TRACE Pushed 8/8 layers, 100% complete
+2017-07-12T18:56:35.610Z TRACE Push successful
+2017-07-12T18:56:39.139Z INFO build nodejs-rest-http-s2i-1 complete
+2017-07-12T18:56:39.147Z INFO docker image repository 172.30.1.1:5000/nodeshift-demo/nodejs-rest-http
+2017-07-12T18:56:39.171Z INFO creating deployment configuration nodejs-rest-http
+2017-07-12T18:56:39.177Z INFO creating new serivce nodejs-rest-http
+2017-07-12T18:56:39.178Z INFO creating new route nodejs-rest-http
+2017-07-12T18:56:39.187Z INFO route host mapping nodejs-rest-http-nodeshift-demo.192.168.99.100.nip.io
+2017-07-12T18:56:39.199Z INFO done
+```
 
 If you login to your local Openshift cluster and navigate to the "node-demo" project, there should be a new deployment with a route to your application.
 
