@@ -21,7 +21,7 @@ module.exports = async function run (options) {
     await applyResources(config, await resourceLoader(config));
     return 'done';
   } catch (err) {
-    console.error(err);
+    require('../lib/common-log')().error(err, err.stack);
     process.exit(1);
   }
 };
