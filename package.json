@@ -1,6 +1,6 @@
 {
   "name": "nodeshift",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Plugin for running openshift deployments",
   "bin": {
     "nodeshift": "./bin/nodeshift"
