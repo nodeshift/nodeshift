@@ -1,5 +1,7 @@
 # Nodeshift [![Build Status](https://travis-ci.org/bucharest-gold/nodeshift.svg?branch=master)](https://travis-ci.org/bucharest-gold/nodeshift) [![Coverage Status](https://coveralls.io/repos/github/bucharest-gold/nodeshift/badge.svg?branch=master)](https://coveralls.io/github/bucharest-gold/nodeshift?branch=master)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/bucharest-gold/nodeshift.svg)](https://greenkeeper.io/)
+
 Nodeshift is a Plugin for running openshift deployments for node.js projects
 
 _Disclaimer: Nodeshift is extremely experimental at the moment.  This means it is under heavy development, api's could change at any time until a 1.0.0 release_
