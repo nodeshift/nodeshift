@@ -24,6 +24,11 @@ yargs
   .options('osc.strictSSL', {
     describe: 'setting to pass to the Openshift Rest Client. Set to false if using a self-sign cert'
   })
+  .options('osl.tryServiceAccount', {
+    describe: `setting to pass to the Openshift Config Loader. Set to false to by-pass service account lookup
+    or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT environment variable
+    `
+  })
   .options('nodeVersion', {
     describe: 'the version of Node.js to use for the deployed application.',
     alias: 'n',
@@ -50,6 +55,12 @@ process.env['NODESHIFT_QUIET'] = argv.quiet === true;
 if (argv.osc) {
   options.osc = {
     strictSSL: argv.osc.strictSSL !== 'false'
+  };
+}
+
+if (argv.osl) {
+  options.osl = {
+    tryServiceAccount: argv.osl.tryServiceAccount !== 'false'
   };
 }
 
