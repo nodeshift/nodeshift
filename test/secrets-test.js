@@ -5,15 +5,37 @@ const test = require('tape');
 const secrets = require('../lib/secrets');
 
 test('test getsecrets, already created', (t) => {
+  const resource = {
+    apiVersion: 'v1',
+    kind: 'Secret',
+    metadata: {
+      name: 'my-database-secret'
+    },
+    stringData: {
+      user: 'luke',
+      password: 'secret'
+    }
+  };
+
   const config = {
+    projectName: 'test-project',
+    context: {
+      namespace: 'namespace'
+    },
+    projectVersion: '1.0.0',
     openshiftRestClient: {
       secrets:
       {
-        find: () => { return { code: 200, metadata: { name: 'my secret' } }; }
+        find: (name) => {
+          if (name !== resource.metadata.name) {
+            t.fail('name argument does not match the resource.metadata.name');
+          }
+          return { code: 200, metadata: { name: 'my secret' } };
+        }
       }
     }
   };
-  const resource = {};
+
   const p = secrets(config, resource).then((secret) => {
     t.equal(secret.code, 200, 'secret response code should be 200');
     t.end();
@@ -51,7 +73,6 @@ test('test getsecrets need to create', (t) => {
   };
 
   secrets(config, resource).then((secret) => {
-    console.log(secret);
     t.equal(secret.kind, 'Secret', 'is a secret Kind');
     t.equal(secret.metadata.name, 'my-database-secret', 'metadata.name should not be overriden');
     t.end();
