@@ -60,7 +60,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "nock": "^9.0.13",
     "nsp": "^2.6.3",
-    "nyc": "~11.1.0",
+    "nyc": "~11.2.1",
     "proxyquire": "^1.8.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.7.0"
