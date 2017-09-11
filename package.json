@@ -6,7 +6,7 @@
     "nodeshift": "./bin/nodeshift"
   },
   "scripts": {
-    "lint": "eslint bin/* lib/*.js test/*.js index.js",
+    "lint": "eslint bin/* lib/**/*.js test/*.js index.js",
     "test": "NODESHIFT_QUIET=true tape test/*-test.js | tap-spec",
     "prepublish": "nsp check",
     "coverage": "nyc npm test",
