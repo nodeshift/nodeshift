@@ -13,7 +13,7 @@ script:
 # Only the node version 8 job will upload the lockfile
 after_script: greenkeeper-lockfile-upload
 notifications:
-  irc: "irc.freenode.org#brass-monkey"
+  irc: "irc.freenode.org#bucharest-gold"
 branches:
   only:
     - master
