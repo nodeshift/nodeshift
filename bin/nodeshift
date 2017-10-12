@@ -41,6 +41,7 @@ yargs
     describe: 'supress INFO and TRACE lines from output logs',
     type: 'boolean'
   })
+  .array('d')
   .help();
 
 const argv = yargs.argv;
@@ -62,6 +63,27 @@ if (argv.osl) {
   options.osl = {
     tryServiceAccount: argv.osl.tryServiceAccount !== 'false'
   };
+}
+
+// Check for the -d array
+// If it is there, we need to parse it.
+// The values should be in the format VALUE=key
+if (argv.d) {
+  const splitted = argv.d.map((props) => {
+    return props.split('=');
+  });
+
+  // convert our split array to an array of objects where the key is the 0 index and value is the 1 index
+  const definedProperties = splitted.map((v) => {
+    return {
+      key: v[0],
+      value: v[1]
+    };
+  });
+
+  options.definedProperties = definedProperties;
+} else {
+  options.definedProperties = [];
 }
 
 const logger = require('../lib/common-log')();
