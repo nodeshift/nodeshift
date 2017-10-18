@@ -145,12 +145,13 @@ test.skip('test error reading file from list', (t) => {
   });
 });
 
+/* eslint no-template-curly-in-string: "off" */
 test('test string substitution', (t) => {
   const mockedHelper = {
     yamlToJson: (file) => {
       return {
         templates: {
-          SSO_AUTH_SERVER_URL: '{SSO_AUTH_SERVER_URL}'
+          SSO_AUTH_SERVER_URL: '${SSO_AUTH_SERVER_URL}'
         }
       };
     }
@@ -175,7 +176,7 @@ test('test string substitution', (t) => {
   const config = {
     projectLocation: process.cwd(),
     nodeshiftDirectory: '.nodeshift',
-    definedProperties: [{key: '{SSO_AUTH_SERVER_URL}', value: 'https://yea'}]
+    definedProperties: [{key: 'SSO_AUTH_SERVER_URL', value: 'https://yea'}]
   };
 
   resourceLoader(config).then((resourceList) => {

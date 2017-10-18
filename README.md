@@ -119,6 +119,32 @@ The `.nodeshift` directory is responsible for holding your resource files.  Thes
 
 Currently, nodeshift will only create resources based on the files specified,  in the future, its possible somethings could be created by default
 
+#### Template Parameters
+
+Some templates might need to have a value set at "run time".  For example, in the template below, we have the `${SSO_AUTH_SERVER_URL}` parameter:
+
+        apiVersion: v1
+        kind: Deployment
+        metadata:
+            name: nodejs-rest-http-secured
+        spec:
+          template:
+            spec:
+              containers:
+                - env:
+                  - name: SSO_AUTH_SERVER_URL
+                    value: "${SSO_AUTH_SERVER_URL}"
+                  - name: REALM
+                    value: master
+
+To set that using nodeshift, use the `-d` option with a KEY=VALUE, like this:
+
+    nodeshift -d SSO_AUTH_SERVER_URL=https://sercure-url
+
+__note that we left off the "${}" on the key,  nodeshift knows to search for a key with ${} added back on__
+
+For more on writing openshift templates, [see here](https://docs.openshift.org/latest/dev_guide/templates.html#writing-templates)
+
 ### Advanced Options
 
 There are a few options available on the CLI or when using the API
