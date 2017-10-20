@@ -85,7 +85,7 @@ test('test error with readdir', (t) => {
   });
 });
 
-test('test only return .ymls', (t) => {
+test('test only return .ymls or .yamls', (t) => {
   const mockedHelper = {
     yamlToJson: (file) => { return file; }
   };
@@ -98,7 +98,7 @@ test('test only return .ymls', (t) => {
     },
     readdir: (path, cb) => {
       // test default path
-      return cb(null, ['yes.yml', 'no.js', 'yes1.yml']);
+      return cb(null, ['yes.yml', 'no.js', 'yes1.yml', 'yes3.yaml']);
     }
   };
   const resourceLoader = proxyquire('../lib/resource-loader', {
@@ -114,7 +114,7 @@ test('test only return .ymls', (t) => {
 
   resourceLoader(config).then((resourceList) => {
     t.equals(Array.isArray(resourceList), true, 'returns an array');
-    t.equal(resourceList.length, 2, 'should be length 2');
+    t.equal(resourceList.length, 3, 'should be length 3');
     t.end();
   });
 });
