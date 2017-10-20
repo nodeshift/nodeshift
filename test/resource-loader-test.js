@@ -3,13 +3,13 @@
 const test = require('tape');
 const proxyquire = require('proxyquire');
 
-test.skip('test basic resource loader', (t) => {
+test('test basic resource loader', (t) => {
   const resourceLoader = require('../lib/resource-loader');
   t.equal(typeof resourceLoader, 'function', 'resourceLoader is a function');
   t.end();
 });
 
-test.skip('test no .nodeshift directory using defaults', (t) => {
+test('test no .nodeshift directory using defaults', (t) => {
   const mockedfs = {
     readFile: (locations, options, cb) => { return cb(null, null); },
     readdir: (path, cb) => {
@@ -38,7 +38,7 @@ test.skip('test no .nodeshift directory using defaults', (t) => {
   t.equals(result instanceof Promise, true, 'resource loader function is a promise');
 });
 
-test.skip('test using different nodeshift and projectLocation', (t) => {
+test('test using different nodeshift and projectLocation', (t) => {
   const config = {
     projectLocation: 'not_default',
     nodeshiftDirectory: 'mavenshift'
@@ -61,7 +61,7 @@ test.skip('test using different nodeshift and projectLocation', (t) => {
   });
 });
 
-test.skip('test error with readdir', (t) => {
+test('test error with readdir', (t) => {
   const mockedfs = {
     readFile: (locations, options, cb) => { return cb(null, null); },
     readdir: (path, cb) => {
@@ -85,7 +85,7 @@ test.skip('test error with readdir', (t) => {
   });
 });
 
-test.skip('test only return .ymls', (t) => {
+test('test only return .ymls', (t) => {
   const mockedHelper = {
     yamlToJson: (file) => { return file; }
   };
@@ -119,7 +119,7 @@ test.skip('test only return .ymls', (t) => {
   });
 });
 
-test.skip('test error reading file from list', (t) => {
+test('test error reading file from list', (t) => {
   const mockedfs = {
     readFile: (locations, options, cb) => {
       return cb(new Error('this is an error'), null);
