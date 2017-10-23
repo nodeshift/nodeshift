@@ -46,7 +46,7 @@
     "request": "^2.81.0",
     "rimraf": "^2.6.1",
     "tar": "^4.0.1",
-    "yargs": "^9.0.1"
+    "yargs": "^10.0.3"
   },
   "devDependencies": {
     "coveralls": "^3.0.0",
