@@ -42,6 +42,11 @@ yargs
     type: 'boolean'
   })
   .array('d')
+  .option('build.recreate', {
+    describe: 'flag to recreate a buildConfig or Imagestream',
+    choices: ['buildConfig', 'imageStream', false, true],
+    default: false
+  })
   .help();
 
 const argv = yargs.argv;
@@ -52,6 +57,7 @@ options.configLocation = argv.configLocation;
 options.nodeshiftDirectory = argv.nodeshiftDirectory;
 options.nodeVersion = argv.nodeVersion;
 process.env['NODESHIFT_QUIET'] = argv.quiet === true;
+options.build = argv.build;
 
 if (argv.osc) {
   options.osc = {

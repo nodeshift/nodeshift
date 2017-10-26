@@ -163,6 +163,8 @@ There are a few options available on the CLI or when using the API
                                     application.
                 [string] [choices: "latest", "8.x", "7.x", "6.x", "5.x", "4.x"] [default:
                                                                                 "latest"]
+            --build.recreate         flag to recreate a buildConfig or Imagestream
+           [choices: "buildConfig", "imageStream", false, true] [default: false]
             --help                Show help                                      [boolean]
 
 
