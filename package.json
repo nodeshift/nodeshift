@@ -10,6 +10,7 @@
     "test": "NODESHIFT_QUIET=true tape test/*-test.js | tap-spec",
     "prepublish": "nsp check",
     "coverage": "nyc npm test",
+    "coverage:html": "nyc npm test && nyc report --reporter=html",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "ci": "npm run lint && npm run coveralls"
   },
