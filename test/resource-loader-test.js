@@ -76,8 +76,7 @@ test('test error with readdir', (t) => {
 
   const config = {
     projectLocation: process.cwd(),
-    nodeshiftDirectory: '.nodeshift',
-    definedProperties: []
+    nodeshiftDirectory: '.nodeshift'
   };
 
   resourceLoader(config).catch(() => {
@@ -108,8 +107,7 @@ test('test only return .ymls or .yamls', (t) => {
 
   const config = {
     projectLocation: process.cwd(),
-    nodeshiftDirectory: '.nodeshift',
-    definedProperties: []
+    nodeshiftDirectory: '.nodeshift'
   };
 
   resourceLoader(config).then((resourceList) => {
@@ -135,8 +133,7 @@ test('test error reading file from list', (t) => {
 
   const config = {
     projectLocation: process.cwd(),
-    nodeshiftDirectory: '.nodeshift',
-    definedProperties: []
+    nodeshiftDirectory: '.nodeshift'
   };
 
   resourceLoader(config).catch(() => {
