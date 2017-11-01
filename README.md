@@ -119,6 +119,16 @@ The `.nodeshift` directory is responsible for holding your resource files.  Thes
 
 Currently, nodeshift will only create resources based on the files specified,  in the future, its possible somethings could be created by default
 
+#### Commands & Goals
+
+By default, if you run just `nodeshift`, it will run the `deploy` goal, which runs everything.
+
+**resource** - will parse and create the application resources files on disk
+
+**apply-resource** - does the resource goal and will also push that to your running cluster
+
+**deploy** - does everything, the archiving of code and everything that apply-resource does
+
 #### Template Parameters
 
 Some templates might need to have a value set at "run time".  For example, in the template below, we have the `${SSO_AUTH_SERVER_URL}` parameter:
@@ -151,6 +161,11 @@ There are a few options available on the CLI or when using the API
 
         Usage: nodeshift [--options]
 
+        Commands:
+            nodeshift deploy          default command - deploy                   [default]
+            nodeshift resource        resource command
+            nodeshift apply-resource  apply resource command
+
         Options:
             --version             Show version number                            [boolean]
             --projectLocation     change the default location of the project      [string]
@@ -164,7 +179,10 @@ There are a few options available on the CLI or when using the API
                 [string] [choices: "latest", "8.x", "7.x", "6.x", "5.x", "4.x"] [default:
                                                                                 "latest"]
             --build.recreate         flag to recreate a buildConfig or Imagestream
-           [choices: "buildConfig", "imageStream", false, true] [default: false]
+                [choices: "buildConfig", "imageStream", false, true] [default: false]
+            --build.forcePull        flag to make your BuildConfig always pull a new image
+                                      from dockerhub or not
+                [boolean] [choices: true, false] [default: false]
             --help                Show help                                      [boolean]
 
 
