@@ -47,6 +47,12 @@ yargs
     choices: ['buildConfig', 'imageStream', false, true],
     default: false
   })
+  .options('build.forcePull', {
+    describe: 'flag to make your BuildConfig always pull a new image from dockerhub or not',
+    choices: [true, false],
+    type: 'boolean',
+    default: false
+  })
   .help();
 
 const argv = yargs.argv;
