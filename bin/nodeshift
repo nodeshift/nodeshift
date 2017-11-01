@@ -33,7 +33,7 @@ yargs
     describe: 'the version of Node.js to use for the deployed application.',
     alias: 'n',
     type: 'string',
-    choices: ['latest', '8.x', '7.x', '6.x', '5.x', '4.x'],
+    choices: ['latest', '9.x', '8.x', '7.x', '6.x', '5.x', '4.x'],
     default: 'latest'
   })
   .env('NODESHIFT')
