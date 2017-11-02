@@ -15,11 +15,11 @@ test('default goal', (t) => {
     '../lib/nodeshift-config': () => {
       return Promise.resolve({});
     },
-    '../lib/goals/resource.js': (config) => {
+    '../lib/goals/resource': (config) => {
       t.pass('should be here for the default goal');
       return Promise.resolve();
     },
-    '../lib/goals/build.js': (config) => {
+    '../lib/goals/build': (config) => {
       t.pass('should be here for the default goal');
       return Promise.resolve();
     },
@@ -39,11 +39,11 @@ test('resource goal', (t) => {
     '../lib/nodeshift-config': () => {
       return Promise.resolve({});
     },
-    '../lib/goals/resource.js': (config) => {
+    '../lib/goals/resource': (config) => {
       t.pass('should be here for the resource goal');
       return Promise.resolve();
     },
-    '../lib/goals/build.js': (config) => {
+    '../lib/goals/build': (config) => {
       t.fail('should not be here for the resource goal');
       return Promise.resolve();
     },
@@ -63,11 +63,11 @@ test('apply-resource goal', (t) => {
     '../lib/nodeshift-config': () => {
       return Promise.resolve({});
     },
-    '../lib/goals/resource.js': (config) => {
+    '../lib/goals/resource': (config) => {
       t.pass('should be here for the apply-resource goal');
       return Promise.resolve();
     },
-    '../lib/goals/build.js': (config) => {
+    '../lib/goals/build': (config) => {
       t.fail('should not be here for the apply-resource goal');
       return Promise.resolve();
     },
@@ -87,11 +87,11 @@ test('no goal', (t) => {
     '../lib/nodeshift-config': () => {
       return Promise.resolve({});
     },
-    '../lib/goals/resource.js': (config) => {
+    '../lib/goals/resource': (config) => {
       t.fail('should not be here for the no goal');
       return Promise.resolve();
     },
-    '../lib/goals/build.js': (config) => {
+    '../lib/goals/build': (config) => {
       t.fail('should not be here for the no goal');
       return Promise.resolve();
     },

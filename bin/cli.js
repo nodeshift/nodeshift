@@ -2,8 +2,8 @@
 
 const nodeshiftConfig = require('../lib/nodeshift-config');
 
-const resourceGoal = require('../lib/goals/resource.js');
-const buildGoal = require('../lib/goals/build.js');
+const resourceGoal = require('../lib/goals/resource');
+const buildGoal = require('../lib/goals/build');
 const applyResources = require('../lib/apply-resources');
 
 module.exports = async function run (options) {
