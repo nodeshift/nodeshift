@@ -5,6 +5,7 @@ const nodeshiftConfig = require('../lib/nodeshift-config');
 const resourceGoal = require('../lib/goals/resource');
 const buildGoal = require('../lib/goals/build');
 const applyResources = require('../lib/apply-resources');
+const undeployGoal = require('../lib/goals/undeploy');
 
 module.exports = async function run (options) {
   try {
@@ -20,6 +21,10 @@ module.exports = async function run (options) {
 
     if (options.cmd === 'deploy' || options.cmd === 'apply-resource') {
       await applyResources(config, enrichedResources);
+    }
+
+    if (options.cmd === 'undeploy') {
+      await undeployGoal(config);
     }
 
     return 'done';

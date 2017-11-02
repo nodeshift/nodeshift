@@ -1,0 +1,105 @@
+'use strict';
+
+const test = require('tape');
+const proxyquire = require('proxyquire');
+
+test('undeploy goal', (t) => {
+  const undeploy = require('../../lib/goals/undeploy');
+
+  t.equal(typeof undeploy, 'function', 'should export a function');
+  t.end();
+});
+
+test('return list with no items', (t) => {
+  const undeploy = proxyquire('../../lib/goals/undeploy', {
+    jsonfile: {
+      readFile: (location, cb) => { return cb(null, {}); }
+    }
+  });
+
+  undeploy({}).then(() => {
+    t.pass('this should pass');
+    t.end();
+  });
+});
+
+test('return list error', (t) => {
+  const undeploy = proxyquire('../../lib/goals/undeploy', {
+    jsonfile: {
+      readFile: (location, cb) => { return cb(new Error('no file found'), null); }
+    }
+  });
+
+  undeploy({}).then(() => {
+    t.fail();
+  }).catch(() => {
+    t.pass('this should pass');
+    t.end();
+  });
+});
+
+test('return list with no items', (t) => {
+  const metadata = {
+    name: 'projectName'
+  };
+
+  const resourceList = {
+    kind: 'List',
+    items: [
+      {
+        kind: 'Route',
+        metadata: metadata
+      },
+      {
+        kind: 'Service',
+        metadata: metadata
+      },
+      {
+        kind: 'Secret',
+        metadata: metadata
+      },
+      {
+        kind: 'DeploymentConfig',
+        metadata: metadata
+      }
+    ]
+  };
+
+  const config = {
+    projectName: 'project name',
+    openshiftRestClient: {
+      routes: {
+        remove: (name) => {
+          t.equal(name, metadata.name, 'name should be equal');
+          return Promise.resolve();
+        }
+      },
+      services: {
+        remove: (name) => {
+          t.equal(name, metadata.name, 'name should be equal');
+          return Promise.resolve();
+        }
+      },
+      secrets: {
+        remove: (name) => {
+          t.equal(name, metadata.name, 'name should be equal');
+          return Promise.resolve();
+        }
+      }
+    }
+  };
+
+  const undeploy = proxyquire('../../lib/goals/undeploy', {
+    jsonfile: {
+      readFile: (location, cb) => { return cb(null, resourceList); }
+    },
+    '../deployment-config': {
+      undeploy: () => { return Promise.resolve(); }
+    }
+  });
+
+  undeploy(config).then(() => {
+    t.pass('this should pass');
+    t.end();
+  });
+});

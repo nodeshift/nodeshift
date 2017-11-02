@@ -105,3 +105,31 @@ test('no goal', (t) => {
     t.end();
   });
 });
+
+test('undeploy goal', (t) => {
+  const cli = proxyquire('../bin/cli', {
+    '../lib/nodeshift-config': () => {
+      return Promise.resolve({});
+    },
+    '../lib/goals/resource': (config) => {
+      t.fail('should not be here for the undeploy goal');
+      return Promise.resolve();
+    },
+    '../lib/goals/build': (config) => {
+      t.fail('should not be here for the undeploy goal');
+      return Promise.resolve();
+    },
+    '../lib/apply-resources': (config) => {
+      t.fail('should not be here for the undeploy goal');
+      return Promise.resolve();
+    },
+    '../lib/goals/undeploy': (config) => {
+      t.pass('should be here for the undeploy goal');
+      return Promise.resolve();
+    }
+  });
+
+  cli({cmd: 'undeploy'}).then(() => {
+    t.end();
+  });
+});
