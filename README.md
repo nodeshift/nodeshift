@@ -129,6 +129,10 @@ By default, if you run just `nodeshift`, it will run the `deploy` goal, which ru
 
 **deploy** - does everything, the archiving of code and everything that apply-resource does
 
+**undeploy** - removes things that were deployed with the resource command
+
+**build** - archives the code, creates build config and imagestream and pushes the binary to the cluster
+
 #### Template Parameters
 
 Some templates might need to have a value set at "run time".  For example, in the template below, we have the `${SSO_AUTH_SERVER_URL}` parameter:
@@ -164,7 +168,9 @@ There are a few options available on the CLI or when using the API
         Commands:
             nodeshift deploy          default command - deploy                   [default]
             nodeshift resource        resource command
+            nodeshift build           build command
             nodeshift apply-resource  apply resource command
+            nodeshift undeploy        undeploy resources
 
         Options:
             --version             Show version number                            [boolean]
