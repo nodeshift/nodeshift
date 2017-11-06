@@ -15,7 +15,7 @@ module.exports = async function run (options) {
       enrichedResources = await resourceGoal(config);
     }
 
-    if (options.cmd === 'deploy') {
+    if (options.cmd === 'deploy' || options.cmd === 'build') {
       await buildGoal(config);
     }
 

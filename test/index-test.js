@@ -16,6 +16,8 @@ test('api export', (t) => {
   t.equals(typeof api.applyResource, 'function', 'should be a function');
   t.ok(api.undeploy, 'should have a undeploy function');
   t.equals(typeof api.undeploy, 'function', 'should be a function');
+  t.ok(api.build, 'should have a build function');
+  t.equals(typeof api.build, 'function', 'should be a function');
 
   t.end();
 });
@@ -62,4 +64,15 @@ test('undeploy application api', (t) => {
   });
 
   api.undeploy();
+});
+
+test('build application api', (t) => {
+  const api = proxyquire('../', {
+    './bin/cli': (options) => {
+      t.equal(options.cmd, 'build', 'should be the build cmd');
+      t.end();
+    }
+  });
+
+  api.build();
 });

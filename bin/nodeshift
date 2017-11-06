@@ -12,6 +12,7 @@ yargs
   .version(require('../package.json').version)
   .usage('[--options]')
   .command(['deploy', '$0'], 'default command - deploy', { cmd: { default: 'deploy' } }, commandHandler)
+  .command('build', 'build command', { cmd: { default: 'build' } }, commandHandler)
   .command('resource', 'resource command', { cmd: { default: 'resource' } }, commandHandler)
   .command('apply-resource', 'apply resource command', { cmd: { default: 'apply-resource' } }, commandHandler)
   .command('undeploy', 'undeploy resources', { cmd: { default: 'undeploy' } }, commandHandler)

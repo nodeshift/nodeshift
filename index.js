@@ -24,9 +24,15 @@ function undeploy (options = {}) {
   return cli(options);
 }
 
+function build (options = {}) {
+  options.cmd = 'build';
+  return cli(options);
+}
+
 module.exports = {
   deployApplication,
   resource,
   applyResource,
-  undeploy
+  undeploy,
+  build
 };

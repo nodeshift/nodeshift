@@ -133,3 +133,31 @@ test('undeploy goal', (t) => {
     t.end();
   });
 });
+
+test('build goal', (t) => {
+  const cli = proxyquire('../bin/cli', {
+    '../lib/nodeshift-config': () => {
+      return Promise.resolve({});
+    },
+    '../lib/goals/resource': (config) => {
+      t.fail('should not be here for the build goal');
+      return Promise.resolve();
+    },
+    '../lib/goals/build': (config) => {
+      t.pass('should be here for the build goal');
+      return Promise.resolve();
+    },
+    '../lib/apply-resources': (config) => {
+      t.fail('should not be here for the build goal');
+      return Promise.resolve();
+    },
+    '../lib/goals/undeploy': (config) => {
+      t.fail('should not be here for the build goal');
+      return Promise.resolve();
+    }
+  });
+
+  cli({cmd: 'build'}).then(() => {
+    t.end();
+  });
+});
