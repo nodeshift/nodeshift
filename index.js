@@ -19,8 +19,14 @@ async function applyResource (options = {}) {
   return cli(options);
 }
 
+function undeploy (options = {}) {
+  options.cmd = 'undeploy';
+  return cli(options);
+}
+
 module.exports = {
   deployApplication,
   resource,
-  applyResource
+  applyResource,
+  undeploy
 };
