@@ -84,10 +84,33 @@ test('test error with readdir', (t) => {
   });
 });
 
-test('test only return .ymls or .yamls', (t) => {
+test('test only return .ymls or .yamls or .json', (t) => {
   const mockedHelper = {
     yamlToJson: (file) => { return file; }
   };
+
+  const returnedFiles = [
+    {
+      type: 'yml',
+      filename: 'yml'
+    },
+    {
+      type: 'js',
+      filename: 'no'
+    },
+    {
+      type: 'yml',
+      filename: 'yes1'
+    },
+    {
+      type: 'yaml',
+      filename: 'yes3'
+    },
+    {
+      type: 'json',
+      filename: 'jsonyes'
+    }
+  ];
 
   const mockedfs = {
     readFile: (locations, options, cb) => {
@@ -97,12 +120,18 @@ test('test only return .ymls or .yamls', (t) => {
     },
     readdir: (path, cb) => {
       // test default path
-      return cb(null, ['yes.yml', 'no.js', 'yes1.yml', 'yes3.yaml']);
+      return cb(null, ['yes.yml', 'no.js', 'yes1.yml', 'yes3.yaml', 'jsonyes.json']);
     }
   };
+
+  const mockedJsonfile = {
+    readFile: (location, cb) => { return cb(null, {}); }
+  };
+
   const resourceLoader = proxyquire('../lib/resource-loader', {
     fs: mockedfs,
-    helpers: mockedHelper
+    helpers: mockedHelper,
+    jsonfile: mockedJsonfile
   });
 
   const config = {
@@ -112,7 +141,7 @@ test('test only return .ymls or .yamls', (t) => {
 
   resourceLoader(config).then((resourceList) => {
     t.equals(Array.isArray(resourceList), true, 'returns an array');
-    t.equal(resourceList.length, 3, 'should be length 3');
+    t.equal(resourceList.length, 4, 'should be length 4');
     t.end();
   });
 });
