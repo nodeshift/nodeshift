@@ -41,7 +41,7 @@ test('test no .nodeshift directory using defaults', (t) => {
 test('test using different nodeshift and projectLocation', (t) => {
   const config = {
     projectLocation: 'not_default',
-    nodeshiftDirectory: 'mavenshift'
+    nodeshiftDirectory: '.nodeshift'
   };
 
   const mockedfs = {

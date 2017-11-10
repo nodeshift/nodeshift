@@ -41,13 +41,11 @@ test('nodeshift-config other project location and nodeshiftDir', (t) => {
   });
 
   const options = {
-    projectLocation: '../examples/sample-project',
-    nodeshiftDirectory: '.notnodeshift'
+    projectLocation: '../examples/sample-project'
   };
 
   nodeshiftConfig(options).then((config) => {
     t.equal(config.projectLocation, '../examples/sample-project', 'projectLocation prop should be changed');
-    t.equal(config.nodeshiftDirectory, '.notnodeshift', 'nodeshiftDir prop should be changed');
     t.end();
   });
 });

@@ -176,8 +176,6 @@ There are a few options available on the CLI or when using the API
             --version             Show version number                            [boolean]
             --projectLocation     change the default location of the project      [string]
             --configLocation      change the default location of the config       [string]
-            --nodeshiftDirectory  change the default name of the directory nodeshift looks
-                                    at for resource files                           [string]
             --osc.strictSSL       setting to pass to the Openshift Rest Client. Set to
                                     false if using a self-sign cert
             --nodeVersion, -n     the version of Node.js to use for the deployed

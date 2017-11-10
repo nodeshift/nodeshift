@@ -24,10 +24,6 @@ yargs
     describe: 'change the default location of the config',
     type: 'string'
   })
-  .options('nodeshiftDirectory', {
-    describe: 'change the default name of the directory nodeshift looks at for resource files',
-    type: 'string'
-  })
   .options('osc.strictSSL', {
     describe: 'setting to pass to the Openshift Rest Client. Set to false if using a self-sign cert'
   })
@@ -72,7 +68,6 @@ function createOptions (argv) {
 
   options.projectLocation = argv.projectLocation;
   options.configLocation = argv.configLocation;
-  options.nodeshiftDirectory = argv.nodeshiftDirectory;
   options.nodeVersion = argv.nodeVersion;
   process.env['NODESHIFT_QUIET'] = argv.quiet === true;
   options.build = argv.build;
