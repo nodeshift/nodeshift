@@ -10,6 +10,8 @@ test('api export', (t) => {
 
   t.ok(api.deployApplication, 'should have a deployApplication function');
   t.equals(typeof api.deployApplication, 'function', 'should be a function');
+  t.ok(api.deploy, 'should have a deploy function');
+  t.equals(typeof api.deploy, 'function', 'should be a function');
   t.ok(api.resource, 'should have a resource function');
   t.equals(typeof api.resource, 'function', 'should be a function');
   t.ok(api.applyResource, 'should have a applyResource function');
@@ -31,6 +33,36 @@ test('deploy application api', (t) => {
   });
 
   api.deployApplication();
+});
+
+test('deploy application api - deprecated', (t) => {
+  const api = proxyquire('../', {
+    './bin/cli': (options) => {
+      t.equal(options.cmd, 'deploy', 'should be the deploy cmd');
+      t.end();
+    },
+    './common-log': () => {
+      return {
+        warning: (warning) => {
+          t.equal(warning, 'deployApplication is deprecated, please use deploy');
+          return warning;
+        }
+      };
+    }
+  });
+
+  api.deployApplication();
+});
+
+test('deploy api', (t) => {
+  const api = proxyquire('../', {
+    './bin/cli': (options) => {
+      t.equal(options.cmd, 'deploy', 'should be the deploy cmd');
+      t.end();
+    }
+  });
+
+  api.deploy();
 });
 
 test('resource application api', (t) => {
