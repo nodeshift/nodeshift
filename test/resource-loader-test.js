@@ -89,29 +89,6 @@ test('test only return .ymls or .yamls or .json', (t) => {
     yamlToJson: (file) => { return file; }
   };
 
-  const returnedFiles = [
-    {
-      type: 'yml',
-      filename: 'yml'
-    },
-    {
-      type: 'js',
-      filename: 'no'
-    },
-    {
-      type: 'yml',
-      filename: 'yes1'
-    },
-    {
-      type: 'yaml',
-      filename: 'yes3'
-    },
-    {
-      type: 'json',
-      filename: 'jsonyes'
-    }
-  ];
-
   const mockedfs = {
     readFile: (locations, options, cb) => {
       const parts = locations.split('/');
