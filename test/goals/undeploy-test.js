@@ -38,7 +38,7 @@ test('return list error', (t) => {
   });
 });
 
-test('return list with no items', (t) => {
+test('return list items', (t) => {
   const metadata = {
     name: 'projectName'
   };
@@ -95,6 +95,48 @@ test('return list with no items', (t) => {
     },
     '../deployment-config': {
       undeploy: () => { return Promise.resolve(); }
+    }
+  });
+
+  undeploy(config).then(() => {
+    t.pass('this should pass');
+    t.end();
+  });
+});
+
+test('return list items that do not match the item kind', (t) => {
+  const metadata = {
+    name: 'projectName'
+  };
+
+  const resourceList = {
+    kind: 'List',
+    items: [
+      {
+        kind: 'Other',
+        metadata: metadata
+      }
+    ]
+  };
+
+  const config = {
+    projectName: 'project name'
+  };
+
+  const undeploy = proxyquire('../../lib/goals/undeploy', {
+    jsonfile: {
+      readFile: (location, cb) => { return cb(null, resourceList); }
+    },
+    '../deployment-config': {
+      undeploy: () => { return Promise.resolve(); }
+    },
+    './common-log': () => {
+      return {
+        warning: (warning) => {
+          t.equal(warning, 'Other is not recognized');
+          return warning;
+        }
+      };
     }
   });
 
