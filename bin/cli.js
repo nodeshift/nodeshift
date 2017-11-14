@@ -29,7 +29,6 @@ module.exports = async function run (options) {
 
     return 'done';
   } catch (err) {
-    require('../lib/common-log')().error(err, err.stack);
-    process.exit(1);
+    return Promise.reject(err);
   }
 };

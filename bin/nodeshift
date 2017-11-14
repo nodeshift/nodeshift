@@ -60,7 +60,10 @@ yargs
 
 function commandHandler (argv) {
   const options = createOptions(argv);
-  require('./cli')(options).then(logger.info).catch(logger.error);
+  require('./cli')(options).then(logger.info).catch((err) => {
+    logger.error(err, err.stack);
+    process.exit(1);
+  });
 }
 
 function createOptions (argv) {
