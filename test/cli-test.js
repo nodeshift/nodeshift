@@ -161,3 +161,16 @@ test('build goal', (t) => {
     t.end();
   });
 });
+
+test('error', (t) => {
+  const cli = proxyquire('../bin/cli', {
+    '../lib/nodeshift-config': () => {
+      return Promise.reject(new Error('error'));
+    }
+  });
+
+  cli({cmd: 'build'}).catch((err) => {
+    t.equal(err.message, 'error', 'should have an error message');
+    t.end();
+  });
+});
