@@ -61,7 +61,10 @@ yargs
 function commandHandler (argv) {
   const options = createOptions(argv);
   require('./cli')(options).then(logger.info).catch((err) => {
-    logger.error(err, err.stack);
+    const log = require('../lib/common-log')();
+    log.error(err.message);
+    log.error('Status code', err.statusCode);
+    require('util').debuglog('nodeshift.cli')(err.stack);
     process.exit(1);
   });
 }
