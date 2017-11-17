@@ -86,7 +86,7 @@ test('test error with readdir', (t) => {
 
 test('test only return .ymls or .yamls or .json', (t) => {
   const mockedHelper = {
-    yamlToJson: (file) => { return file; }
+    yamlToJson: (file) => { return {}; }
   };
 
   const mockedfs = {
@@ -97,7 +97,7 @@ test('test only return .ymls or .yamls or .json', (t) => {
     },
     readdir: (path, cb) => {
       // test default path
-      return cb(null, ['yes.yml', 'no.js', 'yes1.yml', 'yes3.yaml', 'jsonyes.json']);
+      return cb(null, ['yes-svc.yml', 'no.js', 'yes1-route.yml', 'yes3-secret.yaml', 'deployment.json']);
     }
   };
 
@@ -107,13 +107,16 @@ test('test only return .ymls or .yamls or .json', (t) => {
 
   const resourceLoader = proxyquire('../lib/resource-loader', {
     fs: mockedfs,
-    helpers: mockedHelper,
+    './helpers': mockedHelper,
     jsonfile: mockedJsonfile
   });
 
   const config = {
     projectLocation: process.cwd(),
-    nodeshiftDirectory: '.nodeshift'
+    nodeshiftDirectory: '.nodeshift',
+    context: {
+      namespace: 'my namespace'
+    }
   };
 
   resourceLoader(config).then((resourceList) => {
@@ -168,7 +171,7 @@ test('test string substitution', (t) => {
     },
     readdir: (path, cb) => {
       // test default path
-      return cb(null, ['yes1.yml']);
+      return cb(null, ['yes1-service.yml']);
     }
   };
   const resourceLoader = proxyquire('../lib/resource-loader', {
@@ -179,6 +182,9 @@ test('test string substitution', (t) => {
   const config = {
     projectLocation: process.cwd(),
     nodeshiftDirectory: '.nodeshift',
+    context: {
+      namespace: 'my namespace'
+    },
     definedProperties: [{key: 'SSO_AUTH_SERVER_URL', value: 'https://yea'}]
   };
 
