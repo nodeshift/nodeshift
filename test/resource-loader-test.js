@@ -126,6 +126,129 @@ test('test only return .ymls or .yamls or .json', (t) => {
   });
 });
 
+test('test error on kind mapping', (t) => {
+  const mockedHelper = {
+    yamlToJson: (file) => { return {}; }
+  };
+
+  const mockedfs = {
+    readFile: (locations, options, cb) => {
+      const parts = locations.split('/');
+      const file = parts[parts.length - 1];
+      return cb(null, file);
+    },
+    readdir: (path, cb) => {
+      // test default path
+      return cb(null, ['name-kind.yml']);
+    }
+  };
+
+  const mockedJsonfile = {
+    readFile: (location, cb) => { return cb(null, {}); }
+  };
+
+  const resourceLoader = proxyquire('../lib/resource-loader', {
+    fs: mockedfs,
+    './helpers': mockedHelper,
+    jsonfile: mockedJsonfile
+  });
+
+  const config = {
+    projectLocation: process.cwd(),
+    nodeshiftDirectory: '.nodeshift',
+    context: {
+      namespace: 'my namespace'
+    }
+  };
+
+  resourceLoader(config).catch((err) => {
+    t.equal(err.message, 'unknown type: kind for filen: name-kind.yml', 'should have error message if no kind is found');
+    t.end();
+  });
+});
+
+test('test error on kind from name', (t) => {
+  const mockedHelper = {
+    yamlToJson: (file) => { return {}; }
+  };
+
+  const mockedfs = {
+    readFile: (locations, options, cb) => {
+      const parts = locations.split('/');
+      const file = parts[parts.length - 1];
+      return cb(null, file);
+    },
+    readdir: (path, cb) => {
+      // test default path
+      return cb(null, ['name.yml']);
+    }
+  };
+
+  const mockedJsonfile = {
+    readFile: (location, cb) => { return cb(null, {}); }
+  };
+
+  const resourceLoader = proxyquire('../lib/resource-loader', {
+    fs: mockedfs,
+    './helpers': mockedHelper,
+    jsonfile: mockedJsonfile
+  });
+
+  const config = {
+    projectLocation: process.cwd(),
+    nodeshiftDirectory: '.nodeshift',
+    context: {
+      namespace: 'my namespace'
+    }
+  };
+
+  resourceLoader(config).catch((err) => {
+    t.equal(err.message, 'No type given as part of the file name (e.g. \'app-rc.yml\') and no \'Kind\' defined in resource descriptor name.yml');
+    t.end();
+  });
+});
+
+test('test not overwriting metadata', (t) => {
+  const mockedHelper = {
+    yamlToJson: (file) => { return {metadata: {name: 'here'}}; }
+  };
+
+  const mockedfs = {
+    readFile: (locations, options, cb) => {
+      const parts = locations.split('/');
+      const file = parts[parts.length - 1];
+      return cb(null, file);
+    },
+    readdir: (path, cb) => {
+      // test default path
+      return cb(null, ['yes-svc.yml']);
+    }
+  };
+
+  const mockedJsonfile = {
+    readFile: (location, cb) => { return cb(null, {}); }
+  };
+
+  const resourceLoader = proxyquire('../lib/resource-loader', {
+    fs: mockedfs,
+    './helpers': mockedHelper,
+    jsonfile: mockedJsonfile
+  });
+
+  const config = {
+    projectLocation: process.cwd(),
+    nodeshiftDirectory: '.nodeshift',
+    context: {
+      namespace: 'my namespace'
+    }
+  };
+
+  resourceLoader(config).then((resourceList) => {
+    t.equal(resourceList[0].metadata.name, 'here', 'not overwritten');
+    t.end();
+  });
+});
+
 test('test error reading file from list', (t) => {
   const mockedfs = {
     readFile: (locations, options, cb) => {
