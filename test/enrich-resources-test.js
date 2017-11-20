@@ -12,13 +12,13 @@ test('enrich-resource', (t) => {
     { kind: 'other' }
   ];
 
-  const mockedFunc = () => {};
+  const mockedFunc = (config, resourceList) => resourceList;
 
   const enrichResource = proxyquire('../lib/enrich-resources', {
     './resource-enrichers/service-enricher': mockedFunc,
     './resource-enrichers/route-enricher': mockedFunc,
     './resource-enrichers/deployment-config-enricher': mockedFunc,
-    './resource-enrichers/secret-enricher': mockedFunc
+    './resource-enrichers/labels-enricher': mockedFunc
   });
 
   enrichResource({}, resourceList);
