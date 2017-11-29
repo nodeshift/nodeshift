@@ -7,7 +7,7 @@
   },
   "scripts": {
     "lint": "eslint bin/* lib/**/*.js test/*-test.js test/**/*-test.js index.js",
-    "test": "NODESHIFT_QUIET=true tape test/*-test.js test/**/*-test.js | tap-spec",
+    "test": "cross-env NODESHIFT_QUIET=true tape test/*-test.js test/**/*-test.js | tap-spec",
     "prepare": "nsp check",
     "coverage": "nyc npm test",
     "coverage:html": "nyc npm test && nyc report --reporter=html",
@@ -52,6 +52,7 @@
   },
   "devDependencies": {
     "coveralls": "^3.0.0",
+    "cross-env": "^5.1.1",
     "eslint": "^4.3.0",
     "eslint-config-semistandard": "^11.0.0",
     "eslint-config-standard": "^10.2.1",
