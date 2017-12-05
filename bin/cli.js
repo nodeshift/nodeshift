@@ -28,24 +28,24 @@ const undeployGoal = require('../lib/goals/undeploy');
 module.exports = async function run (options) {
   try {
     const config = await nodeshiftConfig(options);
-    let enrichedResources = {};
+    const response = {};
     if (options.cmd === 'resource' || options.cmd === 'deploy' || options.cmd === 'apply-resource') {
-      enrichedResources = await resourceGoal(config);
+      const enrichedResources = await resourceGoal(config);
+      response.resources = enrichedResources;
+      if (options.cmd === 'deploy' || options.cmd === 'apply-resource') {
+        response.appliedResources = await applyResources(config, enrichedResources);
+      }
     }
 
     if (options.cmd === 'deploy' || options.cmd === 'build') {
-      await buildGoal(config);
-    }
-
-    if (options.cmd === 'deploy' || options.cmd === 'apply-resource') {
-      await applyResources(config, enrichedResources);
+      response.build = await buildGoal(config);
     }
 
     if (options.cmd === 'undeploy') {
-      await undeployGoal(config);
+      response.undeploy = undeployGoal(config);
     }
 
-    return 'done';
+    return response;
   } catch (err) {
     return Promise.reject(err);
   }
