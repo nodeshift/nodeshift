@@ -3,13 +3,6 @@
 const cli = require('./bin/cli');
 
 // Expose some API
-function deployApplication (options = {}) {
-  // This will do the whole thing
-  require('./lib/common-log')().warning('deployApplication is deprecated, please use deploy');
-  options.cmd = 'deploy';
-  return cli(options);
-}
-
 function deploy (options = {}) {
   // This will do the whole thing
   options.cmd = 'deploy';
@@ -37,7 +30,6 @@ function build (options = {}) {
 }
 
 module.exports = {
-  deployApplication,
   deploy,
   resource,
   applyResource,
