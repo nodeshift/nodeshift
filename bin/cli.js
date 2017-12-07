@@ -29,22 +29,29 @@ module.exports = async function run (options) {
   try {
     const config = await nodeshiftConfig(options);
     const response = {};
-    if (options.cmd === 'resource' || options.cmd === 'deploy' || options.cmd === 'apply-resource') {
-      const enrichedResources = await resourceGoal(config);
-      response.resources = enrichedResources;
-      if (options.cmd === 'deploy' || options.cmd === 'apply-resource') {
-        response.appliedResources = await applyResources(config, enrichedResources);
-      }
-    }
 
-    if (options.cmd === 'deploy' || options.cmd === 'build') {
-      response.build = await buildGoal(config);
+    switch (options.cmd) {
+      case 'build':
+        response.build = await buildGoal(config);
+        break;
+      case 'resource':
+        response.resources = await resourceGoal(config);
+        break;
+      case 'apply-resource':
+        response.resources = await resourceGoal(config);
+        response.appliedResources = await applyResources(config, response.resources);
+        break;
+      case 'undeploy':
+        response.undeploy = await undeployGoal(config);
+        break;
+      case 'deploy':
+        response.build = await buildGoal(config);
+        response.resources = await resourceGoal(config);
+        response.appliedResources = await applyResources(config, response.resources);
+        break;
+      default:
+        throw new TypeError(`Unexpected command: ${options.cmd}`);
     }
-
-    if (options.cmd === 'undeploy') {
-      response.undeploy = undeployGoal(config);
-    }
-
     return response;
   } catch (err) {
     return Promise.reject(err);
