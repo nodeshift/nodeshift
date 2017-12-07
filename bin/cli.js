@@ -19,11 +19,16 @@
 'use strict';
 
 const nodeshiftConfig = require('../lib/nodeshift-config');
-
 const resourceGoal = require('../lib/goals/resource');
 const buildGoal = require('../lib/goals/build');
 const applyResources = require('../lib/apply-resources');
 const undeployGoal = require('../lib/goals/undeploy');
+
+/**
+  This module is where everything is orchestrated.  Both the command line process and the public API call this modules run function
+
+  The options passed in are the options specified on the command line or from the API
+*/
 
 module.exports = async function run (options) {
   try {

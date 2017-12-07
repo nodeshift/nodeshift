@@ -99,6 +99,22 @@ Along with the command line, there is also a public API.  The API mirrors the co
 
 Options that you can specify on the command line, can also be passed as an options object to the API
 
+All methods are Promise based and will return a JSON object with information about each goal that is run.
+
+For example, if the `deploy` method was run, it would return something similar:
+
+    {
+        build: {
+            ... // build information
+        },
+        resources: [
+            ... // resources created
+        ],
+        appliedResources: [
+            ... // resources that were applied to the running cluster
+        ]
+    }
+
 #### Example Usage
 
     const nodeshift = require('nodeshift');
