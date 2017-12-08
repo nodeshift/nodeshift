@@ -99,7 +99,6 @@ test('nodeshift-config no package.json', (t) => {
 test('nodeshift-config options for the config loader', (t) => {
   const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
     'openshift-config-loader': (options) => {
-      t.ok(options.configLocation, 'configLocation should be there');
       t.ok(options.tryServiceAccount, 'tryServiceAccount should be there');
       return Promise.resolve({
         context: {
@@ -113,14 +112,11 @@ test('nodeshift-config options for the config loader', (t) => {
 
   const options = {
     configLocation: '../examples/sample-project',
-    osl: {
-      tryServiceAccount: true
-    }
+    tryServiceAccount: true
   };
 
   nodeshiftConfig(options).then((config) => {
-    t.equal(config.configLocation, '../examples/sample-project', 'configLocation prop should be changed');
-    t.ok(config.osl.tryServiceAccount, 'osl.tryServiceAccount should be there');
+    t.ok(config.tryServiceAccount, 'tryServiceAccount should be there');
     t.end();
   });
 });

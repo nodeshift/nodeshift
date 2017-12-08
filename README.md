@@ -7,7 +7,6 @@ Nodeshift is an opinionated command line application and programmable API that y
 ## Prerequisites
 
 * Node.js - version 8.x or greater
-* npm - version 4.x or greater
 
 ## Install
 
@@ -28,30 +27,30 @@ or to use in an npm script
 
 ### Commands & Goals
 
-By default, if you run just `nodeshift`, it will run the `deploy` goal, which runs everything.
+By default, if you run just `nodeshift`, it will run the `deploy` goal, which is a shortcut for running `resource`, `build` and `apply-resource`.
 
 **resource** - will parse and create the application resources files on disk
 
-**apply-resource** - does the resource goal and will also push that to your running cluster
+**apply-resource** - does the resource goal and then deploys the resources to your running cluster
 
-**build** - archives the code, creates build config and imagestream and pushes the binary to the cluster
+**build** - archives the code, creates a build config and imagestream and pushes the binary to the cluster
 
-**deploy** - does everything, the archiving of code and everything that apply-resource does
+**deploy** -  a shortcut for running `resource`, `build` and `apply-resource`
 
-**undeploy** - removes things that were deployed with the apply-resource command
+**undeploy** - removes resources that were deployed with the apply-resource command
 
 
-### .Nodeshift Directory
+### `.nodeshift` Directory
 
-The `.nodeshift` directory is responsible for holding your resource fragements.  These are `.yml` files that describe you service, deployments, routes, etc.
+The `.nodeshift` directory contains your resource fragements.  These are `.yml` files that describe your services, deployments, routes, etc.  By default, nodeshift will create a `Service` and `DeploymentConfig` if none are provided.  A `Route` resource fragment should be provided if you want to expose your application to the outside world.
 
 ### Resource Fragments
 
-OpenShift resource fragments are user provided YAML files that can be enriched with metadata, labels and more by nodeshift.
+OpenShift resource fragments are user provided YAML files which describe and enhance your deployed resources.  They are enriched with metadata, labels and more by nodeshift.
 
 Each resource gets its own file, which contains some skeleton of a resource description. Nodeshift will enrich it and then combine all the resources into a single openshift.yml and openshift.json(located in ./tmp/nodeshift/resource/).
 
-The resource objects `Kind`, if not given, will be extracted from the filename.
+The resource object's `Kind`, if not given, will be extracted from the filename.
 
 ### Enrichers
 
@@ -81,8 +80,6 @@ Some Resource Fragments might need to have a value set at "run time".  For examp
 To set that using nodeshift, use the `-d` option with a KEY=VALUE, like this:
 
     nodeshift -d SSO_AUTH_SERVER_URL=https://sercure-url
-
-__note that we left off the "${}" on the key,  nodeshift knows to search for a key with ${} added back on__
 
 <!-- For more on writing openshift templates, [see here](https://docs.openshift.org/latest/dev_guide/templates.html#writing-templates) -->
 
@@ -118,7 +115,7 @@ _please note: Currently, once a route, service, deployment config, build config,
 
 ## Advanced Options
 
-While nodeshift tries to be very opinionated during the deployment process, but there are options available to pass to the cli or the API.
+While nodeshift is very opinionated about deployment parameters, both the CLI and the API accept options that allow you to customize nodeshift's behavior.
 
 #### version
 Outputs the current version of nodeshift
@@ -126,14 +123,11 @@ Outputs the current version of nodeshift
 #### projectLocation
 Changes the default location of where to look for your project. Defaults to your current working directory(CWD)
 
-#### configLocation
-Changes the default location of where to look for a configfile. Defaults to ~/.kube/
+#### strictSSL
+This option is passed through to the [Openshift Rest Client](https://www.npmjs.com/package/openshift-rest-client) for SSL use.  To allow using a self-signed cert, set to false
 
-#### osc.strictSSL
-Setting to pass to the [Openshift Rest Client](https://www.npmjs.com/package/openshift-rest-client) for SSL use.  To allow using a self-signed cert, set to false
-
-#### osl.tryServiceAccount
-Setting to pass to the [Openshift Config Loader](https://www.npmjs.com/package/openshift-config-loader). Set to false to by-pass service account lookup or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT environment variable
+#### tryServiceAccount
+This option is passed through to the [Openshift Config Loader](https://www.npmjs.com/package/openshift-config-loader). Set to false to by-pass service account lookup or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT environment variable
 
 #### nodeVersion
 Specify the version of Node.js to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the [bucharest-gold s2i images](https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/)
@@ -142,7 +136,7 @@ Specify the version of Node.js to use for the deployed application. defaults to 
 supress INFO and TRACE lines from output logs.
 
 #### build.recreate
-Flag to recreate a buildConfig or Imagestream.  Defaults to false. Choices are "buildConfig", "imageStream", false, true
+Flag to recreate a BuildConfig or Imagestream.  Defaults to false. Choices are "buildConfig", "imageStream", false, true.  If true, both are re-created
 
 #### build.forcePull
 Flag to make your BuildConfig always pull a new image from dockerhub.  Defaults to false
@@ -162,10 +156,9 @@ Shows the below help
         Options:
             --version                Show version number                         [boolean]
             --projectLocation        change the default location of the project   [string]
-            --configLocation         change the default location of the config    [string]
-            --osc.strictSSL          setting to pass to the Openshift Rest Client. Set to
+            --strictSSL          setting to pass to the Openshift Rest Client. Set to
                                     false if using a self-sign cert
-            --osl.tryServiceAccount  setting to pass to the Openshift Config Loader.
+            --tryServiceAccount  setting to pass to the Openshift Config Loader.
                                     Set to false to by-pass service account lookup
                                     or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT
                                     environment variable
