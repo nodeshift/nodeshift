@@ -101,7 +101,8 @@ test('no goal', (t) => {
     }
   });
 
-  cli({}).then(() => {
+  cli({}).catch((err) => {
+    t.equal(err.message, 'Unexpected command: undefined', 'should have this error message');
     t.end();
   });
 });
