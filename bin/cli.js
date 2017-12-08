@@ -28,24 +28,31 @@ const undeployGoal = require('../lib/goals/undeploy');
 module.exports = async function run (options) {
   try {
     const config = await nodeshiftConfig(options);
-    let enrichedResources = {};
-    if (options.cmd === 'resource' || options.cmd === 'deploy' || options.cmd === 'apply-resource') {
-      enrichedResources = await resourceGoal(config);
-    }
+    const response = {};
 
-    if (options.cmd === 'deploy' || options.cmd === 'build') {
-      await buildGoal(config);
+    switch (options.cmd) {
+      case 'build':
+        response.build = await buildGoal(config);
+        break;
+      case 'resource':
+        response.resources = await resourceGoal(config);
+        break;
+      case 'apply-resource':
+        response.resources = await resourceGoal(config);
+        response.appliedResources = await applyResources(config, response.resources);
+        break;
+      case 'undeploy':
+        response.undeploy = await undeployGoal(config);
+        break;
+      case 'deploy':
+        response.build = await buildGoal(config);
+        response.resources = await resourceGoal(config);
+        response.appliedResources = await applyResources(config, response.resources);
+        break;
+      default:
+        throw new TypeError(`Unexpected command: ${options.cmd}`);
     }
-
-    if (options.cmd === 'deploy' || options.cmd === 'apply-resource') {
-      await applyResources(config, enrichedResources);
-    }
-
-    if (options.cmd === 'undeploy') {
-      await undeployGoal(config);
-    }
-
-    return 'done';
+    return response;
   } catch (err) {
     return Promise.reject(err);
   }

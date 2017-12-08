@@ -167,27 +167,38 @@ There are a few options available on the CLI or when using the API
 
         Commands:
             nodeshift deploy          default command - deploy                   [default]
-            nodeshift resource        resource command
             nodeshift build           build command
+            nodeshift resource        resource command
             nodeshift apply-resource  apply resource command
             nodeshift undeploy        undeploy resources
 
         Options:
-            --version             Show version number                            [boolean]
-            --projectLocation     change the default location of the project      [string]
-            --configLocation      change the default location of the config       [string]
-            --osc.strictSSL       setting to pass to the Openshift Rest Client. Set to
+            --version                Show version number                         [boolean]
+            --projectLocation        change the default location of the project   [string]
+            --configLocation         change the default location of the config    [string]
+            --osc.strictSSL          setting to pass to the Openshift Rest Client. Set to
                                     false if using a self-sign cert
-            --nodeVersion, -n     the version of Node.js to use for the deployed
+            --osl.tryServiceAccount  setting to pass to the Openshift Config Loader.
+                                    Set to false to by-pass service account lookup
+                                    or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT
+                                    environment variable
+
+            --nodeVersion, -n        the version of Node.js to use for the deployed
                                     application.
-                [string] [choices: "latest", "8.x", "7.x", "6.x", "5.x", "4.x"] [default:
-                                                                                "latest"]
+                    [string] [choices: "latest", "9.x", "8.x", "7.x", "6.x", "5.x", "4.x"]
+                                                                        [default: "latest"]
+            --quiet                  supress INFO and TRACE lines from output logs
+                                                                                [boolean]
             --build.recreate         flag to recreate a buildConfig or Imagestream
-                [choices: "buildConfig", "imageStream", false, true] [default: false]
+                    [choices: "buildConfig", "imageStream", false, true] [default: false]
             --build.forcePull        flag to make your BuildConfig always pull a new image
-                                      from dockerhub or not
-                [boolean] [choices: true, false] [default: false]
-            --help                Show help                                      [boolean]
+                                    from dockerhub or not
+                                        [boolean] [choices: true, false] [default: false]
+            --metadata.out           determines what should be done with the response
+                                    metadata from OpenShift
+                    [string] [choices: "stdout", "ignore", "<filename>"] [default: "ignore"]
+            --help                   Show help                                   [boolean]
+            --cmd                                                      [default: "deploy"]
 
 
 
