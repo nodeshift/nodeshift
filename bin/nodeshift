@@ -25,7 +25,6 @@ process.title = 'nodeshift'; // Thanks Ember-cli :)
 
 const fs = require('fs');
 const yargs = require('yargs');
-const log = require('../lib/common-log')();
 
 /* eslint no-unused-expressions: "warn" */
 yargs
@@ -86,6 +85,7 @@ yargs
 
 function commandHandler (argv) {
   const options = createOptions(argv);
+  const log = require('../lib/common-log')();
   require('./cli')(options).then((response) => {
     if (options.metadata) {
       if (options.metadata.out === 'stdout') {
