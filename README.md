@@ -87,6 +87,8 @@ To set that using nodeshift, use the `-d` option with a KEY=VALUE, like this:
 
 Along with the command line, there is also a public API.  The API mirrors the commands.
 
+API Docs - https://bucharest-gold.github.io/nodeshift/
+
 * resource
 
 * applyResource
