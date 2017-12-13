@@ -81,10 +81,11 @@ yargs
 
 function commandHandler (argv) {
   const options = createOptions(argv);
+  const metadataOut = (options.metadata.out === 'ignore') ? undefined : options.metadata.out;
   const log = require('../lib/common-log')();
   require('./cli')(options).then((response) => {
-    if (options.metadata) {
-      if (options.metadata.out === 'stdout') {
+    if (metadataOut && (metadataOut.trim() !== '')) {
+      if (metadataOut === 'stdout') {
         process.stdout.write(JSON.stringify(response, null, 2));
       } else {
         fs.writeFileSync(options.metadata.out, JSON.stringify(response, null, 2), 'utf8');
