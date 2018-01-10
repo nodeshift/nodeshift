@@ -42,7 +42,7 @@ By default, if you run just `nodeshift`, it will run the `deploy` goal, which is
 
 ### `.nodeshift` Directory
 
-The `.nodeshift` directory contains your resource fragements.  These are `.yml` files that describe your services, deployments, routes, etc.  By default, nodeshift will create a `Service` and `DeploymentConfig` if none are provided.  A `Route` resource fragment should be provided if you want to expose your application to the outside world.
+The `.nodeshift` directory contains your resource fragements.  These are `.yml` files that describe your services, deployments, routes, etc.  By default, nodeshift will create a `Service` and `DeploymentConfig` in memory, if none are provided.  A `Route` resource fragment should be provided if you want to expose your application to the outside world.
 
 ### Resource Fragments
 
