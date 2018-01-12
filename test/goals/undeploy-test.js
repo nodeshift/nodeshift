@@ -12,8 +12,8 @@ test('undeploy goal', (t) => {
 
 test('return list with no items', (t) => {
   const undeploy = proxyquire('../../lib/goals/undeploy', {
-    jsonfile: {
-      readFile: (location, cb) => { return cb(null, {}); }
+    fs: {
+      readFile: (location, cb) => { return cb(null, '{}'); }
     }
   });
 
@@ -25,7 +25,7 @@ test('return list with no items', (t) => {
 
 test('return list error', (t) => {
   const undeploy = proxyquire('../../lib/goals/undeploy', {
-    jsonfile: {
+    fs: {
       readFile: (location, cb) => { return cb(new Error('no file found'), null); }
     }
   });
@@ -90,8 +90,8 @@ test('return list items', (t) => {
   };
 
   const undeploy = proxyquire('../../lib/goals/undeploy', {
-    jsonfile: {
-      readFile: (location, cb) => { return cb(null, resourceList); }
+    fs: {
+      readFile: (location, cb) => { return cb(null, JSON.stringify(resourceList)); }
     },
     '../deployment-config': {
       undeploy: () => { return Promise.resolve(); }
@@ -124,8 +124,8 @@ test('return list items that do not match the item kind', (t) => {
   };
 
   const undeploy = proxyquire('../../lib/goals/undeploy', {
-    jsonfile: {
-      readFile: (location, cb) => { return cb(null, resourceList); }
+    fs: {
+      readFile: (location, cb) => { return cb(null, JSON.stringify(resourceList)); }
     },
     '../deployment-config': {
       undeploy: () => { return Promise.resolve(); }

@@ -91,9 +91,7 @@ test('test only return .ymls or .yamls or .json', (t) => {
 
   const mockedfs = {
     readFile: (locations, options, cb) => {
-      const parts = locations.split('/');
-      const file = parts[parts.length - 1];
-      return cb(null, file);
+      return cb(null, '{}');
     },
     readdir: (path, cb) => {
       // test default path
@@ -101,14 +99,9 @@ test('test only return .ymls or .yamls or .json', (t) => {
     }
   };
 
-  const mockedJsonfile = {
-    readFile: (location, cb) => { return cb(null, {}); }
-  };
-
   const resourceLoader = proxyquire('../lib/resource-loader', {
     fs: mockedfs,
-    './helpers': mockedHelper,
-    jsonfile: mockedJsonfile
+    './helpers': mockedHelper
   });
 
   const config = {
@@ -143,14 +136,9 @@ test('test error on kind mapping', (t) => {
     }
   };
 
-  const mockedJsonfile = {
-    readFile: (location, cb) => { return cb(null, {}); }
-  };
-
   const resourceLoader = proxyquire('../lib/resource-loader', {
     fs: mockedfs,
-    './helpers': mockedHelper,
-    jsonfile: mockedJsonfile
+    './helpers': mockedHelper
   });
 
   const config = {
@@ -184,14 +172,9 @@ test('test error on kind from name', (t) => {
     }
   };
 
-  const mockedJsonfile = {
-    readFile: (location, cb) => { return cb(null, {}); }
-  };
-
   const resourceLoader = proxyquire('../lib/resource-loader', {
     fs: mockedfs,
-    './helpers': mockedHelper,
-    jsonfile: mockedJsonfile
+    './helpers': mockedHelper
   });
 
   const config = {
@@ -225,14 +208,9 @@ test('test not overwriting metadata', (t) => {
     }
   };
 
-  const mockedJsonfile = {
-    readFile: (location, cb) => { return cb(null, {}); }
-  };
-
   const resourceLoader = proxyquire('../lib/resource-loader', {
     fs: mockedfs,
-    './helpers': mockedHelper,
-    jsonfile: mockedJsonfile
+    './helpers': mockedHelper
   });
 
   const config = {

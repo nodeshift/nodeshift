@@ -11,11 +11,6 @@ test('write resource', (t) => {
     'js-yaml': {
       safeDump: x => x
     },
-    jsonfile: {
-      writeFile: (fileName, data, options, cb) => {
-        return cb(null, data);
-      }
-    },
     fs: {
       writeFile: (name, data, options, cb) => {
         return cb(null, data);
