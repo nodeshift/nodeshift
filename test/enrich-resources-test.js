@@ -19,7 +19,8 @@ test('enrich-resource', (t) => {
     './resource-enrichers/route-enricher': mockedFunc,
     './resource-enrichers/deployment-config-enricher': mockedFunc,
     './resource-enrichers/labels-enricher': mockedFunc,
-    './resource-enrichers/git-info-enricher': mockedFunc
+    './resource-enrichers/git-info-enricher': mockedFunc,
+    './resource-enrichers/health-check-enricher': mockedFunc
   });
 
   enrichResource({}, resourceList);
