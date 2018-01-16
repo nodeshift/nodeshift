@@ -14,9 +14,14 @@ const config = {
 
 test('service enricher test - no service', (t) => {
   const resourceList = [];
-  const se = serviceEnricher(config, resourceList);
 
-  t.equal(typeof serviceEnricher, 'function', 'is a function');
+  t.ok(serviceEnricher.enrich, 'has an enrich property');
+  t.equal(typeof serviceEnricher.enrich, 'function', 'is a function');
+  t.ok(serviceEnricher.name, 'has an name property');
+  t.equal(serviceEnricher.name, 'service', 'name property is service');
+
+  const se = serviceEnricher.enrich(config, resourceList);
+
   t.equal(Array.isArray(se), true, 'should return an array');
   t.equal(resourceList.length, 1, 'resourceList size increases by 1');
   t.ok(se[0].spec.selector, 'selector prop should be here');
@@ -45,9 +50,8 @@ test('service enricher test - no service', (t) => {
     },
     { kind: 'Deployment' }
   ];
-  const se = serviceEnricher(config, resourceList);
+  const se = serviceEnricher.enrich(config, resourceList);
 
-  t.equal(typeof serviceEnricher, 'function', 'is a function');
   t.notEqual(se, resourceList, 'arrays should not be equal');
   t.equal(Array.isArray(se), true, 'should return an array');
   t.equal(resourceList.length, 2, 'resourceList size should not increases by 2');

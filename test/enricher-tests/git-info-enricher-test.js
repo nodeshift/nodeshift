@@ -11,7 +11,10 @@ const config = {
 test('git-info-enricher', (t) => {
   const gie = require('../../lib/resource-enrichers/git-info-enricher');
 
-  t.equal(typeof gie, 'function', 'is a function');
+  t.ok(gie.enrich, 'has an enrich property');
+  t.equal(typeof gie.enrich, 'function', 'enrich property is a function');
+  t.ok(gie.name, 'has an name property');
+  t.equal(gie.name, 'git-info', 'name property is git-info');
   t.end();
 });
 
@@ -33,7 +36,7 @@ test('git-info-enricher - no git', (t) => {
     }
   });
 
-  const list = gie(config, resourceList);
+  const list = gie.enrich(config, resourceList);
 
   t.equal(Array.isArray(list), true, 'should return an array');
   t.equal(list, resourceList, 'arrays should be equal');
@@ -59,7 +62,7 @@ test('git-info-enricher - no service or deployment', (t) => {
     }
   });
 
-  const list = gie(config, resourceList);
+  const list = gie.enrich(config, resourceList);
 
   t.equal(Array.isArray(list), true, 'should return an array');
   t.notEqual(list, resourceList, 'arrays should not be equal');
@@ -86,7 +89,7 @@ test('git-info-enricher - service', (t) => {
     }
   });
 
-  const list = gie(config, resourceList);
+  const list = gie.enrich(config, resourceList);
 
   t.equal(Array.isArray(list), true, 'should return an array');
   t.notEqual(list, resourceList, 'arrays should not be equal');
@@ -122,7 +125,7 @@ test('git-info-enricher - deploymentConfig', (t) => {
     }
   });
 
-  const list = gie(config, resourceList);
+  const list = gie.enrich(config, resourceList);
 
   t.equal(Array.isArray(list), true, 'should return an array');
   t.notEqual(list, resourceList, 'arrays should not be equal');
@@ -167,7 +170,7 @@ test('git-info-enricher - deploymentConfig - merge test', (t) => {
     }
   });
 
-  const list = gie(config, resourceList);
+  const list = gie.enrich(config, resourceList);
 
   t.equal(Array.isArray(list), true, 'should return an array');
   t.notEqual(list, resourceList, 'arrays should not be equal');

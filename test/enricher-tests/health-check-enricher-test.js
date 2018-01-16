@@ -11,9 +11,13 @@ test('health check enricher - no DeploymentConfig', (t) => {
     }
   ];
 
-  const hce = healthCheckEnricher({}, resourceList);
+  t.ok(healthCheckEnricher.enrich, 'has an enrich property');
+  t.equal(typeof healthCheckEnricher.enrich, 'function', 'is a function');
+  t.ok(healthCheckEnricher.name, 'has an name property');
+  t.equal(healthCheckEnricher.name, 'health-check', 'has an enrich property');
 
-  t.equal(typeof healthCheckEnricher, 'function', 'is a function');
+  const hce = healthCheckEnricher.enrich({}, resourceList);
+
   t.equal(Array.isArray(hce), true, 'should return an array');
   t.end();
 });
@@ -52,9 +56,8 @@ test('health check enricher - no kube probe', (t) => {
     }
   };
 
-  const hce = healthCheckEnricher(config, resourceList);
+  const hce = healthCheckEnricher.enrich(config, resourceList);
 
-  t.equal(typeof healthCheckEnricher, 'function', 'is a function');
   t.equal(Array.isArray(hce), true, 'should return an array');
   t.equal(hce[0].spec.template.spec.containers[0].livenessProbe, undefined, 'should not have a liveness probe added');
   t.equal(hce[0].spec.template.spec.containers[0].readinessProbe, undefined, 'should not have a readiness probe added');
@@ -96,9 +99,8 @@ test('health check enricher - with kube probe', (t) => {
     }
   };
 
-  const hce = healthCheckEnricher(config, resourceList);
+  const hce = healthCheckEnricher.enrich(config, resourceList);
 
-  t.equal(typeof healthCheckEnricher, 'function', 'is a function');
   t.equal(Array.isArray(hce), true, 'should return an array');
   t.ok(hce[0].spec.template.spec.containers[0].livenessProbe, 'should have a liveness probe added');
   t.equal(hce[0].spec.template.spec.containers[0].livenessProbe.httpGet.path, '/api/health/liveness', 'should have a liveness probe url');
@@ -155,9 +157,8 @@ test('health check enricher - non default', (t) => {
     }
   };
 
-  const hce = healthCheckEnricher(config, resourceList);
+  const hce = healthCheckEnricher.enrich(config, resourceList);
 
-  t.equal(typeof healthCheckEnricher, 'function', 'is a function');
   t.equal(Array.isArray(hce), true, 'should return an array');
   t.ok(hce[0].spec.template.spec.containers[0].livenessProbe, 'should have a liveness probe added');
   t.equal(hce[0].spec.template.spec.containers[0].livenessProbe.httpGet.path, '/api/greeting', 'url should not be overwritten');

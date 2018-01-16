@@ -25,9 +25,14 @@ test('deployment config enricher - no deployment', (t) => {
     }
   ];
 
-  const dce = deploymentConfigEnricher(config, resourceList);
+  t.ok(deploymentConfigEnricher.enrich, 'has an enrich property');
+  t.equal(typeof deploymentConfigEnricher.enrich, 'function', 'is a function');
 
-  t.equal(typeof deploymentConfigEnricher, 'function', 'is a function');
+  t.ok(deploymentConfigEnricher.name, 'has an name property');
+  t.equal(deploymentConfigEnricher.name, 'deployment-config');
+
+  const dce = deploymentConfigEnricher.enrich(config, resourceList);
+
   t.equal(Array.isArray(dce), true, 'should return an array');
   t.equal(dce.length, 2, 'array should have 2 things');
   t.equal(dce[1].kind, 'DeploymentConfig', 'should have the depoymentConfig type');
@@ -54,9 +59,8 @@ test('deployment config enricher - deployment', (t) => {
     }
   ];
 
-  const dce = deploymentConfigEnricher(config, resourceList);
+  const dce = deploymentConfigEnricher.enrich(config, resourceList);
 
-  t.equal(typeof deploymentConfigEnricher, 'function', 'is a function');
   t.equal(Array.isArray(dce), true, 'should return an array');
   t.notEqual(dce, resourceList, 'should not be equal');
   t.equal(dce[1].kind, 'DeploymentConfig', 'should have the depoymentConfig type');

@@ -12,18 +12,28 @@ test('enrich-resource', (t) => {
     { kind: 'other' }
   ];
 
-  const mockedFunc = (config, resourceList) => resourceList;
-
   const enrichResource = proxyquire('../lib/enrich-resources', {
-    './resource-enrichers/service-enricher': mockedFunc,
-    './resource-enrichers/route-enricher': mockedFunc,
-    './resource-enrichers/deployment-config-enricher': mockedFunc,
-    './resource-enrichers/labels-enricher': mockedFunc,
-    './resource-enrichers/git-info-enricher': mockedFunc,
-    './resource-enrichers/health-check-enricher': mockedFunc
+    './load-enrichers': () => { return {}; }
   });
 
   enrichResource({}, resourceList);
+
+  t.pass('success');
+  t.end();
+});
+
+test('enrich-resource - enricher is not a function', (t) => {
+  const enrichResource = proxyquire('../lib/enrich-resources', {
+    './load-enrichers': () => {
+      return {
+        'deployment-config': () => {
+          t.pass('should get called');
+        }
+      };
+    }
+  });
+
+  enrichResource({}, []);
 
   t.pass('success');
   t.end();

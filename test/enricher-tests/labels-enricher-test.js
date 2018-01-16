@@ -19,9 +19,13 @@ test('label enricher', (t) => {
     }
   ];
 
-  const le = labelEnricher(config, resourceList);
+  t.ok(labelEnricher.enrich, 'has an enrich property');
+  t.equal(typeof labelEnricher.enrich, 'function', 'is a function');
+  t.ok(labelEnricher.name, 'has an name property');
+  t.equal(labelEnricher.name, 'labels', 'name property is labels');
 
-  t.equal(typeof labelEnricher, 'function', 'is a function');
+  const le = labelEnricher.enrich(config, resourceList);
+
   t.equal(Array.isArray(le), true, 'should return an array');
   t.notEqual(le, resourceList, 'arrays should not be equal');
   t.ok(le[0].metadata.labels, 'label prop should be here');
@@ -45,7 +49,7 @@ test('label enricher - DeploymentConfig', (t) => {
     }
   ];
 
-  const le = labelEnricher(config, resourceList);
+  const le = labelEnricher.enrich(config, resourceList);
 
   t.ok(le[0].spec.template.metadata.labels, 'should have a labels prop');
   t.equal(le[0].spec.template.metadata.labels.provider, 'nodeshift', 'should have a provider label of nodeshift');
