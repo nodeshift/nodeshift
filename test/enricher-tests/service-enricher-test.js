@@ -20,21 +20,24 @@ test('service enricher test - no service', (t) => {
   t.ok(serviceEnricher.name, 'has an name property');
   t.equal(serviceEnricher.name, 'service', 'name property is service');
 
-  const se = serviceEnricher.enrich(config, resourceList);
+  const p = serviceEnricher.enrich(config, resourceList);
+  t.ok(p instanceof Promise, 'enricher should return a Promise');
 
-  t.equal(Array.isArray(se), true, 'should return an array');
-  t.equal(resourceList.length, 1, 'resourceList size increases by 1');
-  t.ok(se[0].spec.selector, 'selector prop should be here');
-  t.equal(se[0].spec.selector.provider, 'nodeshift', 'provider should be nodeshift');
-  t.equal(se[0].spec.selector.project, config.projectName, `spec.selector.project should be ${config.projectName}`);
-  t.ok(se[0].spec.ports, 'ports prop should be here');
-  t.ok(Array.isArray(se[0].spec.ports), 'ports prop should be here');
-  t.ok(se[0].spec.type, 'type prop should be here');
-  t.equal(se[0].spec.type, 'ClusterIP', 'spec.type should be ClusterIP');
-  t.end();
+  p.then((se) => {
+    t.equal(Array.isArray(se), true, 'should return an array');
+    t.equal(resourceList.length, 1, 'resourceList size increases by 1');
+    t.ok(se[0].spec.selector, 'selector prop should be here');
+    t.equal(se[0].spec.selector.provider, 'nodeshift', 'provider should be nodeshift');
+    t.equal(se[0].spec.selector.project, config.projectName, `spec.selector.project should be ${config.projectName}`);
+    t.ok(se[0].spec.ports, 'ports prop should be here');
+    t.ok(Array.isArray(se[0].spec.ports), 'ports prop should be here');
+    t.ok(se[0].spec.type, 'type prop should be here');
+    t.equal(se[0].spec.type, 'ClusterIP', 'spec.type should be ClusterIP');
+    t.end();
+  });
 });
 
-test('service enricher test - no service', (t) => {
+test('service enricher test - no service', async (t) => {
   const resourceList = [
     {
       kind: 'Service',
@@ -50,7 +53,7 @@ test('service enricher test - no service', (t) => {
     },
     { kind: 'Deployment' }
   ];
-  const se = serviceEnricher.enrich(config, resourceList);
+  const se = await serviceEnricher.enrich(config, resourceList);
 
   t.notEqual(se, resourceList, 'arrays should not be equal');
   t.equal(Array.isArray(se), true, 'should return an array');

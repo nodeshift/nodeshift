@@ -36,15 +36,18 @@ test('git-info-enricher - no git', (t) => {
     }
   });
 
-  const list = gie.enrich(config, resourceList);
+  const p = gie.enrich(config, resourceList);
+  t.ok(p instanceof Promise, 'enricher should return a promise');
 
-  t.equal(Array.isArray(list), true, 'should return an array');
-  t.equal(list, resourceList, 'arrays should be equal');
-  t.equal(list[0].metadata.annotations, undefined, 'no annotations');
-  t.end();
+  p.then((list) => {
+    t.equal(Array.isArray(list), true, 'should return an array');
+    t.equal(list, resourceList, 'arrays should be equal');
+    t.equal(list[0].metadata.annotations, undefined, 'no annotations');
+    t.end();
+  });
 });
 
-test('git-info-enricher - no service or deployment', (t) => {
+test('git-info-enricher - no service or deployment', async (t) => {
   const resourceList = [
     {
       kind: 'Route',
@@ -62,7 +65,7 @@ test('git-info-enricher - no service or deployment', (t) => {
     }
   });
 
-  const list = gie.enrich(config, resourceList);
+  const list = await gie.enrich(config, resourceList);
 
   t.equal(Array.isArray(list), true, 'should return an array');
   t.notEqual(list, resourceList, 'arrays should not be equal');
@@ -70,7 +73,7 @@ test('git-info-enricher - no service or deployment', (t) => {
   t.end();
 });
 
-test('git-info-enricher - service', (t) => {
+test('git-info-enricher - service', async (t) => {
   const resourceList = [
     {
       kind: 'Service',
@@ -89,7 +92,7 @@ test('git-info-enricher - service', (t) => {
     }
   });
 
-  const list = gie.enrich(config, resourceList);
+  const list = await gie.enrich(config, resourceList);
 
   t.equal(Array.isArray(list), true, 'should return an array');
   t.notEqual(list, resourceList, 'arrays should not be equal');
@@ -99,7 +102,7 @@ test('git-info-enricher - service', (t) => {
   t.end();
 });
 
-test('git-info-enricher - deploymentConfig', (t) => {
+test('git-info-enricher - deploymentConfig', async (t) => {
   const resourceList = [
     {
       kind: 'DeploymentConfig',
@@ -125,7 +128,7 @@ test('git-info-enricher - deploymentConfig', (t) => {
     }
   });
 
-  const list = gie.enrich(config, resourceList);
+  const list = await gie.enrich(config, resourceList);
 
   t.equal(Array.isArray(list), true, 'should return an array');
   t.notEqual(list, resourceList, 'arrays should not be equal');
@@ -138,7 +141,7 @@ test('git-info-enricher - deploymentConfig', (t) => {
   t.end();
 });
 
-test('git-info-enricher - deploymentConfig - merge test', (t) => {
+test('git-info-enricher - deploymentConfig - merge test', async (t) => {
   const resourceList = [
     {
       kind: 'DeploymentConfig',
@@ -170,7 +173,7 @@ test('git-info-enricher - deploymentConfig - merge test', (t) => {
     }
   });
 
-  const list = gie.enrich(config, resourceList);
+  const list = await gie.enrich(config, resourceList);
 
   t.equal(Array.isArray(list), true, 'should return an array');
   t.notEqual(list, resourceList, 'arrays should not be equal');

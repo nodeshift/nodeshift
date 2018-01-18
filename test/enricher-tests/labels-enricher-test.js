@@ -24,16 +24,19 @@ test('label enricher', (t) => {
   t.ok(labelEnricher.name, 'has an name property');
   t.equal(labelEnricher.name, 'labels', 'name property is labels');
 
-  const le = labelEnricher.enrich(config, resourceList);
+  const p = labelEnricher.enrich(config, resourceList);
+  t.ok(p instanceof Promise, 'enricher should return a promise');
 
-  t.equal(Array.isArray(le), true, 'should return an array');
-  t.notEqual(le, resourceList, 'arrays should not be equal');
-  t.ok(le[0].metadata.labels, 'label prop should be here');
-  t.equal(le[0].metadata.labels.provider, 'nodeshift', 'provider is nodeshift');
-  t.end();
+  p.then((le) => {
+    t.equal(Array.isArray(le), true, 'should return an array');
+    t.notEqual(le, resourceList, 'arrays should not be equal');
+    t.ok(le[0].metadata.labels, 'label prop should be here');
+    t.equal(le[0].metadata.labels.provider, 'nodeshift', 'provider is nodeshift');
+    t.end();
+  });
 });
 
-test('label enricher - DeploymentConfig', (t) => {
+test('label enricher - DeploymentConfig', async (t) => {
   const resourceList = [
     {
       kind: 'DeploymentConfig',
@@ -49,7 +52,7 @@ test('label enricher - DeploymentConfig', (t) => {
     }
   ];
 
-  const le = labelEnricher.enrich(config, resourceList);
+  const le = await labelEnricher.enrich(config, resourceList);
 
   t.ok(le[0].spec.template.metadata.labels, 'should have a labels prop');
   t.equal(le[0].spec.template.metadata.labels.provider, 'nodeshift', 'should have a provider label of nodeshift');

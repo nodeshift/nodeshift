@@ -16,13 +16,16 @@ test('health check enricher - no DeploymentConfig', (t) => {
   t.ok(healthCheckEnricher.name, 'has an name property');
   t.equal(healthCheckEnricher.name, 'health-check', 'has an enrich property');
 
-  const hce = healthCheckEnricher.enrich({}, resourceList);
+  const p = healthCheckEnricher.enrich({}, resourceList);
+  t.ok(p instanceof Promise, 'enricher should return a promise');
 
-  t.equal(Array.isArray(hce), true, 'should return an array');
-  t.end();
+  p.then((hce) => {
+    t.equal(Array.isArray(hce), true, 'should return an array');
+    t.end();
+  });
 });
 
-test('health check enricher - no kube probe', (t) => {
+test('health check enricher - no kube probe', async (t) => {
   const resourceList = [
     {
       kind: 'DeploymentConfig',
@@ -56,7 +59,7 @@ test('health check enricher - no kube probe', (t) => {
     }
   };
 
-  const hce = healthCheckEnricher.enrich(config, resourceList);
+  const hce = await healthCheckEnricher.enrich(config, resourceList);
 
   t.equal(Array.isArray(hce), true, 'should return an array');
   t.equal(hce[0].spec.template.spec.containers[0].livenessProbe, undefined, 'should not have a liveness probe added');
@@ -64,7 +67,7 @@ test('health check enricher - no kube probe', (t) => {
   t.end();
 });
 
-test('health check enricher - with kube probe', (t) => {
+test('health check enricher - with kube probe', async (t) => {
   const resourceList = [
     {
       kind: 'DeploymentConfig',
@@ -99,7 +102,7 @@ test('health check enricher - with kube probe', (t) => {
     }
   };
 
-  const hce = healthCheckEnricher.enrich(config, resourceList);
+  const hce = await healthCheckEnricher.enrich(config, resourceList);
 
   t.equal(Array.isArray(hce), true, 'should return an array');
   t.ok(hce[0].spec.template.spec.containers[0].livenessProbe, 'should have a liveness probe added');
@@ -109,7 +112,7 @@ test('health check enricher - with kube probe', (t) => {
   t.end();
 });
 
-test('health check enricher - non default', (t) => {
+test('health check enricher - non default', async (t) => {
   const resourceList = [
     {
       kind: 'DeploymentConfig',
@@ -157,7 +160,7 @@ test('health check enricher - non default', (t) => {
     }
   };
 
-  const hce = healthCheckEnricher.enrich(config, resourceList);
+  const hce = await healthCheckEnricher.enrich(config, resourceList);
 
   t.equal(Array.isArray(hce), true, 'should return an array');
   t.ok(hce[0].spec.template.spec.containers[0].livenessProbe, 'should have a liveness probe added');

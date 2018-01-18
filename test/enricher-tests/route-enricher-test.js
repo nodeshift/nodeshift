@@ -28,14 +28,17 @@ test('Route enricher - no route resource', (t) => {
   t.ok(routeEnricher.name, 'has an name property');
   t.equal(routeEnricher.name, 'route', 'name property is route');
 
-  const re = routeEnricher.enrich(config, resourceList);
+  const p = routeEnricher.enrich(config, resourceList);
+  t.ok(p instanceof Promise, 'enricher should return a promise');
 
-  t.equal(Array.isArray(re), true, 'should return an array');
-  t.notEqual(re, resourceList, 'arrays should not be equal');
-  t.end();
+  p.then((re) => {
+    t.equal(Array.isArray(re), true, 'should return an array');
+    t.notEqual(re, resourceList, 'arrays should not be equal');
+    t.end();
+  });
 });
 
-test('Route enricher - no route resource', (t) => {
+test('Route enricher - no route resource', async (t) => {
   const routeEnricher = proxyquire('../../lib/resource-enrichers/route-enricher', {
     '../definitions/route-spec': () => {}
   });
@@ -54,7 +57,7 @@ test('Route enricher - no route resource', (t) => {
     }
   ];
 
-  const re = routeEnricher.enrich(config, resourceList);
+  const re = await routeEnricher.enrich(config, resourceList);
 
   t.equal(Array.isArray(re), true, 'should return an array');
   t.notEqual(re, resourceList, 'arrays should not be equal');

@@ -31,15 +31,18 @@ test('deployment config enricher - no deployment', (t) => {
   t.ok(deploymentConfigEnricher.name, 'has an name property');
   t.equal(deploymentConfigEnricher.name, 'deployment-config');
 
-  const dce = deploymentConfigEnricher.enrich(config, resourceList);
+  const p = deploymentConfigEnricher.enrich(config, resourceList);
+  t.ok(p instanceof Promise, 'enricher should return a promise');
 
-  t.equal(Array.isArray(dce), true, 'should return an array');
-  t.equal(dce.length, 2, 'array should have 2 things');
-  t.equal(dce[1].kind, 'DeploymentConfig', 'should have the depoymentConfig type');
-  t.end();
+  p.then((dce) => {
+    t.equal(Array.isArray(dce), true, 'should return an array');
+    t.equal(dce.length, 2, 'array should have 2 things');
+    t.equal(dce[1].kind, 'DeploymentConfig', 'should have the depoymentConfig type');
+    t.end();
+  });
 });
 
-test('deployment config enricher - deployment', (t) => {
+test('deployment config enricher - deployment', async (t) => {
   const deploymentConfigEnricher = proxyquire('../../lib/resource-enrichers/deployment-config-enricher', {
     '../definitions/deployment-config-spec': deploymentConfig => deploymentConfig
   });
@@ -59,7 +62,7 @@ test('deployment config enricher - deployment', (t) => {
     }
   ];
 
-  const dce = deploymentConfigEnricher.enrich(config, resourceList);
+  const dce = await deploymentConfigEnricher.enrich(config, resourceList);
 
   t.equal(Array.isArray(dce), true, 'should return an array');
   t.notEqual(dce, resourceList, 'should not be equal');
