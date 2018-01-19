@@ -23,18 +23,44 @@ test('enrich-resource', (t) => {
 });
 
 test('enrich-resource - enricher is not a function', (t) => {
+  let i = 0;
   const enrichResource = proxyquire('../lib/enrich-resources', {
     './load-enrichers': () => {
       return {
         'deployment-config': () => {
+          i++;
+          t.pass('should get called');
+        },
+        'route': () => {
+          i++;
+          t.pass('should get called');
+        },
+        'service': () => {
+          i++;
+          t.pass('should get called');
+        },
+        'labels': () => {
+          i++;
+          t.pass('should get called');
+        },
+        'git-info': () => {
+          i++;
+          t.pass('should get called');
+        },
+        'health-check': () => {
+          i++;
           t.pass('should get called');
         }
       };
     }
   });
 
-  enrichResource({}, []);
+  const p = enrichResource({}, []);
+  t.ok(p instanceof Promise, 'should return a promise');
 
-  t.pass('success');
-  t.end();
+  p.then(() => {
+    t.equal(i, 6, 'should have 6 default enrchers');
+    t.pass('success');
+    t.end();
+  });
 });
