@@ -26,6 +26,8 @@ process.title = 'nodeshift'; // Thanks Ember-cli :)
 const fs = require('fs');
 const yargs = require('yargs');
 
+const nodeVersionChoices = ['latest', '9.x', '8.x', '7.x', '6.x', '5.x', '4.x'];
+
 /* eslint no-unused-expressions: "warn" */
 yargs
   .version(require('../package.json').version)
@@ -51,7 +53,6 @@ yargs
     describe: 'the version of Node.js to use for the deployed application.',
     alias: 'n',
     type: 'string',
-    choices: ['latest', '9.x', '8.x', '7.x', '6.x', '5.x', '4.x'],
     default: 'latest'
   })
   .env('NODESHIFT')
@@ -83,6 +84,11 @@ function commandHandler (argv) {
   const options = createOptions(argv);
   const metadataOut = (options.metadata.out === 'ignore') ? undefined : options.metadata.out;
   const log = require('../lib/common-log')();
+
+  // If nodeVersion choice is not in the list, emit a warning
+  if (!nodeVersionChoices.includes(options.nodeVersion)) {
+    log.warning(`Unrecognized Node.js version specified: ${options.nodeVersion}. Known versions are ${nodeVersionChoices.join(', ')}.`);
+  }
   require('./cli')(options).then((response) => {
     if (metadataOut && (metadataOut.trim() !== '')) {
       if (metadataOut === 'stdout') {
