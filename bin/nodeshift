@@ -26,7 +26,7 @@ process.title = 'nodeshift'; // Thanks Ember-cli :)
 const fs = require('fs');
 const yargs = require('yargs');
 
-const nodeVersionChoices = ['latest', '9.x', '8.x', '7.x', '6.x', '5.x', '4.x'];
+const nodeVersionChoices = ['latest', '9.x', '8.x', '7.x', '6.x'];
 
 /* eslint no-unused-expressions: "warn" */
 yargs
