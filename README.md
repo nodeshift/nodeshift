@@ -150,6 +150,9 @@ This option is passed through to the [Openshift Config Loader](https://www.npmjs
 #### nodeVersion
 Specify the version of Node.js to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the [bucharest-gold s2i images](https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/)
 
+#### dockerImage
+Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to [bucharestgold/centos7-s2i-nodejs](https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs)
+
 #### quiet
 supress INFO and TRACE lines from output logs.
 

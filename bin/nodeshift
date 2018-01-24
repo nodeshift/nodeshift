@@ -49,6 +49,10 @@ yargs
     or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT environment variable
     `
   })
+  .options('dockerImage', {
+    describe: 'the s2i image to use, defaults to bucharest-gold/centos7-s2i-nodejs',
+    type: 'string'
+  })
   .options('nodeVersion', {
     describe: 'the version of Node.js to use for the deployed application.',
     alias: 'n',
@@ -112,6 +116,7 @@ function createOptions (argv) {
   const options = {};
 
   options.projectLocation = argv.projectLocation;
+  options.dockerImage = argv.dockerImage;
   options.nodeVersion = argv.nodeVersion;
   process.env['NODESHIFT_QUIET'] = argv.quiet === true;
   options.metadata = argv.metadata;

@@ -30,3 +30,10 @@ test('strategy with changed forcePull to false', (t) => {
   t.equal(result.sourceStrategy.forcePull, false, 'forcePull off');
   t.end();
 });
+
+test('strategy with change dockerImage', (t) => {
+  const result = buildStrategy({dockerImage: 'lholmquist/centos7-s2i-nodejs'});
+
+  t.equal(result.sourceStrategy.from.name, 'lholmquist/centos7-s2i-nodejs:latest', 'docker image should be latet lholmquist image');
+  t.end();
+});
