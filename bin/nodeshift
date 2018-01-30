@@ -30,7 +30,6 @@ const nodeVersionChoices = ['latest', '9.x', '8.x', '7.x', '6.x'];
 
 /* eslint no-unused-expressions: "warn" */
 yargs
-  .version(require('../package.json').version)
   .usage('[--options]')
   .command(['deploy', '$0'], 'default command - deploy', { cmd: { default: 'deploy' } }, commandHandler)
   .command('build', 'build command', { cmd: { default: 'build' } }, commandHandler)
@@ -82,7 +81,7 @@ yargs
     type: 'string',
     default: 'ignore'
   })
-  .help().argv;
+  .argv;
 
 function commandHandler (argv) {
   const options = createOptions(argv);
