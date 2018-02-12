@@ -1,6 +1,6 @@
 {
   "name": "nodeshift",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Plugin for running openshift deployments",
   "bin": {
     "nodeshift": "./bin/nodeshift"
@@ -13,7 +13,8 @@
     "coverage:html": "nyc npm test && nyc report --reporter=html",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "docs": "./node_modules/.bin/jsdoc --verbose -d docs -t ./node_modules/ink-docstrap/template -R README.md index.js",
-    "ci": "npm run lint && npm run coveralls"
+    "ci": "npm run lint && npm run coveralls",
+    "release": "standard-version"
   },
   "files": [
     "package.json",
@@ -69,6 +70,7 @@
     "nyc": "~11.4.1",
     "proxyquire": "^1.8.0",
     "sinon": "^4.1.2",
+    "standard-version": "^4.3.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.7.0"
   }
