@@ -189,3 +189,43 @@ test('test logger no warning', (t) => {
     t.end();
   });
 });
+
+test('change in project location', (t) => {
+  const config = {
+    projectLocation: '/this/is/a/dir',
+    projectPackage: {
+      files: ['file1', 'file2']
+    }
+  };
+
+  const dockerArchiver = proxyquire('../lib/docker-archiver', {
+    './helpers': {
+      createDir: () => {
+        return Promise.resolve();
+      },
+      cleanUp: () => {
+        return Promise.resolve();
+      },
+      normalizeFileList: (files, projectLocation) => {
+        t.equal(projectLocation, config.projectLocation, 'projectLocation should be here');
+        console.log(projectLocation);
+        return {
+          nonexistent: [],
+          existing: ['file3']
+        };
+      }
+    },
+    tar: {
+      create: (options) => {
+        t.equal(options.cwd, config.projectLocation, 'project location should be here');
+        t.equal(options.file, '/this/is/a/dir/tmp/nodeshift/build/archive.tar', 'project location should be on the path');
+        return Promise.resolve();
+      }
+    }
+  });
+
+  dockerArchiver.archiveAndTar(config).then(() => {
+    t.pass('should cleanup stuff');
+    t.end();
+  });
+});
