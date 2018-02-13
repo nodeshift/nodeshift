@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.2"></a>
+## [1.3.2](https://github.com/bucharest-gold/nodeshift/compare/v1.3.1...v1.3.2) (2018-02-13)
+
+
+### Bug Fixes
+
+* projectLocation should be set correctly. ([#189](https://github.com/bucharest-gold/nodeshift/issues/189)) ([4e061a9](https://github.com/bucharest-gold/nodeshift/commit/4e061a9)), closes [#188](https://github.com/bucharest-gold/nodeshift/issues/188)
+
+
+
 <a name="1.3.1"></a>
 ## [1.3.1](https://github.com/bucharest-gold/nodeshift/compare/v1.3.0...v1.3.1) (2018-02-12)
 
