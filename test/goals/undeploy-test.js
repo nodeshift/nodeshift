@@ -145,3 +145,39 @@ test('return list items that do not match the item kind', (t) => {
     t.end();
   });
 });
+
+test('remove build and image stream', (t) => {
+  t.plan(3);
+  const config = {
+    removeAll: true
+  };
+
+  const resourceList = {
+    kind: 'List',
+    items: []
+  };
+
+  const undeploy = proxyquire('../../lib/goals/undeploy', {
+    fs: {
+      readFile: (location, cb) => { return cb(null, JSON.stringify(resourceList)); }
+    },
+    '../deployment-config': {
+      undeploy: () => { return Promise.resolve(); }
+    },
+    '../build-config': {
+      removeBuildsAndBuildConfig: () => {
+        t.pass('should land here');
+      }
+    },
+    '../image-stream': {
+      removeImageStream: () => {
+        t.pass('should land here');
+      }
+    }
+  });
+
+  undeploy(config).then(() => {
+    t.pass('this should pass');
+    t.end();
+  });
+});

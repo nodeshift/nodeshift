@@ -156,6 +156,9 @@ Specify the s2i builder image of Node.js to use for the deployed applications.  
 #### quiet
 supress INFO and TRACE lines from output logs.
 
+#### removeAll
+option to remove builds, buildConfigs and Imagestreams.  Defaults to false - **Only for the `undeploy` Command**
+
 #### build.recreate
 Flag to recreate a BuildConfig or Imagestream.  Defaults to false. Choices are "buildConfig", "imageStream", false, true.  If true, both are re-created
 

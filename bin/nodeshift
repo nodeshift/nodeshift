@@ -35,7 +35,7 @@ yargs
   .command('build', 'build command', { cmd: { default: 'build' } }, commandHandler)
   .command('resource', 'resource command', { cmd: { default: 'resource' } }, commandHandler)
   .command('apply-resource', 'apply resource command', { cmd: { default: 'apply-resource' } }, commandHandler)
-  .command('undeploy', 'undeploy resources', { cmd: { default: 'undeploy' } }, commandHandler)
+  .command('undeploy [removeAll]', 'undeploy resources', { cmd: { default: 'undeploy' } }, commandHandler)
   .option('projectLocation', {
     describe: 'change the default location of the project',
     type: 'string'
@@ -121,6 +121,8 @@ function createOptions (argv) {
   options.metadata = argv.metadata;
   options.build = argv.build;
   options.cmd = argv.cmd;
+  // undeploy might have a positional argument
+  options.removeAll = argv.removeAll;
   options.strictSSL = argv.strictSSL !== 'false';
   options.tryServiceAccount = argv.tryServiceAccount !== 'false';
 
