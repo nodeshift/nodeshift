@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/bucharest-gold/nodeshift/compare/v1.3.3...v1.4.0) (2018-02-21)
+
+
+### Features
+
+* undeploy: Add an option that, when true, will also remove builds, buildConfigs and Imagestreams ([#190](https://github.com/bucharest-gold/nodeshift/issues/190))([aebb5a1](https://github.com/bucharest-gold/nodeshift/commit/aebb5a1626f861e0143807d133ce8dc5b3ab767a))
+
+
 <a name="1.3.3"></a>
 ## [1.3.3](https://github.com/bucharest-gold/nodeshift/compare/v1.3.2...v1.3.3) (2018-02-19)
 
