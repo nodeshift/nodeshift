@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.4.1"></a>
+## [1.4.1](https://github.com/bucharest-gold/nodeshift/compare/v1.4.0...v1.4.1) (2018-03-02)
+
+
+### Bug Fixes
+
+* **nodeshift:** No longer check and emit a warning for non-standard Node versions. ([fa0c44e](https://github.com/bucharest-gold/nodeshift/commit/fa0c44e)), closes [#194](https://github.com/bucharest-gold/nodeshift/issues/194)
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/bucharest-gold/nodeshift/compare/v1.3.3...v1.4.0) (2018-02-21)
 
