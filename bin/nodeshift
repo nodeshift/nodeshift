@@ -41,6 +41,10 @@ yargs
   .options('strictSSL', {
     describe: 'setting to pass to the Openshift Rest Client. Set to false if using a self-sign cert'
   })
+  .option('configLocation', {
+    describe: 'change the default location of the config',
+    type: 'string'
+  })
   .options('tryServiceAccount', {
     describe: `setting to pass to the Openshift Config Loader. Set to false to by-pass service account lookup
     or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT environment variable
@@ -119,6 +123,7 @@ function createOptions (argv) {
   options.removeAll = argv.removeAll;
   options.strictSSL = argv.strictSSL !== 'false';
   options.tryServiceAccount = argv.tryServiceAccount !== 'false';
+  options.configLocation = argv.configLocation;
 
   // Check for the -d array
   // If it is there, we need to parse it.

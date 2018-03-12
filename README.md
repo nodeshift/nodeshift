@@ -144,6 +144,9 @@ Changes the default location of where to look for your project. Defaults to your
 #### strictSSL
 This option is passed through to the [Openshift Rest Client](https://www.npmjs.com/package/openshift-rest-client) for SSL use.  To allow using a self-signed cert, set to false
 
+#### configLocation
+This option is passed through to the [Openshift Config Loader](https://www.npmjs.com/package/openshift-config-loader).  Defaults to the `~/.kube/config`
+
 #### tryServiceAccount
 This option is passed through to the [Openshift Config Loader](https://www.npmjs.com/package/openshift-config-loader). Set to false to by-pass service account lookup or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT environment variable
 
