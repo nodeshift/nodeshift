@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/bucharest-gold/nodeshift/compare/v1.4.1...v1.5.0) (2018-03-12)
+
+
+### Features
+
+* **config-loader:** expose the configLocation options for the openshift-config-loader. ([#198](https://github.com/bucharest-gold/nodeshift/issues/198)) ([7462ead](https://github.com/bucharest-gold/nodeshift/commit/7462ead)), closes [#197](https://github.com/bucharest-gold/nodeshift/issues/197)
+
+
+
 <a name="1.4.1"></a>
 ## [1.4.1](https://github.com/bucharest-gold/nodeshift/compare/v1.4.0...v1.4.1) (2018-03-02)
 
