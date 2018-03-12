@@ -100,6 +100,7 @@ test('nodeshift-config options for the config loader', (t) => {
   const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
     'openshift-config-loader': (options) => {
       t.ok(options.tryServiceAccount, 'tryServiceAccount should be there');
+      t.ok(options.configLocation, 'configLocation should be there');
       return Promise.resolve({
         context: {
           namespace: 'test-namespace'
@@ -117,6 +118,7 @@ test('nodeshift-config options for the config loader', (t) => {
 
   nodeshiftConfig(options).then((config) => {
     t.ok(config.tryServiceAccount, 'tryServiceAccount should be there');
+    t.ok(config.configLocation, 'configLocation should be there');
     t.end();
   });
 });
