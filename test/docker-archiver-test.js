@@ -75,6 +75,40 @@ test('test error with create dir function', (t) => {
   });
 });
 
+test('test no file prop, exclude stuff', (t) => {
+  const dockerArchiver = proxyquire('../lib/docker-archiver', {
+    './helpers': {
+      createDir: () => {
+        return Promise.resolve();
+      },
+      cleanUp: () => {
+        return Promise.resolve();
+      },
+      listFiles: () => {
+        return Promise.resolve(['node_modules', '.git', 'tmp', 'file1', 'other']);
+      }
+    },
+    tar: {
+      create: (obj, files) => {
+        t.equal(files.length, 2, 'should only have 2 values');
+        t.ok(!files.includes('node_modules'), 'should not include node_modules');
+        t.ok(!files.includes('.git'), 'should not include .git');
+        t.ok(!files.includes('tmp'), 'should not include tmp');
+        return Promise.resolve();
+      }
+    }
+  });
+
+  const config = {
+    projectPackage: {}
+  };
+
+  dockerArchiver.archiveAndTar(config).then(() => {
+    t.pass('should resolve');
+    t.end();
+  });
+});
+
 test('test logger warning if no files prop', (t) => {
   const dockerArchiver = proxyquire('../lib/docker-archiver', {
     './helpers': {
