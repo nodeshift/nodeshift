@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.1"></a>
+## [1.5.1](https://github.com/bucharest-gold/nodeshift/compare/v1.5.0...v1.5.1) (2018-03-15)
+
+
+### Bug Fixes
+
+* **archiver:** fix for source archiver when no files property is found in the package.json ([3c856e8](https://github.com/bucharest-gold/nodeshift/commit/3c856e8)), closes [#200](https://github.com/bucharest-gold/nodeshift/issues/200)
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/bucharest-gold/nodeshift/compare/v1.4.1...v1.5.0) (2018-03-12)
 
