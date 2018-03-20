@@ -130,8 +130,10 @@ test('return list items that do not match the item kind', (t) => {
     '../deployment-config': {
       undeploy: () => { return Promise.resolve(); }
     },
-    './common-log': () => {
+    '../common-log': () => {
       return {
+        info: info => info,
+        error: error => error,
         warning: (warning) => {
           t.equal(warning, 'Other is not recognized');
           return warning;
