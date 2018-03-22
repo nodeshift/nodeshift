@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.6.0"></a>
+# [1.6.0](https://github.com/bucharest-gold/nodeshift/compare/v1.5.1...v1.6.0) (2018-03-22)
+
+
+### Features
+
+* Add an `--expose` flag which when true will create a default route and expose the default service ([6e06ec6](https://github.com/bucharest-gold/nodeshift/commit/6e06ec6))
+
+
+
 <a name="1.5.1"></a>
 ## [1.5.1](https://github.com/bucharest-gold/nodeshift/compare/v1.5.0...v1.5.1) (2018-03-15)
 
