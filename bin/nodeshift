@@ -66,6 +66,12 @@ yargs
     type: 'boolean'
   })
   .array('d')
+  .options('expose', {
+    describe: 'flag to create a default Route and expose the default service',
+    choices: [true, false],
+    type: 'boolean',
+    default: false
+  })
   .option('build.recreate', {
     describe: 'flag to recreate a buildConfig or Imagestream',
     choices: ['buildConfig', 'imageStream', false, true],
@@ -121,6 +127,7 @@ function createOptions (argv) {
   options.cmd = argv.cmd;
   // undeploy might have a positional argument
   options.removeAll = argv.removeAll;
+  options.expose = argv.expose;
   options.strictSSL = argv.strictSSL !== 'false';
   options.tryServiceAccount = argv.tryServiceAccount !== 'false';
   options.configLocation = argv.configLocation;

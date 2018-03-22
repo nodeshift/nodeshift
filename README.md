@@ -42,7 +42,7 @@ By default, if you run just `nodeshift`, it will run the `deploy` goal, which is
 
 ### `.nodeshift` Directory
 
-The `.nodeshift` directory contains your resource fragements.  These are `.yml` files that describe your services, deployments, routes, etc.  By default, nodeshift will create a `Service` and `DeploymentConfig` in memory, if none are provided.  A `Route` resource fragment should be provided if you want to expose your application to the outside world.
+The `.nodeshift` directory contains your resource fragements.  These are `.yml` files that describe your services, deployments, routes, etc.  By default, nodeshift will create a `Service` and `DeploymentConfig` in memory, if none are provided.  A `Route` resource fragment should be provided or use the `expose` flag if you want to expose your application to the outside world.
 
 ### Resource Fragments
 
@@ -158,6 +158,9 @@ Specify the s2i builder image of Node.js to use for the deployed applications.  
 
 #### quiet
 supress INFO and TRACE lines from output logs.
+
+#### expose
+options to create a default route, if non is provided.  Defaults to false
 
 #### removeAll
 option to remove builds, buildConfigs and Imagestreams.  Defaults to false - **Only for the `undeploy` Command**
