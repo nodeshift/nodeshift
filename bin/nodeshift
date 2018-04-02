@@ -26,6 +26,8 @@ process.title = 'nodeshift'; // Thanks Ember-cli :)
 const fs = require('fs');
 const yargs = require('yargs');
 
+const helpers = require('../lib/helpers');
+
 /* eslint no-unused-expressions: "warn" */
 yargs
   .usage('[--options]')
@@ -83,6 +85,7 @@ yargs
     type: 'boolean',
     default: false
   })
+  .array('build.env')
   .options('metadata.out', {
     describe: 'determines what should be done with the response metadata from OpenShift',
     choices: ['stdout', 'ignore', '<filename>'],
@@ -132,23 +135,18 @@ function createOptions (argv) {
   options.tryServiceAccount = argv.tryServiceAccount !== 'false';
   options.configLocation = argv.configLocation;
 
+  // Check for the --build.env array
+  // If it is there, we need to parse it
+  // The values should be in the format KEY=value
+  if (argv.build.env) {
+    options.build.env = helpers.parseMultiOption(argv.build.env);
+  }
+
   // Check for the -d array
   // If it is there, we need to parse it.
-  // The values should be in the format VALUE=key
+  // The values should be in the format KEY=value
   if (argv.d) {
-    const splitted = argv.d.map((props) => {
-      return props.split('=');
-    });
-
-    // convert our split array to an array of objects where the key is the 0 index and value is the 1 index
-    const definedProperties = splitted.map((v) => {
-      return {
-        key: v[0],
-        value: v[1]
-      };
-    });
-
-    options.definedProperties = definedProperties;
+    options.definedProperties = helpers.parseMultiOption(argv.d);
   } else {
     options.definedProperties = [];
   }

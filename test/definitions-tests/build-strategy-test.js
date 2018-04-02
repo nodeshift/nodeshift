@@ -37,3 +37,19 @@ test('strategy with change dockerImage', (t) => {
   t.equal(result.sourceStrategy.from.name, 'lholmquist/centos7-s2i-nodejs:latest', 'docker image should be latet lholmquist image');
   t.end();
 });
+
+test('strategy with env vars', (t) => {
+  const envs = [
+    {
+      name: 'NODE_ENV',
+      value: 'development'
+    }
+  ];
+
+  const result = buildStrategy({buildEnv: envs});
+
+  t.ok(result.sourceStrategy.env, 'env prop exists');
+  t.equal(result.sourceStrategy.env[0].name, 'NODE_ENV', 'has the name value');
+  t.equal(result.sourceStrategy.env[0].value, 'development', 'has the value value');
+  t.end();
+});

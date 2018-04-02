@@ -22,6 +22,7 @@ const cli = require('./bin/cli');
   @param {object} [options.build] -
   @param {string/boolean} [options.build.recreate] - flag to recreate a buildConfig or Imagestream. values are "buildConfig", "imageStream", true, false.  Defaults to false
   @param {boolean} [options.build.forcePull] - flag to make your BuildConfig always pull a new image from dockerhub or not. Defaults to false
+  @param {Array} [options.build.env] - an array of objects to pass build config environment variables.  [{name: NAME_PROP, value: VALUE}]
   @param {array} [options.definedProperties] - Array of objects with the format { key: value }.  Used for template substitution
   @returns {Promise} - Returns a JSON Object
 */
@@ -106,6 +107,7 @@ function undeploy (options = {}) {
   @param {object} [options.build] -
   @param {string/boolean} [options.build.recreate] - flag to recreate a buildConfig or Imagestream. values are "buildConfig", "imageStream", true, false.  Defaults to false
   @param {boolean} [options.build.forcePull] - flag to make your BuildConfig always pull a new image from dockerhub or not. Defaults to false
+  @param {Array} [options.build.env] - an array of objects to pass build config environment variables.  [{name: NAME_PROP, value: VALUE}]
   @param {array} [options.definedProperties] - Array of objects with the format { key: value }.  Used for template substitution
   @returns {Promise} - Returns a JSON Object
 */

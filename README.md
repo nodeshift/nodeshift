@@ -171,6 +171,9 @@ Flag to recreate a BuildConfig or Imagestream.  Defaults to false. Choices are "
 #### build.forcePull
 Flag to make your BuildConfig always pull a new image from dockerhub.  Defaults to false
 
+#### build.env
+Flag to pass build config environment variables as NAME=Value.  Can be used multiple times.  ex: `nodeshift --build.env NODE_ENV=development --build.env YARN_ENABLED=true`
+
 #### help
 Shows the below help
 

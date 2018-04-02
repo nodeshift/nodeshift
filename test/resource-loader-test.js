@@ -286,7 +286,7 @@ test('test string substitution', (t) => {
     context: {
       namespace: 'my namespace'
     },
-    definedProperties: [{key: 'SSO_AUTH_SERVER_URL', value: 'https://yea'}]
+    definedProperties: [{name: 'SSO_AUTH_SERVER_URL', value: 'https://yea'}]
   };
 
   resourceLoader(config).then((resourceList) => {
