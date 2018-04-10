@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.7.1"></a>
+## [1.7.1](https://github.com/bucharest-gold/nodeshift/compare/v1.7.0...v1.7.1) (2018-04-10)
+
+
+### Bug Fixes
+
+* **config:** add package name sanitisation ([#212](https://github.com/bucharest-gold/nodeshift/issues/212)) ([1c18b2a](https://github.com/bucharest-gold/nodeshift/commit/1c18b2a)), closes [#211](https://github.com/bucharest-gold/nodeshift/issues/211)
+
+
+
 <a name="1.7.0"></a>
 # [1.7.0](https://github.com/bucharest-gold/nodeshift/compare/v1.6.0...v1.7.0) (2018-04-02)
 
