@@ -112,7 +112,11 @@ function commandHandler (argv) {
   })
     .catch((err) => {
       log.error(err.message);
-      log.error('Status code', err.statusCode);
+
+      if (err && err.statusCode) {
+        log.error('Status code', err.statusCode);
+      }
+
       require('util').debuglog('nodeshift.cli')(err.stack);
       process.exit(1);
     });

@@ -96,6 +96,51 @@ test('nodeshift-config no package.json', (t) => {
   });
 });
 
+test('nodeshift-config invalid "name" in package.json', (t) => {
+  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+    'openshift-config-loader': () => {
+      return Promise.resolve({
+        context: {
+          namespace: 'test-namespace'
+        },
+        cluster: 'http://mock-cluster'
+      });
+    },
+    'openshift-rest-client': () => { return Promise.resolve({}); }
+  });
+
+  const tmpDir = require('os').tmpdir();
+  const join = require('path').join;
+  const fs = require('fs');
+
+  const options = {
+    projectLocation: join(tmpDir, 'nodeshift-invalid-package-name-test')
+  };
+
+  if (!fs.existsSync(options.projectLocation)) {
+    fs.mkdirSync(options.projectLocation);
+  }
+
+  // Create a temp package that has an invalid name, but extends the example JSON
+  fs.writeFileSync(
+    join(options.projectLocation, 'package.json'),
+    JSON.stringify(
+      Object.assign(
+        {},
+        require('../examples/sample-project/package.json'),
+        {
+          name: '@invalid-package-name'
+        }
+      )
+    )
+  );
+
+  nodeshiftConfig(options).catch((err) => {
+    t.equal(err.message.includes('"name" in package.json can only consist lower-case letters, numbers, and dashes. It must start with a letter and can\'t end with a -.'), true);
+    t.end();
+  });
+});
+
 test('nodeshift-config options for the config loader', (t) => {
   const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
     'openshift-config-loader': (options) => {
