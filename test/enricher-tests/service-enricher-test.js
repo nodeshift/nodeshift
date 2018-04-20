@@ -9,7 +9,8 @@ const config = {
   version: '1.0.0',
   context: {
     namespace: 'the namespace'
-  }
+  },
+  port: 8080
 };
 
 test('service enricher test - no service', (t) => {
@@ -30,6 +31,8 @@ test('service enricher test - no service', (t) => {
     t.equal(se[0].spec.selector.provider, 'nodeshift', 'provider should be nodeshift');
     t.equal(se[0].spec.selector.project, config.projectName, `spec.selector.project should be ${config.projectName}`);
     t.ok(se[0].spec.ports, 'ports prop should be here');
+    t.equal(se[0].spec.ports[0].port, 8080, 'port should be 8080');
+    t.equal(se[0].spec.ports[0].targetPort, 8080, 'targetPort should be 8080');
     t.ok(Array.isArray(se[0].spec.ports), 'ports prop should be here');
     t.ok(se[0].spec.type, 'type prop should be here');
     t.equal(se[0].spec.type, 'ClusterIP', 'spec.type should be ClusterIP');
@@ -37,7 +40,7 @@ test('service enricher test - no service', (t) => {
   });
 });
 
-test('service enricher test - no service', async (t) => {
+test('service enricher test - service', async (t) => {
   const resourceList = [
     {
       kind: 'Service',
@@ -45,8 +48,8 @@ test('service enricher test - no service', async (t) => {
         ports: [
           {
             protocol: 'TCP',
-            port: 8080,
-            targetPort: 8080
+            port: 3000,
+            targetPort: 3000
           }
         ]
       }
@@ -62,6 +65,8 @@ test('service enricher test - no service', async (t) => {
   t.equal(se[0].spec.selector.provider, 'nodeshift', 'provider should be nodeshift');
   t.equal(se[0].spec.selector.project, config.projectName, `spec.selector.project should be ${config.projectName}`);
   t.ok(se[0].spec.ports, 'ports prop should be here');
+  t.equal(se[0].spec.ports[0].port, 3000, 'port should be 3000');
+  t.equal(se[0].spec.ports[0].targetPort, 3000, 'targetPort should be 3000');
   t.ok(Array.isArray(se[0].spec.ports), 'ports prop should be here');
   t.ok(se[0].spec.type, 'type prop should be here');
   t.equal(se[0].spec.type, 'ClusterIP', 'spec.type should be ClusterIP');

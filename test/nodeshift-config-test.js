@@ -17,10 +17,40 @@ test('nodeshift-config basic setup', (t) => {
   });
 
   const p = nodeshiftConfig().then((config) => {
+    t.ok(config.port, 'port prop should be here');
+    t.equal(config.port, 8080, 'default port should be 8080');
     t.ok(config.projectLocation, 'projectLocation prop should be here');
     t.equal(config.projectLocation, process.cwd(), 'projectLocation prop should be cwd by default');
     t.ok(config.nodeshiftDirectory, 'nodeshiftDir prop should be here');
     t.equal(config.nodeshiftDirectory, '.nodeshift', 'nodeshiftDir prop should be .nodeshift by default');
+    t.end();
+  }).catch(t.fail);
+
+  t.equal(p instanceof Promise, true, 'should return a Promise');
+});
+
+test('nodeshift-config basic setup with deploy option', (t) => {
+  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+    'openshift-config-loader': () => {
+      return Promise.resolve({
+        context: {
+          namespace: 'test-namespace'
+        },
+        cluster: 'http://mock-cluster'
+      });
+    },
+    'openshift-rest-client': () => { return Promise.resolve({}); }
+  });
+
+  const options = {
+    deploy: {
+      port: 3000
+    }
+  };
+
+  const p = nodeshiftConfig(options).then((config) => {
+    t.ok(config.port, 'port prop should be here');
+    t.equal(config.port, 3000, 'default port should be 8080');
     t.end();
   }).catch(t.fail);
 

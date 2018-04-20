@@ -165,6 +165,9 @@ options to create a default route, if non is provided.  Defaults to false
 #### removeAll
 option to remove builds, buildConfigs and Imagestreams.  Defaults to false - **Only for the `undeploy` Command**
 
+#### deploy.port
+Flag to update the default ports on the resource files. Defaults to 8080
+
 #### build.recreate
 Flag to recreate a BuildConfig or Imagestream.  Defaults to false. Choices are "buildConfig", "imageStream", false, true.  If true, both are re-created
 
@@ -202,6 +205,8 @@ Shows the below help
                                                                         [default: "latest"]
             --quiet                  supress INFO and TRACE lines from output logs
                                                                                 [boolean]
+            --deploy.port        flag to update the default ports on the resource files.
+                       Defaults to 8080                          [default: 8080]
             --build.recreate         flag to recreate a buildConfig or Imagestream
                     [choices: "buildConfig", "imageStream", false, true] [default: false]
             --build.forcePull        flag to make your BuildConfig always pull a new image

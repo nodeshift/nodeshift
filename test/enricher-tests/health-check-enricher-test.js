@@ -99,7 +99,8 @@ test('health check enricher - with kube probe', async (t) => {
     version: '1.0.0',
     context: {
       namespace: 'namespace'
-    }
+    },
+    port: 8080
   };
 
   const hce = await healthCheckEnricher.enrich(config, resourceList);
@@ -107,8 +108,10 @@ test('health check enricher - with kube probe', async (t) => {
   t.equal(Array.isArray(hce), true, 'should return an array');
   t.ok(hce[0].spec.template.spec.containers[0].livenessProbe, 'should have a liveness probe added');
   t.equal(hce[0].spec.template.spec.containers[0].livenessProbe.httpGet.path, '/api/health/liveness', 'should have a liveness probe url');
+  t.equal(hce[0].spec.template.spec.containers[0].livenessProbe.httpGet.port, 8080, 'port should be 8080');
   t.ok(hce[0].spec.template.spec.containers[0].readinessProbe, 'should have a readiness probe added');
   t.equal(hce[0].spec.template.spec.containers[0].readinessProbe.httpGet.path, '/api/health/readiness', 'should have a readiness probe url');
+  t.equal(hce[0].spec.template.spec.containers[0].readinessProbe.httpGet.port, 8080, 'port should be 8080');
   t.end();
 });
 
@@ -127,14 +130,14 @@ test('health check enricher - non default', async (t) => {
                 readinessProbe: {
                   httpGet: {
                     path: '/api/greeting',
-                    port: 8080,
+                    port: 3000,
                     scheme: 'HTTP'
                   }
                 },
                 livenessProbe: {
                   httpGet: {
                     path: '/api/greeting',
-                    port: 8080,
+                    port: 3000,
                     scheme: 'HTTP'
                   }
                 }
@@ -157,7 +160,8 @@ test('health check enricher - non default', async (t) => {
     version: '1.0.0',
     context: {
       namespace: 'namespace'
-    }
+    },
+    port: 8080
   };
 
   const hce = await healthCheckEnricher.enrich(config, resourceList);
@@ -165,7 +169,9 @@ test('health check enricher - non default', async (t) => {
   t.equal(Array.isArray(hce), true, 'should return an array');
   t.ok(hce[0].spec.template.spec.containers[0].livenessProbe, 'should have a liveness probe added');
   t.equal(hce[0].spec.template.spec.containers[0].livenessProbe.httpGet.path, '/api/greeting', 'url should not be overwritten');
+  t.equal(hce[0].spec.template.spec.containers[0].livenessProbe.httpGet.port, 3000, 'port should be 3000');
   t.ok(hce[0].spec.template.spec.containers[0].readinessProbe, 'should have a readiness probe added');
   t.equal(hce[0].spec.template.spec.containers[0].readinessProbe.httpGet.path, '/api/greeting', 'url should not be overwritten');
+  t.equal(hce[0].spec.template.spec.containers[0].readinessProbe.httpGet.port, 3000, 'port should be 3000');
   t.end();
 });

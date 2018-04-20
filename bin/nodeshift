@@ -74,6 +74,10 @@ yargs
     type: 'boolean',
     default: false
   })
+  .options('deploy.port', {
+    describe: 'flag to update the default ports on the resource files. Defaults to 8080',
+    default: 8080
+  })
   .option('build.recreate', {
     describe: 'flag to recreate a buildConfig or Imagestream',
     choices: ['buildConfig', 'imageStream', false, true],
@@ -131,6 +135,7 @@ function createOptions (argv) {
   process.env['NODESHIFT_QUIET'] = argv.quiet === true;
   options.metadata = argv.metadata;
   options.build = argv.build;
+  options.deploy = argv.deploy;
   options.cmd = argv.cmd;
   // undeploy might have a positional argument
   options.removeAll = argv.removeAll;
