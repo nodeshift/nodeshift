@@ -70,5 +70,6 @@ test('service enricher test - service', async (t) => {
   t.ok(Array.isArray(se[0].spec.ports), 'ports prop should be here');
   t.ok(se[0].spec.type, 'type prop should be here');
   t.equal(se[0].spec.type, 'ClusterIP', 'spec.type should be ClusterIP');
+  t.equal(se[0].spec.ports[0].name, 'http');
   t.end();
 });
