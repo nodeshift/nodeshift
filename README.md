@@ -58,6 +58,21 @@ Enrichers will add things to the resource fragments, like missing metadata and l
 
 Default Enrichers will also create a default Service and DeploymentConfig when none are provided.
 
+DeploymentConfigs will also be enriched with a PORT environment variable.
+
+```
+env: [
+    {
+        name: 'PORT',
+        value: '8080'
+    }
+]
+```
+
+The default port value is 8080, but that can be overriden with the `--deploy.port` flag.
+
+You can also override this value by provideding a .nodeshift/deployment.yaml resource file
+
 
 #### Resource Fragment Parameters
 
