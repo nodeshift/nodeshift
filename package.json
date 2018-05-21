@@ -46,8 +46,8 @@
     "lodash": "^4.17.4",
     "mkdirp": "^0.5.1",
     "openshift-config-loader": "^0.4.0",
-    "openshift-rest-client": "~1.1.1",
     "request": "~2.87.0",
+    "openshift-rest-client": "~1.1.2",
     "rimraf": "^2.6.1",
     "tar": "^4.0.1",
     "yargs": "^11.0.0"
