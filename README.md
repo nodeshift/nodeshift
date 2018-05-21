@@ -58,6 +58,21 @@ Enrichers will add things to the resource fragments, like missing metadata and l
 
 Default Enrichers will also create a default Service and DeploymentConfig when none are provided.
 
+DeploymentConfigs will also be enriched with a PORT environment variable.
+
+```
+env: [
+    {
+        name: 'PORT',
+        value: '8080'
+    }
+]
+```
+
+The default port value is 8080, but that can be overriden with the `--deploy.port` flag.
+
+You can also override this value by provideding a .nodeshift/deployment.yaml resource file
+
 
 #### Resource Fragment Parameters
 
@@ -167,6 +182,9 @@ option to remove builds, buildConfigs and Imagestreams.  Defaults to false - **O
 
 #### deploy.port
 Flag to update the default ports on the resource files. Defaults to 8080
+
+#### deploy.env
+Flag to pass deployment config environment variables as NAME=Value.  Can be used multiple times.  ex: `nodeshift --deploy.env NODE_ENV=development --deploy.env YARN_ENABLED=true`
 
 #### build.recreate
 Flag to recreate a BuildConfig or Imagestream.  Defaults to false. Choices are "buildConfig", "imageStream", false, true.  If true, both are re-created
