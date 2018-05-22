@@ -78,6 +78,7 @@ yargs
     describe: 'flag to update the default ports on the resource files. Defaults to 8080',
     default: 8080
   })
+  .array('deploy.env')
   .option('build.recreate', {
     describe: 'flag to recreate a buildConfig or Imagestream',
     choices: ['buildConfig', 'imageStream', false, true],
@@ -149,6 +150,13 @@ function createOptions (argv) {
   // The values should be in the format KEY=value
   if (argv.build.env) {
     options.build.env = helpers.parseMultiOption(argv.build.env);
+  }
+
+  // Check for the --deploy.env array
+  // If it is there, we need to parse it
+  // The values should be in the format KEY=value
+  if (argv.deploy.env) {
+    options.deploy.env = helpers.parseMultiOption(argv.deploy.env);
   }
 
   // Check for the -d array

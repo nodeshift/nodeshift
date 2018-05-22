@@ -21,6 +21,7 @@ const cli = require('./bin/cli');
   @param {boolean} [options.quiet] - supress INFO and TRACE lines from output logs
   @param {object} [options.deploy] -
   @param {number} [options.deploy.port] - flag to update the default ports on the resource files. Defaults to 8080
+  @param {Array} [options.deploy.env] - an array of objects to pass deployment config environment variables.  [{name: NAME_PROP, value: VALUE}]
   @param {object} [options.build] -
   @param {string/boolean} [options.build.recreate] - flag to recreate a buildConfig or Imagestream. values are "buildConfig", "imageStream", true, false.  Defaults to false
   @param {boolean} [options.build.forcePull] - flag to make your BuildConfig always pull a new image from dockerhub or not. Defaults to false
@@ -67,6 +68,7 @@ function resource (options = {}) {
   @param {boolean} [options.quiet] - supress INFO and TRACE lines from output logs
   @param {object} [options.deploy] -
   @param {number} [options.deploy.port] - flag to update the default ports on the resource files. Defaults to 8080
+  @param {Array} [options.deploy.env] - an array of objects to pass deployment config environment variables.  [{name: NAME_PROP, value: VALUE}]
   @param {object} [options.build] -
   @param {string/boolean} [options.build.recreate] - flag to recreate a buildConfig or Imagestream. values are "buildConfig", "imageStream", true, false.  Defaults to false
   @param {boolean} [options.build.forcePull] - flag to make your BuildConfig always pull a new image from dockerhub or not. Defaults to false
@@ -90,6 +92,7 @@ function applyResource (options = {}) {
   @param {boolean} [options.removeAll] - option to remove builds, buildConfigs and Imagestreams.  Defaults to false
   @param {object} [options.deploy] -
   @param {number} [options.deploy.port] - flag to update the default ports on the resource files. Defaults to 8080
+  @param {Array} [options.deploy.env] - an array of objects to pass deployment config environment variables.  [{name: NAME_PROP, value: VALUE}]
   @param {object} [options.build] -
   @param {string/boolean} [options.build.recreate] - flag to recreate a buildConfig or Imagestream. values are "buildConfig", "imageStream", true, false.  Defaults to false
   @param {boolean} [options.build.forcePull] - flag to make your BuildConfig always pull a new image from dockerhub or not. Defaults to false
