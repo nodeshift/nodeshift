@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.8.1"></a>
+## [1.8.1](https://github.com/bucharest-gold/nodeshift/compare/v1.8.0...v1.8.1) (2018-05-25)
+
+
+### Bug Fixes
+
+* **README:** remove the section talking about default environment variables being added to the DeploymentConfig ([14cfb74](https://github.com/bucharest-gold/nodeshift/commit/14cfb74)), closes [#231](https://github.com/bucharest-gold/nodeshift/issues/231)
+
+
+
 <a name="1.8.0"></a>
 # [1.8.0](https://github.com/bucharest-gold/nodeshift/compare/v1.7.3...v1.8.0) (2018-05-25)
 
