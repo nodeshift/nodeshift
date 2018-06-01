@@ -212,6 +212,11 @@ Shows the below help
                                                                         [default: "latest"]
             --quiet                  supress INFO and TRACE lines from output logs
                                                                                 [boolean]
+            --expose            flag to create a default Route and expose the default
+                       service [boolean] [choices: true, false] [default: false]
+            --namespace          flag to specify the project namespace to build/deploy
+                       into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
+                                                                        [string]
             --deploy.port        flag to update the default ports on the resource files.
                        Defaults to 8080                          [default: 8080]
             --build.recreate         flag to recreate a buildConfig or Imagestream

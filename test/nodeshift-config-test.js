@@ -197,3 +197,26 @@ test('nodeshift-config options for the config loader', (t) => {
     t.end();
   });
 });
+
+test('nodeshift-config options for the config loader - change the namespace', (t) => {
+  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+    'openshift-config-loader': (options) => {
+      return Promise.resolve({
+        context: {
+          namespace: 'test-namespace'
+        },
+        cluster: 'http://mock-cluster'
+      });
+    },
+    'openshift-rest-client': () => { return Promise.resolve({}); }
+  });
+
+  const options = {
+    namespace: 'foo'
+  };
+
+  nodeshiftConfig(options).then((config) => {
+    t.equal(config.namespace, options.namespace, 'namespace should be changed');
+    t.end();
+  });
+});
