@@ -17,6 +17,7 @@ const cli = require('./bin/cli');
   @param {boolean} [options.strictSSL] - Set to false to allow self-signed Certs
   @param {boolean} [options.tryServiceAccount] - Set to false to by-pass service account lookup
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
+  @param {string} [options.namespace] - Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.nodeVersion] - set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
   @param {boolean} [options.quiet] - supress INFO and TRACE lines from output logs
   @param {object} [options.deploy] -
@@ -43,6 +44,7 @@ function deploy (options = {}) {
   @param {boolean} [options.strictSSL] - Set to false to allow self-signed Certs
   @param {boolean} [options.tryServiceAccount] - Set to false to by-pass service account lookup
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
+  @param {string} [options.namespace] - Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.nodeVersion] - set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
   @param {boolean} [options.quiet] - supress INFO and TRACE lines from output logs
   @param {object} [options.build] -
@@ -64,6 +66,7 @@ function resource (options = {}) {
   @param {boolean} [options.strictSSL] - Set to false to allow self-signed Certs
   @param {boolean} [options.tryServiceAccount] - Set to false to by-pass service account lookup
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
+  @param {string} [options.namespace] - Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.nodeVersion] - set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
   @param {boolean} [options.quiet] - supress INFO and TRACE lines from output logs
   @param {object} [options.deploy] -
@@ -87,6 +90,7 @@ function applyResource (options = {}) {
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
   @param {boolean} [options.strictSSL] - Set to false to allow self-signed Certs
   @param {boolean} [options.tryServiceAccount] - Set to false to by-pass service account lookup
+  @param {string} [options.namespace] - Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.nodeVersion] - set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
   @param {boolean} [options.quiet] - supress INFO and TRACE lines from output logs
   @param {boolean} [options.removeAll] - option to remove builds, buildConfigs and Imagestreams.  Defaults to false
@@ -111,6 +115,7 @@ function undeploy (options = {}) {
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
   @param {boolean} [options.strictSSL] - Set to false to allow self-signed Certs
   @param {boolean} [options.tryServiceAccount] - Set to false to by-pass service account lookup
+  @param {string} [options.namespace] - Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.nodeVersion] - set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
   @param {boolean} [options.quiet] - supress INFO and TRACE lines from output logs
   @param {object} [options.build] -
