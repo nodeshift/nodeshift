@@ -71,7 +71,7 @@
     "proxyquire": "^2.0.1",
     "sinon": "^5.0.0",
     "standard-version": "^4.3.0",
-    "tap-spec": "^4.1.1",
+    "tap-spec": "^5.0.0",
     "tape": "^4.7.0"
   }
 }
