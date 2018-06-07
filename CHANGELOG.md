@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.9.0"></a>
+# [1.9.0](https://github.com/bucharest-gold/nodeshift/compare/v1.8.1...v1.9.0) (2018-06-07)
+
+
+### Bug Fixes
+
+* travis-ci should use npm install instead of npm ci ([#242](https://github.com/bucharest-gold/nodeshift/issues/242)) ([938ec7d](https://github.com/bucharest-gold/nodeshift/commit/938ec7d))
+
+
+### Features
+
+* add the namespace flag ([#234](https://github.com/bucharest-gold/nodeshift/issues/234)) ([13e5316](https://github.com/bucharest-gold/nodeshift/commit/13e5316)), closes [#233](https://github.com/bucharest-gold/nodeshift/issues/233)
+* **ingress:** create an Ingress if there is one in the .nodeshift directory ([#244](https://github.com/bucharest-gold/nodeshift/issues/244)) ([f98cad4](https://github.com/bucharest-gold/nodeshift/commit/f98cad4)), closes [#238](https://github.com/bucharest-gold/nodeshift/issues/238)
+
+
+
 <a name="1.8.1"></a>
 ## [1.8.1](https://github.com/bucharest-gold/nodeshift/compare/v1.8.0...v1.8.1) (2018-05-25)
 
