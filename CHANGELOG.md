@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.9.1"></a>
+## [1.9.1](https://github.com/bucharest-gold/nodeshift/compare/v1.9.0...v1.9.1) (2018-07-03)
+
+
+### Bug Fixes
+
+* **health-check enricher:** don't fail if there is no dependencies prop in the package.json ([#250](https://github.com/bucharest-gold/nodeshift/issues/250)) ([96789c1](https://github.com/bucharest-gold/nodeshift/commit/96789c1)), closes [#249](https://github.com/bucharest-gold/nodeshift/issues/249)
+
+
+
 <a name="1.9.0"></a>
 # [1.9.0](https://github.com/bucharest-gold/nodeshift/compare/v1.8.1...v1.9.0) (2018-06-07)
 
