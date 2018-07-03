@@ -67,6 +67,45 @@ test('health check enricher - no kube probe', async (t) => {
   t.end();
 });
 
+test('health check enricher - no dependencies property', async (t) => {
+  const resourceList = [
+    {
+      kind: 'DeploymentConfig',
+      metadata: {
+        name: 'deployment config meta'
+      },
+      spec: {
+        template: {
+          spec: {
+            containers: [
+              {
+                ports: []
+              }
+            ]
+          }
+        }
+      }
+    }
+  ];
+
+  const config = {
+    projectName: 'Project Name',
+    projectPackage: {
+    },
+    version: '1.0.0',
+    context: {
+      namespace: 'namespace'
+    }
+  };
+
+  const hce = await healthCheckEnricher.enrich(config, resourceList);
+
+  t.equal(Array.isArray(hce), true, 'should return an array');
+  t.equal(hce[0].spec.template.spec.containers[0].livenessProbe, undefined, 'should not have a liveness probe added');
+  t.equal(hce[0].spec.template.spec.containers[0].readinessProbe, undefined, 'should not have a readiness probe added');
+  t.end();
+});
+
 test('health check enricher - with kube probe', async (t) => {
   const resourceList = [
     {
