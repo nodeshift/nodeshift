@@ -94,6 +94,12 @@ yargs
     type: 'boolean',
     default: false
   })
+  .options('build.incremental', {
+    describe: 'flag to perform incremental builds, which means it reuses artifacts from previously-built images',
+    choices: [true, false],
+    type: 'boolean',
+    default: false
+  })
   .array('build.env')
   .options('metadata.out', {
     describe: 'determines what should be done with the response metadata from OpenShift',
