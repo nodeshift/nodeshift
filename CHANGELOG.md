@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.10.0"></a>
+# [1.10.0](https://github.com/bucharest-gold/nodeshift/compare/v1.9.1...v1.10.0) (2018-07-19)
+
+
+### Features
+
+* add a flag, --build.incremental, that turns on incremental builds. ([#254](https://github.com/bucharest-gold/nodeshift/issues/254)) ([68be3dc](https://github.com/bucharest-gold/nodeshift/commit/68be3dc)), closes [#253](https://github.com/bucharest-gold/nodeshift/issues/253)
+
+
+
 <a name="1.9.1"></a>
 ## [1.9.1](https://github.com/bucharest-gold/nodeshift/compare/v1.9.0...v1.9.1) (2018-07-03)
 
