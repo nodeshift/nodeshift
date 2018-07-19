@@ -31,6 +31,18 @@ test('strategy with changed forcePull to false', (t) => {
   t.end();
 });
 
+test('strategy with changed incremental', (t) => {
+  const result = buildStrategy({incremental: true});
+  t.equal(result.sourceStrategy.incremental, true, 'incremental on');
+  t.end();
+});
+
+test('strategy with changed incremental to false', (t) => {
+  const result = buildStrategy({incremental: false});
+  t.equal(result.sourceStrategy.incremental, false, 'incremental off');
+  t.end();
+});
+
 test('strategy with change dockerImage', (t) => {
   const result = buildStrategy({dockerImage: 'lholmquist/centos7-s2i-nodejs'});
 

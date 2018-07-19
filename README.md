@@ -181,6 +181,9 @@ Flag to recreate a BuildConfig or Imagestream.  Defaults to false. Choices are "
 #### build.forcePull
 Flag to make your BuildConfig always pull a new image from dockerhub.  Defaults to false
 
+#### build.incremental
+Flag to perform incremental builds(if applicable), which means it reuses artifacts from previously-built images. Defaults to false
+
 #### build.env
 Flag to pass build config environment variables as NAME=Value.  Can be used multiple times.  ex: `nodeshift --build.env NODE_ENV=development --build.env YARN_ENABLED=true`
 
@@ -223,6 +226,9 @@ Shows the below help
                     [choices: "buildConfig", "imageStream", false, true] [default: false]
             --build.forcePull        flag to make your BuildConfig always pull a new image
                                     from dockerhub or not
+                                        [boolean] [choices: true, false] [default: false]
+            --build.incremental  flag to perform incremental builds, which means it reuses
+                                    artifacts from previously-built images
                                         [boolean] [choices: true, false] [default: false]
             --metadata.out           determines what should be done with the response
                                     metadata from OpenShift
