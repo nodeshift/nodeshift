@@ -21,6 +21,7 @@ test('apply resource test', (t) => {
     { kind: 'DeploymentConfig' },
     { kind: 'Secret' },
     { kind: 'Ingress' },
+    { kind: 'ConfigMap' },
     { kind: 'other' }
   ];
 
@@ -33,7 +34,8 @@ test('apply resource test', (t) => {
       deploy: mockedPromiseResolve
     },
     './secrets': mockedPromiseResolve,
-    './ingress': mockedPromiseResolve
+    './ingress': mockedPromiseResolve,
+    './config-map': mockedPromiseResolve
   });
   const ar = applyResources({}, resourceList).then(() => {
     t.end();
