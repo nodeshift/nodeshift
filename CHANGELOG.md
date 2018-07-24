@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.11.0"></a>
+# [1.11.0](https://github.com/bucharest-gold/nodeshift/compare/v1.10.0...v1.11.0) (2018-07-24)
+
+
+### Features
+
+* create/update/remove a config map if there is one in the .nodeshift directory. ([#255](https://github.com/bucharest-gold/nodeshift/issues/255)) ([f6f96c7](https://github.com/bucharest-gold/nodeshift/commit/f6f96c7)), closes [#203](https://github.com/bucharest-gold/nodeshift/issues/203)
+
+
+
 <a name="1.10.0"></a>
 # [1.10.0](https://github.com/bucharest-gold/nodeshift/compare/v1.9.1...v1.10.0) (2018-07-19)
 
