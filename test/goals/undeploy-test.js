@@ -65,6 +65,10 @@ test('return list items', (t) => {
       {
         kind: 'Ingress',
         metadata: metadata
+      },
+      {
+        kind: 'ConfigMap',
+        metadata: metadata
       }
     ]
   };
@@ -79,6 +83,12 @@ test('return list items', (t) => {
         }
       },
       services: {
+        remove: (name) => {
+          t.equal(name, metadata.name, 'name should be equal');
+          return Promise.resolve();
+        }
+      },
+      configmaps: {
         remove: (name) => {
           t.equal(name, metadata.name, 'name should be equal');
           return Promise.resolve();
