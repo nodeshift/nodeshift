@@ -18,7 +18,8 @@ const cli = require('./bin/cli');
   @param {boolean} [options.tryServiceAccount] - Set to false to by-pass service account lookup
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
   @param {string} [options.namespace] - Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
-  @param {string} [options.nodeVersion] - set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
+  @param {string} [options.nodeVersion(deprecated)] - set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
+  @param {string} [options.imageTag] - set the version to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
   @param {boolean} [options.quiet] - supress INFO and TRACE lines from output logs
   @param {object} [options.deploy] -
   @param {number} [options.deploy.port] - flag to update the default ports on the resource files. Defaults to 8080
@@ -45,7 +46,8 @@ function deploy (options = {}) {
   @param {boolean} [options.tryServiceAccount] - Set to false to by-pass service account lookup
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
   @param {string} [options.namespace] - Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
-  @param {string} [options.nodeVersion] - set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
+  @param {string} [options.nodeVersion(deprecated)] - set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
+  @param {string} [options.imageTag] - set the version to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
   @param {boolean} [options.quiet] - supress INFO and TRACE lines from output logs
   @param {object} [options.build] -
   @param {string/boolean} [options.build.recreate] - flag to recreate a buildConfig or Imagestream. values are "buildConfig", "imageStream", true, false.  Defaults to false
@@ -67,7 +69,8 @@ function resource (options = {}) {
   @param {boolean} [options.tryServiceAccount] - Set to false to by-pass service account lookup
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
   @param {string} [options.namespace] - Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
-  @param {string} [options.nodeVersion] - set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
+  @param {string} [options.nodeVersion(deprecated)] - set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
+  @param {string} [options.imageTag] - set the version to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
   @param {boolean} [options.quiet] - supress INFO and TRACE lines from output logs
   @param {object} [options.deploy] -
   @param {number} [options.deploy.port] - flag to update the default ports on the resource files. Defaults to 8080
@@ -91,7 +94,8 @@ function applyResource (options = {}) {
   @param {boolean} [options.strictSSL] - Set to false to allow self-signed Certs
   @param {boolean} [options.tryServiceAccount] - Set to false to by-pass service account lookup
   @param {string} [options.namespace] - Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
-  @param {string} [options.nodeVersion] - set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
+  @param {string} [options.nodeVersion(deprecated)] - set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
+  @param {string} [options.imageTag] - set the version to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
   @param {boolean} [options.quiet] - supress INFO and TRACE lines from output logs
   @param {boolean} [options.removeAll] - option to remove builds, buildConfigs and Imagestreams.  Defaults to false
   @param {object} [options.deploy] -
@@ -116,7 +120,8 @@ function undeploy (options = {}) {
   @param {boolean} [options.strictSSL] - Set to false to allow self-signed Certs
   @param {boolean} [options.tryServiceAccount] - Set to false to by-pass service account lookup
   @param {string} [options.namespace] - Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
-  @param {string} [options.nodeVersion] - set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
+  @param {string} [options.nodeVersion(deprecated)] - set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
+  @param {string} [options.imageTag] - set the version to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/
   @param {boolean} [options.quiet] - supress INFO and TRACE lines from output logs
   @param {object} [options.build] -
   @param {string/boolean} [options.build.recreate] - flag to recreate a buildConfig or Imagestream. values are "buildConfig", "imageStream", true, false.  Defaults to false

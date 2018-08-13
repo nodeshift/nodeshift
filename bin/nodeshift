@@ -57,8 +57,13 @@ yargs
     type: 'string'
   })
   .options('nodeVersion', {
-    describe: 'the version of Node.js to use for the deployed application.',
+    describe: 'DEPRECATED - use imageTag instead.  The version of Node.js to use for the deployed application.',
     alias: 'n',
+    type: 'string',
+    default: 'latest'
+  })
+  .options('imageTag', {
+    describe: 'The version of the docker image to use for the deployed application.',
     type: 'string',
     default: 'latest'
   })
@@ -142,7 +147,13 @@ function createOptions (argv) {
 
   options.projectLocation = argv.projectLocation;
   options.dockerImage = argv.dockerImage;
-  options.nodeVersion = argv.nodeVersion;
+  options.imageTag = argv.imageTag;
+  // Remove during a major version release
+  if (argv.nodeVersion) {
+    console.log('DEPRECATION NOTICE - nodeVersion will be removed in the 2.0 release of Nodeshift. Please use imageTag instead.');
+    options.imageTag = argv.nodeVersion;
+  }
+  //
   process.env['NODESHIFT_QUIET'] = argv.quiet === true;
   options.metadata = argv.metadata;
   options.build = argv.build;
