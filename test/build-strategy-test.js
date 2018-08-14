@@ -12,3 +12,9 @@ test('accepts a node version option', t => {
   t.equals(buildStrategy.sourceStrategy.from.name, 'bucharestgold/centos7-s2i-nodejs:8.x');
   t.end();
 });
+
+test('accepts a node version using imageTag option', t => {
+  const buildStrategy = BuildStrategy({imageTag: '8.x'});
+  t.equals(buildStrategy.sourceStrategy.from.name, 'bucharestgold/centos7-s2i-nodejs:8.x');
+  t.end();
+});
