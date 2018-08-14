@@ -59,8 +59,7 @@ yargs
   .options('nodeVersion', {
     describe: 'DEPRECATED - use imageTag instead.  The version of Node.js to use for the deployed application.',
     alias: 'n',
-    type: 'string',
-    default: 'latest'
+    type: 'string'
   })
   .options('imageTag', {
     describe: 'The version of the docker image to use for the deployed application.',
