@@ -154,8 +154,13 @@ This option is passed through to the [Openshift Config Loader](https://www.npmjs
 #### tryServiceAccount
 This option is passed through to the [Openshift Config Loader](https://www.npmjs.com/package/openshift-config-loader). Set to false to by-pass service account lookup or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT environment variable
 
-#### nodeVersion
+#### nodeVersion - DEPRECATED
+This flag is now deprecated.  Please use imageTag instead.
+
 Specify the version of Node.js to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the [bucharest-gold s2i images](https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/)
+
+#### imageTag
+Specify the tag of the docker image to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the [bucharest-gold s2i images](https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/)
 
 #### dockerImage
 Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to [bucharestgold/centos7-s2i-nodejs](https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs)
@@ -213,6 +218,8 @@ Shows the below help
                                     application.
                     [string] [choices: "latest", "9.x", "8.x", "7.x", "6.x", "5.x", "4.x"]
                                                                         [default: "latest"]
+            --imageTag           The tag of the docker image to use for the deployed
+                                application.                 [string] [default: "latest"]
             --quiet                  supress INFO and TRACE lines from output logs
                                                                                 [boolean]
             --expose            flag to create a default Route and expose the default

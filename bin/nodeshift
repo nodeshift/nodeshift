@@ -62,7 +62,7 @@ yargs
     type: 'string'
   })
   .options('imageTag', {
-    describe: 'The version of the docker image to use for the deployed application.',
+    describe: 'The tag of the docker image to use for the deployed application.',
     type: 'string',
     default: 'latest'
   })
