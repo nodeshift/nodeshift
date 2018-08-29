@@ -26,7 +26,7 @@ test('deploy - not created yet', (t) => {
       deploymentconfigs: {
         find: (deploymentName) => {
           t.equal(deploymentName, deploymentConfigResource.metadata.name, 'names should be equal');
-          return Promise.resolve({code: 404});
+          return Promise.resolve({ code: 404 });
         },
         create: (resource) => {
           t.equal(resource, deploymentConfigResource, 'resource should be the same as passed in');
@@ -59,7 +59,7 @@ test('deploy - created already', (t) => {
       deploymentconfigs: {
         find: (deploymentName) => {
           t.equal(deploymentName, deploymentConfigResource.metadata.name, 'names should be equal');
-          return Promise.resolve(Object.assign({}, deploymentConfigResource, {code: 200}));
+          return Promise.resolve(Object.assign({}, deploymentConfigResource, { code: 200 }));
         },
         create: (resource) => {
           t.fail();

@@ -29,7 +29,7 @@ test('default goal', (t) => {
     }
   });
 
-  cli({cmd: 'deploy'}).then(() => {
+  cli({ cmd: 'deploy' }).then(() => {
     t.end();
   });
 });
@@ -53,7 +53,7 @@ test('resource goal', (t) => {
     }
   });
 
-  cli({cmd: 'resource'}).then(() => {
+  cli({ cmd: 'resource' }).then(() => {
     t.end();
   });
 });
@@ -77,7 +77,7 @@ test('apply-resource goal', (t) => {
     }
   });
 
-  cli({cmd: 'apply-resource'}).then(() => {
+  cli({ cmd: 'apply-resource' }).then(() => {
     t.end();
   });
 });
@@ -130,7 +130,7 @@ test('undeploy goal', (t) => {
     }
   });
 
-  cli({cmd: 'undeploy'}).then(() => {
+  cli({ cmd: 'undeploy' }).then(() => {
     t.end();
   });
 });
@@ -158,7 +158,7 @@ test('build goal', (t) => {
     }
   });
 
-  cli({cmd: 'build'}).then(() => {
+  cli({ cmd: 'build' }).then(() => {
     t.end();
   });
 });
@@ -170,7 +170,7 @@ test('error', (t) => {
     }
   });
 
-  cli({cmd: 'build'}).catch((err) => {
+  cli({ cmd: 'build' }).catch((err) => {
     t.equal(err.message, 'error', 'should have an error message');
     t.end();
   });

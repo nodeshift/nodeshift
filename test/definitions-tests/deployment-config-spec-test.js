@@ -32,7 +32,7 @@ test('deployment-config-spec test', (t) => {
 });
 
 test('depoyment spec pass in ', (t) => {
-  const configSpec = deploymentConfigSpec({spec: {}}, {});
+  const configSpec = deploymentConfigSpec({ spec: {} }, {});
 
   t.ok(configSpec.spec, 'should have a spec property');
   t.end();

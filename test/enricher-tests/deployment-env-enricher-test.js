@@ -147,7 +147,7 @@ test('deployment env enricher - deployment config has a env, but none passed in'
     },
     deploy: {
       env: [
-        {name: 'PORT', value: '4000'}
+        { name: 'PORT', value: '4000' }
       ]
     }
   };
@@ -200,7 +200,7 @@ test('deployment env enricher - deployment config has a env, passed in envs also
     },
     deploy: {
       env: [
-        {name: 'PORT', value: '4000'}
+        { name: 'PORT', value: '4000' }
       ]
     }
   };
