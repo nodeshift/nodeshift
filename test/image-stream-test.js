@@ -19,7 +19,7 @@ test('create imageStream not found', (t) => {
     openshiftRestClient: {
       imagestreams: {
         find: (buildName) => {
-          return Promise.resolve({code: 404});
+          return Promise.resolve({ code: 404 });
         },
         create: (imageStream) => {
           return Promise.resolve(imageStream);
@@ -55,7 +55,7 @@ test('buildConfig found - no recreate', (t) => {
     openshiftRestClient: {
       imagestreams: {
         find: (imagestreams) => {
-          return Promise.resolve({code: 200});
+          return Promise.resolve({ code: 200 });
         }
       }
     }
@@ -91,7 +91,7 @@ test('imagestream recreate but is a buildConfig', (t) => {
     openshiftRestClient: {
       imagestreams: {
         find: (imagestreams) => {
-          return Promise.resolve({code: 200});
+          return Promise.resolve({ code: 200 });
         }
       }
     }
@@ -127,7 +127,7 @@ test('imagestream recreate true', (t) => {
     openshiftRestClient: {
       imagestreams: {
         find: (imageStreamName) => {
-          return Promise.resolve({code: 200});
+          return Promise.resolve({ code: 200 });
         },
         remove: (imageStreamName, options) => {
           return Promise.resolve();

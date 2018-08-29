@@ -31,7 +31,7 @@ test('binary build test - succesful build', (t) => {
       },
       buildconfigs: {
         instantiateBinary: (buildName, options) => {
-          return Promise.resolve({metadata: {name: 'buildname'}});
+          return Promise.resolve({ metadata: { name: 'buildname' } });
         }
       }
     }
@@ -68,7 +68,7 @@ test('binary build test - failed build', (t) => {
       },
       buildconfigs: {
         instantiateBinary: (buildName, options) => {
-          return Promise.resolve({metadata: {name: 'buildname'}});
+          return Promise.resolve({ metadata: { name: 'buildname' } });
         }
       }
     }
@@ -113,7 +113,7 @@ test('binary build test - succesful build - but not write away', (t) => {
       },
       buildconfigs: {
         instantiateBinary: (buildName, options) => {
-          return Promise.resolve({metadata: {name: 'buildname'}});
+          return Promise.resolve({ metadata: { name: 'buildname' } });
         }
       }
     }

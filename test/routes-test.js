@@ -28,7 +28,7 @@ test('test routes, already created', (t) => {
           if (name !== resource.metadata.name) {
             t.fail('name argument does not match the resource.metadata.name');
           }
-          return { code: 200, metadata: { name: 'route' }, spec: {host: '192.168.1.1'} };
+          return { code: 200, metadata: { name: 'route' }, spec: { host: '192.168.1.1' } };
         }
       }
     }

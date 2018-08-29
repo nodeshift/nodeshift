@@ -21,7 +21,7 @@ test('create buildConfig not found', (t) => {
     openshiftRestClient: {
       buildconfigs: {
         find: (buildName) => {
-          return Promise.resolve({code: 404});
+          return Promise.resolve({ code: 404 });
         },
         create: (buildConfig) => {
           return Promise.resolve(buildConfig);
@@ -57,7 +57,7 @@ test('buildConfig found - no recreate', (t) => {
     openshiftRestClient: {
       buildconfigs: {
         find: (buildName) => {
-          return Promise.resolve({code: 200});
+          return Promise.resolve({ code: 200 });
         }
       }
     }
@@ -93,7 +93,7 @@ test('build recreate but is an imagestream', (t) => {
     openshiftRestClient: {
       buildconfigs: {
         find: (buildName) => {
-          return Promise.resolve({code: 200});
+          return Promise.resolve({ code: 200 });
         }
       }
     }
@@ -144,7 +144,7 @@ test('build recreate true with removing builds', (t) => {
     openshiftRestClient: {
       builds: {
         findAll: () => {
-          return Promise.resolve({items: returnedBuilds});
+          return Promise.resolve({ items: returnedBuilds });
         },
         remove: (buildName) => {
           return Promise.resolve();
@@ -152,7 +152,7 @@ test('build recreate true with removing builds', (t) => {
       },
       buildconfigs: {
         find: (buildName) => {
-          return Promise.resolve({code: 200});
+          return Promise.resolve({ code: 200 });
         },
         remove: (buildName, options) => {
           return Promise.resolve();

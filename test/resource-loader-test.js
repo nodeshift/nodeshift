@@ -193,7 +193,7 @@ test('test error on kind from name', (t) => {
 
 test('test not overwriting metadata', (t) => {
   const mockedHelper = {
-    yamlToJson: (file) => { return {metadata: {name: 'here'}}; }
+    yamlToJson: (file) => { return { metadata: { name: 'here' } }; }
   };
 
   const mockedfs = {
@@ -286,7 +286,7 @@ test('test string substitution', (t) => {
     context: {
       namespace: 'my namespace'
     },
-    definedProperties: [{name: 'SSO_AUTH_SERVER_URL', value: 'https://yea'}]
+    definedProperties: [{ name: 'SSO_AUTH_SERVER_URL', value: 'https://yea' }]
   };
 
   resourceLoader(config).then((resourceList) => {
