@@ -23,7 +23,7 @@ test('default goal', (t) => {
       t.pass('should be here for the default goal');
       return Promise.resolve();
     },
-    '../lib/apply-resources': (config) => {
+    '../lib/goals/apply-resources': (config) => {
       t.pass('should be here for the default goal');
       return Promise.resolve();
     }
@@ -47,7 +47,7 @@ test('resource goal', (t) => {
       t.fail('should not be here for the resource goal');
       return Promise.resolve();
     },
-    '../lib/apply-resources': (config) => {
+    '../lib/goals/apply-resources': (config) => {
       t.fail('should not be here for the resource goal');
       return Promise.resolve();
     }
@@ -71,7 +71,7 @@ test('apply-resource goal', (t) => {
       t.fail('should not be here for the apply-resource goal');
       return Promise.resolve();
     },
-    '../lib/apply-resources': (config) => {
+    '../lib/goals/apply-resources': (config) => {
       t.pass('should be here for the apply-resource goal');
       return Promise.resolve();
     }
@@ -95,7 +95,7 @@ test('no goal', (t) => {
       t.fail('should not be here for the no goal');
       return Promise.resolve();
     },
-    '../lib/apply-resources': (config) => {
+    '../lib/goals/apply-resources': (config) => {
       t.fail('should not be here for the no goal');
       return Promise.resolve();
     }
@@ -120,7 +120,7 @@ test('undeploy goal', (t) => {
       t.fail('should not be here for the undeploy goal');
       return Promise.resolve();
     },
-    '../lib/apply-resources': (config) => {
+    '../lib/goals/apply-resources': (config) => {
       t.fail('should not be here for the undeploy goal');
       return Promise.resolve();
     },
@@ -148,7 +148,7 @@ test('build goal', (t) => {
       t.pass('should be here for the build goal');
       return Promise.resolve();
     },
-    '../lib/apply-resources': (config) => {
+    '../lib/goals/apply-resources': (config) => {
       t.fail('should not be here for the build goal');
       return Promise.resolve();
     },

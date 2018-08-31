@@ -21,7 +21,7 @@
 const nodeshiftConfig = require('../lib/nodeshift-config');
 const resourceGoal = require('../lib/goals/resource');
 const buildGoal = require('../lib/goals/build');
-const applyResources = require('../lib/apply-resources');
+const applyResources = require('../lib/goals/apply-resources');
 const undeployGoal = require('../lib/goals/undeploy');
 
 /**
