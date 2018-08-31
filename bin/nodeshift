@@ -36,6 +36,7 @@ yargs
   .command('resource', 'resource command', { cmd: { default: 'resource' } }, commandHandler)
   .command('apply-resource', 'apply resource command', { cmd: { default: 'apply-resource' } }, commandHandler)
   .command('undeploy [removeAll]', 'undeploy resources', { cmd: { default: 'undeploy' } }, commandHandler)
+  .command('watch', 'watch resources', { cmd: { default: 'watch' } }, commandHandler)
   .option('projectLocation', {
     describe: 'change the default location of the project',
     type: 'string'

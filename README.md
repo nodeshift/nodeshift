@@ -39,6 +39,8 @@ By default, if you run just `nodeshift`, it will run the `deploy` goal, which is
 
 **undeploy** - removes resources that were deployed with the apply-resource command
 
+**watch** - connect to a running pod.  Also watches your local files for changes to sync with the remote pod
+
 
 ### `.nodeshift` Directory
 
@@ -203,6 +205,9 @@ Shows the below help
             nodeshift resource        resource command
             nodeshift apply-resource  apply resource command
             nodeshift undeploy        undeploy resources
+            nodeshift watch           connect to running Pod and watch local
+                                      filesystem for changes to sync with
+                                      remote Pod
 
         Options:
             --version                Show version number                         [boolean]
