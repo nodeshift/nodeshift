@@ -53,7 +53,7 @@ yargs
     `
   })
   .options('dockerImage', {
-    describe: 'the s2i image to use, defaults to bucharest-gold/centos7-s2i-nodejs',
+    describe: 'the s2i image to use, defaults to nodeshift/centos7-s2i-nodejs',
     type: 'string'
   })
   .options('nodeVersion', {
