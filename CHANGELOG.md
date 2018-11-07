@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/nodeshift/nodeshift/compare/v1.12.0...v2.0.0) (2018-11-07)
+
+
+### Features
+
+* update references of bucharest-gold to use the nodeshift namespace ([#269](https://github.com/nodeshift/nodeshift/issues/269)) ([6092108](https://github.com/nodeshift/nodeshift/commit/6092108)), closes [#268](https://github.com/nodeshift/nodeshift/issues/268)
+
+
+### BREAKING CHANGES
+
+* this now uses the nodeshift/centos7-s2i-nodejs image by default. This should be a semver major change.
+
+
+
 <a name="1.12.0"></a>
 # [1.12.0](https://github.com/nodeshift/nodeshift/compare/v1.11.0...v1.12.0) (2018-08-15)
 
