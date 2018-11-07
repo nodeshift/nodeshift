@@ -30,15 +30,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "bucharest-gold/nodeshift.git"
+    "url": "nodeshift/nodeshift.git"
   },
   "keywords": [],
   "author": "",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/bucharest-gold/nodeshift/issues"
+    "url": "https://github.com/nodeshift/nodeshift/issues"
   },
-  "homepage": "https://github.com/bucharest-gold/nodeshift#readme",
+  "homepage": "https://github.com/nodeshift/nodeshift#readme",
   "dependencies": {
     "chalk": "^2.0.1",
     "git-repo-info": "^2.0.0",

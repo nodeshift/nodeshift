@@ -1,4 +1,4 @@
-# Nodeshift [![Build Status](https://travis-ci.org/bucharest-gold/nodeshift.svg?branch=master)](https://travis-ci.org/bucharest-gold/nodeshift) [![Coverage Status](https://coveralls.io/repos/github/bucharest-gold/nodeshift/badge.svg?branch=master)](https://coveralls.io/github/bucharest-gold/nodeshift?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/bucharest-gold/nodeshift.svg)](https://greenkeeper.io/)
+# Nodeshift [![Build Status](https://travis-ci.org/nodeshift/nodeshift.svg?branch=master)](https://travis-ci.org/nodeshift/nodeshift) [![Coverage Status](https://coveralls.io/repos/github/nodeshift/nodeshift/badge.svg?branch=master)](https://coveralls.io/github/nodeshift/nodeshift?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/nodeshift/nodeshift.svg)](https://greenkeeper.io/)
 
 ## What is it
 
@@ -91,7 +91,7 @@ To set that using nodeshift, use the `-d` option with a KEY=VALUE, like this:
 
 Along with the command line, there is also a public API.  The API mirrors the commands.
 
-API Docs - https://bucharest-gold.github.io/nodeshift/
+API Docs - https://nodeshift.github.io/nodeshift/
 
 * resource
 
@@ -157,13 +157,13 @@ This option is passed through to the [Openshift Config Loader](https://www.npmjs
 #### nodeVersion - DEPRECATED
 This flag is now deprecated.  Please use imageTag instead.
 
-Specify the version of Node.js to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the [bucharest-gold s2i images](https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/)
+Specify the version of Node.js to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the [nodeshift s2i images](https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/)
 
 #### imageTag
-Specify the tag of the docker image to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the [bucharest-gold s2i images](https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/)
+Specify the tag of the docker image to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the [nodeshift s2i images](https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/)
 
 #### dockerImage
-Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to [bucharestgold/centos7-s2i-nodejs](https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs)
+Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to [nodeshift/centos7-s2i-nodejs](https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs)
 
 #### quiet
 supress INFO and TRACE lines from output logs.

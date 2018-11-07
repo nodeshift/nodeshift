@@ -20,7 +20,7 @@ while true; do
 done
 
 npm run docs
-git clone git@github.com:bucharest-gold/nodeshift.git $PUBLISH_DIR
+git clone git@github.com:nodeshift/nodeshift.git $PUBLISH_DIR
 cd $PUBLISH_DIR
 git checkout gh-pages
 mkdir version
