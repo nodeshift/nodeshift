@@ -6,7 +6,7 @@ const proxyquire = require('proxyquire');
 test('apply resource test', (t) => {
   const resourceList = [];
 
-  const applyResources = require('../lib/apply-resources');
+  const applyResources = require('../../lib/goals/apply-resources');
   const ar = applyResources({}, resourceList).then(() => {
     t.end();
   });
@@ -27,15 +27,15 @@ test('apply resource test', (t) => {
 
   const mockedPromiseResolve = () => Promise.resolve();
 
-  const applyResources = proxyquire('../lib/apply-resources', {
-    './services': mockedPromiseResolve,
-    './routes': mockedPromiseResolve,
-    './deployment-config': {
+  const applyResources = proxyquire('../../lib/goals/apply-resources', {
+    '../services': mockedPromiseResolve,
+    '../routes': mockedPromiseResolve,
+    '../deployment-config': {
       deploy: mockedPromiseResolve
     },
-    './secrets': mockedPromiseResolve,
-    './ingress': mockedPromiseResolve,
-    './config-map': mockedPromiseResolve
+    '../secrets': mockedPromiseResolve,
+    '../ingress': mockedPromiseResolve,
+    '../config-map': mockedPromiseResolve
   });
   const ar = applyResources({}, resourceList).then(() => {
     t.end();

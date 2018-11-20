@@ -21,8 +21,9 @@
 const nodeshiftConfig = require('../lib/nodeshift-config');
 const resourceGoal = require('../lib/goals/resource');
 const buildGoal = require('../lib/goals/build');
-const applyResources = require('../lib/apply-resources');
+const applyResources = require('../lib/goals/apply-resources');
 const undeployGoal = require('../lib/goals/undeploy');
+const watchSyncGoal = require('../lib/goals/watch-spawn');
 
 /**
   This module is where everything is orchestrated.  Both the command line process and the public API call this modules run function
@@ -53,6 +54,9 @@ module.exports = async function run (options) {
         response.build = await buildGoal(config);
         response.resources = await resourceGoal(config);
         response.appliedResources = await applyResources(config, response.resources);
+        break;
+      case 'watch':
+        await watchSyncGoal(config);
         break;
       default:
         throw new TypeError(`Unexpected command: ${options.cmd}`);
