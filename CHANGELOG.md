@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/nodeshift/nodeshift/compare/v2.0.0...v2.0.1) (2018-12-12)
+
+
+### Bug Fixes
+
+* deployment enricher should also look for DeploymentConfig kind ([6a2c162](https://github.com/nodeshift/nodeshift/commit/6a2c162)), closes [#271](https://github.com/nodeshift/nodeshift/issues/271)
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/nodeshift/nodeshift/compare/v1.12.0...v2.0.0) (2018-11-07)
 
