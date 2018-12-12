@@ -69,3 +69,32 @@ test('deployment config enricher - deployment', async (t) => {
   t.equal(dce[1].kind, 'DeploymentConfig', 'should have the depoymentConfig type');
   t.end();
 });
+
+test('deployment config enricher - deployment config', async (t) => {
+  const deploymentConfigEnricher = proxyquire('../../lib/resource-enrichers/deployment-config-enricher', {
+    '../definitions/deployment-config-spec': deploymentConfig => deploymentConfig
+  });
+
+  const resourceList = [
+    {
+      kind: 'Service',
+      metadata: {
+        name: 'service meta'
+      }
+    },
+    {
+      kind: 'DeploymentConfig',
+      metadata: {
+        name: 'deploymentConfigName'
+      }
+    }
+  ];
+
+  const dce = await deploymentConfigEnricher.enrich(config, resourceList);
+
+  t.equal(Array.isArray(dce), true, 'should return an array');
+  t.equal(dce.length, 2, 'should have the same length');
+  t.equal(dce[1].kind, 'DeploymentConfig', 'should have the depoymentConfig type');
+  t.equal(dce[1].metadata.namespace, config.context.namespace, 'should be enriched with the namespace value');
+  t.end();
+});
