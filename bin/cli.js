@@ -34,6 +34,9 @@ const watchSyncGoal = require('../lib/goals/watch-spawn');
 module.exports = async function run (options) {
   try {
     const config = await nodeshiftConfig(options);
+
+    // We have the configuration, If a namespace value is passed in, we should check now that it exists, and if not create it
+    // const namespace = await config.openshiftRestClient.
     const response = {};
 
     switch (options.cmd) {
