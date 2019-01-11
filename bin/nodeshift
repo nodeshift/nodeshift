@@ -88,7 +88,11 @@ yargs
     type: 'string'
   })
   .options('namespace.create', {
-    describe: 'flag to create the namespace if it does not exist',
+    describe: 'flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name',
+    type: 'boolean'
+  })
+  .options('namespace.remove', {
+    describe: 'flag to remove the user created namespace.  Only applicable for the undeploy command.  Must be used with namespace.name',
     type: 'boolean'
   })
   .options('namesapce.name', {
@@ -174,7 +178,6 @@ function createOptions (argv) {
   // undeploy might have a positional argument
   options.removeAll = argv.removeAll;
   options.namespace = argv.namespace;
-  console.log(argv);
   options.expose = argv.expose;
   options.strictSSL = argv.strictSSL !== 'false';
   options.tryServiceAccount = argv.tryServiceAccount !== 'false';
