@@ -11,7 +11,9 @@ test('deployment-config-spec test', (t) => {
   const resource = {};
   const config = {
     projectName: 'project1',
-    namespace: 'project-namespace'
+    context: {
+      namespace: 'project-namespace'
+    }
   };
   const configSpec = deploymentConfigSpec(resource, config);
 
@@ -32,7 +34,13 @@ test('deployment-config-spec test', (t) => {
 });
 
 test('depoyment spec pass in ', (t) => {
-  const configSpec = deploymentConfigSpec({ spec: {} }, {});
+  const config = {
+    projectName: 'project1',
+    context: {
+      namespace: 'project-namespace'
+    }
+  };
+  const configSpec = deploymentConfigSpec({ spec: {} }, config);
 
   t.ok(configSpec.spec, 'should have a spec property');
   t.end();
