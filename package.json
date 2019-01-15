@@ -46,7 +46,7 @@
     "mkdirp": "^0.5.1",
     "openshift-config-loader": "^0.4.0",
     "request": "~2.88.0",
-    "openshift-rest-client": "~1.5.0",
+    "openshift-rest-client": "~1.6.3",
     "rimraf": "^2.6.1",
     "tar": "^4.0.1",
     "yargs": "^12.0.1"
@@ -66,9 +66,9 @@
     "jsdoc": "^3.5.5",
     "nock": "^10.0.0",
     "nsp": "^3.1.0",
-    "nyc": "~12.0.2",
+    "nyc": "~13.1.0",
     "proxyquire": "^2.0.1",
-    "sinon": "^6.0.0",
+    "sinon": "^7.2.2",
     "standard-version": "^4.3.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.7.0"
