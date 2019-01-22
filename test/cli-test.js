@@ -34,6 +34,36 @@ test('default goal', (t) => {
   });
 });
 
+test('default goal - with namespace', (t) => {
+  const cli = proxyquire('../bin/cli', {
+    '../lib/nodeshift-config': () => {
+      return Promise.resolve({ namespace: { create: true } });
+    },
+    '../lib/goals/resource': (config) => {
+      t.pass('should be here for the default goal');
+      return Promise.resolve();
+    },
+    '../lib/goals/build': (config) => {
+      t.pass('should be here for the default goal');
+      return Promise.resolve();
+    },
+    '../lib/namespace': {
+      create: (config) => {
+        t.pass('should be here for the default goal');
+        return Promise.resolve();
+      }
+    },
+    '../lib/goals/apply-resources': (config) => {
+      t.pass('should be here for the default goal');
+      return Promise.resolve();
+    }
+  });
+
+  cli({ cmd: 'deploy' }).then(() => {
+    t.end();
+  });
+});
+
 test('resource goal', (t) => {
   const cli = proxyquire('../bin/cli', {
     '../lib/nodeshift-config': () => {
@@ -135,6 +165,40 @@ test('undeploy goal', (t) => {
   });
 });
 
+test('undeploy goal - with namespace', (t) => {
+  const cli = proxyquire('../bin/cli', {
+    '../lib/nodeshift-config': () => {
+      return Promise.resolve({ namespace: { remove: true } });
+    },
+    '../lib/goals/resource': (config) => {
+      t.fail('should not be here for the undeploy goal');
+      return Promise.resolve();
+    },
+    '../lib/goals/build': (config) => {
+      t.fail('should not be here for the undeploy goal');
+      return Promise.resolve();
+    },
+    '../lib/goals/apply-resources': (config) => {
+      t.fail('should not be here for the undeploy goal');
+      return Promise.resolve();
+    },
+    '../lib/namespace': {
+      remove: (config) => {
+        t.pass('should be here for the undeploy goal');
+        return Promise.resolve();
+      }
+    },
+    '../lib/goals/undeploy': (config) => {
+      t.pass('should be here for the undeploy goal');
+      return Promise.resolve();
+    }
+  });
+
+  cli({ cmd: 'undeploy' }).then(() => {
+    t.end();
+  });
+});
+
 test('build goal', (t) => {
   const cli = proxyquire('../bin/cli', {
     '../lib/nodeshift-config': () => {
@@ -147,6 +211,40 @@ test('build goal', (t) => {
     '../lib/goals/build': (config) => {
       t.pass('should be here for the build goal');
       return Promise.resolve();
+    },
+    '../lib/goals/apply-resources': (config) => {
+      t.fail('should not be here for the build goal');
+      return Promise.resolve();
+    },
+    '../lib/goals/undeploy': (config) => {
+      t.fail('should not be here for the build goal');
+      return Promise.resolve();
+    }
+  });
+
+  cli({ cmd: 'build' }).then(() => {
+    t.end();
+  });
+});
+
+test('build goal - with namespace', (t) => {
+  const cli = proxyquire('../bin/cli', {
+    '../lib/nodeshift-config': () => {
+      return Promise.resolve({ namespace: { create: true } });
+    },
+    '../lib/goals/resource': (config) => {
+      t.fail('should not be here for the build goal');
+      return Promise.resolve();
+    },
+    '../lib/goals/build': (config) => {
+      t.pass('should be here for the build goal');
+      return Promise.resolve();
+    },
+    '../lib/namespace': {
+      create: (config) => {
+        t.pass('should be here for the build goal');
+        return Promise.resolve();
+      }
     },
     '../lib/goals/apply-resources': (config) => {
       t.fail('should not be here for the build goal');
