@@ -183,35 +183,3 @@ test('namespace - remove the namespace', t => {
     t.end();
   });
 });
-// test('deploy - not created yet', (t) => {
-//   const deploymentConfigResource = {
-//     kind: 'DeploymentConfig',
-//     metadata: {
-//       name: 'deployment'
-//     }
-//   };
-
-//   const config = {
-//     projectName: 'my Project',
-//     openshiftRestClient: {
-//       deploymentconfigs: {
-//         find: (deploymentName) => {
-//           t.equal(deploymentName, deploymentConfigResource.metadata.name, 'names should be equal');
-//           return Promise.resolve({ code: 404 });
-//         },
-//         create: (resource) => {
-//           t.equal(resource, deploymentConfigResource, 'resource should be the same as passed in');
-//           return Promise.resolve(resource);
-//         }
-//       }
-//     }
-//   };
-
-//   const p = deploymentConfig.deploy(config, deploymentConfigResource);
-//   t.equal(p instanceof Promise, true, 'should return a promise');
-
-//   p.then(() => {
-//     t.pass();
-//     t.end();
-//   });
-// });
