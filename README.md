@@ -229,8 +229,23 @@ Shows the below help
                                                                                 [boolean]
             --expose            flag to create a default Route and expose the default
                        service [boolean] [choices: true, false] [default: false]
-            --namespace          flag to specify the project namespace to build/deploy
-                       into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
+            --namespace              DEPRECATED - use object form instead.  flag to
+                           specify the project namespace to build/deploy into.
+                           Overwrites any namespace settings in your OpenShift
+                           or Kubernetes configuration files            [string]
+            --namespace.displayName  flag to specify the project namespace display name to
+                           build/deploy into.  Overwrites any namespace settings
+                           in your OpenShift or Kubernetes configuration files
+                                                                        [string]
+            --namespace.create       flag to create the namespace if it does not exist.
+                           Only applicable for the build and deploy command.
+                           Must be used with namespace.name            [boolean]
+            --namespace.remove       flag to remove the user created namespace.  Only
+                           applicable for the undeploy command.  Must be used
+                           with namespace.name                         [boolean]
+            --namesapce.name         flag to specify the project namespace name to
+                           build/deploy into.  Overwrites any namespace settings
+                           in your OpenShift or Kubernetes configuration files
                                                                         [string]
             --deploy.port        flag to update the default ports on the resource files.
                        Defaults to 8080                          [default: 8080]

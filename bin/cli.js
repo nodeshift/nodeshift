@@ -24,6 +24,7 @@ const buildGoal = require('../lib/goals/build');
 const applyResources = require('../lib/goals/apply-resources');
 const undeployGoal = require('../lib/goals/undeploy');
 const watchSyncGoal = require('../lib/goals/watch-spawn');
+const namespace = require('../lib/namespace');
 
 /**
   This module is where everything is orchestrated.  Both the command line process and the public API call this modules run function
@@ -38,6 +39,9 @@ module.exports = async function run (options) {
 
     switch (options.cmd) {
       case 'build':
+        if (config.namespace && config.namespace.create) {
+          response.namespace = await namespace.create(config);
+        }
         response.build = await buildGoal(config);
         break;
       case 'resource':
@@ -48,9 +52,17 @@ module.exports = async function run (options) {
         response.appliedResources = await applyResources(config, response.resources);
         break;
       case 'undeploy':
-        response.undeploy = await undeployGoal(config);
+        if (config.namespace && config.namespace.remove) {
+          response.namespace = await namespace.remove(config);
+        } else {
+          // If the user chooses to remove the namespace, it will remove all the objects, so we don't need to call undeploy again
+          response.undeploy = await undeployGoal(config);
+        }
         break;
       case 'deploy':
+        if (config.namespace && config.namespace.create) {
+          response.namespace = await namespace.create(config);
+        }
         response.build = await buildGoal(config);
         response.resources = await resourceGoal(config);
         response.appliedResources = await applyResources(config, response.resources);

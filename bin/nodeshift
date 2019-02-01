@@ -80,7 +80,23 @@ yargs
     default: false
   })
   .options('namespace', {
-    describe: 'flag to specify the project namespace to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files',
+    describe: 'DEPRECATED - use object form instead.  flag to specify the project namespace to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files',
+    type: 'string'
+  })
+  .options('namespace.displayName', {
+    describe: 'flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files',
+    type: 'string'
+  })
+  .options('namespace.create', {
+    describe: 'flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name',
+    type: 'boolean'
+  })
+  .options('namespace.remove', {
+    describe: 'flag to remove the user created namespace.  Only applicable for the undeploy command.  Must be used with namespace.name',
+    type: 'boolean'
+  })
+  .options('namesapce.name', {
+    describe: 'flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files',
     type: 'string'
   })
   .options('deploy.port', {
