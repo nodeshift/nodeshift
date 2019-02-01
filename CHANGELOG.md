@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/nodeshift/nodeshift/compare/v2.0.1...v2.1.0) (2019-02-01)
+
+
+### Bug Fixes
+
+* add the --no-perm=true option to the oc rsync command ([#277](https://github.com/nodeshift/nodeshift/issues/277)) ([b4695c6](https://github.com/nodeshift/nodeshift/commit/b4695c6)), closes [#274](https://github.com/nodeshift/nodeshift/issues/274)
+
+
+### Features
+
+* Create a namespace/project if one doesn't exist when using the --namespace flag ([#275](https://github.com/nodeshift/nodeshift/issues/275)) ([202d71b](https://github.com/nodeshift/nodeshift/commit/202d71b)), closes [#235](https://github.com/nodeshift/nodeshift/issues/235)
+
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/nodeshift/nodeshift/compare/v2.0.0...v2.0.1) (2018-12-12)
 
