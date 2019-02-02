@@ -95,7 +95,7 @@ yargs
     describe: 'flag to remove the user created namespace.  Only applicable for the undeploy command.  Must be used with namespace.name',
     type: 'boolean'
   })
-  .options('namesapce.name', {
+  .options('namespace.name', {
     describe: 'flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files',
     type: 'string'
   })
