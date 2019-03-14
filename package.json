@@ -46,7 +46,7 @@
     "mkdirp": "^0.5.1",
     "openshift-config-loader": "^0.4.0",
     "request": "~2.88.0",
-    "openshift-rest-client": "~1.6.3",
+    "openshift-rest-client": "~2.0.0",
     "rimraf": "^2.6.1",
     "tar": "^4.0.1",
     "yargs": "^13.1.0"
