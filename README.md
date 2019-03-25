@@ -154,11 +154,6 @@ This option is passed through to the [Openshift Config Loader](https://www.npmjs
 #### tryServiceAccount
 This option is passed through to the [Openshift Config Loader](https://www.npmjs.com/package/openshift-config-loader). Set to false to by-pass service account lookup or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT environment variable
 
-#### nodeVersion - DEPRECATED
-This flag is now deprecated.  Please use imageTag instead.
-
-Specify the version of Node.js to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the [nodeshift s2i images](https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/)
-
 #### imageTag
 Specify the tag of the docker image to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the [nodeshift s2i images](https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/)
 
@@ -213,11 +208,6 @@ Shows the below help
                                     Set to false to by-pass service account lookup
                                     or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT
                                     environment variable
-
-            --nodeVersion, -n        the version of Node.js to use for the deployed
-                                    application.
-                    [string] [choices: "latest", "9.x", "8.x", "7.x", "6.x", "5.x", "4.x"]
-                                                                        [default: "latest"]
             --imageTag           The tag of the docker image to use for the deployed
                                 application.                 [string] [default: "latest"]
             --quiet                  supress INFO and TRACE lines from output logs

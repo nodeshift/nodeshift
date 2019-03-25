@@ -56,11 +56,6 @@ yargs
     describe: 'the s2i image to use, defaults to nodeshift/centos7-s2i-nodejs',
     type: 'string'
   })
-  .options('nodeVersion', {
-    describe: 'DEPRECATED - use imageTag instead.  The version of Node.js to use for the deployed application.',
-    alias: 'n',
-    type: 'string'
-  })
   .options('imageTag', {
     describe: 'The tag of the docker image to use for the deployed application.',
     type: 'string',
@@ -163,12 +158,6 @@ function createOptions (argv) {
   options.projectLocation = argv.projectLocation;
   options.dockerImage = argv.dockerImage;
   options.imageTag = argv.imageTag;
-  // Remove during a major version release
-  if (argv.nodeVersion) {
-    console.log('DEPRECATION NOTICE - nodeVersion will be removed in the 2.0 release of Nodeshift. Please use imageTag instead.');
-    options.imageTag = argv.nodeVersion;
-  }
-  //
   process.env['NODESHIFT_QUIET'] = argv.quiet === true;
   options.metadata = argv.metadata;
   options.build = argv.build;
