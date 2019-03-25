@@ -7,15 +7,15 @@ test('default strategy', (t) => {
   const result = buildStrategy();
 
   t.equal(result.type, 'Source', 'default is Source type');
-  t.equal(result.sourceStrategy.from.name, 'nodeshift/centos7-s2i-nodejs:latest', 'docker image should be latet BG gold image');
+  t.equal(result.sourceStrategy.from.name, 'nodeshift/centos7-s2i-nodejs:latest', 'docker image should be latet nodeshift image');
   t.equal(result.sourceStrategy.forcePull, undefined, 'no forcePull by default');
 
   t.end();
 });
 
 test('strategy with changed dockerTag', (t) => {
-  const result = buildStrategy({ nodeVersion: '8.x' });
-  t.equal(result.sourceStrategy.from.name, 'nodeshift/centos7-s2i-nodejs:8.x', 'docker image should be 8.x BG gold image');
+  const result = buildStrategy({ imageTag: '8.x' });
+  t.equal(result.sourceStrategy.from.name, 'nodeshift/centos7-s2i-nodejs:8.x', 'docker image should be 8.x nodeshift image');
   t.end();
 });
 
