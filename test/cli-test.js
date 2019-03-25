@@ -261,38 +261,6 @@ test('build goal - with namespace', (t) => {
   });
 });
 
-test('watch goal', (t) => {
-  const cli = proxyquire('../bin/cli', {
-    '../lib/nodeshift-config': () => {
-      return Promise.resolve({});
-    },
-    '../lib/goals/resource': (config) => {
-      t.fail('should not be here for the watch goal');
-      return Promise.resolve();
-    },
-    '../lib/goals/build': (config) => {
-      t.fail('should not be here for the watch goal');
-      return Promise.resolve();
-    },
-    '../lib/goals/apply-resources': (config) => {
-      t.fail('should not be here for the watch goal');
-      return Promise.resolve();
-    },
-    '../lib/goals/undeploy': (config) => {
-      t.fail('should not be here for the watch goal');
-      return Promise.resolve();
-    },
-    '../lib/goals/watch-spawn': (config) => {
-      t.pass('should be here for the watch goal');
-      return Promise.resolve();
-    }
-  });
-
-  cli({ cmd: 'watch' }).then(() => {
-    t.end();
-  });
-});
-
 test('error', (t) => {
   const cli = proxyquire('../bin/cli', {
     '../lib/nodeshift-config': () => {

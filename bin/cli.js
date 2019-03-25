@@ -23,7 +23,6 @@ const resourceGoal = require('../lib/goals/resource');
 const buildGoal = require('../lib/goals/build');
 const applyResources = require('../lib/goals/apply-resources');
 const undeployGoal = require('../lib/goals/undeploy');
-const watchSyncGoal = require('../lib/goals/watch-spawn');
 const namespace = require('../lib/namespace');
 
 /**
@@ -66,9 +65,6 @@ module.exports = async function run (options) {
         response.build = await buildGoal(config);
         response.resources = await resourceGoal(config);
         response.appliedResources = await applyResources(config, response.resources);
-        break;
-      case 'watch':
-        await watchSyncGoal(config);
         break;
       default:
         throw new TypeError(`Unexpected command: ${options.cmd}`);
