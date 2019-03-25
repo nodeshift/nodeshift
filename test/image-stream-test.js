@@ -147,3 +147,41 @@ test('imagestream recreate true', (t) => {
     t.end();
   });
 });
+
+test('imagestream recreate true with "true"', (t) => {
+  t.plan(2);
+
+  const config = {
+    build: {
+      recreate: 'true'
+    },
+    buildName: 'nodejs-s2i-build',
+    projectName: 'project-name',
+    version: '1.0.0',
+    context: {
+      namespace: ''
+    },
+    openshiftRestClient: {
+      imagestreams: {
+        find: (imageStreamName) => {
+          return Promise.resolve({ code: 200 });
+        },
+        remove: (imageStreamName, options) => {
+          t.pass();
+          return Promise.resolve();
+        },
+        create: (imageStreamName) => {
+          return Promise.resolve(imageStreamName);
+        }
+      }
+    }
+  };
+
+  const imageStream = proxyquire('../lib/image-stream', {
+  });
+
+  imageStream.createOrUpdateImageStream(config).then((imageStream) => {
+    t.pass();
+    t.end();
+  });
+});

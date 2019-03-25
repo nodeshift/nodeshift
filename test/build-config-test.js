@@ -172,3 +172,64 @@ test('build recreate true with removing builds', (t) => {
     t.end();
   });
 });
+
+test('build recreate true with removing builds with "true"', (t) => {
+  t.plan(4);
+  const returnedBuilds = [
+    {
+      kind: 'Build',
+      metadata: {
+        name: 'build1'
+      }
+    },
+    {
+      kind: 'Build',
+      metadata: {
+        name: 'build2'
+      }
+    }
+  ];
+
+  const config = {
+    build: {
+      recreate: 'true'
+    },
+    buildName: 'nodejs-s2i-build',
+    projectName: 'project-name',
+    version: '1.0.0',
+    context: {
+      namespace: ''
+    },
+    openshiftRestClient: {
+      builds: {
+        findAll: () => {
+          t.pass();
+          return Promise.resolve({ items: returnedBuilds });
+        },
+        remove: (buildName) => {
+          t.pass();
+          return Promise.resolve();
+        }
+      },
+      buildconfigs: {
+        find: (buildName) => {
+          return Promise.resolve({ code: 200 });
+        },
+        remove: (buildName, options) => {
+          return Promise.resolve();
+        },
+        create: (buildConfig) => {
+          return Promise.resolve(buildConfig);
+        }
+      }
+    }
+  };
+
+  const buildConfig = proxyquire('../lib/build-config', {
+  });
+
+  buildConfig.createOrUpdateBuildConfig(config).then((buildConfig) => {
+    t.pass();
+    t.end();
+  });
+});
