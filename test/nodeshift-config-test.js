@@ -212,7 +212,9 @@ test('nodeshift-config options for the config loader - change the namespace', (t
   });
 
   const options = {
-    namespace: 'foo'
+    namespace: {
+      name: 'foo'
+    }
   };
 
   nodeshiftConfig(options).then((config) => {
@@ -236,7 +238,9 @@ test('nodeshift-config options for the config loader - change the namespace, for
   });
 
   const options = {
-    namespace: 'New Project'
+    namespace: {
+      name: 'New Project'
+    }
   };
 
   nodeshiftConfig(options).then((config) => {
@@ -292,67 +296,6 @@ test('nodeshift-config options for the config loader - using namespace object fo
 
   nodeshiftConfig(options).then((config) => {
     t.equal(config.context.namespace, 'funproject', 'context and options namespace should be the same');
-    t.equal(config.namespace.userDefined, true, 'should have the user defined variable');
-    t.equal(config.namespace.displayName, options.namespace.displayName, 'should have the displayName');
-    t.end();
-  });
-});
-
-// This test is a little contrived since someone using the API would probably never do this
-// This is just testing what the CLI would provide is someone used --namespace=VALUE and --namespace.displayName=VALUE for instance
-test('nodeshift-config options for the config loader - using namespace as a string and object, provide name', (t) => {
-  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
-    'openshift-config-loader': (options) => {
-      return Promise.resolve({
-        context: {
-          namespace: 'test-namespace'
-        },
-        cluster: 'http://mock-cluster'
-      });
-    },
-    'openshift-rest-client': () => { return Promise.resolve({}); }
-  });
-
-  const options = {
-    namespace: ['Name', {
-      displayName: 'New Project',
-      name: 'Project Name'
-    }]
-  };
-
-  nodeshiftConfig(options).then((config) => {
-    t.equal(config.context.namespace, 'projectname', 'context and options namespace should be the same');
-    t.equal(config.namespace._name, 'Name', 'should have the "private" _name field');
-    t.equal(config.namespace.userDefined, true, 'should have the user defined variable');
-    t.equal(config.namespace.displayName, options.namespace.displayName, 'should have the displayName');
-    t.end();
-  });
-});
-
-// This test is a little contrived since someone using the API would probably never do this
-// This is just testing what the CLI would provide is someone used --namespace=VALUE and --namespace.displayName=VALUE for instance
-test('nodeshift-config options for the config loader - using namespace as a string and object, provide name', (t) => {
-  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
-    'openshift-config-loader': (options) => {
-      return Promise.resolve({
-        context: {
-          namespace: 'test-namespace'
-        },
-        cluster: 'http://mock-cluster'
-      });
-    },
-    'openshift-rest-client': () => { return Promise.resolve({}); }
-  });
-
-  const options = {
-    namespace: ['Name', {
-      displayName: 'New Project'
-    }]
-  };
-
-  nodeshiftConfig(options).then((config) => {
-    t.equal(config.context.namespace, 'name', 'context and options namespace should be the same');
-    t.equal(config.namespace._name, 'Name', 'should have the "private" _name field');
     t.equal(config.namespace.userDefined, true, 'should have the user defined variable');
     t.equal(config.namespace.displayName, options.namespace.displayName, 'should have the displayName');
     t.end();

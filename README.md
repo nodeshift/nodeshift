@@ -214,10 +214,6 @@ Shows the below help
                                                                                 [boolean]
             --expose            flag to create a default Route and expose the default
                        service [boolean] [choices: true, false] [default: false]
-            --namespace              DEPRECATED - use object form instead.  flag to
-                           specify the project namespace to build/deploy into.
-                           Overwrites any namespace settings in your OpenShift
-                           or Kubernetes configuration files            [string]
             --namespace.displayName  flag to specify the project namespace display name to
                            build/deploy into.  Overwrites any namespace settings
                            in your OpenShift or Kubernetes configuration files
