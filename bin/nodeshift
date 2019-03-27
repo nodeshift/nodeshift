@@ -73,10 +73,6 @@ yargs
     type: 'boolean',
     default: false
   })
-  .options('namespace', {
-    describe: 'DEPRECATED - use object form instead.  flag to specify the project namespace to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files',
-    type: 'string'
-  })
   .options('namespace.displayName', {
     describe: 'flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files',
     type: 'string'

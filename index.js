@@ -17,7 +17,6 @@ const cli = require('./bin/cli');
   @param {boolean} [options.strictSSL] - Set to false to allow self-signed Certs
   @param {boolean} [options.tryServiceAccount] - Set to false to by-pass service account lookup
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
-  @param {string} [options.namespace(deprecated)] - DEPRECATED - use object form instead. Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {boolean} [options.namespace.create] - flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name
@@ -48,7 +47,6 @@ function deploy (options = {}) {
   @param {boolean} [options.strictSSL] - Set to false to allow self-signed Certs
   @param {boolean} [options.tryServiceAccount] - Set to false to by-pass service account lookup
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
-  @param {string} [options.namespace(deprecated)] - DEPRECATED - use object form instead. Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.namesapce.name] - flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
@@ -73,7 +71,6 @@ function resource (options = {}) {
   @param {boolean} [options.strictSSL] - Set to false to allow self-signed Certs
   @param {boolean} [options.tryServiceAccount] - Set to false to by-pass service account lookup
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
-  @param {string} [options.namespace(deprecated)] - DEPRECATED - use object form instead. Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {boolean} [options.namespace.create] - flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name
@@ -101,7 +98,6 @@ function applyResource (options = {}) {
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
   @param {boolean} [options.strictSSL] - Set to false to allow self-signed Certs
   @param {boolean} [options.tryServiceAccount] - Set to false to by-pass service account lookup
-  @param {string} [options.namespace(deprecated)] - DEPRECATED - use object form instead. Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {boolean} [options.namespace.remove] - flag to remove the user created namespace.  Only applicable for the undeploy command.  Must be used with namespace.name
@@ -130,7 +126,6 @@ function undeploy (options = {}) {
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
   @param {boolean} [options.strictSSL] - Set to false to allow self-signed Certs
   @param {boolean} [options.tryServiceAccount] - Set to false to by-pass service account lookup
-  @param {string} [options.namespace(deprecated)] - DEPRECATED - use object form instead. Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {boolean} [options.namespace.create] - flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name
