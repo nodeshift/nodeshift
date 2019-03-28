@@ -146,14 +146,8 @@ Outputs the current version of nodeshift
 #### projectLocation
 Changes the default location of where to look for your project. Defaults to your current working directory(CWD)
 
-#### strictSSL
-This option is passed through to the [Openshift Rest Client](https://www.npmjs.com/package/openshift-rest-client) for SSL use.  To allow using a self-signed cert, set to false
-
 #### configLocation
 This option is passed through to the [Openshift Config Loader](https://www.npmjs.com/package/openshift-config-loader).  Defaults to the `~/.kube/config`
-
-#### tryServiceAccount
-This option is passed through to the [Openshift Config Loader](https://www.npmjs.com/package/openshift-config-loader). Set to false to by-pass service account lookup or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT environment variable
 
 #### imageTag
 Specify the tag of the docker image to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the [nodeshift s2i images](https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/)
@@ -203,12 +197,6 @@ Shows the below help
         Options:
             --version                Show version number                         [boolean]
             --projectLocation        change the default location of the project   [string]
-            --strictSSL          setting to pass to the Openshift Rest Client. Set to
-                                    false if using a self-sign cert
-            --tryServiceAccount  setting to pass to the Openshift Config Loader.
-                                    Set to false to by-pass service account lookup
-                                    or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT
-                                    environment variable
             --imageTag           The tag of the docker image to use for the deployed
                                 application.                 [string] [default: "latest"]
             --quiet                  supress INFO and TRACE lines from output logs
