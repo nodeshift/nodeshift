@@ -1,4 +1,5 @@
-# Nodeshift [![Build Status](https://travis-ci.org/nodeshift/nodeshift.svg?branch=master)](https://travis-ci.org/nodeshift/nodeshift) [![Coverage Status](https://coveralls.io/repos/github/nodeshift/nodeshift/badge.svg?branch=master)](https://coveralls.io/github/nodeshift/nodeshift?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/nodeshift/nodeshift.svg)](https://greenkeeper.io/)
+# Nodeshift [![CircleCI](https://circleci.com/gh/nodeshift/nodeshift.svg?style=svg)](https://circleci.com/gh/nodeshift/nodeshift)
+[![Build Status](https://travis-ci.org/nodeshift/nodeshift.svg?branch=master)](https://travis-ci.org/nodeshift/nodeshift) [![Coverage Status](https://coveralls.io/repos/github/nodeshift/nodeshift/badge.svg?branch=master)](https://coveralls.io/github/nodeshift/nodeshift?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/nodeshift/nodeshift.svg)](https://greenkeeper.io/)
 
 ## What is it
 
