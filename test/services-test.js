@@ -19,13 +19,23 @@ test('test services, already created', (t) => {
     },
     projectVersion: '1.0.0',
     openshiftRestClient: {
-      services:
-      {
-        find: (name) => {
-          if (name !== resource.metadata.name) {
-            t.fail('name argument does not match the resource.metadata.name');
+      api: {
+        v1: {
+          ns: (namespace) => {
+            return {
+              service: (name) => {
+                console.log(name);
+                if (name !== resource.metadata.name) {
+                  t.fail('name argument does not match the resource.metadata.name');
+                }
+                return {
+                  get: () => {
+                    return { code: 200, metadata: { name: 'service' } };
+                  }
+                };
+              }
+            };
           }
-          return { code: 200, metadata: { name: 'service' } };
         }
       }
     }
