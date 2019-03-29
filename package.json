@@ -34,6 +34,11 @@
   "keywords": [],
   "author": "",
   "license": "Apache-2.0",
+  "support": {
+    "target": "LTS",
+    "response": "REGULAR-7",
+    "backing": "COMPANY"
+  },
   "bugs": {
     "url": "https://github.com/nodeshift/nodeshift/issues"
   },
