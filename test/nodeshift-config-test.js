@@ -71,11 +71,11 @@ test('nodeshift-config other project location and nodeshiftDir', (t) => {
   });
 
   const options = {
-    projectLocation: '../examples/sample-project'
+    projectLocation: './examples/sample-project'
   };
 
   nodeshiftConfig(options).then((config) => {
-    t.equal(config.projectLocation, '../examples/sample-project', 'projectLocation prop should be changed');
+    t.equal(config.projectLocation, './examples/sample-project', 'projectLocation prop should be changed');
     t.end();
   });
 });
@@ -94,7 +94,7 @@ test('nodeshift-config no project Version', (t) => {
   });
 
   const options = {
-    projectLocation: '../examples/sample-project-no-version'
+    projectLocation: './examples/sample-project-no-version'
   };
 
   nodeshiftConfig(options).then((config) => {
@@ -121,7 +121,7 @@ test('nodeshift-config no package.json', (t) => {
   };
 
   nodeshiftConfig(options).catch((err) => {
-    t.equal(err.message.includes('Cannot find module \'./not-here/package.json\''), true, 'Error Should be "\'Cannot find module \'./not-here/package.json\'\'"');
+    t.equal(err.message.includes('./not-here/package.json'), true, 'Error Should be "\'Cannot find module \'./not-here/package.json\'\'"');
     t.end();
   });
 });
