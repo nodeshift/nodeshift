@@ -219,7 +219,7 @@ test('nodeshift-config options for the config loader - change the namespace', (t
 
   nodeshiftConfig(options).then((config) => {
     t.equal(config.namespace, options.namespace, 'namespace should be changed');
-    t.equal(config.context.namespace, options.namespace.name, 'context and options namespace should be the same');
+    t.equal(config.namespace, options.namespace.name, 'context and options namespace should be the same');
     t.end();
   });
 });
@@ -244,7 +244,7 @@ test('nodeshift-config options for the config loader - change the namespace, for
   };
 
   nodeshiftConfig(options).then((config) => {
-    t.equal(config.context.namespace, 'newproject', 'context and options namespace should be the same');
+    t.equal(config.namespace, 'newproject', 'context and options namespace should be the same');
     t.end();
   });
 });
@@ -295,7 +295,7 @@ test('nodeshift-config options for the config loader - using namespace object fo
   };
 
   nodeshiftConfig(options).then((config) => {
-    t.equal(config.context.namespace, 'funproject', 'context and options namespace should be the same');
+    t.equal(config.namespace, 'funproject', 'context and options namespace should be the same');
     t.equal(config.namespace.userDefined, true, 'should have the user defined variable');
     t.equal(config.namespace.displayName, options.namespace.displayName, 'should have the displayName');
     t.end();
