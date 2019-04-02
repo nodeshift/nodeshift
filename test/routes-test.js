@@ -17,8 +17,8 @@ test('test routes, already created', (t) => {
 
   const config = {
     projectName: 'test-project',
-    context: {
-      namespace: 'namespace'
+    namespace: {
+      name: 'namespace'
     },
     projectVersion: '1.0.0',
     openshiftRestClient: {
@@ -70,8 +70,8 @@ test('test routes, not created', (t) => {
 
   const config = {
     projectName: 'test-project',
-    context: {
-      namespace: 'namespace'
+    namespace: {
+      name: 'namespace'
     },
     projectVersion: '1.0.0',
     openshiftRestClient: {

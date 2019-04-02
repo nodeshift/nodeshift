@@ -14,8 +14,8 @@ test('test services, already created', (t) => {
 
   const config = {
     projectName: 'test-project',
-    context: {
-      namespace: 'namespace'
+    namespace: {
+      name: 'namespace'
     },
     projectVersion: '1.0.0',
     openshiftRestClient: {
@@ -62,8 +62,8 @@ test('test services, not created', (t) => {
 
   const config = {
     projectName: 'test-project',
-    context: {
-      namespace: 'namespace'
+    namespace: {
+      name: 'namespace'
     },
     projectVersion: '1.0.0',
     openshiftRestClient: {
