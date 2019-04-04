@@ -17,18 +17,29 @@ test('test ingress, already created', (t) => {
 
   const config = {
     projectName: 'test-project',
-    context: {
-      namespace: 'namespace'
+    namespace: {
+      name: 'namespace'
     },
     projectVersion: '1.0.0',
     openshiftRestClient: {
-      ingress:
-      {
-        find: (name) => {
-          if (name !== resource.metadata.name) {
-            t.fail('name argument does not match the resource.metadata.name');
+      apis: {
+        extensions: {
+          v1beta1: {
+            ns: (namespace) => {
+              return {
+                ingresses: (ingressName) => {
+                  if (ingressName !== resource.metadata.name) {
+                    t.fail('ingressName argument does not match the resource.metadata.name');
+                  }
+                  return {
+                    get: () => {
+                      return Promise.resolve({ code: 200, body: { metadata: { name: 'ingress' } } });
+                    }
+                  };
+                }
+              };
+            }
           }
-          return { code: 200, metadata: { name: 'ingress' } };
         }
       }
     }
@@ -52,26 +63,51 @@ test('test ingress, not created', (t) => {
     }
   };
 
+  let call = 0;
+
   const config = {
     projectName: 'test-project',
-    context: {
-      namespace: 'namespace'
+    namespace: {
+      name: 'namespace'
     },
     projectVersion: '1.0.0',
     openshiftRestClient: {
-      ingress:
-      {
-        find: (name) => {
-          return { code: 404 };
-        },
-        create: ingress => ingress
+      apis: {
+        extensions: {
+          v1beta1: {
+            ns: (namespace) => {
+              if (call === 0) {
+                call++;
+                return {
+                  ingresses: (name) => {
+                    if (name !== resource.metadata.name) {
+                      t.fail('name argument does not match the resource.metadata.name');
+                    }
+                    return {
+                      get: () => {
+                        return Promise.resolve({ code: 404 });
+                      }
+                    };
+                  }
+                };
+              } else {
+                return {
+                  ingresses: {
+                    post: (resource) => {
+                      return Promise.resolve({ code: 201, body: resource.body });
+                    }
+                  }
+                };
+              }
+            }
+          }
+        }
       }
     }
   };
 
   const p = ingress(config, resource).then((ingress) => {
-    t.equal(ingress.kind, 'Ingress', 'is a Ingress Kind');
-    t.equal(ingress.metadata.name, 'nodejs-istio-circuit-breaker-gateway', 'metadata.name should be nodejs-istio-circuit-breaker-gateway');
+    t.equal(ingress.body.metadata.name, 'nodejs-istio-circuit-breaker-gateway', 'metadata.name should be nodejs-istio-circuit-breaker-gateway');
     t.end();
   });
 
