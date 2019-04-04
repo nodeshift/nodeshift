@@ -169,7 +169,7 @@ test('namespace - remove the namespace', t => {
                 delete: () => {
                   return Promise.resolve({ code: 204 });
                 }
-              }
+              };
             }
           }
         }
