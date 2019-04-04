@@ -17,18 +17,27 @@ test('test config map, already created', (t) => {
 
   const config = {
     projectName: 'test-project',
-    context: {
-      namespace: 'namespace'
+    namespace: {
+      name: 'namespace'
     },
     projectVersion: '1.0.0',
     openshiftRestClient: {
-      configmaps:
-      {
-        find: (name) => {
-          if (name !== resource.metadata.name) {
-            t.fail('name argument does not match the resource.metadata.name');
+      api: {
+        v1: {
+          ns: (namespace) => {
+            return {
+              configmaps: (configMapName) => {
+                if (configMapName !== resource.metadata.name) {
+                  t.fail('configMapName argument does not match the resource.metadata.name');
+                }
+                return {
+                  get: () => {
+                    return Promise.resolve({ code: 200, body: { metadata: { name: 'ConfigMap' } } });
+                  }
+                };
+              }
+            };
           }
-          return { code: 200, metadata: { name: 'ConfigMap' } };
         }
       }
     }
@@ -52,26 +61,47 @@ test('test configMap, not created', (t) => {
     }
   };
 
+  let call = 0;
+
   const config = {
     projectName: 'test-project',
-    context: {
-      namespace: 'namespace'
+    namespace: {
+      name: 'namespace'
     },
     projectVersion: '1.0.0',
     openshiftRestClient: {
-      configmaps:
-      {
-        find: (name) => {
-          return { code: 404 };
-        },
-        create: configMap => configMap
+      api: {
+        v1: {
+          ns: (namespace) => {
+            if (call === 0) {
+              call++;
+              return {
+                configmaps: (configMapName) => {
+                  return {
+                    get: () => {
+                      return Promise.resolve({ code: 404 });
+                    }
+                  };
+                }
+              };
+            } else {
+              return {
+                configmaps: {
+                  post: (resource) => {
+                    return Promise.resolve({ code: 201, body: resource.body });
+                  }
+                }
+              };
+            }
+          }
+        }
       }
     }
   };
 
   const p = configMap(config, resource).then((configMap) => {
-    t.equal(configMap.kind, 'ConfigMap', 'is a configMap Kind');
-    t.equal(configMap.metadata.name, 'some-config-map', 'metadata.name should be some-config-map');
+    t.equal(configMap.body.kind, 'ConfigMap', 'is a configMap Kind');
+    t.equal(configMap.body.metadata.name, 'some-config-map', 'metadata.name should be some-config-map');
     t.end();
   });
 
