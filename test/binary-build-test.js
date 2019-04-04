@@ -10,35 +10,61 @@ test('binary build test', (t) => {
 
 test('binary build test - succesful build', (t) => {
   const binaryBuild = proxyquire('../lib/binary-build', {
+    fs: {
+      createReadStream: () => {
+        return '';
+      }
+    },
     './build-watcher': () => {
       return Promise.resolve();
     }
   });
 
   const config = {
+    namespace: {
+      name: ''
+    },
     openshiftRestClient: {
-      builds: {
-        find: (name) => {
-          return Promise.resolve({
-            metadata: {
-              name: 'buildName'
-            },
-            status: {
-              phase: 'Complete'
+      apis: {
+        build: {
+          v1: {
+            ns: (name) => {
+              return {
+                builds: (name) => {
+                  return {
+                    get: () => {
+                      return Promise.resolve({
+                        code: 200,
+                        body: {
+                          metadata: {
+                            name: 'buildName'
+                          },
+                          status: {
+                            phase: 'Complete'
+                          }
+                        }
+                      });
+                    }
+                  };
+                },
+                buildconfigs: (buildName) => {
+                  return {
+                    instantiatebinary: {
+                      post: () => {
+                        return Promise.resolve({ code: 201, body: JSON.stringify({ metadata: { name: 'buildName' } }) });
+                      }
+                    }
+                  };
+                }
+              };
             }
-          });
-        }
-      },
-      buildconfigs: {
-        instantiateBinary: (buildName, options) => {
-          return Promise.resolve({ metadata: { name: 'buildname' } });
+          }
         }
       }
     }
   };
 
   binaryBuild(config, 'archiveLocation').then((buildStatus) => {
-    console.log(buildStatus);
     t.pass('succesful complete build');
     t.end();
   });
@@ -46,6 +72,11 @@ test('binary build test - succesful build', (t) => {
 
 test('binary build test - failed build', (t) => {
   const binaryBuild = proxyquire('../lib/binary-build', {
+    fs: {
+      createReadStream: () => {
+        return '';
+      }
+    },
     './build-watcher': () => {
       return Promise.resolve();
     }
