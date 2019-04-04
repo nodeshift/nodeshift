@@ -6,8 +6,8 @@ const proxyquire = require('proxyquire');
 const config = {
   projectName: 'Project Name',
   version: '1.0.0',
-  context: {
-    namespace: 'namespace'
+  namespace: {
+    name: 'namespace'
   }
 };
 
