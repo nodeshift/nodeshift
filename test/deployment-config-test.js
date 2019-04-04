@@ -20,17 +20,42 @@ test('deploy - not created yet', (t) => {
     }
   };
 
+  let call = 0;
+
   const config = {
     projectName: 'my Project',
+    namespace: {
+      name: ''
+    },
     openshiftRestClient: {
-      deploymentconfigs: {
-        find: (deploymentName) => {
-          t.equal(deploymentName, deploymentConfigResource.metadata.name, 'names should be equal');
-          return Promise.resolve({ code: 404 });
-        },
-        create: (resource) => {
-          t.equal(resource, deploymentConfigResource, 'resource should be the same as passed in');
-          return Promise.resolve(resource);
+      apis: {
+        'apps.openshift.io': {
+          v1: {
+            ns: (namespace) => {
+              if (call === 0) {
+                call++;
+                return {
+                  deploymentconfigs: (deploymentName) => {
+                    t.equal(deploymentName, deploymentConfigResource.metadata.name, 'names should be equal');
+                    return {
+                      get: () => {
+                        return Promise.resolve({ code: 404 });
+                      }
+                    };
+                  }
+                };
+              } else {
+                return {
+                  deploymentconfigs: {
+                    post: (resource) => {
+                      t.equal(resource.body, deploymentConfigResource, 'resource should be the same as passed in');
+                      Promise.resolve({ code: 201, body: resource });
+                    }
+                  }
+                };
+              }
+            }
+          }
         }
       }
     }
@@ -53,16 +78,41 @@ test('deploy - created already', (t) => {
     }
   };
 
+  let call = 0;
+
   const config = {
     projectName: 'my Project',
+    namespace: {
+      name: ''
+    },
     openshiftRestClient: {
-      deploymentconfigs: {
-        find: (deploymentName) => {
-          t.equal(deploymentName, deploymentConfigResource.metadata.name, 'names should be equal');
-          return Promise.resolve(Object.assign({}, deploymentConfigResource, { code: 200 }));
-        },
-        create: (resource) => {
-          t.fail();
+      apis: {
+        'apps.openshift.io': {
+          v1: {
+            ns: (namespace) => {
+              if (call === 0) {
+                call++;
+                return {
+                  deploymentconfigs: (deploymentName) => {
+                    t.equal(deploymentName, deploymentConfigResource.metadata.name, 'names should be equal');
+                    return {
+                      get: () => {
+                        return Promise.resolve({ code: 200, body: deploymentConfigResource });
+                      }
+                    };
+                  }
+                };
+              } else {
+                return {
+                  deploymentconfigs: {
+                    post: (resource) => {
+                      t.fail();
+                    }
+                  }
+                };
+              }
+            }
+          }
         }
       }
     }
@@ -93,25 +143,61 @@ test('undeploy', (t) => {
     }]
   };
 
+  let call = 0;
+
   const config = {
     projectName: 'my Project',
+    namespace: {
+      name: ''
+    },
     openshiftRestClient: {
-      deploymentconfigs: {
-        remove: (deploymentName, options) => {
-          t.equal(deploymentName, deploymentConfigResource.metadata.name, 'names should be equal');
-          t.equal(options.body.orphanDependents, true, 'this options should be true');
-          return Promise.resolve();
+      apis: {
+        'apps.openshift.io': {
+          v1: {
+            ns: (namespace) => {
+              return {
+                deploymentconfigs: (deploymentName) => {
+                  t.equal(deploymentName, deploymentConfigResource.metadata.name, 'names should be equal');
+                  return {
+                    delete: (removeThisResource) => {
+                      t.equal(removeThisResource.body.body.orphanDependents, true, 'this options should be true');
+                      return Promise.resolve({ code: 204 });
+                    }
+                  };
+                }
+              };
+            }
+          }
         }
       },
-      replicationcontrollers: {
-        findAll: (options) => {
-          t.equal(options.qs.labelSelector, `openshift.io/deployment-config.name=${config.projectName}`, 'should be equal');
-          return Promise.resolve(rcList);
-        },
-        remove: (rcName, options) => {
-          t.equal(rcName, rcList.items[0].metadata.name, 'name should be equal');
-          t.equal(options.body.orphanDependents, false, 'this options should be false');
-          return Promise.resolve();
+      api: {
+        v1: {
+          ns: (namespace) => {
+            if (call === 1) {
+              return {
+                replicationcontrollers: (projectName) => {
+                  t.equal(projectName, rcList.items[0].metadata.name, 'name should be equal');
+                  return {
+                    delete: (removal) => {
+                      t.pass();
+                      t.equal(removal.body.body.orphanDependents, false, 'this options should be false');
+                      return Promise.resolve({ code: 204 });
+                    }
+                  };
+                }
+              };
+            } else {
+              return {
+                replicationcontrollers: {
+                  get: (options) => {
+                    call++;
+                    t.equal(options.qs.labelSelector, `openshift.io/deployment-config.name=${config.projectName}`, 'should be equal');
+                    return Promise.resolve({ code: 200, body: rcList });
+                  }
+                }
+              };
+            }
+          }
         }
       }
     }
