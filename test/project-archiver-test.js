@@ -19,6 +19,9 @@ test('test cleanup function', (t) => {
       },
       cleanUp: () => {
         return Promise.resolve();
+      },
+      listFiles: () => {
+        return Promise.resolve([]);
       }
     },
     tar: {
@@ -61,6 +64,9 @@ test('test error with create dir function', (t) => {
       },
       cleanUp: () => {
         return Promise.resolve();
+      },
+      listFiles: () => {
+        return Promise.resolve([]);
       }
     }
   });
@@ -117,6 +123,9 @@ test('test logger warning if no files prop', (t) => {
       },
       cleanUp: () => {
         return Promise.resolve();
+      },
+      listFiles: () => {
+        return Promise.resolve([]);
       }
     },
     tar: {
