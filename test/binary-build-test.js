@@ -10,35 +10,61 @@ test('binary build test', (t) => {
 
 test('binary build test - succesful build', (t) => {
   const binaryBuild = proxyquire('../lib/binary-build', {
+    fs: {
+      createReadStream: () => {
+        return '';
+      }
+    },
     './build-watcher': () => {
       return Promise.resolve();
     }
   });
 
   const config = {
+    namespace: {
+      name: ''
+    },
     openshiftRestClient: {
-      builds: {
-        find: (name) => {
-          return Promise.resolve({
-            metadata: {
-              name: 'buildName'
-            },
-            status: {
-              phase: 'Complete'
+      apis: {
+        build: {
+          v1: {
+            ns: (name) => {
+              return {
+                builds: (name) => {
+                  return {
+                    get: () => {
+                      return Promise.resolve({
+                        code: 200,
+                        body: {
+                          metadata: {
+                            name: 'buildName'
+                          },
+                          status: {
+                            phase: 'Complete'
+                          }
+                        }
+                      });
+                    }
+                  };
+                },
+                buildconfigs: (buildName) => {
+                  return {
+                    instantiatebinary: {
+                      post: () => {
+                        return Promise.resolve({ code: 201, body: JSON.stringify({ metadata: { name: 'buildName' } }) });
+                      }
+                    }
+                  };
+                }
+              };
             }
-          });
-        }
-      },
-      buildconfigs: {
-        instantiateBinary: (buildName, options) => {
-          return Promise.resolve({ metadata: { name: 'buildname' } });
+          }
         }
       }
     }
   };
 
   binaryBuild(config, 'archiveLocation').then((buildStatus) => {
-    console.log(buildStatus);
     t.pass('succesful complete build');
     t.end();
   });
@@ -46,35 +72,63 @@ test('binary build test - succesful build', (t) => {
 
 test('binary build test - failed build', (t) => {
   const binaryBuild = proxyquire('../lib/binary-build', {
+    fs: {
+      createReadStream: () => {
+        return '';
+      }
+    },
     './build-watcher': () => {
       return Promise.resolve();
     }
   });
 
   const config = {
+    namespace: {
+      name: ''
+    },
     openshiftRestClient: {
-      builds: {
-        find: (name) => {
-          return Promise.resolve({
-            metadata: {
-              name: 'buildName'
-            },
-            status: {
-              phase: 'Failed',
-              message: 'You Failed'
+      apis: {
+        build: {
+          v1: {
+            ns: (name) => {
+              return {
+                builds: (name) => {
+                  return {
+                    get: () => {
+                      return Promise.resolve({
+                        code: 200,
+                        body: {
+                          metadata: {
+                            name: 'buildName'
+                          },
+                          status: {
+                            phase: 'Failed',
+                            message: 'You Failed'
+                          }
+                        }
+                      });
+                    }
+                  };
+                },
+                buildconfigs: (buildName) => {
+                  return {
+                    instantiatebinary: {
+                      post: () => {
+                        return Promise.resolve({ code: 201, body: JSON.stringify({ metadata: { name: 'buildName' } }) });
+                      }
+                    }
+                  };
+                }
+              };
             }
-          });
-        }
-      },
-      buildconfigs: {
-        instantiateBinary: (buildName, options) => {
-          return Promise.resolve({ metadata: { name: 'buildname' } });
+          }
         }
       }
     }
   };
 
-  binaryBuild(config, 'archiveLocation').catch(() => {
+  binaryBuild(config, 'archiveLocation').catch((error) => {
+    t.equal(error.message, 'You Failed', 'should have this error message');
     t.pass('should fail');
     t.end();
   });
@@ -84,43 +138,72 @@ test('binary build test - succesful build - but not write away', (t) => {
   const binaryBuild = proxyquire('../lib/binary-build', {
     './build-watcher': () => {
       return Promise.resolve();
+    },
+    fs: {
+      createReadStream: () => {
+        return '';
+      }
     }
   });
 
-  const findStub = sinon.stub();
-  findStub.onCall(0).resolves({
-    metadata: {
-      name: 'buildName'
-    },
-    status: {
-      phase: 'Pending'
+  const getStub = sinon.stub();
+  getStub.onCall(0).resolves({
+    code: 200,
+    body: {
+      metadata: {
+        name: 'buildName'
+      },
+      status: {
+        phase: 'Pending'
+      }
     }
   });
 
-  findStub.onCall(1).resolves({
-    metadata: {
-      name: 'buildName'
-    },
-    status: {
-      phase: 'Complete'
+  getStub.onCall(1).resolves({
+    code: 200,
+    body: {
+      metadata: {
+        name: 'buildName'
+      },
+      status: {
+        phase: 'Complete'
+      }
     }
   });
 
   const config = {
+    namespace: {
+      name: ''
+    },
     openshiftRestClient: {
-      builds: {
-        find: findStub
-      },
-      buildconfigs: {
-        instantiateBinary: (buildName, options) => {
-          return Promise.resolve({ metadata: { name: 'buildname' } });
+      apis: {
+        build: {
+          v1: {
+            ns: (name) => {
+              return {
+                builds: (name) => {
+                  return {
+                    get: getStub
+                  };
+                },
+                buildconfigs: (buildName) => {
+                  return {
+                    instantiatebinary: {
+                      post: () => {
+                        return Promise.resolve({ code: 201, body: JSON.stringify({ metadata: { name: 'buildName' } }) });
+                      }
+                    }
+                  };
+                }
+              };
+            }
+          }
         }
       }
     }
   };
 
   binaryBuild(config, 'archiveLocation').then((buildStatus) => {
-    console.log(buildStatus);
     t.pass('succesful complete build');
     t.end();
   });

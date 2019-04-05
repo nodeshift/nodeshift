@@ -11,18 +11,39 @@ test('basic imagestream module specs', (t) => {
 });
 
 test('create imageStream not found', (t) => {
+  let call = 0;
   const config = {
     projectName: 'project-name',
-    context: {
-      namespace: ''
+    namespace: {
+      name: ''
     },
     openshiftRestClient: {
-      imagestreams: {
-        find: (buildName) => {
-          return Promise.resolve({ code: 404 });
-        },
-        create: (imageStream) => {
-          return Promise.resolve(imageStream);
+      apis: {
+        image: {
+          v1: {
+            ns: (namespace) => {
+              if (call === 0) {
+                call++;
+                return {
+                  imagestreams: (projectName) => {
+                    return {
+                      get: () => {
+                        return Promise.resolve({ code: 404 });
+                      }
+                    };
+                  }
+                };
+              } else {
+                return {
+                  imagestreams: {
+                    post: (imageStream) => {
+                      Promise.resolve({ code: 201, body: imageStream });
+                    }
+                  }
+                };
+              }
+            }
+          }
         }
       }
     }
@@ -49,13 +70,25 @@ test('buildConfig found - no recreate', (t) => {
     buildName: 'nodejs-s2i-build',
     projectName: 'project-name',
     version: '1.0.0',
-    context: {
-      namespace: ''
+    namespace: {
+      name: ''
     },
     openshiftRestClient: {
-      imagestreams: {
-        find: (imagestreams) => {
-          return Promise.resolve({ code: 200 });
+      apis: {
+        image: {
+          v1: {
+            ns: (namespace) => {
+              return {
+                imagestreams: (projectName) => {
+                  return {
+                    get: () => {
+                      return Promise.resolve({ code: 200, body: { metadata: { name: 'imagestream' } } });
+                    }
+                  };
+                }
+              };
+            }
+          }
         }
       }
     }
@@ -85,13 +118,25 @@ test('imagestream recreate but is a buildConfig', (t) => {
     buildName: 'nodejs-s2i-build',
     projectName: 'project-name',
     version: '1.0.0',
-    context: {
-      namespace: ''
+    namespace: {
+      name: ''
     },
     openshiftRestClient: {
-      imagestreams: {
-        find: (imagestreams) => {
-          return Promise.resolve({ code: 200 });
+      apis: {
+        image: {
+          v1: {
+            ns: (namespace) => {
+              return {
+                imagestreams: (projectName) => {
+                  return {
+                    get: () => {
+                      return Promise.resolve({ code: 200, body: { metadata: { name: 'imagestream' } } });
+                    }
+                  };
+                }
+              };
+            }
+          }
         }
       }
     }
@@ -114,6 +159,8 @@ test('imagestream recreate but is a buildConfig', (t) => {
 });
 
 test('imagestream recreate true', (t) => {
+  let call = 0;
+
   const config = {
     build: {
       recreate: true
@@ -121,19 +168,39 @@ test('imagestream recreate true', (t) => {
     buildName: 'nodejs-s2i-build',
     projectName: 'project-name',
     version: '1.0.0',
-    context: {
-      namespace: ''
+    namespace: {
+      name: ''
     },
     openshiftRestClient: {
-      imagestreams: {
-        find: (imageStreamName) => {
-          return Promise.resolve({ code: 200 });
-        },
-        remove: (imageStreamName, options) => {
-          return Promise.resolve();
-        },
-        create: (imageStreamName) => {
-          return Promise.resolve(imageStreamName);
+      apis: {
+        image: {
+          v1: {
+            ns: (namespace) => {
+              if (call < 2) {
+                call++;
+                return {
+                  imagestreams: (projectName) => {
+                    return {
+                      get: () => {
+                        return Promise.resolve({ code: 200, body: { metadata: { name: 'imagestream' } } });
+                      },
+                      delete: () => {
+                        return Promise.resolve({ code: 204 });
+                      }
+                    };
+                  }
+                };
+              } else {
+                return {
+                  imagestreams: {
+                    post: (imageStream) => {
+                      Promise.resolve({ code: 201, body: imageStream });
+                    }
+                  }
+                };
+              }
+            }
+          }
         }
       }
     }
@@ -151,6 +218,8 @@ test('imagestream recreate true', (t) => {
 test('imagestream recreate true with "true"', (t) => {
   t.plan(2);
 
+  let call = 0;
+
   const config = {
     build: {
       recreate: 'true'
@@ -158,20 +227,40 @@ test('imagestream recreate true with "true"', (t) => {
     buildName: 'nodejs-s2i-build',
     projectName: 'project-name',
     version: '1.0.0',
-    context: {
-      namespace: ''
+    namespace: {
+      name: ''
     },
     openshiftRestClient: {
-      imagestreams: {
-        find: (imageStreamName) => {
-          return Promise.resolve({ code: 200 });
-        },
-        remove: (imageStreamName, options) => {
-          t.pass();
-          return Promise.resolve();
-        },
-        create: (imageStreamName) => {
-          return Promise.resolve(imageStreamName);
+      apis: {
+        image: {
+          v1: {
+            ns: (namespace) => {
+              if (call < 2) {
+                call++;
+                return {
+                  imagestreams: (projectName) => {
+                    return {
+                      get: () => {
+                        return Promise.resolve({ code: 200, body: { metadata: { name: 'imagestream' } } });
+                      },
+                      delete: () => {
+                        t.pass();
+                        return Promise.resolve({ code: 204 });
+                      }
+                    };
+                  }
+                };
+              } else {
+                return {
+                  imagestreams: {
+                    post: (imageStream) => {
+                      Promise.resolve({ code: 201, body: imageStream });
+                    }
+                  }
+                };
+              }
+            }
+          }
         }
       }
     }

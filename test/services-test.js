@@ -14,18 +14,27 @@ test('test services, already created', (t) => {
 
   const config = {
     projectName: 'test-project',
-    context: {
-      namespace: 'namespace'
+    namespace: {
+      name: 'namespace'
     },
     projectVersion: '1.0.0',
     openshiftRestClient: {
-      services:
-      {
-        find: (name) => {
-          if (name !== resource.metadata.name) {
-            t.fail('name argument does not match the resource.metadata.name');
+      api: {
+        v1: {
+          ns: (namespace) => {
+            return {
+              service: (name) => {
+                if (name !== resource.metadata.name) {
+                  t.fail('name argument does not match the resource.metadata.name');
+                }
+                return {
+                  get: () => {
+                    return Promise.resolve({ code: 200, body: { metadata: { name: 'service' } } });
+                  }
+                };
+              }
+            };
           }
-          return { code: 200, metadata: { name: 'service' } };
         }
       }
     }
@@ -49,26 +58,50 @@ test('test services, not created', (t) => {
     }
   };
 
+  let call = 0;
+
   const config = {
     projectName: 'test-project',
-    context: {
-      namespace: 'namespace'
+    namespace: {
+      name: 'namespace'
     },
     projectVersion: '1.0.0',
     openshiftRestClient: {
-      services:
-      {
-        find: (name) => {
-          return { code: 404 };
-        },
-        create: service => service
+      api: {
+        v1: {
+          ns: (namespace) => {
+            if (call === 0) {
+              call++;
+              return {
+                service: (name) => {
+                  if (name !== resource.metadata.name) {
+                    t.fail('name argument does not match the resource.metadata.name');
+                  }
+                  return {
+                    get: () => {
+                      return Promise.resolve({ code: 404 });
+                    }
+                  };
+                }
+              };
+            } else {
+              return {
+                service: {
+                  post: (resource) => {
+                    return Promise.resolve({ code: 201, body: resource.body });
+                  }
+                }
+              };
+            }
+          }
+        }
       }
     }
   };
 
   const p = services(config, resource).then((service) => {
-    t.equal(service.kind, 'Service', 'is a Service Kind');
-    t.equal(service.metadata.name, 'my service', 'metadata.name should be my service');
+    t.equal(service.body.kind, 'Service', 'is a Service Kind');
+    t.equal(service.body.metadata.name, 'my service', 'metadata.name should be my service');
     t.end();
   });
 

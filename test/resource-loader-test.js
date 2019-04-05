@@ -107,9 +107,7 @@ test('test only return .ymls or .yamls or .json', (t) => {
   const config = {
     projectLocation: process.cwd(),
     nodeshiftDirectory: '.nodeshift',
-    context: {
-      namespace: 'my namespace'
-    }
+    namespace: 'my namespace'
   };
 
   resourceLoader(config).then((resourceList) => {
@@ -144,9 +142,7 @@ test('test error on kind mapping', (t) => {
   const config = {
     projectLocation: process.cwd(),
     nodeshiftDirectory: '.nodeshift',
-    context: {
-      namespace: 'my namespace'
-    }
+    namespace: 'my namespace'
   };
 
   resourceLoader(config).catch((err) => {
@@ -180,9 +176,7 @@ test('test error on kind from name', (t) => {
   const config = {
     projectLocation: process.cwd(),
     nodeshiftDirectory: '.nodeshift',
-    context: {
-      namespace: 'my namespace'
-    }
+    namespace: 'my namespace'
   };
 
   resourceLoader(config).catch((err) => {
@@ -216,9 +210,7 @@ test('test not overwriting metadata', (t) => {
   const config = {
     projectLocation: process.cwd(),
     nodeshiftDirectory: '.nodeshift',
-    context: {
-      namespace: 'my namespace'
-    }
+    namespace: 'my namespace'
   };
 
   resourceLoader(config).then((resourceList) => {
@@ -283,9 +275,7 @@ test('test string substitution', (t) => {
   const config = {
     projectLocation: process.cwd(),
     nodeshiftDirectory: '.nodeshift',
-    context: {
-      namespace: 'my namespace'
-    },
+    namespace: 'my namespace',
     definedProperties: [{ name: 'SSO_AUTH_SERVER_URL', value: 'https://yea' }]
   };
 

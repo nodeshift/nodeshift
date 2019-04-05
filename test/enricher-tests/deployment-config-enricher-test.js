@@ -6,8 +6,8 @@ const proxyquire = require('proxyquire');
 const config = {
   projectName: 'Project Name',
   version: '1.0.0',
-  context: {
-    namespace: 'namespace'
+  namespace: {
+    name: 'namespace'
   }
 };
 
@@ -95,6 +95,6 @@ test('deployment config enricher - deployment config', async (t) => {
   t.equal(Array.isArray(dce), true, 'should return an array');
   t.equal(dce.length, 2, 'should have the same length');
   t.equal(dce[1].kind, 'DeploymentConfig', 'should have the depoymentConfig type');
-  t.equal(dce[1].metadata.namespace, config.context.namespace, 'should be enriched with the namespace value');
+  t.equal(dce[1].metadata.namespace, config.namespace.name, 'should be enriched with the namespace value');
   t.end();
 });

@@ -75,35 +75,74 @@ test('return list items', (t) => {
 
   const config = {
     projectName: 'project name',
+    namespace: {
+      name: ''
+    },
     openshiftRestClient: {
-      routes: {
-        remove: (name) => {
-          t.equal(name, metadata.name, 'name should be equal');
-          return Promise.resolve();
+      api: {
+        v1: {
+          ns: (name) => {
+            return {
+              secrets: (name) => {
+                t.equal(name, metadata.name, 'name should be equal');
+                return {
+                  delete: (resource) => {
+                    return Promise.resolve({ code: 204 });
+                  }
+                };
+              },
+              service: (name) => {
+                t.equal(name, metadata.name, 'name should be equal');
+                return {
+                  delete: (resource) => {
+                    return Promise.resolve({ code: 204 });
+                  }
+                };
+              },
+              configmaps: (name) => {
+                t.equal(name, metadata.name, 'name should be equal');
+                return {
+                  delete: (resource) => {
+                    return Promise.resolve({ code: 204 });
+                  }
+                };
+              }
+            };
+          }
         }
       },
-      services: {
-        remove: (name) => {
-          t.equal(name, metadata.name, 'name should be equal');
-          return Promise.resolve();
-        }
-      },
-      configmaps: {
-        remove: (name) => {
-          t.equal(name, metadata.name, 'name should be equal');
-          return Promise.resolve();
-        }
-      },
-      ingress: {
-        remove: (name) => {
-          t.equal(name, metadata.name, 'name should be equal');
-          return Promise.resolve();
-        }
-      },
-      secrets: {
-        remove: (name) => {
-          t.equal(name, metadata.name, 'name should be equal');
-          return Promise.resolve();
+      apis: {
+        extensions: {
+          v1beta1: {
+            ns: (name) => {
+              return {
+                ingresses: (name) => {
+                  t.equal(name, metadata.name, 'name should be equal');
+                  return {
+                    delete: (resource) => {
+                      return Promise.resolve({ code: 204 });
+                    }
+                  };
+                }
+              };
+            }
+          }
+        },
+        route: {
+          v1: {
+            ns: (name) => {
+              return {
+                routes: (name) => {
+                  t.equal(name, metadata.name, 'name should be equal');
+                  return {
+                    delete: (resource) => {
+                      return Promise.resolve({ code: 204 });
+                    }
+                  };
+                }
+              };
+            }
+          }
         }
       }
     }

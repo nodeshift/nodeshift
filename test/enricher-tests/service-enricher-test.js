@@ -7,8 +7,8 @@ const serviceEnricher = require('../../lib/resource-enrichers/service-enricher')
 const config = {
   projectName: 'Project Name',
   version: '1.0.0',
-  context: {
-    namespace: 'the namespace'
+  namespace: {
+    name: 'the namespace'
   },
   port: 8080
 };

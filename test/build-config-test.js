@@ -11,20 +11,42 @@ test('basic build-config module specs', (t) => {
 });
 
 test('create buildConfig not found', (t) => {
+  let call = 0;
+
   const config = {
     buildName: 'nodejs-s2i-build',
     projectName: 'project-name',
     version: '1.0.0',
-    context: {
-      namespace: ''
+    namespace: {
+      name: ''
     },
     openshiftRestClient: {
-      buildconfigs: {
-        find: (buildName) => {
-          return Promise.resolve({ code: 404 });
-        },
-        create: (buildConfig) => {
-          return Promise.resolve(buildConfig);
+      apis: {
+        build: {
+          v1: {
+            ns: (namespace) => {
+              if (call === 0) {
+                call++;
+                return {
+                  buildconfigs: (buildName) => {
+                    return {
+                      get: () => {
+                        return Promise.resolve({ code: 404 });
+                      }
+                    };
+                  }
+                };
+              } else {
+                return {
+                  buildconfigs: {
+                    post: (resource) => {
+                      Promise.resolve({ code: 201, body: resource.body });
+                    }
+                  }
+                };
+              }
+            }
+          }
         }
       }
     }
@@ -51,13 +73,25 @@ test('buildConfig found - no recreate', (t) => {
     buildName: 'nodejs-s2i-build',
     projectName: 'project-name',
     version: '1.0.0',
-    context: {
-      namespace: ''
+    namespace: {
+      name: ''
     },
     openshiftRestClient: {
-      buildconfigs: {
-        find: (buildName) => {
-          return Promise.resolve({ code: 200 });
+      apis: {
+        build: {
+          v1: {
+            ns: (namespace) => {
+              return {
+                buildconfigs: (buildName) => {
+                  return {
+                    get: () => {
+                      return Promise.resolve({ code: 200, body: { metadata: { name: 'buildName' } } });
+                    }
+                  };
+                }
+              };
+            }
+          }
         }
       }
     }
@@ -87,13 +121,25 @@ test('build recreate but is an imagestream', (t) => {
     buildName: 'nodejs-s2i-build',
     projectName: 'project-name',
     version: '1.0.0',
-    context: {
-      namespace: ''
+    namespace: {
+      name: ''
     },
     openshiftRestClient: {
-      buildconfigs: {
-        find: (buildName) => {
-          return Promise.resolve({ code: 200 });
+      apis: {
+        build: {
+          v1: {
+            ns: (namespace) => {
+              return {
+                buildconfigs: (buildName) => {
+                  return {
+                    get: () => {
+                      return Promise.resolve({ code: 200, body: { metadata: { name: 'buildName' } } });
+                    }
+                  };
+                }
+              };
+            }
+          }
         }
       }
     }
@@ -131,6 +177,50 @@ test('build recreate true with removing builds', (t) => {
     }
   ];
 
+  let call = 0;
+
+  const buildConfigFunction = () => {
+    return {
+      get: () => {
+        call++;
+        return Promise.resolve({ code: 200 });
+      },
+      delete: () => {
+        call++;
+        return Promise.resolve({ code: 204 });
+      }
+    };
+  };
+
+  const buildConfigObject = {
+    post: (resource) => {
+      Promise.resolve({ code: 201, body: resource.body });
+    }
+  };
+
+  const buildsFunction = () => {
+    return {
+      delete: () => {
+        call++;
+        return Promise.resolve({ code: 204 });
+      }
+    };
+  };
+
+  const buildsObject = {
+    get: () => {
+      call++;
+      return Promise.resolve({ code: 200, body: { items: returnedBuilds } });
+    }
+  };
+
+  const namespaceStub = (namespace) => {
+    return {
+      buildconfigs: (call < 5) ? buildConfigFunction : buildConfigObject,
+      builds: (call === 1) ? buildsObject : buildsFunction
+    };
+  };
+
   const config = {
     build: {
       recreate: true
@@ -138,27 +228,15 @@ test('build recreate true with removing builds', (t) => {
     buildName: 'nodejs-s2i-build',
     projectName: 'project-name',
     version: '1.0.0',
-    context: {
-      namespace: ''
+    namespace: {
+      name: ''
     },
     openshiftRestClient: {
-      builds: {
-        findAll: () => {
-          return Promise.resolve({ items: returnedBuilds });
-        },
-        remove: (buildName) => {
-          return Promise.resolve();
-        }
-      },
-      buildconfigs: {
-        find: (buildName) => {
-          return Promise.resolve({ code: 200 });
-        },
-        remove: (buildName, options) => {
-          return Promise.resolve();
-        },
-        create: (buildConfig) => {
-          return Promise.resolve(buildConfig);
+      apis: {
+        build: {
+          v1: {
+            ns: namespaceStub
+          }
         }
       }
     }
@@ -174,7 +252,6 @@ test('build recreate true with removing builds', (t) => {
 });
 
 test('build recreate true with removing builds with "true"', (t) => {
-  t.plan(4);
   const returnedBuilds = [
     {
       kind: 'Build',
@@ -190,6 +267,50 @@ test('build recreate true with removing builds with "true"', (t) => {
     }
   ];
 
+  let call = 0;
+
+  const buildConfigFunction = () => {
+    return {
+      get: () => {
+        call++;
+        return Promise.resolve({ code: 200 });
+      },
+      delete: () => {
+        call++;
+        return Promise.resolve({ code: 204 });
+      }
+    };
+  };
+
+  const buildConfigObject = {
+    post: (resource) => {
+      Promise.resolve({ code: 201, body: resource.body });
+    }
+  };
+
+  const buildsFunction = () => {
+    return {
+      delete: () => {
+        call++;
+        return Promise.resolve({ code: 204 });
+      }
+    };
+  };
+
+  const buildsObject = {
+    get: () => {
+      call++;
+      return Promise.resolve({ code: 200, body: { items: returnedBuilds } });
+    }
+  };
+
+  const namespaceStub = (namespace) => {
+    return {
+      buildconfigs: (call < 5) ? buildConfigFunction : buildConfigObject,
+      builds: (call === 1) ? buildsObject : buildsFunction
+    };
+  };
+
   const config = {
     build: {
       recreate: 'true'
@@ -197,29 +318,15 @@ test('build recreate true with removing builds with "true"', (t) => {
     buildName: 'nodejs-s2i-build',
     projectName: 'project-name',
     version: '1.0.0',
-    context: {
-      namespace: ''
+    namespace: {
+      name: ''
     },
     openshiftRestClient: {
-      builds: {
-        findAll: () => {
-          t.pass();
-          return Promise.resolve({ items: returnedBuilds });
-        },
-        remove: (buildName) => {
-          t.pass();
-          return Promise.resolve();
-        }
-      },
-      buildconfigs: {
-        find: (buildName) => {
-          return Promise.resolve({ code: 200 });
-        },
-        remove: (buildName, options) => {
-          return Promise.resolve();
-        },
-        create: (buildConfig) => {
-          return Promise.resolve(buildConfig);
+      apis: {
+        build: {
+          v1: {
+            ns: namespaceStub
+          }
         }
       }
     }

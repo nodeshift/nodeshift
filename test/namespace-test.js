@@ -18,17 +18,20 @@ test('namespace - create the namespace', t => {
       name: 'projectname'
     },
     openshiftRestClient: {
-      projects: {
-        findAll: () => {
-          return Promise.resolve({
-            kind: 'Project',
-            items: []
-          });
-        }
-      },
-      projectrequests: {
-        create: (projectRequest) => {
-          return Promise.resolve({});
+      apis: {
+        project: {
+          v1: {
+            projects: {
+              get: () => {
+                return Promise.resolve({ code: 200, body: { kind: 'Project', items: [] } });
+              }
+            },
+            projectrequests: {
+              post: (resource) => {
+                return Promise.resolve({ code: 201, body: resource });
+              }
+            }
+          }
         }
       }
     }
@@ -50,21 +53,20 @@ test('namespace - create the namespace, others exist', t => {
       name: 'projectname'
     },
     openshiftRestClient: {
-      projects: {
-        findAll: () => {
-          return Promise.resolve({
-            kind: 'Project',
-            items: [{
-              metadata: {
-                name: 'not_this_one'
+      apis: {
+        project: {
+          v1: {
+            projects: {
+              get: () => {
+                return Promise.resolve({ code: 200, body: { kind: 'Project', items: [ { metadata: { name: 'not_this_one' } } ] } });
               }
-            }]
-          });
-        }
-      },
-      projectrequests: {
-        create: (projectRequest) => {
-          return Promise.resolve({});
+            },
+            projectrequests: {
+              post: (resource) => {
+                return Promise.resolve({ code: 201, body: resource });
+              }
+            }
+          }
         }
       }
     }
@@ -86,24 +88,20 @@ test('namespace - namespace exists', t => {
       name: 'projectname'
     },
     openshiftRestClient: {
-      projects: {
-        findAll: () => {
-          return Promise.resolve({
-            kind: 'Project',
-            items: [{
-              metadata: {
-                name: 'projectname'
-              },
-              status: {
-                phase: 'Created'
+      apis: {
+        project: {
+          v1: {
+            projects: {
+              get: () => {
+                return Promise.resolve({ code: 200, body: { kind: 'Project', items: [ { metadata: { name: 'projectname' }, status: { phase: 'Created' } } ] } });
               }
-            }]
-          });
-        }
-      },
-      projectrequests: {
-        create: (projectRequest) => {
-          return Promise.reject(new Error('should fail'));
+            },
+            projectrequests: {
+              post: (resource) => {
+                return Promise.reject(new Error('should fail'));
+              }
+            }
+          }
         }
       }
     }
@@ -126,24 +124,20 @@ test('namespace - namespace exists but is Terminating', t => {
       name: 'projectname'
     },
     openshiftRestClient: {
-      projects: {
-        findAll: () => {
-          return Promise.resolve({
-            kind: 'Project',
-            items: [{
-              metadata: {
-                name: 'projectname'
-              },
-              status: {
-                phase: 'Terminating'
+      apis: {
+        project: {
+          v1: {
+            projects: {
+              get: () => {
+                return Promise.resolve({ code: 200, body: { kind: 'Project', items: [ { metadata: { name: 'projectname' }, status: { phase: 'Terminating' } } ] } });
               }
-            }]
-          });
-        }
-      },
-      projectrequests: {
-        create: (projectRequest) => {
-          return Promise.reject(new Error('should fail'));
+            },
+            projectrequests: {
+              post: (resource) => {
+                return Promise.reject(new Error('should fail'));
+              }
+            }
+          }
         }
       }
     }
@@ -166,9 +160,18 @@ test('namespace - remove the namespace', t => {
       name: 'projectname'
     },
     openshiftRestClient: {
-      projects: {
-        remove: () => {
-          return Promise.resolve({});
+      apis: {
+        project: {
+          v1: {
+            projects: (namespace) => {
+              t.equal(namespace, config.namespace.name, 'should be passing in the correct namespace name');
+              return {
+                delete: () => {
+                  return Promise.resolve({ code: 204 });
+                }
+              };
+            }
+          }
         }
       }
     }

@@ -17,25 +17,36 @@ test('test routes, already created', (t) => {
 
   const config = {
     projectName: 'test-project',
-    context: {
-      namespace: 'namespace'
+    namespace: {
+      name: 'namespace'
     },
     projectVersion: '1.0.0',
     openshiftRestClient: {
-      routes:
-      {
-        find: (name) => {
-          if (name !== resource.metadata.name) {
-            t.fail('name argument does not match the resource.metadata.name');
+      apis: {
+        route: {
+          v1: {
+            ns: (namespace) => {
+              return {
+                routes: (name) => {
+                  if (name !== resource.metadata.name) {
+                    t.fail('name argument does not match the resource.metadata.name');
+                  }
+                  return {
+                    get: () => {
+                      return Promise.resolve({ code: 200, body: { metadata: { name: 'route' }, spec: { host: '192.168.1.1' } } });
+                    }
+                  };
+                }
+              };
+            }
           }
-          return { code: 200, metadata: { name: 'route' }, spec: { host: '192.168.1.1' } };
         }
       }
     }
   };
 
-  const p = routes(config, resource).then((service) => {
-    t.equal(service.code, 200, 'route response code should be 200');
+  const p = routes(config, resource).then((route) => {
+    t.equal(route.code, 200, 'route response code should be 200');
     t.end();
   });
 
@@ -55,26 +66,52 @@ test('test routes, not created', (t) => {
     }
   };
 
+  let call = 0;
+
   const config = {
     projectName: 'test-project',
-    context: {
-      namespace: 'namespace'
+    namespace: {
+      name: 'namespace'
     },
     projectVersion: '1.0.0',
     openshiftRestClient: {
-      routes:
-      {
-        find: (name) => {
-          return { code: 404 };
-        },
-        create: route => route
+      apis: {
+        route: {
+          v1: {
+            ns: (namespace) => {
+              if (call === 0) {
+                call++;
+                return {
+                  routes: (name) => {
+                    if (name !== resource.metadata.name) {
+                      t.fail('name argument does not match the resource.metadata.name');
+                    }
+                    return {
+                      get: () => {
+                        return Promise.resolve({ code: 404 });
+                      }
+                    };
+                  }
+                };
+              } else {
+                return {
+                  routes: {
+                    post: (resource) => {
+                      return Promise.resolve({ code: 201, body: resource.body });
+                    }
+                  }
+                };
+              }
+            }
+          }
+        }
       }
     }
   };
 
   const p = routes(config, resource).then((route) => {
-    t.equal(route.kind, 'Route', 'is a Route Kind');
-    t.equal(route.metadata.name, 'my route', 'metadata.name should be my service');
+    t.equal(route.body.kind, 'Route', 'is a Route Kind');
+    t.equal(route.body.metadata.name, 'my route', 'metadata.name should be my route');
     t.end();
   });
 

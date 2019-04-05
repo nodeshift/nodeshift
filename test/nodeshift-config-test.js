@@ -5,15 +5,19 @@ const proxyquire = require('proxyquire');
 
 test('nodeshift-config basic setup', (t) => {
   const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
-    'openshift-config-loader': () => {
-      return Promise.resolve({
-        context: {
-          namespace: 'test-namespace'
-        },
-        cluster: 'http://mock-cluster'
-      });
-    },
-    'openshift-rest-client': () => { return Promise.resolve({}); }
+    'openshift-rest-client': {
+      config: {
+        fromKubeconfig: () => {
+          return {
+            namespace: 'test-namespace',
+            url: 'http://mock-cluster'
+          };
+        }
+      },
+      OpenshiftClient: () => {
+        return Promise.resolve();
+      }
+    }
   });
 
   const p = nodeshiftConfig().then((config) => {
@@ -31,15 +35,19 @@ test('nodeshift-config basic setup', (t) => {
 
 test('nodeshift-config basic setup with deploy option', (t) => {
   const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
-    'openshift-config-loader': () => {
-      return Promise.resolve({
-        context: {
-          namespace: 'test-namespace'
-        },
-        cluster: 'http://mock-cluster'
-      });
-    },
-    'openshift-rest-client': () => { return Promise.resolve({}); }
+    'openshift-rest-client': {
+      config: {
+        fromKubeconfig: () => {
+          return {
+            namespace: 'test-namespace',
+            url: 'http://mock-cluster'
+          };
+        }
+      },
+      OpenshiftClient: () => {
+        return Promise.resolve();
+      }
+    }
   });
 
   const options = {
@@ -59,15 +67,19 @@ test('nodeshift-config basic setup with deploy option', (t) => {
 
 test('nodeshift-config other project location and nodeshiftDir', (t) => {
   const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
-    'openshift-config-loader': () => {
-      return Promise.resolve({
-        context: {
-          namespace: 'test-namespace'
-        },
-        cluster: 'http://mock-cluster'
-      });
-    },
-    'openshift-rest-client': () => { return Promise.resolve({}); }
+    'openshift-rest-client': {
+      config: {
+        fromKubeconfig: () => {
+          return {
+            namespace: 'test-namespace',
+            url: 'http://mock-cluster'
+          };
+        }
+      },
+      OpenshiftClient: () => {
+        return Promise.resolve();
+      }
+    }
   });
 
   const options = {
@@ -82,15 +94,19 @@ test('nodeshift-config other project location and nodeshiftDir', (t) => {
 
 test('nodeshift-config no project Version', (t) => {
   const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
-    'openshift-config-loader': () => {
-      return Promise.resolve({
-        context: {
-          namespace: 'test-namespace'
-        },
-        cluster: 'http://mock-cluster'
-      });
-    },
-    'openshift-rest-client': () => { return Promise.resolve({}); }
+    'openshift-rest-client': {
+      config: {
+        fromKubeconfig: () => {
+          return {
+            namespace: 'test-namespace',
+            url: 'http://mock-cluster'
+          };
+        }
+      },
+      OpenshiftClient: () => {
+        return Promise.resolve();
+      }
+    }
   });
 
   const options = {
@@ -105,15 +121,19 @@ test('nodeshift-config no project Version', (t) => {
 
 test('nodeshift-config no package.json', (t) => {
   const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
-    'openshift-config-loader': () => {
-      return Promise.resolve({
-        context: {
-          namespace: 'test-namespace'
-        },
-        cluster: 'http://mock-cluster'
-      });
-    },
-    'openshift-rest-client': () => { return Promise.resolve({}); }
+    'openshift-rest-client': {
+      config: {
+        fromKubeconfig: () => {
+          return {
+            namespace: 'test-namespace',
+            url: 'http://mock-cluster'
+          };
+        }
+      },
+      OpenshiftClient: () => {
+        return Promise.resolve();
+      }
+    }
   });
 
   const options = {
@@ -128,15 +148,19 @@ test('nodeshift-config no package.json', (t) => {
 
 test('nodeshift-config invalid "name" in package.json', (t) => {
   const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
-    'openshift-config-loader': () => {
-      return Promise.resolve({
-        context: {
-          namespace: 'test-namespace'
-        },
-        cluster: 'http://mock-cluster'
-      });
-    },
-    'openshift-rest-client': () => { return Promise.resolve({}); }
+    'openshift-rest-client': {
+      config: {
+        fromKubeconfig: () => {
+          return {
+            namespace: 'test-namespace',
+            url: 'http://mock-cluster'
+          };
+        }
+      },
+      OpenshiftClient: () => {
+        return Promise.resolve();
+      }
+    }
   });
 
   const tmpDir = require('os').tmpdir();
@@ -172,43 +196,48 @@ test('nodeshift-config invalid "name" in package.json', (t) => {
 });
 
 test('nodeshift-config options for the config loader', (t) => {
-  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
-    'openshift-config-loader': (options) => {
-      t.ok(options.tryServiceAccount, 'tryServiceAccount should be there');
-      t.ok(options.configLocation, 'configLocation should be there');
-      return Promise.resolve({
-        context: {
-          namespace: 'test-namespace'
-        },
-        cluster: 'http://mock-cluster'
-      });
-    },
-    'openshift-rest-client': () => { return Promise.resolve({}); }
-  });
-
   const options = {
-    configLocation: '../examples/sample-project',
-    tryServiceAccount: true
+    config: '../examples/sample-project'
   };
 
+  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+    'openshift-rest-client': {
+      config: {
+        fromKubeconfig: (config) => {
+          t.equal(config, options.config, 'config should be what options.config is');
+          return {
+            namespace: 'test-namespace',
+            url: 'http://mock-cluster'
+          };
+        }
+      },
+      OpenshiftClient: () => {
+        return Promise.resolve();
+      }
+    }
+  });
+
   nodeshiftConfig(options).then((config) => {
-    t.ok(config.tryServiceAccount, 'tryServiceAccount should be there');
-    t.ok(config.configLocation, 'configLocation should be there');
+    t.ok(config.config, 'options config should be there');
     t.end();
   });
 });
 
 test('nodeshift-config options for the config loader - change the namespace', (t) => {
   const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
-    'openshift-config-loader': (options) => {
-      return Promise.resolve({
-        context: {
-          namespace: 'test-namespace'
-        },
-        cluster: 'http://mock-cluster'
-      });
-    },
-    'openshift-rest-client': () => { return Promise.resolve({}); }
+    'openshift-rest-client': {
+      config: {
+        fromKubeconfig: () => {
+          return {
+            namespace: 'test-namespace',
+            url: 'http://mock-cluster'
+          };
+        }
+      },
+      OpenshiftClient: () => {
+        return Promise.resolve();
+      }
+    }
   });
 
   const options = {
@@ -219,22 +248,26 @@ test('nodeshift-config options for the config loader - change the namespace', (t
 
   nodeshiftConfig(options).then((config) => {
     t.equal(config.namespace, options.namespace, 'namespace should be changed');
-    t.equal(config.context.namespace, options.namespace.name, 'context and options namespace should be the same');
+    t.equal(config.namespace.name, options.namespace.name, 'context and options namespace should be the same');
     t.end();
   });
 });
 
 test('nodeshift-config options for the config loader - change the namespace, format correctly', (t) => {
   const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
-    'openshift-config-loader': (options) => {
-      return Promise.resolve({
-        context: {
-          namespace: 'test-namespace'
-        },
-        cluster: 'http://mock-cluster'
-      });
-    },
-    'openshift-rest-client': () => { return Promise.resolve({}); }
+    'openshift-rest-client': {
+      config: {
+        fromKubeconfig: () => {
+          return {
+            namespace: 'test-namespace',
+            url: 'http://mock-cluster'
+          };
+        }
+      },
+      OpenshiftClient: () => {
+        return Promise.resolve();
+      }
+    }
   });
 
   const options = {
@@ -244,22 +277,26 @@ test('nodeshift-config options for the config loader - change the namespace, for
   };
 
   nodeshiftConfig(options).then((config) => {
-    t.equal(config.context.namespace, 'newproject', 'context and options namespace should be the same');
+    t.equal(config.namespace.name, 'newproject', 'context and options namespace should be the same');
     t.end();
   });
 });
 
 test('nodeshift-config options for the config loader - use namspace object format, no name', (t) => {
   const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
-    'openshift-config-loader': (options) => {
-      return Promise.resolve({
-        context: {
-          namespace: 'test-namespace'
-        },
-        cluster: 'http://mock-cluster'
-      });
-    },
-    'openshift-rest-client': () => { return Promise.resolve({}); }
+    'openshift-rest-client': {
+      config: {
+        fromKubeconfig: () => {
+          return {
+            namespace: 'test-namespace',
+            url: 'http://mock-cluster'
+          };
+        }
+      },
+      OpenshiftClient: () => {
+        return Promise.resolve();
+      }
+    }
   });
 
   const options = {
@@ -276,15 +313,19 @@ test('nodeshift-config options for the config loader - use namspace object forma
 
 test('nodeshift-config options for the config loader - using namespace object format', (t) => {
   const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
-    'openshift-config-loader': (options) => {
-      return Promise.resolve({
-        context: {
-          namespace: 'test-namespace'
-        },
-        cluster: 'http://mock-cluster'
-      });
-    },
-    'openshift-rest-client': () => { return Promise.resolve({}); }
+    'openshift-rest-client': {
+      config: {
+        fromKubeconfig: () => {
+          return {
+            namespace: 'test-namespace',
+            url: 'http://mock-cluster'
+          };
+        }
+      },
+      OpenshiftClient: () => {
+        return Promise.resolve();
+      }
+    }
   });
 
   const options = {
@@ -295,7 +336,7 @@ test('nodeshift-config options for the config loader - using namespace object fo
   };
 
   nodeshiftConfig(options).then((config) => {
-    t.equal(config.context.namespace, 'funproject', 'context and options namespace should be the same');
+    t.equal(config.namespace.name, 'funproject', 'context and options namespace should be the same');
     t.equal(config.namespace.userDefined, true, 'should have the user defined variable');
     t.equal(config.namespace.displayName, options.namespace.displayName, 'should have the displayName');
     t.end();
