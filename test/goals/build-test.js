@@ -16,7 +16,7 @@ const config = {
 
 test('build goal function', (t) => {
   const build = proxyquire('../../lib/goals/build', {
-    '../docker-archiver': {
+    '../project-archiver': {
       archiveAndTar: () => Promise.resolve()
     },
     '../build-config': {

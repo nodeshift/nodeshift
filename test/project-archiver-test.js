@@ -6,13 +6,13 @@ const proxyquire = require('proxyquire');
 // TODO: test the changing of BUILD LOCATION
 
 test('test default build location', (t) => {
-  const dockerArchiver = require('../lib/docker-archiver');
-  t.equals(dockerArchiver.DEFAULT_BUILD_LOCATION, 'tmp/nodeshift/build', 'tmp/nodeshift/build should be the default directory');
+  const projectArchiver = require('../lib/project-archiver');
+  t.equals(projectArchiver.DEFAULT_BUILD_LOCATION, 'tmp/nodeshift/build', 'tmp/nodeshift/build should be the default directory');
   t.end();
 });
 
 test('test cleanup function', (t) => {
-  const dockerArchiver = proxyquire('../lib/docker-archiver', {
+  const projectArchiver = proxyquire('../lib/project-archiver', {
     './helpers': {
       createDir: () => {
         return Promise.resolve();
@@ -32,14 +32,14 @@ test('test cleanup function', (t) => {
     projectPackage: {}
   };
 
-  dockerArchiver.archiveAndTar(config).then(() => {
+  projectArchiver.archiveAndTar(config).then(() => {
     t.pass('should cleanup stuff');
     t.end();
   });
 });
 
 test('test cleanup function - failure', (t) => {
-  const dockerArchiver = proxyquire('../lib/docker-archiver', {
+  const projectArchiver = proxyquire('../lib/project-archiver', {
     './helpers': {
       cleanUp: () => {
         return Promise.reject(new Error('error'));
@@ -47,14 +47,14 @@ test('test cleanup function - failure', (t) => {
     }
   });
 
-  dockerArchiver.archiveAndTar({}).catch(() => {
+  projectArchiver.archiveAndTar({}).catch(() => {
     t.pass('should fail with error');
     t.end();
   });
 });
 
 test('test error with create dir function', (t) => {
-  const dockerArchiver = proxyquire('../lib/docker-archiver', {
+  const projectArchiver = proxyquire('../lib/project-archiver', {
     './helpers': {
       createDir: () => {
         return Promise.reject(new Error('error creating directory'));
@@ -69,14 +69,14 @@ test('test error with create dir function', (t) => {
     projectPackage: {}
   };
 
-  dockerArchiver.archiveAndTar(config).catch((err) => {
+  projectArchiver.archiveAndTar(config).catch((err) => {
     t.equals(err.message, 'error creating directory');
     t.end();
   });
 });
 
 test('test no file prop, exclude stuff', (t) => {
-  const dockerArchiver = proxyquire('../lib/docker-archiver', {
+  const projectArchiver = proxyquire('../lib/project-archiver', {
     './helpers': {
       createDir: () => {
         return Promise.resolve();
@@ -103,14 +103,14 @@ test('test no file prop, exclude stuff', (t) => {
     projectPackage: {}
   };
 
-  dockerArchiver.archiveAndTar(config).then(() => {
+  projectArchiver.archiveAndTar(config).then(() => {
     t.pass('should resolve');
     t.end();
   });
 });
 
 test('test logger warning if no files prop', (t) => {
-  const dockerArchiver = proxyquire('../lib/docker-archiver', {
+  const projectArchiver = proxyquire('../lib/project-archiver', {
     './helpers': {
       createDir: () => {
         return Promise.resolve();
@@ -139,14 +139,14 @@ test('test logger warning if no files prop', (t) => {
     projectPackage: {}
   };
 
-  dockerArchiver.archiveAndTar(config).then(() => {
+  projectArchiver.archiveAndTar(config).then(() => {
     t.pass('should resolve');
     t.end();
   });
 });
 
 test('test logger warning if some files don\'t exist', (t) => {
-  const dockerArchiver = proxyquire('../lib/docker-archiver', {
+  const projectArchiver = proxyquire('../lib/project-archiver', {
     tar: {
       create: () => {
         return Promise.resolve();
@@ -183,14 +183,14 @@ test('test logger warning if some files don\'t exist', (t) => {
     }
   };
 
-  dockerArchiver.archiveAndTar(config).then(() => {
+  projectArchiver.archiveAndTar(config).then(() => {
     t.pass('should resolve');
     t.end();
   });
 });
 
 test('test logger no warning', (t) => {
-  const dockerArchiver = proxyquire('../lib/docker-archiver', {
+  const projectArchiver = proxyquire('../lib/project-archiver', {
     tar: {
       create: () => {
         return Promise.resolve();
@@ -218,7 +218,7 @@ test('test logger no warning', (t) => {
     }
   };
 
-  dockerArchiver.archiveAndTar(config).then(() => {
+  projectArchiver.archiveAndTar(config).then(() => {
     t.pass('should resolve');
     t.end();
   });
@@ -232,7 +232,7 @@ test('change in project location', (t) => {
     }
   };
 
-  const dockerArchiver = proxyquire('../lib/docker-archiver', {
+  const projectArchiver = proxyquire('../lib/project-archiver', {
     './helpers': {
       createDir: () => {
         return Promise.resolve();
@@ -258,7 +258,7 @@ test('change in project location', (t) => {
     }
   });
 
-  dockerArchiver.archiveAndTar(config).then(() => {
+  projectArchiver.archiveAndTar(config).then(() => {
     t.pass('should cleanup stuff');
     t.end();
   });
