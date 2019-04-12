@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.0.0](https://github.com/nodeshift/nodeshift/compare/v2.1.1...v3.0.0) (2019-04-12)
+
+
+* remove the string version of the namespace flag (#299) ([5674b89](https://github.com/nodeshift/nodeshift/commit/5674b89)), closes [#299](https://github.com/nodeshift/nodeshift/issues/299) [#282](https://github.com/nodeshift/nodeshift/issues/282)
+
+
+### Bug Fixes
+
+* build.recreate should also check the string version of true/false ([#297](https://github.com/nodeshift/nodeshift/issues/297)) ([140b13a](https://github.com/nodeshift/nodeshift/commit/140b13a)), closes [#295](https://github.com/nodeshift/nodeshift/issues/295)
+* load the projectLocation not relative to the nodeshift-config.js file ([#302](https://github.com/nodeshift/nodeshift/issues/302)) ([eaf0046](https://github.com/nodeshift/nodeshift/commit/eaf0046)), closes [#301](https://github.com/nodeshift/nodeshift/issues/301)
+* when the projectLocation flag is used and no file property in the package.json, use the correct location ([58e340a](https://github.com/nodeshift/nodeshift/commit/58e340a)), closes [#303](https://github.com/nodeshift/nodeshift/issues/303)
+
+
+### Features
+
+* BREAKING CHANGE: remove the nodeVersion flag. ([#298](https://github.com/nodeshift/nodeshift/issues/298)) ([1c104ff](https://github.com/nodeshift/nodeshift/commit/1c104ff)), closes [#281](https://github.com/nodeshift/nodeshift/issues/281)
+* Remove Watch command ([#296](https://github.com/nodeshift/nodeshift/issues/296)) ([fa79166](https://github.com/nodeshift/nodeshift/commit/fa79166)), closes [#280](https://github.com/nodeshift/nodeshift/issues/280)
+* Update to latest Openshift Rest Client ([#293](https://github.com/nodeshift/nodeshift/issues/293)) ([e73db9c](https://github.com/nodeshift/nodeshift/commit/e73db9c))
+
+
+### BREAKING CHANGES
+
+* Slight Refactor
+
+* Updating the Openshift Rest Client to 2.1.0, which has a new API
+
+* Removing strictSSL and tryServiceAccount flags since the updated openshift rest client doesn't need them.
+
+* Removes the openshift config loader, which is no longer used
+* remove the string option for namespace creation.  This has been deprecated and it is now time to remove it
+* This removes the watch command
+
+This feature was just wrapping the `oc rsync` command, which nodeshift probably shouldn't be doing.  It is better to just use that command instead
+
+
+
 <a name="2.1.1"></a>
 ## [2.1.1](https://github.com/nodeshift/nodeshift/compare/v2.1.0...v2.1.1) (2019-02-04)
 
