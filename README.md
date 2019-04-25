@@ -123,17 +123,17 @@ For example, if the `deploy` method was run, it would return something similar:
     }
 
 #### Example Usage
+```javascript
+const nodeshift = require('nodeshift');
 
-    const nodeshift = require('nodeshift');
-
-    // Deploy an Application
-    nodeshift.deploy().then((response) => {
-        console.log(response);
-        console.log('Application Deployed')
-    }).catch((err) => {
-        console.log(err);
-    })
-
+// Deploy an Application
+nodeshift.deploy().then((response) => {
+    console.log(response);
+    console.log('Application Deployed')
+}).catch((err) => {
+    console.log(err);
+})
+````
 _please note: Currently, once a route, service, deployment config, build config, and imagestream config are created, those are re-used. The only thing that changes from deployment to deployment is the source code.  For application resources, you can update them by undeploying and then deploying again.  BuildConfigs and Imagestreams can be re-created using the --build.recreate flag_
 
 ## Advanced Options
