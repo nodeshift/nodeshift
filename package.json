@@ -14,7 +14,12 @@
     "docs": "documentation build index.js --shallow -f html -o docs --config documentation.yml",
     "ci": "npm run lint && npm run coveralls",
     "prerelease": "npm run lint && npm run test && npm run docs",
-    "release": "standard-version"
+    "release": "standard-version -a"
+  },
+  "standard-version": {
+    "scripts": {
+      "precommit": "git add docs/"
+    }
   },
   "files": [
     "package.json",
