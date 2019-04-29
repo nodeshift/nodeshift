@@ -11,9 +11,15 @@
     "coverage": "nyc npm test",
     "coverage:html": "nyc npm test && nyc report --reporter=html",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "docs": "./node_modules/.bin/jsdoc --verbose -d docs -t ./node_modules/ink-docstrap/template -R README.md index.js",
+    "docs": "documentation build index.js --shallow -f html -o docs --config documentation.yml",
     "ci": "npm run lint && npm run coveralls",
-    "release": "standard-version"
+    "prerelease": "npm run lint && npm run test && npm run docs",
+    "release": "standard-version -a"
+  },
+  "standard-version": {
+    "scripts": {
+      "precommit": "git add docs/"
+    }
   },
   "files": [
     "package.json",
@@ -58,6 +64,7 @@
   "devDependencies": {
     "coveralls": "^3.0.0",
     "cross-env": "^5.1.1",
+    "documentation": "~10.1.0",
     "eslint": "^5.0.1",
     "eslint-config-semistandard": "^13.0.0",
     "eslint-config-standard": "^12.0.0",
@@ -67,7 +74,6 @@
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-standard": "^4.0.0",
     "ink-docstrap": "^1.3.2",
-    "jsdoc": "^3.5.5",
     "nock": "^10.0.0",
     "nyc": "~14.0.0",
     "proxyquire": "^2.0.1",

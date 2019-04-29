@@ -33,10 +33,20 @@ jobs:
       - image: circleci/node:8
     <<: *common-build
 
+    filters:
+      branches:
+        ignore:
+          - gh-pages
+
   node10:
     docker:
       - image: circleci/node:10
     <<: *common-build
+
+    filters:
+      branches:
+        ignore:
+          - gh-pages
 
 workflows:
   version: 2
