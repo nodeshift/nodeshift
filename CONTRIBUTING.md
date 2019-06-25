@@ -73,7 +73,8 @@ Bug fixes and features should come with tests.
 The tests are on `test` directory.
 
 ```
-make
+npm install
+npm test
 ```
 
 ### Push

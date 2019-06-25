@@ -43,7 +43,7 @@ By default, if you run just `nodeshift`, it will run the `deploy` goal, which is
 
 ### `.nodeshift` Directory
 
-The `.nodeshift` directory contains your resource fragements.  These are `.yml` files that describe your services, deployments, routes, etc.  By default, nodeshift will create a `Service` and `DeploymentConfig` in memory, if none are provided.  A `Route` resource fragment should be provided or use the `expose` flag if you want to expose your application to the outside world.
+The `.nodeshift` directory contains your resource fragments.  These are `.yml` files that describe your services, deployments, routes, etc.  By default, nodeshift will create a `Service` and `DeploymentConfig` in memory, if none are provided.  A `Route` resource fragment should be provided or use the `expose` flag if you want to expose your application to the outside world.
 
 ### Resource Fragments
 
@@ -59,9 +59,9 @@ Enrichers will add things to the resource fragments, like missing metadata and l
 
 Default Enrichers will also create a default Service and DeploymentConfig when none are provided.
 
-The default port value is 8080, but that can be overriden with the `--deploy.port` flag.
+The default port value is 8080, but that can be overridden with the `--deploy.port` flag.
 
-You can also override this value by provideding a .nodeshift/deployment.yaml resource file
+You can also override this value by providing a .nodeshift/deployment.yaml resource file
 
 
 #### Resource Fragment Parameters
@@ -150,13 +150,13 @@ Changes the default location of where to look for your project. Defaults to your
 This option is passed through to the [Openshift Config Loader](https://www.npmjs.com/package/openshift-config-loader).  Defaults to the `~/.kube/config`
 
 #### imageTag
-Specify the tag of the docker image to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the [nodeshift s2i images](https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/)
+Specify the tag of the docker image to use for the deployed application. defaults to latest.  These version tags correspond to the docker hub tags of the [nodeshift s2i images](https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/)
 
 #### dockerImage
 Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to [nodeshift/centos7-s2i-nodejs](https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs)
 
 #### quiet
-supress INFO and TRACE lines from output logs.
+suppress INFO and TRACE lines from output logs.
 
 #### expose
 options to create a default route, if non is provided.  Defaults to false
@@ -199,7 +199,7 @@ Shows the below help
             --projectLocation        change the default location of the project   [string]
             --imageTag           The tag of the docker image to use for the deployed
                                 application.                 [string] [default: "latest"]
-            --quiet                  supress INFO and TRACE lines from output logs
+            --quiet                  suppress INFO and TRACE lines from output logs
                                                                                 [boolean]
             --expose            flag to create a default Route and expose the default
                        service [boolean] [choices: true, false] [default: false]
@@ -213,7 +213,7 @@ Shows the below help
             --namespace.remove       flag to remove the user created namespace.  Only
                            applicable for the undeploy command.  Must be used
                            with namespace.name                         [boolean]
-            --namesapce.name         flag to specify the project namespace name to
+            --namespace.name         flag to specify the project namespace name to
                            build/deploy into.  Overwrites any namespace settings
                            in your OpenShift or Kubernetes configuration files
                                                                         [string]
