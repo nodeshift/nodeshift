@@ -3,6 +3,8 @@ dist: trusty
 language: node_js
 node_js:
   - "8"
+  - "10"
+  - "12"
 before_install:
   - npm install -g npm@5
   - npm install -g greenkeeper-lockfile@1
@@ -11,7 +13,7 @@ install: npm install
 before_script: greenkeeper-lockfile-update
 script:
    - npm run ci
-# Only the node version 8 job will upload the lockfile
+# Only the node version 12 job will upload the lockfile
 after_script: greenkeeper-lockfile-upload
 notifications:
   irc: "irc.freenode.org#nodeshift"
