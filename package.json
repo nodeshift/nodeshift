@@ -13,11 +13,12 @@
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "docs": "documentation build index.js --shallow -f html -o docs --config documentation.yml",
     "ci": "npm run lint && npm run coveralls",
-    "prerelease": "npm run lint && npm run test && npm run docs",
+    "prerelease": "npm run lint && npm run test",
     "release": "standard-version -a"
   },
   "standard-version": {
     "scripts": {
+      "postbump": "npm run docs",
       "precommit": "git add docs/"
     }
   },
