@@ -48,9 +48,20 @@ jobs:
         ignore:
           - gh-pages
 
+  node12:
+    docker:
+      - image: circleci/node:10
+    <<: *common-build
+
+    filters:
+      branches:
+        ignore:
+          - gh-pages
+
 workflows:
   version: 2
   test_node_versions:
     jobs:
       - node8
       - node10
+      - node12
