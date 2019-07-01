@@ -58,27 +58,27 @@
     "mkdirp": "^0.5.1",
     "openshift-rest-client": "~2.2.0",
     "rimraf": "^2.6.1",
-    "tar": "^4.0.1",
+    "tar": "~4.4.10",
     "yargs": "^13.2.4"
   },
   "devDependencies": {
-    "coveralls": "^3.0.0",
+    "coveralls": "~3.0.4",
     "cross-env": "^5.1.1",
     "documentation": "~11.0.1",
-    "eslint": "^5.0.1",
+    "eslint": "^6.0.1",
     "eslint-config-semistandard": "^13.0.0",
     "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-node": "^9.0.0",
-    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-import": "~2.18.0",
+    "eslint-plugin-node": "~9.1.0",
+    "eslint-plugin-promise": "~4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "ink-docstrap": "^1.3.2",
     "nock": "^10.0.0",
-    "nyc": "~14.1.0",
+    "nyc": "~14.1.1",
     "proxyquire": "^2.0.1",
-    "sinon": "^7.2.4",
+    "sinon": "~7.3.2",
     "standard-version": "^6.0.1",
     "tap-spec": "^5.0.0",
-    "tape": "^4.7.0"
+    "tape": "~4.11.0"
   }
 }
