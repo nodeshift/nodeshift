@@ -37,7 +37,7 @@ test('deployment config enricher - no deployment', (t) => {
   p.then((dce) => {
     t.equal(Array.isArray(dce), true, 'should return an array');
     t.equal(dce.length, 2, 'array should have 2 things');
-    t.equal(dce[1].kind, 'DeploymentConfig', 'should have the depoymentConfig type');
+    t.equal(dce[1].kind, 'DeploymentConfig', 'should have the deploymentConfig type');
     t.end();
   });
 });
@@ -66,7 +66,7 @@ test('deployment config enricher - deployment', async (t) => {
 
   t.equal(Array.isArray(dce), true, 'should return an array');
   t.notEqual(dce, resourceList, 'should not be equal');
-  t.equal(dce[1].kind, 'DeploymentConfig', 'should have the depoymentConfig type');
+  t.equal(dce[1].kind, 'DeploymentConfig', 'should have the deploymentConfig type');
   t.end();
 });
 
@@ -94,7 +94,7 @@ test('deployment config enricher - deployment config', async (t) => {
 
   t.equal(Array.isArray(dce), true, 'should return an array');
   t.equal(dce.length, 2, 'should have the same length');
-  t.equal(dce[1].kind, 'DeploymentConfig', 'should have the depoymentConfig type');
+  t.equal(dce[1].kind, 'DeploymentConfig', 'should have the deploymentConfig type');
   t.equal(dce[1].metadata.namespace, config.namespace.name, 'should be enriched with the namespace value');
   t.end();
 });

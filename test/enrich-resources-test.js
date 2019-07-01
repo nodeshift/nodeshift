@@ -59,7 +59,7 @@ test('enrich-resource - enricher is not a function', (t) => {
   t.ok(p instanceof Promise, 'should return a promise');
 
   p.then(() => {
-    t.equal(i, 6, 'should have 6 default enrchers');
+    t.equal(i, 6, 'should have 6 default enrichers');
     t.pass('success');
     t.end();
   });

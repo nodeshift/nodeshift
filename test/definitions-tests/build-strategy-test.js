@@ -7,7 +7,7 @@ test('default strategy', (t) => {
   const result = buildStrategy();
 
   t.equal(result.type, 'Source', 'default is Source type');
-  t.equal(result.sourceStrategy.from.name, 'nodeshift/centos7-s2i-nodejs:latest', 'docker image should be latet nodeshift image');
+  t.equal(result.sourceStrategy.from.name, 'nodeshift/centos7-s2i-nodejs:latest', 'docker image should be latest nodeshift image');
   t.equal(result.sourceStrategy.forcePull, undefined, 'no forcePull by default');
 
   t.end();
@@ -46,7 +46,7 @@ test('strategy with changed incremental to false', (t) => {
 test('strategy with change dockerImage', (t) => {
   const result = buildStrategy({ dockerImage: 'lholmquist/centos7-s2i-nodejs' });
 
-  t.equal(result.sourceStrategy.from.name, 'lholmquist/centos7-s2i-nodejs:latest', 'docker image should be latet lholmquist image');
+  t.equal(result.sourceStrategy.from.name, 'lholmquist/centos7-s2i-nodejs:latest', 'docker image should be latest lholmquist image');
   t.end();
 });
 

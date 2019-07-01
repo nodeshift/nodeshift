@@ -41,6 +41,6 @@ test('route spec test', (t) => {
   const rs = routeSpec(resource, config);
   t.equal(rs.spec.port.targetPort, 3000, 'targetPort should be 3000');
   t.equal(rs.spec.to.kind, 'Service', 'should have a kind of Service');
-  t.equal(rs.spec.to.name, 'Not Project Name', `name should not be overriden and use ${resource.spec.to.name}`);
+  t.equal(rs.spec.to.name, 'Not Project Name', `name should not be overridden and use ${resource.spec.to.name}`);
   t.end();
 });
