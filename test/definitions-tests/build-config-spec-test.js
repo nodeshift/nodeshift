@@ -3,7 +3,7 @@
 const test = require('tape');
 const proxyquire = require('proxyquire');
 
-test('builc-config-spec', (t) => {
+test('build-config-spec', (t) => {
   const proxyFunc = () => {};
   const buildConfigSpec = proxyquire('../../lib/definitions/build-config-spec', {
     './build-source': proxyFunc,

@@ -30,7 +30,7 @@ test('object-metadata - labels', (t) => {
   };
 
   const obj = objectMetadata(options);
-  t.ok(obj.labels, 'shold have a labels prop');
+  t.ok(obj.labels, 'should have a labels prop');
   t.equal(obj.labels.label1, 'label 1', 'label should be equal');
   t.equal(obj.name, 'name', 'name property should be equal');
   t.end();

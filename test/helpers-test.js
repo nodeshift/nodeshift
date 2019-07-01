@@ -84,7 +84,7 @@ test('test parseMultiOption function', (t) => {
   const parsed = helpers.parseMultiOption(arrayOfOptions);
 
   t.equal(Array.isArray(parsed), true, 'should return an array');
-  t.equal(parsed.length, 3, 'should return an array of lenght 3');
+  t.equal(parsed.length, 3, 'should return an array of length 3');
   t.equal(parsed[0].name, 'NODE_ENV', 'first array with name prop');
   t.equal(parsed[0].value, 'development', 'first array wih value');
   t.equal(parsed[1].name, 'YARN_ENABLED', 'second array with name prop');

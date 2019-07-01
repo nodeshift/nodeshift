@@ -108,7 +108,7 @@ test('test getsecrets need to create', (t) => {
 
   secrets(config, resource).then((secret) => {
     t.equal(secret.body.kind, 'Secret', 'is a secret Kind');
-    t.equal(secret.body.metadata.name, 'my-database-secret', 'metadata.name should not be overriden');
+    t.equal(secret.body.metadata.name, 'my-database-secret', 'metadata.name should not be overridden');
     t.end();
   });
 });

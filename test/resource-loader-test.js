@@ -146,7 +146,7 @@ test('test error on kind mapping', (t) => {
   };
 
   resourceLoader(config).catch((err) => {
-    t.equal(err.message, 'unknown type: kind for filen: name-kind.yml', 'should have error message if no kind is found');
+    t.equal(err.message, 'unknown type: kind for file: name-kind.yml', 'should have error message if no kind is found');
     t.end();
   });
 });

@@ -8,7 +8,7 @@ test('binary build test', (t) => {
   t.end();
 });
 
-test('binary build test - succesful build', (t) => {
+test('binary build test - successful build', (t) => {
   const binaryBuild = proxyquire('../lib/binary-build', {
     fs: {
       createReadStream: () => {
@@ -65,7 +65,7 @@ test('binary build test - succesful build', (t) => {
   };
 
   binaryBuild(config, 'archiveLocation').then((buildStatus) => {
-    t.pass('succesful complete build');
+    t.pass('successful complete build');
     t.end();
   });
 });
@@ -134,7 +134,7 @@ test('binary build test - failed build', (t) => {
   });
 });
 
-test('binary build test - succesful build - but not write away', (t) => {
+test('binary build test - successful build - but not write away', (t) => {
   const binaryBuild = proxyquire('../lib/binary-build', {
     './build-watcher': () => {
       return Promise.resolve();
@@ -204,7 +204,7 @@ test('binary build test - succesful build - but not write away', (t) => {
   };
 
   binaryBuild(config, 'archiveLocation').then((buildStatus) => {
-    t.pass('succesful complete build');
+    t.pass('successful complete build');
     t.end();
   });
 });

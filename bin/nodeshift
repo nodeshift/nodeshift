@@ -55,7 +55,7 @@ yargs
   })
   .env('NODESHIFT')
   .option('quiet', {
-    describe: 'supress INFO and TRACE lines from output logs',
+    describe: 'suppress INFO and TRACE lines from output logs',
     type: 'boolean'
   })
   .array('d')
