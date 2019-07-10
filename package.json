@@ -64,7 +64,7 @@
   "devDependencies": {
     "coveralls": "~3.0.4",
     "cross-env": "^5.1.1",
-    "documentation": "~11.0.1",
+    "documentation": "~12.0.0",
     "eslint": "^6.0.1",
     "eslint-config-semistandard": "^13.0.0",
     "eslint-config-standard": "^12.0.0",
