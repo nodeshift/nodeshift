@@ -31,15 +31,15 @@ test('enrich-resource - enricher is not a function', (t) => {
           i++;
           t.pass('should get called');
         },
-        'route': () => {
+        route: () => {
           i++;
           t.pass('should get called');
         },
-        'service': () => {
+        service: () => {
           i++;
           t.pass('should get called');
         },
-        'labels': () => {
+        labels: () => {
           i++;
           t.pass('should get called');
         },
