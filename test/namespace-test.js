@@ -58,7 +58,7 @@ test('namespace - create the namespace, others exist', t => {
           v1: {
             projects: {
               get: () => {
-                return Promise.resolve({ code: 200, body: { kind: 'Project', items: [ { metadata: { name: 'not_this_one' } } ] } });
+                return Promise.resolve({ code: 200, body: { kind: 'Project', items: [{ metadata: { name: 'not_this_one' } }] } });
               }
             },
             projectrequests: {
@@ -93,7 +93,7 @@ test('namespace - namespace exists', t => {
           v1: {
             projects: {
               get: () => {
-                return Promise.resolve({ code: 200, body: { kind: 'Project', items: [ { metadata: { name: 'projectname' }, status: { phase: 'Created' } } ] } });
+                return Promise.resolve({ code: 200, body: { kind: 'Project', items: [{ metadata: { name: 'projectname' }, status: { phase: 'Created' } }] } });
               }
             },
             projectrequests: {
@@ -129,7 +129,7 @@ test('namespace - namespace exists but is Terminating', t => {
           v1: {
             projects: {
               get: () => {
-                return Promise.resolve({ code: 200, body: { kind: 'Project', items: [ { metadata: { name: 'projectname' }, status: { phase: 'Terminating' } } ] } });
+                return Promise.resolve({ code: 200, body: { kind: 'Project', items: [{ metadata: { name: 'projectname' }, status: { phase: 'Terminating' } }] } });
               }
             },
             projectrequests: {
