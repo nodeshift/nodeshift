@@ -62,7 +62,7 @@
     "yargs": "^13.2.4"
   },
   "devDependencies": {
-    "coveralls": "~3.0.4",
+    "coveralls": "~3.0.5",
     "cross-env": "^5.1.1",
     "documentation": "~12.0.0",
     "eslint": "^6.0.1",
