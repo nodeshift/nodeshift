@@ -3,8 +3,6 @@
 const test = require('tape');
 const proxyquire = require('proxyquire');
 
-
-
 test('test default build location', (t) => {
   const projectArchiver = require('../lib/project-archiver');
   t.equals(projectArchiver.DEFAULT_BUILD_LOCATION, 'tmp/nodeshift/build', 'tmp/nodeshift/build should be the default directory');
