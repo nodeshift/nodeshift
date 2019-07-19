@@ -3,7 +3,7 @@
 const test = require('tape');
 const proxyquire = require('proxyquire');
 
-// TODO: test the changing of BUILD LOCATION
+
 
 test('test default build location', (t) => {
   const projectArchiver = require('../lib/project-archiver');
