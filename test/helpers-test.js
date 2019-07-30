@@ -34,7 +34,7 @@ test('test createDir function - success', (t) => {
 test('test createDir function - fail', (t) => {
   const helpers = proxyquire('../lib/helpers', {
     mkdirp: (dir, cb) => {
-      return cb(new Error('error creating directory'));
+      return cb(new Error('Error: error creating directory'));
     }
   });
 
@@ -64,7 +64,7 @@ test('test cleanup function - success', (t) => {
 test('test cleanUp function - fail', (t) => {
   const helpers = proxyquire('../lib/helpers', {
     rimraf: (dir, cb) => {
-      return cb(new Error('error cleaning up'));
+      return cb(new Error('Error: error cleaning up'));
     }
   });
 
