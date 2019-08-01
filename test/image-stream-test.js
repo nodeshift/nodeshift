@@ -14,6 +14,7 @@ test('create imageStream not found', (t) => {
   let call = 0;
   const config = {
     projectName: 'project-name',
+    outputImageStreamName: 'project-name',
     namespace: {
       name: ''
     },
@@ -69,6 +70,7 @@ test('buildConfig found - no recreate', (t) => {
   const config = {
     buildName: 'nodejs-s2i-build',
     projectName: 'project-name',
+    outputImageStreamName: 'project-name',
     version: '1.0.0',
     namespace: {
       name: ''
@@ -117,6 +119,7 @@ test('imagestream recreate but is a buildConfig', (t) => {
     },
     buildName: 'nodejs-s2i-build',
     projectName: 'project-name',
+    outputImageStreamName: 'project-name',
     version: '1.0.0',
     namespace: {
       name: ''
