@@ -18,7 +18,7 @@ const cli = require('./bin/cli');
   @param {boolean} [options.namespace.create] - flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name
   @param {string} [options.namespace.name] - flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.imageTag] - set the version to use for the nodeshift/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/
-  @param {string} [options.outputImageStream] - the name of the Image Stream to output to.  Defualts to project name from package.json
+  @param {string} [options.outputImageStream] - the name of the Image Stream to output to.  Defaults to project name from package.json
   @param {string} [options.outputImageTag] - The Tag of the Image Stream to output to. Defaults to latest
   @param {boolean} [options.quiet] - suppress INFO and TRACE lines from output logs
   @param {object} [options.deploy] -
@@ -47,7 +47,7 @@ function deploy (options = {}) {
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.namespace.name] - flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.imageTag] - set the version to use for the nodeshift/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/
-  @param {string} [options.outputImageStream] - the name of the Image Stream to output to.  Defualts to project name from package.json
+  @param {string} [options.outputImageStream] - the name of the Image Stream to output to.  Defaults to project name from package.json
   @param {string} [options.outputImageTag] - The Tag of the Image Stream to output to. Defaults to latest
   @param {boolean} [options.quiet] - suppress INFO and TRACE lines from output logs
   @param {object} [options.build] -
@@ -72,7 +72,7 @@ function resource (options = {}) {
   @param {boolean} [options.namespace.create] - flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name
   @param {string} [options.namespace.name] - flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.imageTag] - set the version to use for the nodeshift/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/
-  @param {string} [options.outputImageStream] - the name of the Image Stream to output to.  Defualts to project name from package.json
+  @param {string} [options.outputImageStream] - the name of the Image Stream to output to.  Defaults to project name from package.json
   @param {string} [options.outputImageTag] - The Tag of the Image Stream to output to. Defaults to latest
   @param {boolean} [options.quiet] - suppress INFO and TRACE lines from output logs
   @param {object} [options.deploy] -
@@ -99,7 +99,7 @@ function applyResource (options = {}) {
   @param {boolean} [options.namespace.remove] - flag to remove the user created namespace.  Only applicable for the undeploy command.  Must be used with namespace.name
   @param {string} [options.namespace.name] - flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.imageTag] - set the version to use for the nodeshift/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/
-  @param {string} [options.outputImageStream] - the name of the Image Stream to output to.  Defualts to project name from package.json
+  @param {string} [options.outputImageStream] - the name of the Image Stream to output to.  Defaults to project name from package.json
   @param {string} [options.outputImageTag] - The Tag of the Image Stream to output to. Defaults to latest
   @param {boolean} [options.quiet] - suppress INFO and TRACE lines from output logs
   @param {boolean} [options.removeAll] - option to remove builds, buildConfigs and Imagestreams.  Defaults to false
@@ -127,7 +127,7 @@ function undeploy (options = {}) {
   @param {boolean} [options.namespace.create] - flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name
   @param {string} [options.namespace.name] - flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.imageTag] - set the version to use for the nodeshift/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/
-  @param {string} [options.outputImageStream] - the name of the Image Stream to output to.  Defualts to project name from package.json
+  @param {string} [options.outputImageStream] - the name of the Image Stream to output to.  Defaults to project name from package.json
   @param {string} [options.outputImageTag] - The Tag of the Image Stream to output to. Defaults to latest
   @param {boolean} [options.quiet] - suppress INFO and TRACE lines from output logs
   @param {object} [options.build] -
