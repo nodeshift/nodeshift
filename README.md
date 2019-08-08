@@ -156,10 +156,10 @@ Specify the tag of the docker image to use for the deployed application. default
 Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to [nodeshift/centos7-s2i-nodejs](https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs)
 
 #### outputImageStream
-The name of the Image Stream to output to.  Defaults to project name from package.json
+The name of the ImageStream to output to.  Defaults to project name from package.json
 
 #### outputImageStreamTag
-The Tag of the Image Stream to output to. Defaults to latest
+The tag of the ImageStream to output to. Defaults to latest
 
 #### quiet
 suppress INFO and TRACE lines from output logs.
@@ -205,9 +205,9 @@ Shows the below help
             --projectLocation        change the default location of the project   [string]
             --imageTag           The tag of the docker image to use for the deployed
                                 application.                 [string] [default: "latest"]
-            --outputImageStream      The name of the Image Stream to output to.  Defaults
+            --outputImageStream      The name of the ImageStream to output to.  Defaults
                            to project name from package.json            [string]
-            --outputImageStreamTag   The Tag of the Image Stream to output to.    [string]
+            --outputImageStreamTag   The tag of the ImageStream to output to.    [string]
             --quiet                  suppress INFO and TRACE lines from output logs
                                                                                 [boolean]
             --expose            flag to create a default Route and expose the default

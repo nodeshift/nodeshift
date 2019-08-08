@@ -54,11 +54,11 @@ yargs
     default: 'latest'
   })
   .options('outputImageStream', {
-    describe: 'The name of the Image Stream to output to.  Defaults to project name from package.json',
+    describe: 'The name of the ImageStream to output to.  Defaults to project name from package.json',
     type: 'string'
   })
   .options('outputImageStreamTag', {
-    describe: 'The Tag of the Image Stream to output to.',
+    describe: 'The tag of the ImageStream to output to.',
     type: 'string',
     defualt: 'latest'
   })
