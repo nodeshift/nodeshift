@@ -54,7 +54,7 @@ test('create imageStream not found', (t) => {
     './common-log': () => {
       return {
         info: (info) => {
-          t.equal(info, 'creating image stream project-name', 'should have the correct info message');
+          t.equal(info, 'creating ImageStream project-name', 'should have the correct info message');
           return info;
         }
       };
