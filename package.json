@@ -57,7 +57,7 @@
     "lodash": "^4.17.4",
     "mkdirp": "^0.5.1",
     "openshift-rest-client": "~2.2.0",
-    "rimraf": "^2.6.1",
+    "rimraf": "^3.0.0",
     "tar": "~4.4.10",
     "yargs": "^13.2.4"
   },
