@@ -1,21 +1,21 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset='utf-8' />
-  <title>nodeshift 3.0.1 | Documentation</title>
+  <meta charset='utf-8'>
+  <title>nodeshift 3.1.0 | Documentation</title>
   <meta name='description' content='Plugin for running openshift deployments'>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
-  <link href='assets/bass.css' rel='stylesheet' />
-  <link href='assets/style.css' rel='stylesheet' />
-  <link href='assets/github.css' rel='stylesheet' />
-  <link href='assets/split.css' rel='stylesheet' />
+  <link href='assets/bass.css' rel='stylesheet'>
+  <link href='assets/style.css' rel='stylesheet'>
+  <link href='assets/github.css' rel='stylesheet'>
+  <link href='assets/split.css' rel='stylesheet'>
 </head>
 <body class='documentation m0'>
     <div class='flex'>
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>nodeshift</h3>
-          <div class='mb1'><code>3.0.1</code></div>
+          <div class='mb1'><code>3.1.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -94,15 +94,14 @@
       <div id='split-right' class='relative overflow-auto height-viewport-100'>
         
           
-            <div class='keyline-top-not py2'>
-  <section class='py2 clearfix'>
+            <div class='keyline-top-not py2'><section class='py2 clearfix'>
 
-    <h2 id='readme' class='mt0'>
-      README
-    </h2>
+  <h2 id='readme' class='mt0'>
+    README
+  </h2>
 
-    
-      <h1>Nodeshift <a href="https://circleci.com/gh/nodeshift/nodeshift"><img src="https://circleci.com/gh/nodeshift/nodeshift.svg?style=svg" alt="CircleCI"></a></h1>
+  
+    <h1>Nodeshift <a href="https://circleci.com/gh/nodeshift/nodeshift"><img src="https://circleci.com/gh/nodeshift/nodeshift.svg?style=svg" alt="CircleCI"></a></h1>
 <p><a href="https://travis-ci.org/nodeshift/nodeshift"><img src="https://travis-ci.org/nodeshift/nodeshift.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/nodeshift/nodeshift?branch=master"><img src="https://coveralls.io/repos/github/nodeshift/nodeshift/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/nodeshift/nodeshift.svg" alt="Greenkeeper badge"></a></p>
 <h2>What is it</h2>
 <p>Nodeshift is an opinionated command line application and programmable API that you can use to deploy Node.js projects to OpenShift. It's currently under heavy development and APIs are still shifting a bit. However, in spite of its beta nature, you can use nodeshift today to deploy Node.js applications to OpenShift.</p>
@@ -131,7 +130,7 @@ $ npm run nodeshift
 <p><strong>deploy</strong> -  a shortcut for running <code>resource</code>, <code>build</code> and <code>apply-resource</code></p>
 <p><strong>undeploy</strong> - removes resources that were deployed with the apply-resource command</p>
 <h3><code>.nodeshift</code> Directory</h3>
-<p>The <code>.nodeshift</code> directory contains your resource fragements.  These are <code>.yml</code> files that describe your services, deployments, routes, etc.  By default, nodeshift will create a <code>Service</code> and <code>DeploymentConfig</code> in memory, if none are provided.  A <code>Route</code> resource fragment should be provided or use the <code>expose</code> flag if you want to expose your application to the outside world.</p>
+<p>The <code>.nodeshift</code> directory contains your resource fragments.  These are <code>.yml</code> files that describe your services, deployments, routes, etc.  By default, nodeshift will create a <code>Service</code> and <code>DeploymentConfig</code> in memory, if none are provided.  A <code>Route</code> resource fragment should be provided or use the <code>expose</code> flag if you want to expose your application to the outside world.</p>
 <h3>Resource Fragments</h3>
 <p>OpenShift resource fragments are user provided YAML files which describe and enhance your deployed resources.  They are enriched with metadata, labels and more by nodeshift.</p>
 <p>Each resource gets its own file, which contains some skeleton of a resource description. Nodeshift will enrich it and then combine all the resources into a single openshift.yml and openshift.json(located in ./tmp/nodeshift/resource/).</p>
@@ -139,8 +138,8 @@ $ npm run nodeshift
 <h3>Enrichers</h3>
 <p>Enrichers will add things to the resource fragments, like missing metadata and labels.  If your project uses git, then annotations with the git branch and commit hash will be added to the metadata.</p>
 <p>Default Enrichers will also create a default Service and DeploymentConfig when none are provided.</p>
-<p>The default port value is 8080, but that can be overriden with the <code>--deploy.port</code> flag.</p>
-<p>You can also override this value by provideding a .nodeshift/deployment.yaml resource file</p>
+<p>The default port value is 8080, but that can be overridden with the <code>--deploy.port</code> flag.</p>
+<p>You can also override this value by providing a .nodeshift/deployment.yaml resource file</p>
 <h4>Resource Fragment Parameters</h4>
 <p>Some Resource Fragments might need to have a value set at "run time".  For example, in the fragment below, we have the <code>${SSO_AUTH_SERVER_URL}</code> parameter:</p>
 <pre><code>    apiVersion: v1
@@ -216,11 +215,15 @@ nodeshift.deploy().then(<span class="hljs-function">(<span class="hljs-params">r
 <h4>configLocation</h4>
 <p>This option is passed through to the <a href="https://www.npmjs.com/package/openshift-config-loader">Openshift Config Loader</a>.  Defaults to the <code>~/.kube/config</code></p>
 <h4>imageTag</h4>
-<p>Specify the tag of the docker image to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the <a href="https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/">nodeshift s2i images</a></p>
+<p>Specify the tag of the docker image to use for the deployed application. defaults to latest.  These version tags correspond to the docker hub tags of the <a href="https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/">nodeshift s2i images</a></p>
 <h4>dockerImage</h4>
 <p>Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to <a href="https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs">nodeshift/centos7-s2i-nodejs</a></p>
+<h4>outputImageStream</h4>
+<p>The name of the ImageStream to output to.  Defaults to project name from package.json</p>
+<h4>outputImageStreamTag</h4>
+<p>The tag of the ImageStream to output to. Defaults to latest</p>
 <h4>quiet</h4>
-<p>supress INFO and TRACE lines from output logs.</p>
+<p>suppress INFO and TRACE lines from output logs.</p>
 <h4>expose</h4>
 <p>options to create a default route, if non is provided.  Defaults to false</p>
 <h4>removeAll</h4>
@@ -253,7 +256,10 @@ nodeshift.deploy().then(<span class="hljs-function">(<span class="hljs-params">r
         --projectLocation        change the default location of the project   [string]
         --imageTag           The tag of the docker image to use for the deployed
                             application.                 [string] [default: "latest"]
-        --quiet                  supress INFO and TRACE lines from output logs
+        --outputImageStream      The name of the ImageStream to output to.  Defaults
+                       to project name from package.json            [string]
+        --outputImageStreamTag   The tag of the ImageStream to output to.    [string]
+        --quiet                  suppress INFO and TRACE lines from output logs
                                                                             [boolean]
         --expose            flag to create a default Route and expose the default
                    service [boolean] [choices: true, false] [default: false]
@@ -267,7 +273,7 @@ nodeshift.deploy().then(<span class="hljs-function">(<span class="hljs-params">r
         --namespace.remove       flag to remove the user created namespace.  Only
                        applicable for the undeploy command.  Must be used
                        with namespace.name                         [boolean]
-        --namesapce.name         flag to specify the project namespace name to
+        --namespace.name         flag to specify the project namespace name to
                        build/deploy into.  Overwrites any namespace settings
                        in your OpenShift or Kubernetes configuration files
                                                                     [string]
@@ -290,9 +296,8 @@ nodeshift.deploy().then(<span class="hljs-function">(<span class="hljs-params">r
 <h2>Contributing</h2>
 <p>Please read the <a href="./CONTRIBUTING.md">contributing guide</a></p>
 
-    
-  </section>
-</div>
+  
+</section></div>
           
         
           
@@ -392,6 +397,15 @@ nodeshift.deploy().then(<span class="hljs-function">(<span class="hljs-params">r
 
 
   
+    <tr>
+  <td class='break-word'><span class='code bold'>options.namespace.name</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
+</span></td>
+</tr>
+
+
+  
 
 
               
@@ -406,9 +420,27 @@ nodeshift.deploy().then(<span class="hljs-function">(<span class="hljs-params">r
 
               
                 <tr>
+  <td class='break-word'><span class='code bold'>options.outputImageStream</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>the name of the ImageStream to output to.  Defaults to project name from package.json
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.outputImageTag</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>The tag of the ImageStream to output to. Defaults to latest
+</span></td>
+</tr>
+
+
+              
+                <tr>
   <td class='break-word'><span class='code bold'>options.quiet</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
   </td>
-  <td class='break-word'><span>supress INFO and TRACE lines from output logs
+  <td class='break-word'><span>suppress INFO and TRACE lines from output logs
 </span></td>
 </tr>
 
@@ -616,6 +648,15 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
 
 
   
+    <tr>
+  <td class='break-word'><span class='code bold'>options.namespace.name</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
+</span></td>
+</tr>
+
+
+  
 
 
               
@@ -630,9 +671,27 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
 
               
                 <tr>
+  <td class='break-word'><span class='code bold'>options.outputImageStream</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>the name of the ImageStream to output to.  Defaults to project name from package.json
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.outputImageTag</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>The tag of the ImageStream to output to. Defaults to latest
+</span></td>
+</tr>
+
+
+              
+                <tr>
   <td class='break-word'><span class='code bold'>options.quiet</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
   </td>
-  <td class='break-word'><span>supress INFO and TRACE lines from output logs
+  <td class='break-word'><span>suppress INFO and TRACE lines from output logs
 </span></td>
 </tr>
 
@@ -808,6 +867,15 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
 
 
   
+    <tr>
+  <td class='break-word'><span class='code bold'>options.namespace.name</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
+</span></td>
+</tr>
+
+
+  
 
 
               
@@ -822,9 +890,27 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
 
               
                 <tr>
+  <td class='break-word'><span class='code bold'>options.outputImageStream</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>the name of the ImageStream to output to.  Defaults to project name from package.json
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.outputImageTag</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>The tag of the ImageStream to output to. Defaults to latest
+</span></td>
+</tr>
+
+
+              
+                <tr>
   <td class='break-word'><span class='code bold'>options.quiet</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
   </td>
-  <td class='break-word'><span>supress INFO and TRACE lines from output logs
+  <td class='break-word'><span>suppress INFO and TRACE lines from output logs
 </span></td>
 </tr>
 
@@ -1021,6 +1107,15 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
 
 
   
+    <tr>
+  <td class='break-word'><span class='code bold'>options.namespace.name</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
+</span></td>
+</tr>
+
+
+  
 
 
               
@@ -1035,9 +1130,27 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
 
               
                 <tr>
+  <td class='break-word'><span class='code bold'>options.outputImageStream</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>the name of the ImageStream to output to.  Defaults to project name from package.json
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.outputImageTag</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>The tag of the ImageStream to output to. Defaults to latest
+</span></td>
+</tr>
+
+
+              
+                <tr>
   <td class='break-word'><span class='code bold'>options.quiet</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
   </td>
-  <td class='break-word'><span>supress INFO and TRACE lines from output logs
+  <td class='break-word'><span>suppress INFO and TRACE lines from output logs
 </span></td>
 </tr>
 
@@ -1243,6 +1356,15 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
 
 
   
+    <tr>
+  <td class='break-word'><span class='code bold'>options.namespace.name</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
+</span></td>
+</tr>
+
+
+  
 
 
               
@@ -1257,9 +1379,27 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
 
               
                 <tr>
+  <td class='break-word'><span class='code bold'>options.outputImageStream</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>the name of the ImageStream to output to.  Defaults to project name from package.json
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.outputImageTag</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>The tag of the ImageStream to output to. Defaults to latest
+</span></td>
+</tr>
+
+
+              
+                <tr>
   <td class='break-word'><span class='code bold'>options.quiet</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
   </td>
-  <td class='break-word'><span>supress INFO and TRACE lines from output logs
+  <td class='break-word'><span>suppress INFO and TRACE lines from output logs
 </span></td>
 </tr>
 
