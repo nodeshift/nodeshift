@@ -27,6 +27,8 @@ test('nodeshift-config basic setup', (t) => {
     t.equal(config.projectLocation, process.cwd(), 'projectLocation prop should be cwd by default');
     t.ok(config.nodeshiftDirectory, 'nodeshiftDir prop should be here');
     t.equal(config.nodeshiftDirectory, '.nodeshift', 'nodeshiftDir prop should be .nodeshift by default');
+    t.equal(config.outputImageStreamName, 'nodeshift', 'outputImageStreamName should be the package name by default');
+    t.equal(config.outputImageStreamTag, 'latest', 'outputImageStreamTag should be the latest by default');
     t.end();
   }).catch(t.fail);
 
@@ -339,6 +341,35 @@ test('nodeshift-config options for the config loader - using namespace object fo
     t.equal(config.namespace.name, 'funproject', 'context and options namespace should be the same');
     t.equal(config.namespace.userDefined, true, 'should have the user defined variable');
     t.equal(config.namespace.displayName, options.namespace.displayName, 'should have the displayName');
+    t.end();
+  });
+});
+
+test('nodeshift-config options - change outputImageStreamTag and outputImageStreamName', (t) => {
+  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+    'openshift-rest-client': {
+      config: {
+        fromKubeconfig: () => {
+          return {
+            namespace: 'test-namespace',
+            url: 'http://mock-cluster'
+          };
+        }
+      },
+      OpenshiftClient: () => {
+        return Promise.resolve();
+      }
+    }
+  });
+
+  const options = {
+    outputImageStreamName: 'funTimes',
+    outputImageStreamTag: 'notLatest'
+  };
+
+  nodeshiftConfig(options).then((config) => {
+    t.equal(config.outputImageStreamTag, options.outputImageStreamTag, 'should not be latest');
+    t.equal(config.outputImageStreamName, options.outputImageStreamName, 'should not be the project name');
     t.end();
   });
 });

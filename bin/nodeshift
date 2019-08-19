@@ -53,6 +53,15 @@ yargs
     type: 'string',
     default: 'latest'
   })
+  .options('outputImageStream', {
+    describe: 'The name of the ImageStream to output to.  Defaults to project name from package.json',
+    type: 'string'
+  })
+  .options('outputImageStreamTag', {
+    describe: 'The tag of the ImageStream to output to.',
+    type: 'string',
+    defualt: 'latest'
+  })
   .env('NODESHIFT')
   .option('quiet', {
     describe: 'suppress INFO and TRACE lines from output logs',
@@ -146,6 +155,8 @@ function createOptions (argv) {
   options.projectLocation = argv.projectLocation;
   options.dockerImage = argv.dockerImage;
   options.imageTag = argv.imageTag;
+  options.outputImageStreamName = argv.outputImageStream;
+  options.outputImageStreamTag = argv.outputImageStreamTag;
   process.env['NODESHIFT_QUIET'] = argv.quiet === true;
   options.metadata = argv.metadata;
   options.build = argv.build;

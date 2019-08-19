@@ -11,6 +11,8 @@ test('deployment-config-spec test', (t) => {
   const resource = {};
   const config = {
     projectName: 'project1',
+    outputImageStreamName: 'project1',
+    outputImageStreamTag: 'latest',
     namespace: {
       name: 'project-namespace'
     }
