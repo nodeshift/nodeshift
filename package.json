@@ -59,7 +59,7 @@
     "openshift-rest-client": "~2.2.0",
     "rimraf": "^3.0.0",
     "tar": "~4.4.10",
-    "yargs": "^13.2.4"
+    "yargs": "^14.0.0"
   },
   "devDependencies": {
     "coveralls": "~3.0.6",
