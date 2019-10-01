@@ -58,7 +58,7 @@
     "mkdirp": "^0.5.1",
     "openshift-rest-client": "~2.2.0",
     "rimraf": "^3.0.0",
-    "tar": "~4.4.10",
+    "tar": "~5.0.2",
     "yargs": "^14.0.0"
   },
   "devDependencies": {
