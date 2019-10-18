@@ -3,7 +3,7 @@
 
 ## What is it
 
-Nodeshift is an opinionated command line application and programmable API that you can use to deploy Node.js projects to OpenShift. It's currently under heavy development and APIs are still shifting a bit. However, in spite of its beta nature, you can use nodeshift today to deploy Node.js applications to OpenShift.
+Nodeshift is an opinionated command line application and programmable API that you can use to deploy Node.js projects to OpenShift. 
 
 ## Prerequisites
 
