@@ -7,15 +7,15 @@ test('default strategy', (t) => {
   const result = buildStrategy();
 
   t.equal(result.type, 'Source', 'default is Source type');
-  t.equal(result.sourceStrategy.from.name, 'nodeshift/centos7-s2i-nodejs:latest', 'docker image should be latest nodeshift image');
+  t.equal(result.sourceStrategy.from.name, 'registry.access.redhat.com/ubi7/nodejs-10:latest', 'docker image should be ubi7/nodejs-10:latest image');
   t.equal(result.sourceStrategy.forcePull, undefined, 'no forcePull by default');
 
   t.end();
 });
 
 test('strategy with changed dockerTag', (t) => {
-  const result = buildStrategy({ imageTag: '8.x' });
-  t.equal(result.sourceStrategy.from.name, 'nodeshift/centos7-s2i-nodejs:8.x', 'docker image should be 8.x nodeshift image');
+  const result = buildStrategy({ imageTag: '1-20' });
+  t.equal(result.sourceStrategy.from.name, 'registry.access.redhat.com/ubi7/nodejs-10:1-20', 'docker image should be 1-20 ubi7/nodejs-10 image');
   t.end();
 });
 
