@@ -104,7 +104,7 @@
     <h1>Nodeshift <a href="https://circleci.com/gh/nodeshift/nodeshift"><img src="https://circleci.com/gh/nodeshift/nodeshift.svg?style=svg" alt="CircleCI"></a></h1>
 <p><a href="https://travis-ci.org/nodeshift/nodeshift"><img src="https://travis-ci.org/nodeshift/nodeshift.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/nodeshift/nodeshift?branch=master"><img src="https://coveralls.io/repos/github/nodeshift/nodeshift/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/nodeshift/nodeshift.svg" alt="Greenkeeper badge"></a></p>
 <h2>What is it</h2>
-<p>Nodeshift is an opinionated command line application and programmable API that you can use to deploy Node.js projects to OpenShift. It's currently under heavy development and APIs are still shifting a bit. However, in spite of its beta nature, you can use nodeshift today to deploy Node.js applications to OpenShift.</p>
+<p>Nodeshift is an opinionated command line application and programmable API that you can use to deploy Node.js projects to OpenShift. </p>
 <h2>Prerequisites</h2>
 <ul>
 <li>Node.js - version 8.x or greater</li>
@@ -215,9 +215,10 @@ nodeshift.deploy().then(<span class="hljs-function">(<span class="hljs-params">r
 <h4>configLocation</h4>
 <p>This option is passed through to the <a href="https://www.npmjs.com/package/openshift-config-loader">Openshift Config Loader</a>.  Defaults to the <code>~/.kube/config</code></p>
 <h4>imageTag</h4>
-<p>Specify the tag of the docker image to use for the deployed application. defaults to latest.  These version tags correspond to the docker hub tags of the <a href="https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/">nodeshift s2i images</a></p>
+<p>Specify the tag of the docker image to use for the deployed application. defaults to latest.<br>
+These version tags correspond to the RHSCL tags of the <a href="https://access.redhat.com/containers/#/registry.access.redhat.com/ubi7/nodejs-10">ubi7/nodejs s2i images</a></p>
 <h4>dockerImage</h4>
-<p>Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to <a href="https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs">nodeshift/centos7-s2i-nodejs</a></p>
+<p>Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to <a href="https://access.redhat.com/containers/#/registry.access.redhat.com/ubi7/nodejs-10">ubi7/nodejs s2i images</a></p>
 <h4>outputImageStream</h4>
 <p>The name of the ImageStream to output to.  Defaults to project name from package.json</p>
 <h4>outputImageStreamTag</h4>
@@ -412,8 +413,8 @@ nodeshift.deploy().then(<span class="hljs-function">(<span class="hljs-params">r
                 <tr>
   <td class='break-word'><span class='code bold'>options.imageTag</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
-  <td class='break-word'><span>set the version to use for the nodeshift/centos7-s2i-image.  Versions are docker hub tags: 
-<a href="https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/">https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/</a>
+  <td class='break-word'><span>set the version to use for the ubi7/nodejs-10.  Versions are ubi7/nodejs-10 tags: 
+<a href="https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi7/nodejs-10">https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi7/nodejs-10</a>
 </span></td>
 </tr>
 
@@ -663,8 +664,8 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
                 <tr>
   <td class='break-word'><span class='code bold'>options.imageTag</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
-  <td class='break-word'><span>set the version to use for the nodeshift/centos7-s2i-image.  Versions are docker hub tags: 
-<a href="https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/">https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/</a>
+  <td class='break-word'><span>set the version to use for the ubi7/nodejs-10.  Versions are ubi7/nodejs-10 tags: 
+<a href="https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi7/nodejs-10">https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi7/nodejs-10</a>
 </span></td>
 </tr>
 
@@ -882,8 +883,8 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
                 <tr>
   <td class='break-word'><span class='code bold'>options.imageTag</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
-  <td class='break-word'><span>set the version to use for the nodeshift/centos7-s2i-image.  Versions are docker hub tags: 
-<a href="https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/">https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/</a>
+  <td class='break-word'><span>set the version to use for the ubi7/nodejs-10.  Versions are ubi7/nodejs-10 tags: 
+<a href="https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi7/nodejs-10">https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi7/nodejs-10</a>
 </span></td>
 </tr>
 
@@ -1122,8 +1123,8 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
                 <tr>
   <td class='break-word'><span class='code bold'>options.imageTag</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
-  <td class='break-word'><span>set the version to use for the nodeshift/centos7-s2i-image.  Versions are docker hub tags: 
-<a href="https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/">https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/</a>
+  <td class='break-word'><span>set the version to use for the ubi7/nodejs-10.  Versions are ubi7/nodejs-10 tags: 
+<a href="https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi7/nodejs-10">https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi7/nodejs-10</a>
 </span></td>
 </tr>
 
@@ -1371,8 +1372,8 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
                 <tr>
   <td class='break-word'><span class='code bold'>options.imageTag</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
-  <td class='break-word'><span>set the version to use for the nodeshift/centos7-s2i-image.  Versions are docker hub tags: 
-<a href="https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/">https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/</a>
+  <td class='break-word'><span>set the version to use for the ubi7/nodejs-10.  Versions are ubi7/nodejs-10 tags: 
+<a href="https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi7/nodejs-10">https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi7/nodejs-10</a>
 </span></td>
 </tr>
 

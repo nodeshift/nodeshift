@@ -150,10 +150,11 @@ Changes the default location of where to look for your project. Defaults to your
 This option is passed through to the [Openshift Config Loader](https://www.npmjs.com/package/openshift-config-loader).  Defaults to the `~/.kube/config`
 
 #### imageTag
-Specify the tag of the docker image to use for the deployed application. defaults to latest.  These version tags correspond to the docker hub tags of the [nodeshift s2i images](https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/)
+Specify the tag of the docker image to use for the deployed application. defaults to latest.  
+These version tags correspond to the RHSCL tags of the [ubi7/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi7/nodejs-10)
 
 #### dockerImage
-Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to [nodeshift/centos7-s2i-nodejs](https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs)
+Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to [ubi7/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi7/nodejs-10)
 
 #### outputImageStream
 The name of the ImageStream to output to.  Defaults to project name from package.json

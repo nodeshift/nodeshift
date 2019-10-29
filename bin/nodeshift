@@ -45,7 +45,7 @@ yargs
     type: 'string'
   })
   .options('dockerImage', {
-    describe: 'the s2i image to use, defaults to nodeshift/centos7-s2i-nodejs',
+    describe: 'the s2i image to use, defaults to registry.access.redhat.com/ubi7/nodejs-10',
     type: 'string'
   })
   .options('imageTag', {
