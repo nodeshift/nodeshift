@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/nodeshift/nodeshift/compare/v3.1.1...v4.0.0) (2019-11-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* Changing the base s2i images
+
+This removes the deprecated nodeshift/centos7-s2i-nodejs images and replaces then with the UBI based Node images from Red Hat Software Collections
+
+### src
+
+* using ubi7/nodejs-10 as default image ([#372](https://github.com/nodeshift/nodeshift/issues/372)) ([0bc82bd](https://github.com/nodeshift/nodeshift/commit/0bc82bdf18a6bc0bb7195a95093bf91cd0c48294))
+
 ### [3.1.1](https://github.com/nodeshift/nodeshift/compare/v3.1.0...v3.1.1) (2019-08-19)
 
 ## [3.1.0](https://github.com/nodeshift/nodeshift/compare/v3.0.1...v3.1.0) (2019-08-19)
