@@ -151,10 +151,10 @@ This option is passed through to the [Openshift Config Loader](https://www.npmjs
 
 #### imageTag
 Specify the tag of the docker image to use for the deployed application. defaults to latest.  
-These version tags correspond to the RHSCL tags of the [ubi7/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi7/nodejs-10)
+These version tags correspond to the RHSCL tags of the [ubi8/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/nodejs-10)
 
 #### dockerImage
-Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to [ubi7/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi7/nodejs-10)
+Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to [ubi8/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/nodejs-10)
 
 #### outputImageStream
 The name of the ImageStream to output to.  Defaults to project name from package.json
