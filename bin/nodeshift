@@ -157,7 +157,7 @@ function createOptions (argv) {
   options.imageTag = argv.imageTag;
   options.outputImageStreamName = argv.outputImageStream;
   options.outputImageStreamTag = argv.outputImageStreamTag;
-  process.env['NODESHIFT_QUIET'] = argv.quiet === true;
+  process.env.NODESHIFT_QUIET = argv.quiet === true;
   options.metadata = argv.metadata;
   options.build = argv.build;
   options.deploy = argv.deploy;
