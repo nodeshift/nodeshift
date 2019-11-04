@@ -180,10 +180,10 @@ test('git-info-enricher - deploymentConfig - merge test', async (t) => {
   t.ok(list[0].metadata.annotations, 'annotations');
   t.equal(list[0].metadata.annotations['nodeshift/git-branch'], 'master', 'branch prop is master');
   t.equal(list[0].metadata.annotations['nodeshift/git-commit'], 'abcd1234', 'commit prop is abcd1234');
-  t.equal(list[0].metadata.annotations['key'], 'value', 'commit prop is abcd1234');
+  t.equal(list[0].metadata.annotations.key, 'value', 'commit prop is abcd1234');
   t.ok(list[0].spec.template.metadata.annotations, 'annotations');
   t.equal(list[0].spec.template.metadata.annotations['nodeshift/git-branch'], 'master', 'branch prop is master');
   t.equal(list[0].spec.template.metadata.annotations['nodeshift/git-commit'], 'abcd1234', 'commit prop is abcd1234');
-  t.equal(list[0].spec.template.metadata.annotations['key'], 'value', 'commit prop is abcd1234');
+  t.equal(list[0].spec.template.metadata.annotations.key, 'value', 'commit prop is abcd1234');
   t.end();
 });
