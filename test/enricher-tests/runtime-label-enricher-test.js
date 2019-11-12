@@ -41,38 +41,3 @@ test('test runtime-label addition', async (t) => {
   t.equal(resourceList[0].metadata.labels['app.kubernetes.io/instance'], config.projectName, 'should have the proper label');
   t.end();
 });
-
-// test('service enricher test - service', async (t) => {
-//   const resourceList = [
-//     {
-//       kind: 'Service',
-//       spec: {
-//         ports: [
-//           {
-//             protocol: 'TCP',
-//             port: 3000,
-//             targetPort: 3000
-//           }
-//         ]
-//       }
-//     },
-//     { kind: 'Deployment' }
-//   ];
-//   const se = await serviceEnricher.enrich(config, resourceList);
-
-//   t.notEqual(se, resourceList, 'arrays should not be equal');
-//   t.equal(Array.isArray(se), true, 'should return an array');
-//   t.equal(resourceList.length, 2, 'resourceList size should not increases by 2');
-//   t.ok(se[0].spec.selector, 'selector prop should be here');
-//   t.equal(se[0].spec.selector.provider, 'nodeshift', 'provider should be nodeshift');
-//   t.equal(se[0].spec.selector.project, config.projectName, `spec.selector.project should be ${config.projectName}`);
-//   t.ok(se[0].spec.ports, 'ports prop should be here');
-//   t.equal(se[0].spec.ports[0].port, 3000, 'port should be 3000');
-//   t.equal(se[0].spec.ports[0].targetPort, 3000, 'targetPort should be 3000');
-//   t.ok(Array.isArray(se[0].spec.ports), 'ports prop should be here');
-//   t.ok(se[0].spec.type, 'type prop should be here');
-//   t.equal(se[0].spec.type, 'ClusterIP', 'spec.type should be ClusterIP');
-//   t.equal(se[0].spec.ports[0].name, 'http');
-//   t.end();
-// });
-
