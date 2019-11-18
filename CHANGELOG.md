@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/nodeshift/nodeshift/compare/v4.0.0...v4.1.0) (2019-11-18)
+
+
+### Features
+
+* **enricher:** add runtime labels to resources. ([#380](https://github.com/nodeshift/nodeshift/issues/380)) ([1028af2](https://github.com/nodeshift/nodeshift/commit/1028af2c5776a54023d9e1ddca17f90b86c923ec)), closes [#374](https://github.com/nodeshift/nodeshift/issues/374)
+
 ## [4.0.0](https://github.com/nodeshift/nodeshift/compare/v3.1.1...v4.0.0) (2019-11-04)
 
 
