@@ -79,6 +79,6 @@
     "sinon": "~7.5.0",
     "standard-version": "^7.0.0",
     "tap-spec": "^5.0.0",
-    "tape": "~4.11.0"
+    "tape": "~4.12.0"
   }
 }
