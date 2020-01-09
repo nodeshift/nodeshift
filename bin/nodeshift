@@ -56,7 +56,7 @@ yargs
   .option('web-app', {
     describe: 'flag to automatically set the appropriate docker image for web app deployment',
     type: 'boolean',
-    default: false,
+    default: false
   })
   .options('outputImageStream', {
     describe: 'The name of the ImageStream to output to.  Defaults to project name from package.json',
