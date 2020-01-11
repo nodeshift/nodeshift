@@ -65,3 +65,17 @@ test('strategy with env vars', (t) => {
   t.equal(result.sourceStrategy.env[0].value, 'development', 'has the value value');
   t.end();
 });
+
+test('defaults to using latest ubi8/nodejs-10 s2i builder image', t => {
+  const result = buildStrategy();
+
+  t.equals(result.sourceStrategy.from.name, 'registry.access.redhat.com/ubi8/nodejs-10:latest');
+  t.end();
+});
+
+test('accepts a node version using imageTag option', t => {
+  const result = buildStrategy({ imageTag: '1-20' });
+
+  t.equals(result.sourceStrategy.from.name, 'registry.access.redhat.com/ubi8/nodejs-10:1-20');
+  t.end();
+});
