@@ -156,6 +156,9 @@ These version tags correspond to the RHSCL tags of the [ubi8/nodejs s2i images](
 #### dockerImage
 Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to [ubi8/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/nodejs-10)
 
+#### web-app
+Flag to automatically set the appropriate docker image for web app deployment. Defaults to false
+
 #### outputImageStream
 The name of the ImageStream to output to.  Defaults to project name from package.json
 
@@ -206,6 +209,9 @@ Shows the below help
             --projectLocation        change the default location of the project   [string]
             --imageTag           The tag of the docker image to use for the deployed
                                 application.                 [string] [default: "latest"]
+            --web-app                flag to automatically set the appropriate docker image
+                                     for web app deployment
+                                                             [boolean] [default: false]
             --outputImageStream      The name of the ImageStream to output to.  Defaults
                            to project name from package.json            [string]
             --outputImageStreamTag   The tag of the ImageStream to output to.    [string]
