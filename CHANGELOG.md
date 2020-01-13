@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.2.0](https://github.com/nodeshift/nodeshift/compare/v4.1.0...v4.2.0) (2020-01-13)
+
+
+### Features
+
+* Adding web-app flag ([#395](https://github.com/nodeshift/nodeshift/issues/395)) ([d1d0c14](https://github.com/nodeshift/nodeshift/commit/d1d0c1429b12e3a00ad2cf754ec14639ff79e581))
+
 ## [4.1.0](https://github.com/nodeshift/nodeshift/compare/v4.0.0...v4.1.0) (2019-11-18)
 
 
