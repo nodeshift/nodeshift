@@ -1,0 +1,125 @@
+{
+  "apiVersion": "v1",
+  "kind": "List",
+  "items": [
+    {
+      "apiVersion": "apps.openshift.io/v1",
+      "kind": "DeploymentConfig",
+      "metadata": {
+        "name": "sample-project",
+        "namespace": "nodey",
+        "labels": {
+          "project": "sample-project",
+          "version": "1.0.0",
+          "provider": "nodeshift",
+          "app": "sample-project",
+          "app.kubernetes.io/name": "nodejs",
+          "app.kubernetes.io/component": "sample-project",
+          "app.kubernetes.io/instance": "sample-project",
+          "app.openshift.io/runtime": "nodejs"
+        },
+        "annotations": {
+          "nodeshift/git-branch": "377-openshift-rest-client-3.0.0-update",
+          "nodeshift/git-commit": "7b6827fb8de99f6c00091d566458ea6e4ebec5d8"
+        }
+      },
+      "spec": {
+        "replicas": 1,
+        "revisionHistoryLimit": 2,
+        "selector": {
+          "app": "sample-project",
+          "project": "sample-project",
+          "provider": "nodeshift"
+        },
+        "triggers": [
+          {
+            "type": "ConfigChange"
+          },
+          {
+            "type": "ImageChange",
+            "imageChangeParams": {
+              "automatic": true,
+              "containerNames": [
+                "sample-project"
+              ],
+              "from": {
+                "kind": "ImageStreamTag",
+                "namespace": "nodey",
+                "name": "sample-project:latest"
+              }
+            }
+          }
+        ],
+        "template": {
+          "metadata": {
+            "labels": {
+              "project": "sample-project",
+              "version": "1.0.0",
+              "provider": "nodeshift",
+              "app": "sample-project"
+            },
+            "annotations": {
+              "nodeshift/git-branch": "377-openshift-rest-client-3.0.0-update",
+              "nodeshift/git-commit": "7b6827fb8de99f6c00091d566458ea6e4ebec5d8"
+            }
+          },
+          "spec": {
+            "containers": [
+              {
+                "image": "sample-project",
+                "name": "sample-project",
+                "securityContext": {
+                  "privileged": false
+                },
+                "ports": [
+                  {
+                    "containerPort": 8080,
+                    "name": "http",
+                    "protocol": "TCP"
+                  }
+                ],
+                "env": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "spec": {
+        "selector": {
+          "project": "sample-project",
+          "provider": "nodeshift"
+        },
+        "ports": [
+          {
+            "protocol": "TCP",
+            "port": 8080,
+            "targetPort": 8080,
+            "name": "http"
+          }
+        ],
+        "type": "ClusterIP"
+      },
+      "metadata": {
+        "name": "sample-project",
+        "namespace": "nodey",
+        "labels": {
+          "project": "sample-project",
+          "version": "1.0.0",
+          "provider": "nodeshift",
+          "app.kubernetes.io/name": "nodejs",
+          "app.kubernetes.io/component": "sample-project",
+          "app.kubernetes.io/instance": "sample-project",
+          "app.openshift.io/runtime": "nodejs"
+        },
+        "annotations": {
+          "nodeshift/git-branch": "377-openshift-rest-client-3.0.0-update",
+          "nodeshift/git-commit": "7b6827fb8de99f6c00091d566458ea6e4ebec5d8"
+        }
+      }
+    }
+  ]
+}
