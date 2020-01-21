@@ -3,7 +3,7 @@
 
 ## What is it
 
-Nodeshift is an opinionated command line application and programmable API that you can use to deploy Node.js projects to OpenShift. 
+Nodeshift is an opinionated command line application and programmable API that you can use to deploy Node.js projects to OpenShift.
 
 ## Prerequisites
 
@@ -147,10 +147,10 @@ Outputs the current version of nodeshift
 Changes the default location of where to look for your project. Defaults to your current working directory(CWD)
 
 #### configLocation
-This option is passed through to the [Openshift Config Loader](https://www.npmjs.com/package/openshift-config-loader).  Defaults to the `~/.kube/config`
+This option is passed through to the [Openshift Rest Client](https://www.npmjs.com/package/openshift-rest-client).  Defaults to the `~/.kube/config`
 
 #### imageTag
-Specify the tag of the docker image to use for the deployed application. defaults to latest.  
+Specify the tag of the docker image to use for the deployed application. defaults to latest.
 These version tags correspond to the RHSCL tags of the [ubi8/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/nodejs-10)
 
 #### dockerImage
@@ -207,6 +207,7 @@ Shows the below help
         Options:
             --version                Show version number                         [boolean]
             --projectLocation        change the default location of the project   [string]
+            --configLocation         change the default location of the config    [string]
             --imageTag           The tag of the docker image to use for the deployed
                                 application.                 [string] [default: "latest"]
             --web-app                flag to automatically set the appropriate docker image

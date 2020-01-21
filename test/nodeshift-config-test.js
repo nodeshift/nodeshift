@@ -221,30 +221,34 @@ test('nodeshift-config invalid "name" in package.json', (t) => {
   });
 });
 
-test.skip('nodeshift-config options for the config loader', (t) => {
+test('nodeshift-config options configLocation', (t) => {
   const options = {
-    config: '../examples/sample-project'
+    configLocation: '../examples/sample-project'
   };
 
   const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
     'openshift-rest-client': {
-      config: {
-        fromKubeconfig: (config) => {
-          t.equal(config, options.config, 'config should be what options.config is');
-          return {
-            namespace: 'test-namespace',
-            url: 'http://mock-cluster'
-          };
-        }
-      },
-      OpenshiftClient: () => {
-        return Promise.resolve();
+      OpenshiftClient: (settings) => {
+        t.equal(settings.config, options.configLocation, 'should be passed in');
+        return Promise.resolve({
+          kubeconfig: {
+            getCurrentContext: () => {
+              return 'nodey/ip/other';
+            },
+            getCurrentCluster: () => {
+              return { server: 'http://mock-cluster' };
+            },
+            getContexts: () => {
+              return [{ name: 'nodey/ip/other', namespace: 'test-namespace' }];
+            }
+          }
+        });
       }
     }
   });
 
   nodeshiftConfig(options).then((config) => {
-    t.ok(config.config, 'options config should be there');
+    t.pass();
     t.end();
   });
 });
