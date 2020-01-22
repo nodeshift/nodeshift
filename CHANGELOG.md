@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/nodeshift/nodeshift/compare/v4.2.0...v5.0.0) (2020-01-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* The api for the openshift rest client has changed slightly, but there should be no nodeshift api changes
+
+While this doesn't have to be a semver-major release, there might be some unexpected bugs.  One known issue, is we are no longer passing a custom config to the rest client.  If this removal causes issues we can work on a way to put it back in
+
+### Features
+
+* pass in a non-default configLocation. ([#400](https://github.com/nodeshift/nodeshift/issues/400)) ([f1bd1b3](https://github.com/nodeshift/nodeshift/commit/f1bd1b3cba5e64cbfd8356f842f1c16e42f2e036)), closes [#341](https://github.com/nodeshift/nodeshift/issues/341) [#373](https://github.com/nodeshift/nodeshift/issues/373)
+* remove deprecation warnings from openshift rest client ([#398](https://github.com/nodeshift/nodeshift/issues/398)) ([2b97f49](https://github.com/nodeshift/nodeshift/commit/2b97f491eaf252ed0166eb1cf6f6067d081a66c9)), closes [#377](https://github.com/nodeshift/nodeshift/issues/377)
+
 ## [4.2.0](https://github.com/nodeshift/nodeshift/compare/v4.1.0...v4.2.0) (2020-01-13)
 
 
