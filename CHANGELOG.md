@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/nodeshift/nodeshift/compare/v5.0.0...v6.0.0) (2020-02-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* removal of Node 8 support
+
+* Engine parameter targets node 10+ ([#406](https://github.com/nodeshift/nodeshift/issues/406)) ([c820b80](https://github.com/nodeshift/nodeshift/commit/c820b80de0650a3c1dbf0d6e8098c20cd4bb198b))
+
 ## [5.0.0](https://github.com/nodeshift/nodeshift/compare/v4.2.0...v5.0.0) (2020-01-22)
 
 
