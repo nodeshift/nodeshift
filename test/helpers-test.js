@@ -16,8 +16,8 @@ test('checks existing and nonexistent files', (t) => {
 
 test('test createDir function - success', (t) => {
   const helpers = proxyquire('../lib/helpers', {
-    mkdirp: (dir, cb) => {
-      return cb();
+    mkdirp: (dir) => {
+      return Promise.resolve();
     }
   });
 
@@ -33,8 +33,8 @@ test('test createDir function - success', (t) => {
 
 test('test createDir function - fail', (t) => {
   const helpers = proxyquire('../lib/helpers', {
-    mkdirp: (dir, cb) => {
-      return cb(new Error('Error: error creating directory'));
+    mkdirp: (dir) => {
+      return Promise.reject(new Error('Error: error creating directory'));
     }
   });
 
