@@ -1,7 +1,7 @@
 const test = require('tape');
 const proxyquire = require('proxyquire');
 
-test('test rmrf function', (t) => {
+test('test rmrf function with file', (t) => {
   const rmrf = proxyquire('../lib/utils/rmrf', {
     fs: {
       lstat: (_, cb) => cb(null, {
@@ -12,13 +12,31 @@ test('test rmrf function', (t) => {
     }
   });
 
-  rmrf().then(() => {
+  rmrf('sample.log').then(() => {
     t.pass('should pass');
     t.end();
   });
 });
 
-test('test rmrf function when file not found', (t) => {
+test('test rmrf function with folder', (t) => {
+  const rmrf = proxyquire('../lib/utils/rmrf', {
+    fs: {
+      lstat: (location, cb) => cb(null, {
+        isFile: () => location === 'samples/sample.log'
+      }),
+      unlink: (_, cb) => cb(null),
+      readdir: (_, cb) => cb(null, ['sample.log']),
+      rmdir: (_, cb) => cb(null)
+    }
+  });
+
+  rmrf('samples/').then(() => {
+    t.pass('should pass');
+    t.end();
+  });
+});
+
+test('test rmrf function when file/folder not found', (t) => {
   const rmrf = proxyquire('../lib/utils/rmrf', {
     fs: {
       lstat: (_, cb) => {
@@ -31,7 +49,7 @@ test('test rmrf function when file not found', (t) => {
     }
   });
 
-  rmrf().then(() => {
+  rmrf('samples/').then(() => {
     t.pass('ENOENT error should not be thrown');
     t.end();
   }).catch(() => {
@@ -55,7 +73,7 @@ test('test rmrf function when file is busy', (t) => {
     }
   });
 
-  rmrf().then(() => {
+  rmrf('sample.log').then(() => {
     t.fail('EBUSY error should be thrown');
     t.end();
   }).catch(() => {
