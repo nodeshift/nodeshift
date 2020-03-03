@@ -46,7 +46,9 @@ test('test createDir function - fail', (t) => {
 
 test('test cleanup function - success', (t) => {
   const helpers = proxyquire('../lib/helpers', {
-    './utils/rmrf': () => Promise.resolve()
+    rimraf: (dir, cb) => {
+      return cb();
+    }
   });
 
   t.equal(typeof helpers.cleanUp, 'function', 'this module exports a function');
@@ -61,7 +63,9 @@ test('test cleanup function - success', (t) => {
 
 test('test cleanUp function - fail', (t) => {
   const helpers = proxyquire('../lib/helpers', {
-    './utils/rmrf': () => Promise.reject(new Error('Error: error cleaning up'))
+    rimraf: (dir, cb) => {
+      return cb(new Error('Error: error cleaning up'));
+    }
   });
 
   helpers.cleanUp().catch((err) => {
