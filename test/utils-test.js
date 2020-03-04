@@ -1,5 +1,6 @@
 const test = require('tape');
 const proxyquire = require('proxyquire');
+const sinon = require('sinon');
 
 test('test rmrf function with file', (t) => {
   const rmrf = proxyquire('../lib/utils/rmrf', {
@@ -36,7 +37,7 @@ test('test rmrf function with folder', (t) => {
   });
 });
 
-test('test rmrf function when file/folder not found', (t) => {
+test('test rmrf function when file not found', (t) => {
   const rmrf = proxyquire('../lib/utils/rmrf', {
     fs: {
       lstat: (_, cb) => {
@@ -49,7 +50,7 @@ test('test rmrf function when file/folder not found', (t) => {
     }
   });
 
-  rmrf('samples/').then(() => {
+  rmrf('sample.log').then(() => {
     t.pass('ENOENT error should not be thrown');
     t.end();
   }).catch(() => {
@@ -57,27 +58,51 @@ test('test rmrf function when file/folder not found', (t) => {
   });
 });
 
-test('test rmrf function when file is busy', (t) => {
+test('test rmrf function when file is locked but then available', (t) => {
+  const unlinkStub = sinon.stub();
+
+  unlinkStub.onCall(0).callsArgWith(1, { code: 'EPERM' });
+  unlinkStub.onCall(1).callsArgWith(1, { code: 'EPERM' });
+  unlinkStub.onCall(2).callsArgWith(1, { code: 'EPERM' });
+  unlinkStub.onCall(3).callsArgWith(1, null);
+
   const rmrf = proxyquire('../lib/utils/rmrf', {
     fs: {
       lstat: (_, cb) => cb(null, {
         isFile: () => true
       }),
-      unlink: (_, cb) => {
-        console.log('Running unlink...');
-        const err = new Error('File is busy');
-        err.code = 'EBUSY';
-        cb(err, null);
-      },
+      unlink: unlinkStub,
       readdir: (_, cb) => cb(null, [])
     }
   });
 
-  rmrf('sample.log').then(() => {
-    t.fail('EBUSY error should be thrown');
-    t.end();
-  }).catch(() => {
-    t.pass('EBUSY error should be thrown');
-    t.end();
+  rmrf('file.locked')
+    .then(() => {
+      t.pass('EPERM error should not be thrown');
+      t.end();
+    }).catch(() => {
+      t.fail('EPERM error should not be thrown');
+      t.end();
+    });
+});
+
+test('test rmrf function with an unhandled error', (t) => {
+  const rmrf = proxyquire('../lib/utils/rmrf', {
+    fs: {
+      lstat: (_, cb) => cb(null, {
+        isFile: () => true
+      }),
+      unlink: (_, cb) => cb(new Error('Just an unhandled error')),
+      readdir: (_, cb) => cb(null, [])
+    }
   });
+
+  rmrf('sample.log')
+    .then(() => {
+      t.fail('Unhandled error should be thrown');
+      t.end();
+    }).catch(() => {
+      t.pass('Unhandled error should be thrown');
+      t.end();
+    });
 });
