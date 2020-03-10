@@ -87,3 +87,84 @@ test('test parseMultiOption function', (t) => {
   t.equal(parsed[1].value, 'true', 'second array wih value');
   t.end();
 });
+
+test('test listFiles function - success', (t) => {
+  const helpers = proxyquire('../lib/helpers', {
+    fs: {
+      readdir: (dir, cb) => cb(null, [])
+    }
+  });
+
+  t.equal(typeof helpers.listFiles, 'function', 'this module exports a function');
+
+  const p = helpers.listFiles();
+
+  t.equals(p instanceof Promise, true, 'listFiles function is a promise');
+
+  p.then(() => {
+    t.pass('should pass');
+    t.end();
+  });
+});
+
+test('test listFiles function - fail', (t) => {
+  const helpers = proxyquire('../lib/helpers', {
+    fs: {
+      readdir: (dir, cb) => cb(new Error('Error: error reading directory content'))
+    }
+  });
+
+  helpers.listFiles().catch((err) => {
+    t.equal('Error: error reading directory content', err.message, 'error message should be displayed');
+    t.end();
+  });
+});
+
+test('test awaitRequest function - success', (t) => {
+  const helpers = require('../lib/helpers');
+  const request = Promise.resolve('Request resolved successfully');
+
+  helpers.awaitRequest(request).then(res => {
+    t.equal('Request resolved successfully', res, 'success message should be displayed');
+    t.end();
+  });
+});
+
+test('test awaitRequest function - fail', (t) => {
+  const helpers = require('../lib/helpers');
+  const request = Promise.reject(new Error('Error: an error occurred'));
+
+  helpers.awaitRequest(request).catch((err) => {
+    t.equal('Error: an error occurred', err.message, 'error message should be displayed');
+    t.end();
+  });
+});
+
+test('test awaitRequest function - 404 fail', (t) => {
+  const helpers = require('../lib/helpers');
+
+  const error = new Error('Error: an 404 error occurred');
+  error.code = 404;
+
+  const request = Promise.reject(error);
+
+  helpers.awaitRequest(request).then((res) => {
+    t.equal('Error: an 404 error occurred', res.message, '404 errors should not be thrown');
+    t.end();
+  });
+});
+
+test('test yamlToJson function', (t) => {
+  const helpers = proxyquire('../lib/helpers', {
+    'js-yaml': {
+      safeLoad: () => ({})
+    }
+  });
+
+  t.equal(typeof helpers.yamlToJson, 'function', 'this module exports a function');
+
+  const result = helpers.yamlToJson();
+
+  t.deepEquals({}, result, 'should return json object');
+  t.end();
+});
