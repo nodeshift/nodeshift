@@ -39,7 +39,16 @@ jobs:
       - test-nodejs
 
 workflows:
+  version: 2
   test_node_versions:
     jobs:
-      - node10
-      - node12
+      - node10:
+        filters:
+          branches:
+            ignore:
+              - gh-pages
+      - node12:
+        filters:
+          branches:
+            ignore:
+              - gh-pages
