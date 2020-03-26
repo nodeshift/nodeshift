@@ -10,7 +10,7 @@
     "test": "cross-env NODESHIFT_QUIET=true tape test/*-test.js test/**/*-test.js | tap-spec",
     "coverage": "nyc npm test",
     "coverage:html": "nyc npm test && nyc report --reporter=html",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "nyc npm test && nyc report && if [ $COVERALLS_REPO_TOKEN'' != '' ] ; then nyc report --reporter=text-lcov | coveralls; fi",
     "docs": "documentation build index.js --shallow -f html -o docs --config documentation.yml",
     "ci": "npm run lint && npm run coveralls",
     "prerelease": "npm run lint && npm run test",
