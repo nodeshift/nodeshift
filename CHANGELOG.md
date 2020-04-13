@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.0.2](https://github.com/nodeshift/nodeshift/compare/v6.0.1...v6.0.2) (2020-04-13)
+
+
+### Features
+
+* Replacing rimraf with custom module ([#413](https://github.com/nodeshift/nodeshift/issues/413)) ([9351d45](https://github.com/nodeshift/nodeshift/commit/9351d4527cd1688ef5b349ca711425c37f0e0cce))
+
+
+### Bug Fixes
+
+* update and pin the openshift-rest-client version to 4.0.1 ([#435](https://github.com/nodeshift/nodeshift/issues/435)) ([e09d2be](https://github.com/nodeshift/nodeshift/commit/e09d2be07c6a7cf97d4fcf9eb4a9682ec7a8d9e7))
+* upgrade cross-env from 7.0.0 to 7.0.1 ([#428](https://github.com/nodeshift/nodeshift/issues/428)) ([56de6c6](https://github.com/nodeshift/nodeshift/commit/56de6c65c3dc1d5c143fbf5c763a29b99148e6a8))
+* upgrade nock from 12.0.0 to 12.0.2 ([#427](https://github.com/nodeshift/nodeshift/issues/427)) ([8097b9d](https://github.com/nodeshift/nodeshift/commit/8097b9d38141898f046e655e1746c383c902992f))
+* upgrade tape from 4.13.0 to 4.13.2 ([#429](https://github.com/nodeshift/nodeshift/issues/429)) ([f064833](https://github.com/nodeshift/nodeshift/commit/f064833f04fb2efb37b1fb49714a214a3db82e04))
+* upgrade yargs from 15.1.0 to 15.2.0 ([#426](https://github.com/nodeshift/nodeshift/issues/426)) ([fefb21e](https://github.com/nodeshift/nodeshift/commit/fefb21eacfd012d0babee1e16b56447b5fe0e1be))
+
 ### [6.0.1](https://github.com/nodeshift/nodeshift/compare/v6.0.0...v6.0.1) (2020-02-19)
 
 
