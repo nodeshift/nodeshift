@@ -14,7 +14,9 @@
     "docs": "documentation build index.js --shallow -f html -o docs --config documentation.yml",
     "ci": "npm run lint && npm run coveralls",
     "prerelease": "npm run lint && npm run test",
-    "release": "standard-version -a"
+    "release": "standard-version -a",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "standard-version": {
     "scripts": {
@@ -58,7 +60,8 @@
     "mkdirp": "^1.0.3",
     "openshift-rest-client": "4.0.1",
     "tar": "~6.0.1",
-    "yargs": "^15.2.0"
+    "yargs": "^15.2.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "coveralls": "~3.0.6",
@@ -79,5 +82,6 @@
     "standard-version": "^7.0.0",
     "tap-spec": "^5.0.0",
     "tape": "~4.13.2"
-  }
+  },
+  "snyk": true
 }
