@@ -117,6 +117,10 @@ yargs
     type: 'boolean',
     default: false
   })
+  .options('build.strategy', {
+    describe: 'flag to change the build strategy.  Defaults to Source',
+    choices: ['Source', 'Docker']
+  })
   .array('build.env')
   .options('metadata.out', {
     describe: 'determines what should be done with the response metadata from OpenShift',

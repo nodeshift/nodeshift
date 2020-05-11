@@ -421,3 +421,36 @@ test('nodeshift-config options - change outputImageStreamTag and outputImageStre
     t.end();
   });
 });
+
+test('nodeshift-config options - not recognized build strategy', (t) => {
+  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+    'openshift-rest-client': {
+      OpenshiftClient: () => {
+        return Promise.resolve({
+          kubeconfig: {
+            getCurrentContext: () => {
+              return 'nodey/ip/other';
+            },
+            getCurrentCluster: () => {
+              return { server: 'http://mock-cluster' };
+            },
+            getContexts: () => {
+              return [{ name: 'nodey/ip/other', namespace: 'test-namespace' }];
+            }
+          }
+        });
+      }
+    }
+  });
+
+  const options = {
+    build: {
+      strategy: 'CustomStrat'
+    }
+  };
+
+  nodeshiftConfig(options).then((config) => {
+    t.equal(config.build.strategy, 'Source', 'should be Source');
+    t.end();
+  });
+});
