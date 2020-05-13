@@ -17,6 +17,9 @@ test('create buildConfig not found', (t) => {
     buildName: 'nodejs-s2i-build',
     projectName: 'project-name',
     version: '1.0.0',
+    build: {
+      strategy: 'Source'
+    },
     namespace: {
       name: ''
     },
@@ -73,6 +76,9 @@ test('buildConfig found - no recreate', (t) => {
     buildName: 'nodejs-s2i-build',
     projectName: 'project-name',
     version: '1.0.0',
+    build: {
+      strategy: 'Source'
+    },
     namespace: {
       name: ''
     },
@@ -116,7 +122,8 @@ test('buildConfig found - no recreate', (t) => {
 test('build recreate but is an imagestream', (t) => {
   const config = {
     build: {
-      recreate: 'imagestream'
+      recreate: 'imagestream',
+      strategy: 'Source'
     },
     buildName: 'nodejs-s2i-build',
     projectName: 'project-name',
@@ -223,7 +230,8 @@ test('build recreate true with removing builds', (t) => {
 
   const config = {
     build: {
-      recreate: true
+      recreate: true,
+      strategy: 'Source'
     },
     buildName: 'nodejs-s2i-build',
     projectName: 'project-name',
@@ -313,7 +321,8 @@ test('build recreate true with removing builds with "true"', (t) => {
 
   const config = {
     build: {
-      recreate: 'true'
+      recreate: 'true',
+      strategy: 'Source'
     },
     buildName: 'nodejs-s2i-build',
     projectName: 'project-name',

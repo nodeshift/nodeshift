@@ -192,6 +192,9 @@ Flag to perform incremental builds(if applicable), which means it reuses artifac
 #### build.env
 Flag to pass build config environment variables as NAME=Value.  Can be used multiple times.  ex: `nodeshift --build.env NODE_ENV=development --build.env YARN_ENABLED=true`
 
+#### build.strategy
+Flag to change the build strategy used.  Values can be Docker or Source.  Defaults to Source
+
 #### help
 Shows the below help
 
@@ -244,6 +247,8 @@ Shows the below help
             --build.incremental  flag to perform incremental builds, which means it reuses
                                     artifacts from previously-built images
                                         [boolean] [choices: true, false] [default: false]
+            --build.strategy         flag to change the build strategy.  Defaults to Source
+                                      [choices: "Source", "Docker"]
             --metadata.out           determines what should be done with the response
                                     metadata from OpenShift
                     [string] [choices: "stdout", "ignore", "<filename>"] [default: "ignore"]
