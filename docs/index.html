@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset='utf-8'>
-  <title>nodeshift 6.0.2 | Documentation</title>
+  <title>nodeshift 6.1.0 | Documentation</title>
   <meta name='description' content='Plugin for running openshift deployments'>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' rel='stylesheet'>
@@ -15,11 +15,14 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>nodeshift</h3>
-          <div class='mb1'><code>6.0.2</code></div>
+          <div class='mb1'><code>6.1.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
             class='col12 block input'
+            spellcheck='false'
+            autocapitalize='off'
+            autocorrect='off'
             type='text' />
           <div id='toc'>
             <ul class='list-reset h5 py1-ul'>
@@ -243,6 +246,8 @@ These version tags correspond to the RHSCL tags of the <a href="https://access.r
 <p>Flag to perform incremental builds(if applicable), which means it reuses artifacts from previously-built images. Defaults to false</p>
 <h4>build.env</h4>
 <p>Flag to pass build config environment variables as NAME=Value.  Can be used multiple times.  ex: <code>nodeshift --build.env NODE_ENV=development --build.env YARN_ENABLED=true</code></p>
+<h4>build.strategy</h4>
+<p>Flag to change the build strategy used.  Values can be Docker or Source.  Defaults to Source</p>
 <h4>help</h4>
 <p>Shows the below help</p>
 <pre><code>    Usage: nodeshift [--options]
@@ -294,6 +299,8 @@ These version tags correspond to the RHSCL tags of the <a href="https://access.r
         --build.incremental  flag to perform incremental builds, which means it reuses
                                 artifacts from previously-built images
                                     [boolean] [choices: true, false] [default: false]
+        --build.strategy         flag to change the build strategy.  Defaults to Source
+                                  [choices: "Source", "Docker"]
         --metadata.out           determines what should be done with the response
                                 metadata from OpenShift
                 [string] [choices: "stdout", "ignore", "&#x3C;filename>"] [default: "ignore"]
@@ -492,6 +499,15 @@ These version tags correspond to the RHSCL tags of the <a href="https://access.r
 
   
     <tr>
+  <td class='break-word'><span class='code bold'>options.build.strategy</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>flag to change the build strategy used.  Values can be Docker or Source.  Defaults to Source
+</span></td>
+</tr>
+
+
+  
+    <tr>
   <td class='break-word'><span class='code bold'>options.build.recreate</span> <code class='quiet'>string/boolean?</code>
   </td>
   <td class='break-word'><span>flag to recreate a buildConfig or Imagestream. values are "buildConfig", "imageStream", true, false.  Defaults to false
@@ -549,6 +565,8 @@ These version tags correspond to the RHSCL tags of the <a href="https://access.r
 
       
     
+  
+
   
 
   
@@ -760,6 +778,8 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
 
       
     
+  
+
   
 
   
@@ -1022,6 +1042,8 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
   
 
   
+
+  
 </section>
 
           
@@ -1271,6 +1293,8 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
   
 
   
+
+  
 </section>
 
           
@@ -1421,6 +1445,15 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
 
   
     <tr>
+  <td class='break-word'><span class='code bold'>options.build.strategy</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>flag to change the build strategy used.  Values can be Docker or Source.  Defaults to Source
+</span></td>
+</tr>
+
+
+  
+    <tr>
   <td class='break-word'><span class='code bold'>options.build.recreate</span> <code class='quiet'>string/boolean?</code>
   </td>
   <td class='break-word'><span>flag to recreate a buildConfig or Imagestream. values are "buildConfig", "imageStream", true, false.  Defaults to false
@@ -1478,6 +1511,8 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
 
       
     
+  
+
   
 
   

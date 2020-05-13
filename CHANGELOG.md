@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.1.0](https://github.com/nodeshift/nodeshift/compare/v6.0.2...v6.1.0) (2020-05-13)
+
+
+### Features
+
+* **build-strategy:** Add Docker build strategy ([#442](https://github.com/nodeshift/nodeshift/issues/442)) ([384690f](https://github.com/nodeshift/nodeshift/commit/384690f1c6395b27dbfb131f2841c3c418848881))
+
+
+### Bug Fixes
+
+* upgrade documentation from 12.1.4 to 12.2.0 ([#438](https://github.com/nodeshift/nodeshift/issues/438)) ([a6820a1](https://github.com/nodeshift/nodeshift/commit/a6820a1e529e9e88549379ec0f59dddfa03107d9))
+* upgrade eslint-plugin-node from 11.0.0 to 11.1.0 ([#437](https://github.com/nodeshift/nodeshift/issues/437)) ([591646e](https://github.com/nodeshift/nodeshift/commit/591646e1ce170ca0c630c832c9e57abdb6289d67))
+
 ### [6.0.2](https://github.com/nodeshift/nodeshift/compare/v6.0.1...v6.0.2) (2020-04-13)
 
 
