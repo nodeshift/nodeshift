@@ -23,9 +23,6 @@
     }
   },
   "files": [
-    "package.json",
-    "README.md",
-    "LICENSE",
     "index.js",
     "example.js",
     "lib",
