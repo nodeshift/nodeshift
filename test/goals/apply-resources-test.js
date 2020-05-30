@@ -16,13 +16,13 @@ test('apply resource test', (t) => {
 
 test('apply resource test', (t) => {
   const resourceList = [
-    { kind: 'Service' },
-    { kind: 'Route' },
-    { kind: 'DeploymentConfig' },
-    { kind: 'Secret' },
-    { kind: 'Ingress' },
-    { kind: 'ConfigMap' },
-    { kind: 'other' }
+    { kind: 'Service', apiVersion: 'v1' },
+    { kind: 'Route', apiVersion: 'v1' },
+    { kind: 'DeploymentConfig', apiVersion: 'v1' },
+    { kind: 'Secret', apiVersion: 'v1' },
+    { kind: 'Ingress', apiVersion: 'v1' },
+    { kind: 'ConfigMap', apiVersion: 'v1' },
+    { kind: 'other', apiVersion: 'v1' }
   ];
 
   const mockedPromiseResolve = () => Promise.resolve();

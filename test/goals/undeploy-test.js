@@ -48,26 +48,32 @@ test('return list items', (t) => {
     items: [
       {
         kind: 'Route',
+        apiVersion: 'v1',
         metadata: metadata
       },
       {
         kind: 'Service',
+        apiVersion: 'v1',
         metadata: metadata
       },
       {
         kind: 'Secret',
+        apiVersion: 'v1',
         metadata: metadata
       },
       {
         kind: 'DeploymentConfig',
+        apiVersion: 'v1',
         metadata: metadata
       },
       {
         kind: 'Ingress',
+        apiVersion: 'v1',
         metadata: metadata
       },
       {
         kind: 'ConfigMap',
+        apiVersion: 'v1',
         metadata: metadata
       }
     ]
