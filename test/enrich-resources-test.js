@@ -64,3 +64,44 @@ test('enrich-resource - enricher is not a function', (t) => {
     t.end();
   });
 });
+
+test('enrich-resource - knative enrichers', (t) => {
+  let i = 0;
+  const enrichResource = proxyquire('../lib/enrich-resources', {
+    './load-enrichers': () => {
+      return {
+        'knative-serving-service': () => {
+          i++;
+          t.pass('should get called');
+        },
+        'deployment-config': () => {
+          t.fail('should not get called');
+        },
+        route: () => {
+          t.fail('should not get called');
+        },
+        service: () => {
+          t.fail('should not get called');
+        },
+        labels: () => {
+          t.fail('should not get called');
+        },
+        'git-info': () => {
+          t.fail('should not get called');
+        },
+        'health-check': () => {
+          t.fail('should not get called');
+        }
+      };
+    }
+  });
+
+  const p = enrichResource({ knative: true }, []);
+  t.ok(p instanceof Promise, 'should return a promise');
+
+  p.then(() => {
+    t.equal(i, 1, 'should have 1 knative enricher');
+    t.pass('success');
+    t.end();
+  });
+});

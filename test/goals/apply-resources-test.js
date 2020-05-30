@@ -17,6 +17,7 @@ test('apply resource test', (t) => {
 test('apply resource test', (t) => {
   const resourceList = [
     { kind: 'Service', apiVersion: 'v1' },
+    { kind: 'Service', apiVersion: 'serving.knative.dev/v1' },
     { kind: 'Route', apiVersion: 'v1' },
     { kind: 'DeploymentConfig', apiVersion: 'v1' },
     { kind: 'Secret', apiVersion: 'v1' },
@@ -29,6 +30,7 @@ test('apply resource test', (t) => {
 
   const applyResources = proxyquire('../../lib/goals/apply-resources', {
     '../services': mockedPromiseResolve,
+    '../knative-serving-service': mockedPromiseResolve,
     '../routes': mockedPromiseResolve,
     '../deployment-config': {
       deploy: mockedPromiseResolve

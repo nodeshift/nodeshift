@@ -57,6 +57,11 @@ test('return list items', (t) => {
         metadata: metadata
       },
       {
+        kind: 'Service',
+        apiVersion: 'serving.knative.dev/v1',
+        metadata: metadata
+      },
+      {
         kind: 'Secret',
         apiVersion: 'v1',
         metadata: metadata
@@ -139,6 +144,22 @@ test('return list items', (t) => {
             ns: (name) => {
               return {
                 routes: (name) => {
+                  t.equal(name, metadata.name, 'name should be equal');
+                  return {
+                    delete: (resource) => {
+                      return Promise.resolve({ code: 204 });
+                    }
+                  };
+                }
+              };
+            }
+          }
+        },
+        'serving.knative.dev': {
+          v1: {
+            ns: (name) => {
+              return {
+                service: (name) => {
                   t.equal(name, metadata.name, 'name should be equal');
                   return {
                     delete: (resource) => {
