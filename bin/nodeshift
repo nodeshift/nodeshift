@@ -162,6 +162,8 @@ function commandHandler (argv) {
 function createOptions (argv) {
   const options = {};
 
+  options.knative = !!argv.knative;
+
   options.projectLocation = argv.projectLocation;
   options.dockerImage = argv.dockerImage;
   options.imageTag = argv.imageTag;
