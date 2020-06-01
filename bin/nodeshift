@@ -130,6 +130,12 @@ yargs
     type: 'string',
     default: 'ignore'
   })
+  .options('knative', {
+    describe: 'EXPERIMENTAL FEATURE. flag to deploy an application as a Knative Serving Service',
+    choices: [true, false],
+    type: 'boolean',
+    default: false
+  })
   .argv;
 
 function commandHandler (argv) {
