@@ -1,5 +1,5 @@
 # Nodeshift [![CircleCI](https://circleci.com/gh/nodeshift/nodeshift.svg?style=svg)](https://circleci.com/gh/nodeshift/nodeshift)
-[![Build Status](https://travis-ci.org/nodeshift/nodeshift.svg?branch=master)](https://travis-ci.org/nodeshift/nodeshift) [![Coverage Status](https://coveralls.io/repos/github/nodeshift/nodeshift/badge.svg?branch=master)](https://coveralls.io/github/nodeshift/nodeshift?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/nodeshift/nodeshift.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.org/nodeshift/nodeshift.svg?branch=master)](https://travis-ci.org/nodeshift/nodeshift) [![Coverage Status](https://coveralls.io/repos/github/nodeshift/nodeshift/badge.svg?branch=master)](https://coveralls.io/github/nodeshift/nodeshift?branch=master)
 
 ## What is it
 
@@ -7,11 +7,13 @@ Nodeshift is an opinionated command line application and programmable API that y
 
 ## Prerequisites
 
-* Node.js - version 8.x or greater
+* Node.js - version 10.x or greater
 
 ## Install
 
 To install globally: `npm install -g nodeshift`
+
+Use with npx: `npx nodeshift`
 
 or to use in an npm script
 
