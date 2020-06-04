@@ -198,7 +198,7 @@ Flag to pass build config environment variables as NAME=Value.  Can be used mult
 Flag to change the build strategy used.  Values can be Docker or Source.  Defaults to Source
 
 #### knative
-EXPERIMENTAL FEATURE. Flag to deploy an application as a Knative Serving Service.  Defaults to false
+EXPERIMENTAL. Flag to deploy an application as a Knative Serving Service.  Defaults to false
 Since this feature is experimental,  it is subject to change without a Major version release until it is fully stable.
 
 #### help
@@ -258,7 +258,7 @@ Shows the below help
             --metadata.out           determines what should be done with the response
                                     metadata from OpenShift
                     [string] [choices: "stdout", "ignore", "<filename>"] [default: "ignore"]
-            --knative                EXPERIMENTAL FEATURE. flag to deploy an application
+            --knative                EXPERIMENTAL. flag to deploy an application
                            as a Knative Serving Service
                                [boolean] [choices: true, false] [default: false]
             --help                   Show help                                   [boolean]

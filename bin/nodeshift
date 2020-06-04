@@ -131,7 +131,7 @@ yargs
     default: 'ignore'
   })
   .options('knative', {
-    describe: 'EXPERIMENTAL FEATURE. flag to deploy an application as a Knative Serving Service',
+    describe: 'EXPERIMENTAL. flag to deploy an application as a Knative Serving Service',
     choices: [true, false],
     type: 'boolean',
     default: false
