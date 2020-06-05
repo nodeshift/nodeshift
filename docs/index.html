@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset='utf-8'>
-  <title>nodeshift 6.1.0 | Documentation</title>
+  <title>nodeshift 6.2.0 | Documentation</title>
   <meta name='description' content='Plugin for running openshift deployments'>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' rel='stylesheet'>
@@ -15,7 +15,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>nodeshift</h3>
-          <div class='mb1'><code>6.1.0</code></div>
+          <div class='mb1'><code>6.2.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -105,15 +105,16 @@
 
   
     <h1>Nodeshift <a href="https://circleci.com/gh/nodeshift/nodeshift"><img src="https://circleci.com/gh/nodeshift/nodeshift.svg?style=svg" alt="CircleCI"></a></h1>
-<p><a href="https://travis-ci.org/nodeshift/nodeshift"><img src="https://travis-ci.org/nodeshift/nodeshift.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/nodeshift/nodeshift?branch=master"><img src="https://coveralls.io/repos/github/nodeshift/nodeshift/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/nodeshift/nodeshift.svg" alt="Greenkeeper badge"></a></p>
+<p><a href="https://travis-ci.org/nodeshift/nodeshift"><img src="https://travis-ci.org/nodeshift/nodeshift.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/nodeshift/nodeshift?branch=master"><img src="https://coveralls.io/repos/github/nodeshift/nodeshift/badge.svg?branch=master" alt="Coverage Status"></a></p>
 <h2>What is it</h2>
 <p>Nodeshift is an opinionated command line application and programmable API that you can use to deploy Node.js projects to OpenShift.</p>
 <h2>Prerequisites</h2>
 <ul>
-<li>Node.js - version 8.x or greater</li>
+<li>Node.js - version 10.x or greater</li>
 </ul>
 <h2>Install</h2>
 <p>To install globally: <code>npm install -g nodeshift</code></p>
+<p>Use with npx: <code>npx nodeshift</code></p>
 <p>or to use in an npm script</p>
 <pre><code>npm install --save-dev nodeshift
 
@@ -248,6 +249,9 @@ These version tags correspond to the RHSCL tags of the <a href="https://access.r
 <p>Flag to pass build config environment variables as NAME=Value.  Can be used multiple times.  ex: <code>nodeshift --build.env NODE_ENV=development --build.env YARN_ENABLED=true</code></p>
 <h4>build.strategy</h4>
 <p>Flag to change the build strategy used.  Values can be Docker or Source.  Defaults to Source</p>
+<h4>knative</h4>
+<p>EXPERIMENTAL. Flag to deploy an application as a Knative Serving Service.  Defaults to false
+Since this feature is experimental,  it is subject to change without a Major version release until it is fully stable.</p>
 <h4>help</h4>
 <p>Shows the below help</p>
 <pre><code>    Usage: nodeshift [--options]
@@ -304,6 +308,9 @@ These version tags correspond to the RHSCL tags of the <a href="https://access.r
         --metadata.out           determines what should be done with the response
                                 metadata from OpenShift
                 [string] [choices: "stdout", "ignore", "&#x3C;filename>"] [default: "ignore"]
+        --knative                EXPERIMENTAL. flag to deploy an application
+                       as a Knative Serving Service
+                           [boolean] [choices: true, false] [default: false]
         --help                   Show help                                   [boolean]
         --cmd                                                      [default: "deploy"]
 </code></pre>
@@ -547,6 +554,15 @@ These version tags correspond to the RHSCL tags of the <a href="https://access.r
 
 
               
+                <tr>
+  <td class='break-word'><span class='code bold'>options.knative</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
+  </td>
+  <td class='break-word'><span>EXPERIMENTAL. flag to deploy an application as a Knative Serving Service.  Defaults to false
+</span></td>
+</tr>
+
+
+              
             </tbody>
           </table>
           
@@ -755,6 +771,15 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
   <td class='break-word'><span class='code bold'>options.definedProperties</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>?</code>
   </td>
   <td class='break-word'><span>Array of objects with the format { key: value }.  Used for template substitution
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.knative</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
+  </td>
+  <td class='break-word'><span>EXPERIMENTAL. flag to deploy an application as a Knative Serving Service.  Defaults to false
 </span></td>
 </tr>
 
@@ -1011,6 +1036,15 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
 
 
               
+                <tr>
+  <td class='break-word'><span class='code bold'>options.knative</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
+  </td>
+  <td class='break-word'><span>EXPERIMENTAL. flag to deploy an application as a Knative Serving Service.  Defaults to false
+</span></td>
+</tr>
+
+
+              
             </tbody>
           </table>
           
@@ -1257,6 +1291,15 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
   <td class='break-word'><span class='code bold'>options.definedProperties</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>?</code>
   </td>
   <td class='break-word'><span>Array of objects with the format { key: value }.  Used for template substitution
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.knative</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
+  </td>
+  <td class='break-word'><span>EXPERIMENTAL. flag to deploy an application as a Knative Serving Service.  Defaults to false
 </span></td>
 </tr>
 

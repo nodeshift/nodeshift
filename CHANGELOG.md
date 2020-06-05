@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.2.0](https://github.com/nodeshift/nodeshift/compare/v6.1.0...v6.2.0) (2020-06-05)
+
+
+### Features
+
+* Knative Serving Deployment ([#454](https://github.com/nodeshift/nodeshift/issues/454)) ([88eed5d](https://github.com/nodeshift/nodeshift/commit/88eed5d3ee0870036c34ff30b62862704f284eeb))
+
 ## [6.1.0](https://github.com/nodeshift/nodeshift/compare/v6.0.2...v6.1.0) (2020-05-13)
 
 
