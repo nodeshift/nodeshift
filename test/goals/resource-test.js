@@ -10,7 +10,7 @@ test('resource goal', (t) => {
     '../resource-writer': () => Promise.resolve()
   });
 
-  const rg = resourceGoal().then(() => {
+  const rg = resourceGoal({}).then(() => {
     t.pass('successful call');
     t.end();
   });
