@@ -50,7 +50,7 @@
   "dependencies": {
     "chalk": "^3.0.0",
     "git-repo-info": "^2.0.0",
-    "js-yaml": "~3.13.1",
+    "js-yaml": "~3.14.0",
     "lodash": "^4.17.4",
     "mkdirp": "^1.0.3",
     "openshift-rest-client": "~4.1.1",
