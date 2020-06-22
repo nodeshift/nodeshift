@@ -52,8 +52,10 @@
     "git-repo-info": "^2.0.0",
     "js-yaml": "~3.14.0",
     "lodash": "^4.17.4",
+    "minimatch": "^3.0.4",
     "mkdirp": "^1.0.3",
     "openshift-rest-client": "~4.1.1",
+    "parse-gitignore": "^1.0.1",
     "tar": "~6.0.2",
     "yargs": "^15.2.0"
   },
