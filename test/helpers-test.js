@@ -168,3 +168,15 @@ test('test yamlToJson function', (t) => {
   t.deepEquals({}, result, 'should return json object');
   t.end();
 });
+
+test('test parseIgnoreFile function - return empty array if error', (t) => {
+  const helpers = proxyquire('../lib/helpers', {
+    fs: {
+      readFile: (path, cb) => cb(new Error('Error: error opening file'))
+    }
+  });
+  helpers.parseIgnoreFile('.gitignore').then(result => {
+    t.deepEquals([], result, 'should return empty array');
+    t.end();
+  });
+});
