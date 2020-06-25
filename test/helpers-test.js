@@ -169,14 +169,33 @@ test('test yamlToJson function', (t) => {
   t.end();
 });
 
-test('test parseIgnoreFile function - return empty array if error', (t) => {
+test('test parseIgnoreFile function - return empty array if file does not exists', (t) => {
   const helpers = proxyquire('../lib/helpers', {
     fs: {
-      readFile: (path, cb) => cb(new Error('Error: error opening file'))
+      existsSync: (path) => false
     }
   });
   helpers.parseIgnoreFile('.gitignore').then(result => {
     t.deepEquals([], result, 'should return empty array');
     t.end();
   });
+});
+
+test('test parseIgnoreFile function - fail on error', (t) => {
+  const helpers = proxyquire('../lib/helpers', {
+    fs: {
+      existsSync: (path) => true,
+      readFile: (path, cb) => cb(new Error('Error: file can not be opened'))
+    }
+  });
+  helpers
+    .parseIgnoreFile('.gitignore')
+    .then(() => {
+      t.fail('should not pass');
+      t.end();
+    })
+    .catch(() => {
+      t.pass('should pass');
+      t.end();
+    });
 });
