@@ -15,6 +15,27 @@ test('test knative serving service, already created', (t) => {
     }
   };
 
+  const returnedResource = {
+    code: 200,
+    body:
+    {
+      kind: 'Service',
+      apiVersion: 'serving.knative.dev/v1',
+      metadata: {
+        name: 'service'
+      },
+      spec: {
+        template: {
+          metadata: {
+            labels: {
+              appId: 'thing'
+            }
+          }
+        }
+      }
+    }
+  };
+
   const config = {
     projectName: 'test-project',
     namespace: {
@@ -32,8 +53,11 @@ test('test knative serving service, already created', (t) => {
                     t.fail('name argument does not match the resource.metadata.name');
                   }
                   return {
+                    put: () => {
+                      return Promise.resolve(returnedResource);
+                    },
                     get: () => {
-                      return Promise.resolve({ code: 200, body: { kind: 'Service', apiVersion: 'serving.knative.dev/v1', metadata: { name: 'service' } } });
+                      return Promise.resolve(returnedResource);
                     }
                   };
                 }
@@ -53,7 +77,7 @@ test('test knative serving service, already created', (t) => {
   t.equal(p instanceof Promise, true, 'should return a Promise');
 });
 
-test('test routes, not created', (t) => {
+test('test knative Serving Service, not created', (t) => {
   const knServices = require('../lib/knative-serving-service');
   const resource = {
     apiVersion: 'serving.knative.dev/v1',
