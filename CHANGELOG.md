@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0](https://github.com/nodeshift/nodeshift/compare/v6.2.0...v7.0.0) (2020-07-02)
+
+
+### Features
+
+* **knative:** Each deploy should create a new revision. ([#467](https://github.com/nodeshift/nodeshift/issues/467)) ([3ba9cb0](https://github.com/nodeshift/nodeshift/commit/3ba9cb0592417ac067dd072ff34d30cd45cb111a))
+* **project-archiver:** Adding .gitignore ([#463](https://github.com/nodeshift/nodeshift/issues/463)) ([3f7d48d](https://github.com/nodeshift/nodeshift/commit/3f7d48d2661a34fd5c46f3d2c26f1532f16d6de4))
+
+
+### Bug Fixes
+
+* upgrade js-yaml from 3.13.1 to 3.14.0 ([#461](https://github.com/nodeshift/nodeshift/issues/461)) ([afc4cb3](https://github.com/nodeshift/nodeshift/commit/afc4cb3153c3326e60d17f0111d3751d5d80518d))
+
 ## [6.2.0](https://github.com/nodeshift/nodeshift/compare/v6.1.0...v6.2.0) (2020-06-05)
 
 

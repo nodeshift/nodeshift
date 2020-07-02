@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset='utf-8'>
-  <title>nodeshift 6.2.0 | Documentation</title>
+  <title>nodeshift 7.0.0 | Documentation</title>
   <meta name='description' content='Plugin for running openshift deployments'>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' rel='stylesheet'>
@@ -15,7 +15,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>nodeshift</h3>
-          <div class='mb1'><code>6.2.0</code></div>
+          <div class='mb1'><code>7.0.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -164,6 +164,11 @@ $ npm run nodeshift
 <pre><code>nodeshift -d SSO_AUTH_SERVER_URL=https://sercure-url
 </code></pre>
 <!-- For more on writing openshift templates, [see here](https://docs.openshift.org/latest/dev_guide/templates.html#writing-templates) -->
+<h3>Project Archive</h3>
+<p>A user can specify exactly what files would like nodeshift to include to the archive it will generate by using the files property in package.json.</p>
+<p>If a user does not use the files property in the package.json to filter what files they would like to include, then nodeshift by default will include everything except the <strong>node_modules</strong>, <strong>.git</strong> and <strong>tmp</strong> directories. </p>
+<p>Nodeshift will also look for additional exclusion rules at a .gitignore file if there is one. Same thing with a .dockerignore file.</p>
+<p>If both ignore files are present,  nodeshift will union them together and use that.</p>
 <h3>API</h3>
 <p>Along with the command line, there is also a public API.  The API mirrors the commands.</p>
 <p>API Docs - <a href="https://nodeshift.github.io/nodeshift/">https://nodeshift.github.io/nodeshift/</a></p>
