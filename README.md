@@ -90,6 +90,16 @@ To set that using nodeshift, use the `-d` option with a KEY=VALUE, like this:
 
 <!-- For more on writing openshift templates, [see here](https://docs.openshift.org/latest/dev_guide/templates.html#writing-templates) -->
 
+### Project Archive
+
+A user can specify exactly what files would like nodeshift to include to the archive it will generate by using the files property in package.json.
+
+If a user does not use the files property in the package.json to filter what files they would like to include, then nodeshift by default will include everything except the **node_modules**, **.git** and **tmp** directories. 
+
+Nodeshift will also look for additional exclusion rules at a .gitignore file if there is one. Same thing with a .dockerignore file.
+
+If both ignore files are present,  nodeshift will union them together and use that.
+
 ### API
 
 Along with the command line, there is also a public API.  The API mirrors the commands.
