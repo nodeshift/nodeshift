@@ -168,6 +168,8 @@ function commandHandler (argv) {
 function createOptions (argv) {
   const options = {};
 
+  options.useDeployment = argv.useDeployment;
+
   options.knative = argv.knative === true || argv.knative === 'true';
 
   options.projectLocation = argv.projectLocation;
