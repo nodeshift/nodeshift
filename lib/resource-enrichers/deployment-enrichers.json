@@ -1,3 +1,3 @@
 [
-  "deployment", "service", "route", "labels", "git-info", "runtime-label"
+  "deployment", "service", "route", "labels", "git-info", "health-check", "runtime-label"
 ]
