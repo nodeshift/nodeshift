@@ -72,6 +72,11 @@ test('return list items', (t) => {
         metadata: metadata
       },
       {
+        kind: 'Deployment',
+        apiVersion: 'v1',
+        metadata: metadata
+      },
+      {
         kind: 'Ingress',
         apiVersion: 'v1',
         metadata: metadata
@@ -181,6 +186,9 @@ test('return list items', (t) => {
     },
     '../deployment-config': {
       undeploy: () => { return Promise.resolve(); }
+    },
+    '../deployment': {
+      removeDeployment: () => { return Promise.resolve(); }
     }
   });
 

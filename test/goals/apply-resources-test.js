@@ -20,6 +20,7 @@ test('apply resource test', (t) => {
     { kind: 'Service', apiVersion: 'serving.knative.dev/v1' },
     { kind: 'Route', apiVersion: 'v1' },
     { kind: 'DeploymentConfig', apiVersion: 'v1' },
+    { kind: 'Deployment', apiVersion: 'v1' },
     { kind: 'Secret', apiVersion: 'v1' },
     { kind: 'Ingress', apiVersion: 'v1' },
     { kind: 'ConfigMap', apiVersion: 'v1' },
@@ -34,6 +35,9 @@ test('apply resource test', (t) => {
     '../routes': mockedPromiseResolve,
     '../deployment-config': {
       deploy: mockedPromiseResolve
+    },
+    '../deployment': {
+      applyDeployment: mockedPromiseResolve
     },
     '../secrets': mockedPromiseResolve,
     '../ingress': mockedPromiseResolve,

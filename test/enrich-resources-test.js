@@ -105,3 +105,50 @@ test('enrich-resource - knative enrichers', (t) => {
     t.end();
   });
 });
+
+test('enrich-resource - deployment enrichers', (t) => {
+  let i = 0;
+  const enrichResource = proxyquire('../lib/enrich-resources', {
+    './load-enrichers': () => {
+      return {
+        'deployment-config': () => {
+          i++;
+          t.fail('should not get called');
+        },
+        deployment: () => {
+          i++;
+          t.pass('should get called');
+        },
+        route: () => {
+          i++;
+          t.pass('should get called');
+        },
+        service: () => {
+          i++;
+          t.pass('should get called');
+        },
+        labels: () => {
+          i++;
+          t.pass('should get called');
+        },
+        'git-info': () => {
+          i++;
+          t.pass('should get called');
+        },
+        'health-check': () => {
+          i++;
+          t.pass('should get called');
+        }
+      };
+    }
+  });
+
+  const p = enrichResource({ useDeployment: true }, []);
+  t.ok(p instanceof Promise, 'should return a promise');
+
+  p.then(() => {
+    t.equal(i, 6, 'should have 6 enrichers');
+    t.pass('success');
+    t.end();
+  });
+});
