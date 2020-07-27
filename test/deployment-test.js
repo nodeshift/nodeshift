@@ -120,8 +120,6 @@ test('deploy - created already - but error', (t) => {
     }
   };
 
-  let call = 0;
-
   const config = {
     projectName: 'my Project',
     namespace: {
