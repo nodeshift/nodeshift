@@ -208,7 +208,7 @@ Flag to pass build config environment variables as NAME=Value.  Can be used mult
 Flag to change the build strategy used.  Values can be Docker or Source.  Defaults to Source
 
 #### useDeployment
-Flag to deploy the application using a Deployment instead of a DeploymentConfig
+Flag to deploy the application using a Deployment instead of a DeploymentConfig. Defaults to false
 
 #### knative
 EXPERIMENTAL. Flag to deploy an application as a Knative Serving Service.  Defaults to false
