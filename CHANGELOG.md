@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.1.0](https://github.com/nodeshift/nodeshift/compare/v7.0.0...v7.1.0) (2020-07-29)
+
+
+### Features
+
+* Nodeshift should be able to use a Deployment type ([#478](https://github.com/nodeshift/nodeshift/issues/478)) ([816b0a3](https://github.com/nodeshift/nodeshift/commit/816b0a39b0c5c85746aaf478cc93ea6941da559b))
+
 ## [7.0.0](https://github.com/nodeshift/nodeshift/compare/v6.2.0...v7.0.0) (2020-07-02)
 
 

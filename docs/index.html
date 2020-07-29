@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset='utf-8'>
-  <title>nodeshift 7.0.0 | Documentation</title>
+  <title>nodeshift 7.1.0 | Documentation</title>
   <meta name='description' content='Plugin for running openshift deployments'>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' rel='stylesheet'>
@@ -15,7 +15,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>nodeshift</h3>
-          <div class='mb1'><code>7.0.0</code></div>
+          <div class='mb1'><code>7.1.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -166,7 +166,7 @@ $ npm run nodeshift
 <!-- For more on writing openshift templates, [see here](https://docs.openshift.org/latest/dev_guide/templates.html#writing-templates) -->
 <h3>Project Archive</h3>
 <p>A user can specify exactly what files would like nodeshift to include to the archive it will generate by using the files property in package.json.</p>
-<p>If a user does not use the files property in the package.json to filter what files they would like to include, then nodeshift by default will include everything except the <strong>node_modules</strong>, <strong>.git</strong> and <strong>tmp</strong> directories. </p>
+<p>If a user does not use the files property in the package.json to filter what files they would like to include, then nodeshift by default will include everything except the <strong>node_modules</strong>, <strong>.git</strong> and <strong>tmp</strong> directories.</p>
 <p>Nodeshift will also look for additional exclusion rules at a .gitignore file if there is one. Same thing with a .dockerignore file.</p>
 <p>If both ignore files are present,  nodeshift will union them together and use that.</p>
 <h3>API</h3>
@@ -254,6 +254,8 @@ These version tags correspond to the RHSCL tags of the <a href="https://access.r
 <p>Flag to pass build config environment variables as NAME=Value.  Can be used multiple times.  ex: <code>nodeshift --build.env NODE_ENV=development --build.env YARN_ENABLED=true</code></p>
 <h4>build.strategy</h4>
 <p>Flag to change the build strategy used.  Values can be Docker or Source.  Defaults to Source</p>
+<h4>useDeployment</h4>
+<p>Flag to deploy the application using a Deployment instead of a DeploymentConfig. Defaults to false</p>
 <h4>knative</h4>
 <p>EXPERIMENTAL. Flag to deploy an application as a Knative Serving Service.  Defaults to false
 Since this feature is experimental,  it is subject to change without a Major version release until it is fully stable.</p>
@@ -313,6 +315,9 @@ Since this feature is experimental,  it is subject to change without a Major ver
         --metadata.out           determines what should be done with the response
                                 metadata from OpenShift
                 [string] [choices: "stdout", "ignore", "&#x3C;filename>"] [default: "ignore"]
+        --useDeployment          flag to deploy the application using a Deployment
+                       instead of a DeploymentConfig
+                           [boolean] [choices: true, false] [default: false]
         --knative                EXPERIMENTAL. flag to deploy an application
                        as a Knative Serving Service
                            [boolean] [choices: true, false] [default: false]
@@ -560,6 +565,15 @@ Since this feature is experimental,  it is subject to change without a Major ver
 
               
                 <tr>
+  <td class='break-word'><span class='code bold'>options.useDeployment</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
+  </td>
+  <td class='break-word'><span>Flag to deploy the application using a Deployment instead of a DeploymentConfig. Defaults to false
+</span></td>
+</tr>
+
+
+              
+                <tr>
   <td class='break-word'><span class='code bold'>options.knative</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
   </td>
   <td class='break-word'><span>EXPERIMENTAL. flag to deploy an application as a Knative Serving Service.  Defaults to false
@@ -776,6 +790,15 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
   <td class='break-word'><span class='code bold'>options.definedProperties</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>?</code>
   </td>
   <td class='break-word'><span>Array of objects with the format { key: value }.  Used for template substitution
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.useDeployment</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
+  </td>
+  <td class='break-word'><span>Flag to deploy the application using a Deployment instead of a DeploymentConfig. Defaults to false
 </span></td>
 </tr>
 
@@ -1042,6 +1065,15 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
 
               
                 <tr>
+  <td class='break-word'><span class='code bold'>options.useDeployment</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
+  </td>
+  <td class='break-word'><span>Flag to deploy the application using a Deployment instead of a DeploymentConfig. Defaults to false
+</span></td>
+</tr>
+
+
+              
+                <tr>
   <td class='break-word'><span class='code bold'>options.knative</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
   </td>
   <td class='break-word'><span>EXPERIMENTAL. flag to deploy an application as a Knative Serving Service.  Defaults to false
@@ -1296,6 +1328,15 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
   <td class='break-word'><span class='code bold'>options.definedProperties</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>?</code>
   </td>
   <td class='break-word'><span>Array of objects with the format { key: value }.  Used for template substitution
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.useDeployment</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
+  </td>
+  <td class='break-word'><span>Flag to deploy the application using a Deployment instead of a DeploymentConfig. Defaults to false
 </span></td>
 </tr>
 
