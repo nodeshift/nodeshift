@@ -94,7 +94,7 @@ To set that using nodeshift, use the `-d` option with a KEY=VALUE, like this:
 
 A user can specify exactly what files would like nodeshift to include to the archive it will generate by using the files property in package.json.
 
-If a user does not use the files property in the package.json to filter what files they would like to include, then nodeshift by default will include everything except the **node_modules**, **.git** and **tmp** directories. 
+If a user does not use the files property in the package.json to filter what files they would like to include, then nodeshift by default will include everything except the **node_modules**, **.git** and **tmp** directories.
 
 Nodeshift will also look for additional exclusion rules at a .gitignore file if there is one. Same thing with a .dockerignore file.
 
@@ -207,6 +207,9 @@ Flag to pass build config environment variables as NAME=Value.  Can be used mult
 #### build.strategy
 Flag to change the build strategy used.  Values can be Docker or Source.  Defaults to Source
 
+#### useDeployment
+Flag to deploy the application using a Deployment instead of a DeploymentConfig. Defaults to false
+
 #### knative
 EXPERIMENTAL. Flag to deploy an application as a Knative Serving Service.  Defaults to false
 Since this feature is experimental,  it is subject to change without a Major version release until it is fully stable.
@@ -268,6 +271,9 @@ Shows the below help
             --metadata.out           determines what should be done with the response
                                     metadata from OpenShift
                     [string] [choices: "stdout", "ignore", "<filename>"] [default: "ignore"]
+            --useDeployment          flag to deploy the application using a Deployment
+                           instead of a DeploymentConfig
+                               [boolean] [choices: true, false] [default: false]
             --knative                EXPERIMENTAL. flag to deploy an application
                            as a Knative Serving Service
                                [boolean] [choices: true, false] [default: false]

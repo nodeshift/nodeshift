@@ -130,6 +130,12 @@ yargs
     type: 'string',
     default: 'ignore'
   })
+  .options('useDeployment', {
+    describe: 'flag to deploy the application using a Deployment instead of a DeploymentConfig',
+    choices: [true, false],
+    type: 'boolean',
+    default: false
+  })
   .options('knative', {
     describe: 'EXPERIMENTAL. flag to deploy an application as a Knative Serving Service',
     choices: [true, false],
@@ -167,6 +173,8 @@ function commandHandler (argv) {
 
 function createOptions (argv) {
   const options = {};
+
+  options.useDeployment = argv.useDeployment;
 
   options.knative = argv.knative === true || argv.knative === 'true';
 
