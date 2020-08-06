@@ -67,7 +67,7 @@ yargs
   .options('outputImageStreamTag', {
     describe: 'The tag of the ImageStream to output to.',
     type: 'string',
-    defualt: 'latest'
+    default: 'latest'
   })
   .env('NODESHIFT')
   .option('quiet', {
