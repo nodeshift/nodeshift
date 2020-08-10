@@ -18,7 +18,7 @@
 
 'use strict';
 
-const dbgCli = require('util').debuglog('dbg-cli');
+const dbg = require('util').debuglog('dbg-cli');
 
 const nodeshiftConfig = require('../lib/nodeshift-config');
 const resourceGoal = require('../lib/goals/resource');
@@ -36,7 +36,7 @@ const namespace = require('../lib/namespace');
 module.exports = async function run (options) {
   try {
     const config = await nodeshiftConfig(options);
-    dbgCli('nodeshift configuration created');
+    dbg('nodeshift configuration created');
     const response = {};
 
     switch (options.cmd) {
