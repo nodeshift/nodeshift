@@ -44,10 +44,11 @@ module.exports = async function run (options) {
         if (config.namespace && config.namespace.create) {
           response.namespace = await namespace.create(config);
         }
+        dbg('calling build goal');
         response.build = await buildGoal(config);
-        dbgCli('using build option');
         break;
       case 'resource':
+        dbg('calling resource goal');
         response.resources = await resourceGoal(config);
         break;
       case 'apply-resource':
