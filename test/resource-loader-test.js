@@ -284,3 +284,38 @@ test('test string substitution', (t) => {
     t.end();
   });
 });
+
+test('test using custom resource location', (t) => {
+  const mockedHelper = {
+    yamlToJson: (file) => { return {}; }
+  };
+
+  const mockedfs = {
+    readFile: (locations, options, cb) => {
+      return cb(null, '{}');
+    },
+    readdir: (path, cb) => {
+      // test custom path
+      t.equals(path, `${process.cwd()}/.nodeshift/prod`, 'should be using custom resource location');
+      return cb(null, ['yes-svc.yml', 'yes1-route.yml', 'yes3-secret.yaml', 'deployment.json']);
+    }
+  };
+
+  const resourceLoader = proxyquire('../lib/resource-loader', {
+    fs: mockedfs,
+    './helpers': mockedHelper
+  });
+
+  const config = {
+    projectLocation: process.cwd(),
+    nodeshiftDirectory: '.nodeshift',
+    resourceProfile: 'prod',
+    namespace: 'my namespace'
+  };
+
+  resourceLoader(config).then((resourceList) => {
+    t.equals(Array.isArray(resourceList), true, 'returns an array');
+    t.equal(resourceList.length, 4, 'should be length 4');
+    t.end();
+  });
+});
