@@ -351,3 +351,34 @@ test('test files at the top level with a subdirectory but no resourceProfile fla
     t.end();
   });
 });
+
+test('test no resource directory while using the resourceProfile flag', (t) => {
+  const mockedfs = {
+    readFile: (locations, options, cb) => { return cb(null, null); },
+    readdir: (path, cb) => {
+      // test custom resource directory
+      t.equals(path, `${process.cwd()}/.nodeshift/prod`, 'should be using custom resource location');
+      const err = new Error('no directory found');
+      err.code = 'ENOENT';
+      return cb(err, null);
+    }
+  };
+
+  const resourceLoader = proxyquire('../lib/resource-loader', {
+    fs: mockedfs
+  });
+
+  const config = {
+    projectLocation: process.cwd(),
+    nodeshiftDirectory: '.nodeshift',
+    resourceProfile: 'prod'
+  };
+
+  const result = resourceLoader(config).then((resourceList) => {
+    t.equals(Array.isArray(resourceList), true, 'returns an array');
+    t.equal(resourceList.length, 0, 'should be length zero when no directory found');
+    t.end();
+  });
+
+  t.equals(result instanceof Promise, true, 'resource loader function is a promise');
+});
