@@ -284,3 +284,101 @@ test('test string substitution', (t) => {
     t.end();
   });
 });
+
+test('test using custom resource location', (t) => {
+  const mockedHelper = {
+    yamlToJson: (file) => { return {}; }
+  };
+
+  const mockedfs = {
+    readFile: (locations, options, cb) => {
+      return cb(null, '{}');
+    },
+    readdir: (path, cb) => {
+      // test custom path
+      t.equals(path, `${process.cwd()}/.nodeshift/prod`, 'should be using custom resource location');
+      return cb(null, ['yes-svc.yml', 'yes1-route.yml', 'yes3-secret.yaml', 'deployment.json']);
+    }
+  };
+
+  const resourceLoader = proxyquire('../lib/resource-loader', {
+    fs: mockedfs,
+    './helpers': mockedHelper
+  });
+
+  const config = {
+    projectLocation: process.cwd(),
+    nodeshiftDirectory: '.nodeshift',
+    resourceProfile: 'prod',
+    namespace: 'my namespace'
+  };
+
+  resourceLoader(config).then((resourceList) => {
+    t.equals(Array.isArray(resourceList), true, 'returns an array');
+    t.equal(resourceList.length, 4, 'should be length 4');
+    t.end();
+  });
+});
+
+test('test files at the top level with a subdirectory but no resourceProfile flag used', (t) => {
+  const mockedHelper = {
+    yamlToJson: (file) => { return {}; }
+  };
+
+  const mockedfs = {
+    readFile: (locations, options, cb) => {
+      return cb(null, '{}');
+    },
+    readdir: (path, cb) => {
+      return cb(null, ['prod', 'yes3-secret.yaml', 'deployment.json']);
+    }
+  };
+
+  const resourceLoader = proxyquire('../lib/resource-loader', {
+    fs: mockedfs,
+    './helpers': mockedHelper
+  });
+
+  const config = {
+    projectLocation: process.cwd(),
+    nodeshiftDirectory: '.nodeshift',
+    namespace: 'my namespace'
+  };
+
+  resourceLoader(config).then((resourceList) => {
+    t.equals(Array.isArray(resourceList), true, 'returns an array');
+    t.equal(resourceList.length, 2, 'should be length 2');
+    t.end();
+  });
+});
+
+test('test no resource directory while using the resourceProfile flag', (t) => {
+  const mockedfs = {
+    readFile: (locations, options, cb) => { return cb(null, null); },
+    readdir: (path, cb) => {
+      // test custom resource directory
+      t.equals(path, `${process.cwd()}/.nodeshift/prod`, 'should be using custom resource location');
+      const err = new Error('no directory found');
+      err.code = 'ENOENT';
+      return cb(err, null);
+    }
+  };
+
+  const resourceLoader = proxyquire('../lib/resource-loader', {
+    fs: mockedfs
+  });
+
+  const config = {
+    projectLocation: process.cwd(),
+    nodeshiftDirectory: '.nodeshift',
+    resourceProfile: 'prod'
+  };
+
+  const result = resourceLoader(config).then((resourceList) => {
+    t.equals(Array.isArray(resourceList), true, 'returns an array');
+    t.equal(resourceList.length, 0, 'should be length zero when no directory found');
+    t.end();
+  });
+
+  t.equals(result instanceof Promise, true, 'resource loader function is a promise');
+});

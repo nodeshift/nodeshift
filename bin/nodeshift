@@ -60,6 +60,10 @@ yargs
     type: 'boolean',
     default: false
   })
+  .option('resourceProfile', {
+    describe: 'Define a subdirectory below .nodeshift/ that indicates where Openshift resources are stored',
+    type: 'string'
+  })
   .options('outputImageStream', {
     describe: 'The name of the ImageStream to output to.  Defaults to project name from package.json',
     type: 'string'
@@ -182,6 +186,7 @@ function createOptions (argv) {
   options.dockerImage = argv.dockerImage;
   options.imageTag = argv.imageTag;
   options.webApp = argv.webApp;
+  options.resourceProfile = argv.resourceProfile;
   options.outputImageStreamName = argv.outputImageStream;
   options.outputImageStreamTag = argv.outputImageStreamTag;
   process.env.NODESHIFT_QUIET = argv.quiet === true;

@@ -171,6 +171,9 @@ Specify the s2i builder image of Node.js to use for the deployed applications.  
 #### web-app
 Flag to automatically set the appropriate docker image for web app deployment. Defaults to false
 
+#### resourceProfile
+Define a subdirectory below .nodeshift/ that indicates where Openshift resources are stored
+
 #### outputImageStream
 The name of the ImageStream to output to.  Defaults to project name from package.json
 
@@ -235,6 +238,8 @@ Shows the below help
             --web-app                flag to automatically set the appropriate docker image
                                      for web app deployment
                                                              [boolean] [default: false]
+            --resourceProfile        Define a subdirectory below .nodeshift/ that indicates
+                                     where Openshift resources are stored         [string]
             --outputImageStream      The name of the ImageStream to output to.  Defaults
                            to project name from package.json            [string]
             --outputImageStreamTag   The tag of the ImageStream to output to.    [string]
