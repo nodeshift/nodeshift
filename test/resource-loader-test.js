@@ -319,3 +319,35 @@ test('test using custom resource location', (t) => {
     t.end();
   });
 });
+
+test('test files at the top level with a subdirectory but no resourceProfile flag used', (t) => {
+  const mockedHelper = {
+    yamlToJson: (file) => { return {}; }
+  };
+
+  const mockedfs = {
+    readFile: (locations, options, cb) => {
+      return cb(null, '{}');
+    },
+    readdir: (path, cb) => {
+      return cb(null, ['prod', 'yes3-secret.yaml', 'deployment.json']);
+    }
+  };
+
+  const resourceLoader = proxyquire('../lib/resource-loader', {
+    fs: mockedfs,
+    './helpers': mockedHelper
+  });
+
+  const config = {
+    projectLocation: process.cwd(),
+    nodeshiftDirectory: '.nodeshift',
+    namespace: 'my namespace'
+  };
+
+  resourceLoader(config).then((resourceList) => {
+    t.equals(Array.isArray(resourceList), true, 'returns an array');
+    t.equal(resourceList.length, 2, 'should be length 2');
+    t.end();
+  });
+});
