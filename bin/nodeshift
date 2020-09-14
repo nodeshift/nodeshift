@@ -149,6 +149,10 @@ yargs
   .argv;
 
 function commandHandler (argv) {
+  if (argv.quiet) {
+    log.info = function () { };
+    log.trace = function () { };
+  }
   const options = createOptions(argv);
   const metadataOut = (options.metadata.out === 'ignore') ? undefined : options.metadata.out;
 
