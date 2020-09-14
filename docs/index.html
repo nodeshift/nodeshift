@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset='utf-8'>
-  <title>nodeshift 7.1.0 | Documentation</title>
+  <title>nodeshift 7.2.0 | Documentation</title>
   <meta name='description' content='Plugin for running openshift deployments'>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' rel='stylesheet'>
@@ -15,7 +15,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>nodeshift</h3>
-          <div class='mb1'><code>7.1.0</code></div>
+          <div class='mb1'><code>7.2.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -230,6 +230,8 @@ These version tags correspond to the RHSCL tags of the <a href="https://access.r
 <p>Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to <a href="https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/nodejs-10">ubi8/nodejs s2i images</a></p>
 <h4>web-app</h4>
 <p>Flag to automatically set the appropriate docker image for web app deployment. Defaults to false</p>
+<h4>resourceProfile</h4>
+<p>Define a subdirectory below .nodeshift/ that indicates where Openshift resources are stored</p>
 <h4>outputImageStream</h4>
 <p>The name of the ImageStream to output to.  Defaults to project name from package.json</p>
 <h4>outputImageStreamTag</h4>
@@ -279,6 +281,8 @@ Since this feature is experimental,  it is subject to change without a Major ver
         --web-app                flag to automatically set the appropriate docker image
                                  for web app deployment
                                                          [boolean] [default: false]
+        --resourceProfile        Define a subdirectory below .nodeshift/ that indicates
+                                 where Openshift resources are stored         [string]
         --outputImageStream      The name of the ImageStream to output to.  Defaults
                        to project name from package.json            [string]
         --outputImageStreamTag   The tag of the ImageStream to output to.    [string]
@@ -437,6 +441,15 @@ Since this feature is experimental,  it is subject to change without a Major ver
 
 
   
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.resourceProfile</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>Define a subdirectory below .nodeshift/ that indicates where Openshift resources are stored
+</span></td>
+</tr>
 
 
               
@@ -721,6 +734,15 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
 
               
                 <tr>
+  <td class='break-word'><span class='code bold'>options.resourceProfile</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>Define a subdirectory below .nodeshift/ that indicates where Openshift resources are stored
+</span></td>
+</tr>
+
+
+              
+                <tr>
   <td class='break-word'><span class='code bold'>options.imageTag</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
   <td class='break-word'><span>set the version to use for the ubi8/nodejs-10.  Versions are ubi8/nodejs-10 tags: 
@@ -956,6 +978,15 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
 
 
   
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.resourceProfile</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>Define a subdirectory below .nodeshift/ that indicates where Openshift resources are stored
+</span></td>
+</tr>
 
 
               
@@ -1216,6 +1247,15 @@ An openshift.yaml and openshift.json will also be created in the ./tmp/nodeshift
 
 
   
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.resourceProfile</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>Define a subdirectory below .nodeshift/ that indicates where Openshift resources are stored
+</span></td>
+</tr>
 
 
               

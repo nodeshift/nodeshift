@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.2.0](https://github.com/nodeshift/nodeshift/compare/v7.1.0...v7.2.0) (2020-09-14)
+
+
+### Features
+
+* Define a subdirectory below .nodeshift/ that indicates where Openshift resources are stored ([#493](https://github.com/nodeshift/nodeshift/issues/493)) ([ed269ea](https://github.com/nodeshift/nodeshift/commit/ed269ea38aea9e9726bdbbf9a53c8b113561a2e7))
+
+
+### Bug Fixes
+
+* fix typo in CLI option ([3bc2ac6](https://github.com/nodeshift/nodeshift/commit/3bc2ac6a9bfd34d2d1d61cdb704246b33282b109))
+* package.json & package-lock.json to reduce vulnerabilities ([#485](https://github.com/nodeshift/nodeshift/issues/485)) ([c249a8f](https://github.com/nodeshift/nodeshift/commit/c249a8f6a378882c6aa1be5bd3dc17da7c578e2a))
+* package.json & package-lock.json to reduce vulnerabilities ([#486](https://github.com/nodeshift/nodeshift/issues/486)) ([80f85bc](https://github.com/nodeshift/nodeshift/commit/80f85bc600813cf86b66051eed1e8bdc862b27b3))
+* upgrade sinon from 9.0.2 to 9.0.3 ([#489](https://github.com/nodeshift/nodeshift/issues/489)) ([c565b23](https://github.com/nodeshift/nodeshift/commit/c565b23d615338c187c5adc70294958c54c48385))
+* upgrade standard-version from 8.0.1 to 8.0.2 ([#482](https://github.com/nodeshift/nodeshift/issues/482)) ([82c962c](https://github.com/nodeshift/nodeshift/commit/82c962c00f5cfd7030be5f71116ffe21b4f07b2f))
+* upgrade tar from 6.0.2 to 6.0.5 ([#492](https://github.com/nodeshift/nodeshift/issues/492)) ([14a3b1f](https://github.com/nodeshift/nodeshift/commit/14a3b1f6a0b6177fed38eeda2a86fb195f9d88f1))
+* upgrade yargs from 15.4.0 to 15.4.1 ([#487](https://github.com/nodeshift/nodeshift/issues/487)) ([2744f85](https://github.com/nodeshift/nodeshift/commit/2744f8558377eb42385866edd6c318805bdc9a20))
+
 ## [7.1.0](https://github.com/nodeshift/nodeshift/compare/v7.0.0...v7.1.0) (2020-07-29)
 
 
