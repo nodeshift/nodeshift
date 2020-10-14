@@ -6,13 +6,10 @@
     "nodeshift": "./bin/nodeshift"
   },
   "scripts": {
-    "lint": "eslint bin/* lib/**/*.js test/*-test.js test/**/*-test.js index.js",
-    "test": "cross-env NODESHIFT_QUIET=true tape test/*-test.js test/**/*-test.js | tap-spec",
-    "coverage": "nyc npm test",
-    "coverage:html": "nyc npm test && nyc report --reporter=html",
-    "coveralls": "nyc npm test && nyc report && if [ $COVERALLS_REPO_TOKEN'' != '' ] ; then nyc report --reporter=text-lcov | coveralls; fi",
+    "pretest": "eslint bin/* lib/**/*.js test/*-test.js test/**/*-test.js index.js",
+    "test": "cross-env NODESHIFT_QUIET=true nyc tape test/*-test.js test/**/*-test.js | tap-spec",
+    "coverage": "nyc npm test && nyc report --reporter=html",
     "docs": "documentation build index.js --shallow -f html -o docs --config documentation.yml",
-    "ci": "npm run lint && npm run coveralls",
     "prerelease": "npm run lint && npm run test",
     "release": "standard-version -a"
   },
@@ -29,7 +26,7 @@
     "bin"
   ],
   "engines": {
-    "node": ">= 10"
+    "node": "^14 || ^12 || ^10"
   },
   "repository": {
     "type": "git",

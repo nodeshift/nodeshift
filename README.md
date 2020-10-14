@@ -1,5 +1,7 @@
-# Nodeshift [![CircleCI](https://circleci.com/gh/nodeshift/nodeshift.svg?style=svg)](https://circleci.com/gh/nodeshift/nodeshift)
-[![Build Status](https://travis-ci.org/nodeshift/nodeshift.svg?branch=master)](https://travis-ci.org/nodeshift/nodeshift) [![Coverage Status](https://coveralls.io/repos/github/nodeshift/nodeshift/badge.svg?branch=master)](https://coveralls.io/github/nodeshift/nodeshift?branch=master)
+# Nodeshift
+
+![Node.js CI](https://github.com/nodeshift/nodeshift/workflows/Node.js%20CI/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/nodeshift/nodeshift/badge.svg?branch=master)](https://coveralls.io/github/nodeshift/nodeshift?branch=master)
 
 ## What is it
 
@@ -172,7 +174,7 @@ Specify the s2i builder image of Node.js to use for the deployed applications.  
 Flag to automatically set the appropriate docker image for web app deployment. Defaults to false
 
 #### resourceProfile
-Define a subdirectory below .nodeshift/ that indicates where Openshift resources are stored
+Define a subdirectory below .nodeshift/ that indicates where OpenShift resources are stored
 
 #### outputImageStream
 The name of the ImageStream to output to.  Defaults to project name from package.json
