@@ -35,11 +35,6 @@
   "keywords": [],
   "author": "",
   "license": "Apache-2.0",
-  "support": {
-    "target": "LTS",
-    "response": "REGULAR-7",
-    "backing": "COMPANY"
-  },
   "bugs": {
     "url": "https://github.com/nodeshift/nodeshift/issues"
   },
@@ -75,5 +70,6 @@
     "standard-version": "^9.0.0",
     "tap-spec": "^5.0.0",
     "tape": "~4.13.2"
-  }
+  },
+  "support": true
 }
