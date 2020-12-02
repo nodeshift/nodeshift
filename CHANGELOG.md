@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.2.1](https://www.github.com/nodeshift/nodeshift/compare/v7.2.0...v7.2.1) (2020-12-01)
+
+
+### Bug Fixes
+
+* package.json & package-lock.json to reduce vulnerabilities ([#506](https://www.github.com/nodeshift/nodeshift/issues/506)) ([7e3ffdb](https://www.github.com/nodeshift/nodeshift/commit/7e3ffdb6a1401f1945b868f1a62ab5124224f50c))
+* upgrade documentation from 13.0.2 to 13.1.0 ([#505](https://www.github.com/nodeshift/nodeshift/issues/505)) ([8a80bda](https://www.github.com/nodeshift/nodeshift/commit/8a80bdaf0797cf6f74a42d9825b85aacbf55288e))
+* upgrade eslint-plugin-import from 2.22.0 to 2.22.1 ([#499](https://www.github.com/nodeshift/nodeshift/issues/499)) ([e8714d9](https://www.github.com/nodeshift/nodeshift/commit/e8714d95ab4df9eb7f95a1d4a378f8a7a5e5b765))
+* upgrade eslint-plugin-standard from 4.0.1 to 4.0.2 ([#504](https://www.github.com/nodeshift/nodeshift/issues/504)) ([8902b01](https://www.github.com/nodeshift/nodeshift/commit/8902b0143653138555094a39889918ee36cb614a))
+* upgrade eslint-plugin-standard from 4.0.2 to 4.1.0 ([#509](https://www.github.com/nodeshift/nodeshift/issues/509)) ([f47fa95](https://www.github.com/nodeshift/nodeshift/commit/f47fa9515ae4a409ead90ff5b9588f12625dd6ec))
+* upgrade sinon from 9.0.3 to 9.1.0 ([#501](https://www.github.com/nodeshift/nodeshift/issues/501)) ([dc3bf1a](https://www.github.com/nodeshift/nodeshift/commit/dc3bf1a32d2deb153783d911e74b48f85b8ab40c))
+* upgrade sinon from 9.1.0 to 9.2.0 ([#502](https://www.github.com/nodeshift/nodeshift/issues/502)) ([5ad111e](https://www.github.com/nodeshift/nodeshift/commit/5ad111e56a07938db112d60980824fad2e88223c))
+* upgrade sinon from 9.2.0 to 9.2.1 ([#508](https://www.github.com/nodeshift/nodeshift/issues/508)) ([94b3ed1](https://www.github.com/nodeshift/nodeshift/commit/94b3ed174c11790a4c450d046934d6705eb1ba92))
+* upgrade yargs from 16.0.0 to 16.1.0 ([#507](https://www.github.com/nodeshift/nodeshift/issues/507)) ([a95cb44](https://www.github.com/nodeshift/nodeshift/commit/a95cb44ed1e21f7066b9c79d22325734f04bd13b))
+
 ## [7.2.0](https://github.com/nodeshift/nodeshift/compare/v7.1.0...v7.2.0) (2020-09-14)
 
 
