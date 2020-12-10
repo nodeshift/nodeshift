@@ -34,6 +34,33 @@ test('default goal', (t) => {
   });
 });
 
+test('default goal - using kube flag', (t) => {
+  const cli = proxyquire('../bin/cli', {
+    '../lib/config/nodeshift-config': () => {
+      return Promise.resolve({});
+    },
+    '../lib/goals/resource': (config) => {
+      t.pass('should be here for the default goal');
+      return Promise.resolve();
+    },
+    '../lib/goals/build': (config) => {
+      t.pass('should be here for the default goal');
+      return Promise.resolve();
+    },
+    '../lib/goals/apply-resources': (config) => {
+      t.pass('should be here for the default goal');
+      return Promise.resolve();
+    },
+    '../lib/kube-url': (config) => {
+      t.pass('should be here for the apply-resource goal');
+    }
+  });
+
+  cli({ cmd: 'deploy', kube: true }).then(() => {
+    t.end();
+  });
+});
+
 test('default goal - with namespace', (t) => {
   const cli = proxyquire('../bin/cli', {
     '../lib/config/nodeshift-config': () => {
@@ -108,6 +135,33 @@ test('apply-resource goal', (t) => {
   });
 
   cli({ cmd: 'apply-resource' }).then(() => {
+    t.end();
+  });
+});
+
+test('apply-resource goal - kube flag', (t) => {
+  const cli = proxyquire('../bin/cli', {
+    '../lib/config/nodeshift-config': () => {
+      return Promise.resolve({});
+    },
+    '../lib/goals/resource': (config) => {
+      t.pass('should be here for the apply-resource goal');
+      return Promise.resolve();
+    },
+    '../lib/goals/build': (config) => {
+      t.fail('should not be here for the apply-resource goal');
+      return Promise.resolve();
+    },
+    '../lib/goals/apply-resources': (config) => {
+      t.pass('should be here for the apply-resource goal');
+      return Promise.resolve();
+    },
+    '../lib/kube-url': (config) => {
+      t.pass('should be here for the apply-resource goal');
+    }
+  });
+
+  cli({ cmd: 'apply-resource', kube: true }).then(() => {
     t.end();
   });
 });
