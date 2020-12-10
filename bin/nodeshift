@@ -42,6 +42,10 @@ yargs
     describe: 'change the default location of the project',
     type: 'string'
   })
+  .option('kube', {
+    describe: 'For plain kubernetes',
+    type: 'boolean'
+  })
   .option('configLocation', {
     describe: 'change the default location of the config',
     type: 'string'
@@ -185,6 +189,8 @@ function createOptions (argv) {
   options.useDeployment = argv.useDeployment;
 
   options.knative = argv.knative === true || argv.knative === 'true';
+
+  options.kube = argv.kube === true || argv.kube === 'true';
 
   options.projectLocation = argv.projectLocation;
   options.dockerImage = argv.dockerImage;

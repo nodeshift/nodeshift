@@ -12,7 +12,7 @@ test('export test', (t) => {
 
 test('default goal', (t) => {
   const cli = proxyquire('../bin/cli', {
-    '../lib/nodeshift-config': () => {
+    '../lib/config/nodeshift-config': () => {
       return Promise.resolve({});
     },
     '../lib/goals/resource': (config) => {
@@ -36,7 +36,7 @@ test('default goal', (t) => {
 
 test('default goal - with namespace', (t) => {
   const cli = proxyquire('../bin/cli', {
-    '../lib/nodeshift-config': () => {
+    '../lib/config/nodeshift-config': () => {
       return Promise.resolve({ namespace: { create: true } });
     },
     '../lib/goals/resource': (config) => {
@@ -66,7 +66,7 @@ test('default goal - with namespace', (t) => {
 
 test('resource goal', (t) => {
   const cli = proxyquire('../bin/cli', {
-    '../lib/nodeshift-config': () => {
+    '../lib/config/nodeshift-config': () => {
       return Promise.resolve({});
     },
     '../lib/goals/resource': (config) => {
@@ -90,7 +90,7 @@ test('resource goal', (t) => {
 
 test('apply-resource goal', (t) => {
   const cli = proxyquire('../bin/cli', {
-    '../lib/nodeshift-config': () => {
+    '../lib/config/nodeshift-config': () => {
       return Promise.resolve({});
     },
     '../lib/goals/resource': (config) => {
@@ -114,7 +114,7 @@ test('apply-resource goal', (t) => {
 
 test('no goal', (t) => {
   const cli = proxyquire('../bin/cli', {
-    '../lib/nodeshift-config': () => {
+    '../lib/config/nodeshift-config': () => {
       return Promise.resolve({});
     },
     '../lib/goals/resource': (config) => {
@@ -139,7 +139,7 @@ test('no goal', (t) => {
 
 test('undeploy goal', (t) => {
   const cli = proxyquire('../bin/cli', {
-    '../lib/nodeshift-config': () => {
+    '../lib/config/nodeshift-config': () => {
       return Promise.resolve({});
     },
     '../lib/goals/resource': (config) => {
@@ -167,7 +167,7 @@ test('undeploy goal', (t) => {
 
 test('undeploy goal - with namespace', (t) => {
   const cli = proxyquire('../bin/cli', {
-    '../lib/nodeshift-config': () => {
+    '../lib/config/nodeshift-config': () => {
       return Promise.resolve({ namespace: { remove: true } });
     },
     '../lib/goals/resource': (config) => {
@@ -201,7 +201,7 @@ test('undeploy goal - with namespace', (t) => {
 
 test('build goal', (t) => {
   const cli = proxyquire('../bin/cli', {
-    '../lib/nodeshift-config': () => {
+    '../lib/config/nodeshift-config': () => {
       return Promise.resolve({});
     },
     '../lib/goals/resource': (config) => {
@@ -229,7 +229,7 @@ test('build goal', (t) => {
 
 test('build goal - with namespace', (t) => {
   const cli = proxyquire('../bin/cli', {
-    '../lib/nodeshift-config': () => {
+    '../lib/config/nodeshift-config': () => {
       return Promise.resolve({ namespace: { create: true } });
     },
     '../lib/goals/resource': (config) => {
@@ -263,7 +263,7 @@ test('build goal - with namespace', (t) => {
 
 test('error', (t) => {
   const cli = proxyquire('../bin/cli', {
-    '../lib/nodeshift-config': () => {
+    '../lib/config/nodeshift-config': () => {
       return Promise.reject(new Error('error'));
     }
   });

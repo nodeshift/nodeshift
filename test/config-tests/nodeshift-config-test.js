@@ -4,7 +4,7 @@ const test = require('tape');
 const proxyquire = require('proxyquire');
 
 test('nodeshift-config basic setup', (t) => {
-  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
     'openshift-rest-client': {
       OpenshiftClient: () => {
         return Promise.resolve({
@@ -40,7 +40,7 @@ test('nodeshift-config basic setup', (t) => {
 });
 
 test('nodeshift-config basic setup with deploy option', (t) => {
-  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
     'openshift-rest-client': {
       OpenshiftClient: () => {
         return Promise.resolve({
@@ -76,7 +76,7 @@ test('nodeshift-config basic setup with deploy option', (t) => {
 });
 
 test('nodeshift-config other project location and nodeshiftDir', (t) => {
-  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
     'openshift-rest-client': {
       OpenshiftClient: () => {
         return Promise.resolve({
@@ -107,7 +107,7 @@ test('nodeshift-config other project location and nodeshiftDir', (t) => {
 });
 
 test('nodeshift-config no project Version', (t) => {
-  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
     'openshift-rest-client': {
       OpenshiftClient: () => {
         return Promise.resolve({
@@ -138,7 +138,7 @@ test('nodeshift-config no project Version', (t) => {
 });
 
 test('nodeshift-config no package.json', (t) => {
-  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
     'openshift-rest-client': {
       OpenshiftClient: () => {
         return Promise.resolve({
@@ -169,7 +169,7 @@ test('nodeshift-config no package.json', (t) => {
 });
 
 test('nodeshift-config invalid "name" in package.json', (t) => {
-  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
     'openshift-rest-client': {
       OpenshiftClient: () => {
         return Promise.resolve({
@@ -207,7 +207,7 @@ test('nodeshift-config invalid "name" in package.json', (t) => {
     JSON.stringify(
       Object.assign(
         {},
-        require('../examples/sample-project/package.json'),
+        require('../../examples/sample-project/package.json'),
         {
           name: '@invalid-package-name'
         }
@@ -226,7 +226,7 @@ test('nodeshift-config options configLocation', (t) => {
     configLocation: '../examples/sample-project'
   };
 
-  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
     'openshift-rest-client': {
       OpenshiftClient: (settings) => {
         t.equal(settings.config, options.configLocation, 'should be passed in');
@@ -254,7 +254,7 @@ test('nodeshift-config options configLocation', (t) => {
 });
 
 test('nodeshift-config options for the config loader - change the namespace', (t) => {
-  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
     'openshift-rest-client': {
       OpenshiftClient: () => {
         return Promise.resolve({
@@ -288,7 +288,7 @@ test('nodeshift-config options for the config loader - change the namespace', (t
 });
 
 test('nodeshift-config options for the config loader - change the namespace, format correctly', (t) => {
-  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
     'openshift-rest-client': {
       OpenshiftClient: () => {
         return Promise.resolve({
@@ -321,7 +321,7 @@ test('nodeshift-config options for the config loader - change the namespace, for
 });
 
 test('nodeshift-config options for the config loader - use namspace object format, no name', (t) => {
-  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
     'openshift-rest-client': {
       OpenshiftClient: () => {
         return Promise.resolve({
@@ -354,7 +354,7 @@ test('nodeshift-config options for the config loader - use namspace object forma
 });
 
 test('nodeshift-config options for the config loader - using namespace object format', (t) => {
-  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
     'openshift-rest-client': {
       OpenshiftClient: () => {
         return Promise.resolve({
@@ -390,7 +390,7 @@ test('nodeshift-config options for the config loader - using namespace object fo
 });
 
 test('nodeshift-config options - change outputImageStreamTag and outputImageStreamName', (t) => {
-  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
     'openshift-rest-client': {
       OpenshiftClient: () => {
         return Promise.resolve({
@@ -423,7 +423,7 @@ test('nodeshift-config options - change outputImageStreamTag and outputImageStre
 });
 
 test('nodeshift-config options - not recognized build strategy', (t) => {
-  const nodeshiftConfig = proxyquire('../lib/nodeshift-config', {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
     'openshift-rest-client': {
       OpenshiftClient: () => {
         return Promise.resolve({

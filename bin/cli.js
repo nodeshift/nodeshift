@@ -18,12 +18,14 @@
 
 'use strict';
 
-const nodeshiftConfig = require('../lib/nodeshift-config');
+const nodeshiftConfig = require('../lib/config/nodeshift-config');
 const resourceGoal = require('../lib/goals/resource');
 const buildGoal = require('../lib/goals/build');
 const applyResources = require('../lib/goals/apply-resources');
 const undeployGoal = require('../lib/goals/undeploy');
 const namespace = require('../lib/namespace');
+
+const kubeUrl = require('../lib/kube-url');
 
 /**
   This module is where everything is orchestrated.  Both the command line process and the public API call this modules run function
@@ -49,6 +51,10 @@ module.exports = async function run (options) {
       case 'apply-resource':
         response.resources = await resourceGoal(config);
         response.appliedResources = await applyResources(config, response.resources);
+
+        if (options.kube) {
+          kubeUrl(config, response.appliedResources);
+        }
         break;
       case 'undeploy':
         if (config.namespace && config.namespace.remove) {
@@ -65,6 +71,9 @@ module.exports = async function run (options) {
         response.build = await buildGoal(config);
         response.resources = await resourceGoal(config);
         response.appliedResources = await applyResources(config, response.resources);
+        if (options.kube) {
+          kubeUrl(config, response.appliedResources);
+        }
         break;
       default:
         throw new TypeError(`Unexpected command: ${options.cmd}`);
