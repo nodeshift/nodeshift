@@ -454,3 +454,44 @@ test('nodeshift-config options - not recognized build strategy', (t) => {
     t.end();
   });
 });
+
+test('nodeshift-config basic setup kube option', (t) => {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
+    './kubernetes-config': () => {
+      t.pass();
+      return Promise.resolve();
+    },
+    './docker-config': () => {
+      t.pass();
+      return Promise.resolve();
+    },
+    'openshift-rest-client': {
+      OpenshiftClient: () => {
+        return Promise.resolve({
+          kubeconfig: {
+            getCurrentContext: () => {
+              return 'nodey/ip/other';
+            },
+            getCurrentCluster: () => {
+              return { server: 'http://mock-cluster' };
+            },
+            getContexts: () => {
+              return [{ name: 'nodey/ip/other', namespace: 'test-namespace' }];
+            }
+          }
+        });
+      }
+    }
+  });
+
+  const options = {
+    kube: true
+  };
+
+  const p = nodeshiftConfig(options).then((config) => {
+    t.equal(config.namespace.name, 'default', 'Kube flag uses default by default');
+    t.end();
+  }).catch(t.fail);
+
+  t.equal(p instanceof Promise, true, 'should return a Promise');
+});
