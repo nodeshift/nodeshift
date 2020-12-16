@@ -152,6 +152,18 @@ nodeshift.deploy().then((response) => {
 ````
 _please note: Currently, once a route, service, deployment config, build config, and imagestream config are created, those are re-used. The only thing that changes from deployment to deployment is the source code.  For application resources, you can update them by undeploying and then deploying again.  BuildConfigs and Imagestreams can be re-created using the --build.recreate flag_
 
+#### Using with Kubernetes
+
+Nodeshift can deploy Node.js applications to a Kubernetes Cluster using the `--kube` flag.  At the moment, there is only support for [minikube](https://minikube.sigs.k8s.io/docs/start/).
+
+Nodeshift expects that your code has a Dockerfile in its root directory.  Then deploying to Minikube is as easy as running:
+
+`npx nodeshift --kube`
+
+This connect to Minikubes docker server, create a new container and then deploy and expose that container with a `Deployment` and `Service`
+
+
+
 ## Advanced Options
 
 While nodeshift is very opinionated about deployment parameters, both the CLI and the API accept options that allow you to customize nodeshift's behavior.
