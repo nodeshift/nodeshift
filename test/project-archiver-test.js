@@ -270,3 +270,96 @@ test('change in project location', (t) => {
     t.end();
   });
 });
+
+test('test build with kube flag - Error building image', (t) => {
+  const projectArchiver = proxyquire('../lib/project-archiver', {
+    './helpers': {
+      createDir: () => {
+        t.fail();
+        return Promise.resolve();
+      },
+      cleanUp: () => {
+        t.fail();
+        return Promise.resolve();
+      },
+      listFiles: () => {
+        return Promise.resolve([]);
+      }
+    },
+    tar: {
+      create: () => {
+        t.fail();
+        return Promise.resolve();
+      }
+    }
+  });
+
+  const config = {
+    projectPackage: {},
+    kube: true,
+    dockerClient: {
+      buildImage: (arg1, arg2, cb) => {
+        return cb(new Error('error'));
+      }
+    }
+  };
+
+  projectArchiver.createContainer(config).then(() => {
+    t.fail('This should fail if here');
+    t.end();
+  }).catch(() => {
+    t.pass('Succesfully caught error');
+    t.end();
+  });
+});
+
+test('test build with kube flag ', (t) => {
+  const projectArchiver = proxyquire('../lib/project-archiver', {
+    './helpers': {
+      createDir: () => {
+        t.fail();
+        return Promise.resolve();
+      },
+      cleanUp: () => {
+        t.fail();
+        return Promise.resolve();
+      },
+      listFiles: () => {
+        return Promise.resolve([]);
+      }
+    },
+    tar: {
+      create: () => {
+        t.fail();
+        return Promise.resolve();
+      }
+    }
+  });
+  const { PassThrough } = require('stream');
+  const mockReadable = new PassThrough();
+
+  const config = {
+    projectPackage: {},
+    projectName: 'project Name',
+    kube: true,
+    dockerClient: {
+      buildImage: (options, otherOpitons, cb) => {
+        t.equal(Array.isArray(options.src), true, 'src should be an array');
+        t.equal(otherOpitons.t, config.projectName, 'should be equal');
+        t.equal(otherOpitons.q, false, 'verbose output is not suppressed');
+        return cb(null, mockReadable);
+      }
+    }
+  };
+
+  setTimeout(() => {
+    mockReadable.emit('data', 'beep');
+    mockReadable.emit('data', '{"aux":{"ID":"sha256:85ba84706d6a68157db30baed19a376f9656aa52bd0209f788de0ccbb762e4ab"}}');
+    mockReadable.emit('end');
+  }, 100);
+
+  projectArchiver.createContainer(config).then((imageId) => {
+    t.equal(imageId, '85ba84706d6a68157db30baed19a376f9656aa52bd0209f788de0ccbb762e4ab');
+    t.end();
+  }).catch(t.fail);
+});
