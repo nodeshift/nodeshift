@@ -43,7 +43,7 @@ yargs
     type: 'string'
   })
   .option('kube', {
-    describe: 'For plain kubernetes',
+    describe: 'Flag to deploy an application to a vanilla kubernetes cluster.  At the moment only Minikube is supported.',
     type: 'boolean'
   })
   .option('configLocation', {

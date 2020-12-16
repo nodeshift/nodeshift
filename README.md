@@ -5,7 +5,7 @@
 
 ## What is it
 
-Nodeshift is an opinionated command line application and programmable API that you can use to deploy Node.js projects to OpenShift.
+Nodeshift is an opinionated command line application and programmable API that you can use to deploy Node.js projects to OpenShift and Kubernetes(minikube).
 
 ## Prerequisites
 
@@ -48,6 +48,8 @@ By default, if you run just `nodeshift`, it will run the `deploy` goal, which is
 ### `.nodeshift` Directory
 
 The `.nodeshift` directory contains your resource fragments.  These are `.yml` files that describe your services, deployments, routes, etc.  By default, nodeshift will create a `Service` and `DeploymentConfig` in memory, if none are provided.  A `Route` resource fragment should be provided or use the `expose` flag if you want to expose your application to the outside world.
+
+For kubernetes based deployments,  a `Service` and `Deployment` will be created by default, if none are provided.  The `Service` is of a `LoadBalancer` type, so no `Ingress` is needed to expose the application.
 
 ### Resource Fragments
 
@@ -219,6 +221,9 @@ Flag to deploy the application using a Deployment instead of a DeploymentConfig.
 EXPERIMENTAL. Flag to deploy an application as a Knative Serving Service.  Defaults to false
 Since this feature is experimental,  it is subject to change without a Major version release until it is fully stable.
 
+#### kube
+Flag to deploy an application to a vanilla kubernetes cluster.  At the moment only Minikube is supported.
+
 #### help
 Shows the below help
 
@@ -234,6 +239,9 @@ Shows the below help
         Options:
             --version                Show version number                         [boolean]
             --projectLocation        change the default location of the project   [string]
+            --kube                   Flag to deploy an application to a vanilla kubernetes
+                           cluster.  At the moment only Minikube is supported.
+                                                                                 [boolean]
             --configLocation         change the default location of the config    [string]
             --imageTag           The tag of the docker image to use for the deployed
                                 application.                 [string] [default: "latest"]
