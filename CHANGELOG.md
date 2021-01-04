@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.2.2](https://www.github.com/nodeshift/nodeshift/compare/v7.2.1...v7.2.2) (2021-01-04)
+
+
+### Bug Fixes
+
+* upgrade cross-env from 7.0.2 to 7.0.3 ([#519](https://www.github.com/nodeshift/nodeshift/issues/519)) ([1ce7f1f](https://www.github.com/nodeshift/nodeshift/commit/1ce7f1fbb9f4211fa16b79738aefa0345c2c77f2))
+* upgrade js-yaml from 3.14.0 to 3.14.1 ([#521](https://www.github.com/nodeshift/nodeshift/issues/521)) ([8564710](https://www.github.com/nodeshift/nodeshift/commit/85647107863009a523728ac43ba5b9d1d4b02221))
+* upgrade sinon from 9.2.1 to 9.2.2 ([#522](https://www.github.com/nodeshift/nodeshift/issues/522)) ([3873041](https://www.github.com/nodeshift/nodeshift/commit/38730419160ab2a5904d9fc2d2014371a630ac6d))
+* upgrade yargs from 16.1.1 to 16.2.0 ([#520](https://www.github.com/nodeshift/nodeshift/issues/520)) ([0a2dc42](https://www.github.com/nodeshift/nodeshift/commit/0a2dc423e18626f8b4a9788e3a047e99fa4bda0d))
+* **build:** Adding the configuration for coveralls ([#516](https://www.github.com/nodeshift/nodeshift/issues/516)) ([74dbf89](https://www.github.com/nodeshift/nodeshift/commit/74dbf899fbb296553dae539be56db0a23ee0c719))
+* upgrade yargs from 16.1.0 to 16.1.1 ([#511](https://www.github.com/nodeshift/nodeshift/issues/511)) ([28a8408](https://www.github.com/nodeshift/nodeshift/commit/28a8408d49e12515ea1ce46c20f5fc7a3afe9a17))
+
 ### [7.2.1](https://www.github.com/nodeshift/nodeshift/compare/v7.2.0...v7.2.1) (2020-12-01)
 
 
