@@ -1,9 +1,11 @@
 'use strict';
 
 const test = require('tape');
-const namespace = require('../lib/namespace');
+const proxyquire = require('proxyquire');
 
 test('namespace', t => {
+  const namespace = require('../lib/namespace');
+
   t.ok(namespace.create, 'should have a create method');
   t.ok(namespace.remove, 'should have a remove method');
   t.equal(typeof namespace.create, 'function', 'should be a function');
@@ -13,6 +15,7 @@ test('namespace', t => {
 });
 
 test('namespace - create the namespace', t => {
+  const namespace = require('../lib/namespace');
   const config = {
     namespace: {
       name: 'projectname'
@@ -48,6 +51,8 @@ test('namespace - create the namespace', t => {
 });
 
 test('namespace - create the namespace, others exist', t => {
+  const namespace = require('../lib/namespace');
+
   const config = {
     namespace: {
       name: 'projectname'
@@ -83,6 +88,8 @@ test('namespace - create the namespace, others exist', t => {
 });
 
 test('namespace - namespace exists', t => {
+  const namespace = require('../lib/namespace');
+
   const config = {
     namespace: {
       name: 'projectname'
@@ -119,6 +126,8 @@ test('namespace - namespace exists', t => {
 });
 
 test('namespace - namespace exists but is Terminating', t => {
+  const namespace = require('../lib/namespace');
+
   const config = {
     namespace: {
       name: 'projectname'
@@ -155,6 +164,8 @@ test('namespace - namespace exists but is Terminating', t => {
 });
 
 test('namespace - remove the namespace', t => {
+  const namespace = require('../lib/namespace');
+
   const config = {
     namespace: {
       name: 'projectname'
@@ -178,6 +189,31 @@ test('namespace - remove the namespace', t => {
   };
 
   const n = namespace.remove(config);
+
+  t.equal(n instanceof Promise, true, 'instanceof a Promise');
+
+  n.then(() => {
+    t.pass();
+    t.end();
+  });
+});
+
+test('namespace - create the namespace kube flag', t => {
+  const namespace = proxyquire('../lib/namespace', {
+    './common-log': () => ({
+      warn: (message) => {
+        t.equal(message, 'This feature is not available using the --kube flag');
+      }
+    })
+  });
+  const config = {
+    namespace: {
+      name: 'projectname'
+    },
+    kube: true
+  };
+
+  const n = namespace.create(config);
 
   t.equal(n instanceof Promise, true, 'instanceof a Promise');
 

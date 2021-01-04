@@ -277,3 +277,170 @@ test('remove build and image stream', (t) => {
     t.end();
   });
 });
+
+test('removeAll with Kube flag', (t) => {
+  t.plan(4);
+  const config = {
+    removeAll: true,
+    projectName: 'projectName',
+    kube: true,
+    dockerClient: {
+      getImage: (projectName) => {
+        return {
+          remove: (options) => {
+            t.pass('should be here');
+            t.equal(options.name, projectName, 'name passed in and project name should be equal');
+            return Promise.resolve();
+          }
+        };
+      }
+    }
+  };
+
+  const resourceList = {
+    kind: 'List',
+    items: []
+  };
+
+  const undeploy = proxyquire('../../lib/goals/undeploy', {
+    fs: {
+      readFile: (location, cb) => { return cb(null, JSON.stringify(resourceList)); }
+    },
+    '../common-log': () => ({
+      info: (message) => {},
+      trace: (message) => {
+        t.equal(message, `${config.projectName} image has been removed`);
+      }
+    }),
+    '../deployment-config': {
+      undeploy: () => { return Promise.resolve(); }
+    },
+    '../build-config': {
+      removeBuildsAndBuildConfig: () => {
+        t.fail('should not land here');
+      }
+    },
+    '../image-stream': {
+      removeImageStream: () => {
+        t.fail('should not land here');
+      }
+    }
+  });
+
+  undeploy(config).then(() => {
+    t.pass('this should pass');
+    t.end();
+  });
+});
+
+test('removeAll with Kube flag - 404 on the image', (t) => {
+  /* eslint prefer-promise-reject-errors: "off" */
+  t.plan(3);
+  const config = {
+    removeAll: true,
+    projectName: 'projectName',
+    kube: true,
+    dockerClient: {
+      getImage: (projectName) => {
+        return {
+          remove: (options) => {
+            t.pass('should be here');
+            t.equal(options.name, projectName, 'name passed in and project name should be equal');
+            return Promise.reject({ statusCode: 404 });
+          }
+        };
+      }
+    }
+  };
+
+  const resourceList = {
+    kind: 'List',
+    items: []
+  };
+
+  const undeploy = proxyquire('../../lib/goals/undeploy', {
+    fs: {
+      readFile: (location, cb) => { return cb(null, JSON.stringify(resourceList)); }
+    },
+    '../common-log': () => ({
+      info: (message) => {},
+      trace: (message) => {
+        t.equal(message, `${config.projectName} image has been removed`);
+      }
+    }),
+    '../deployment-config': {
+      undeploy: () => { return Promise.resolve(); }
+    },
+    '../build-config': {
+      removeBuildsAndBuildConfig: () => {
+        t.fail('should not land here');
+      }
+    },
+    '../image-stream': {
+      removeImageStream: () => {
+        t.fail('should not land here');
+      }
+    }
+  });
+
+  undeploy(config).then(() => {
+    t.pass('this should pass');
+    t.end();
+  });
+});
+
+test('removeAll with Kube flag - some error on the image', (t) => {
+  /* eslint prefer-promise-reject-errors: "off" */
+  t.plan(4);
+  const config = {
+    removeAll: true,
+    projectName: 'projectName',
+    kube: true,
+    dockerClient: {
+      getImage: (projectName) => {
+        return {
+          remove: (options) => {
+            t.pass('should be here');
+            t.equal(options.name, projectName, 'name passed in and project name should be equal');
+            return Promise.reject({ statusCode: 401, json: { message: 'This is an error' } });
+          }
+        };
+      }
+    }
+  };
+
+  const resourceList = {
+    kind: 'List',
+    items: []
+  };
+
+  const undeploy = proxyquire('../../lib/goals/undeploy', {
+    fs: {
+      readFile: (location, cb) => { return cb(null, JSON.stringify(resourceList)); }
+    },
+    '../common-log': () => ({
+      info: (message) => {},
+      error: (message) => {
+        t.equal(message, 'This is an error');
+      }
+    }),
+    '../deployment-config': {
+      undeploy: () => { return Promise.resolve(); }
+    },
+    '../build-config': {
+      removeBuildsAndBuildConfig: () => {
+        t.fail('should not land here');
+      }
+    },
+    '../image-stream': {
+      removeImageStream: () => {
+        t.fail('should not land here');
+      }
+    }
+  });
+
+  undeploy(config).then(() => {
+    t.pass('this should pass');
+    t.end();
+  });
+});
