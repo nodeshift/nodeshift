@@ -188,6 +188,11 @@ function createOptions (argv) {
 
   options.useDeployment = argv.useDeployment;
 
+  // Not sure about storing these
+  options.username = argv.username;
+  options.password = argv.password;
+  options.apiServer = argv.apiServer;
+
   options.knative = argv.knative === true || argv.knative === 'true';
 
   options.kube = argv.kube === true || argv.kube === 'true';
