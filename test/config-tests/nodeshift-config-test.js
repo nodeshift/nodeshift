@@ -476,7 +476,7 @@ test('nodeshift-config basic setup kube option', (t) => {
               return { server: 'http://mock-cluster' };
             },
             getContexts: () => {
-              return [{ name: 'nodey/ip/other', namespace: 'test-namespace' }];
+              return [{ name: 'nodey/ip/other' }];
             }
           }
         });
