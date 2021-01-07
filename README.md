@@ -162,6 +162,17 @@ Nodeshift expects that your code has a Dockerfile in its root directory.  Then d
 
 This connect to Minikubes docker server, create a new container and then deploy and expose that container with a `Deployment` and `Service`
 
+#### Openshift Rest Client Configuration
+
+Nodeshift uses the Openshift Rest Client under the hood to make all REST calls to the cluster.  By default, the rest client will look at your `~/.kube/config` file to autheticate you.  This file will be created when you do an `oc login`.
+
+If you don't want to use `oc` to login first, you can pass in a username, password, and the apiServer of the cluster to authenticate against.  If you are using a cluster with a self-signed certificate(like code ready containers), then you will need to add the `insecure` flag.
+
+Also note, that when accessing the cluster this way,  the namespace will default to `default`.  If you need to target another namespace,  use the `namespace.name` flag.  Just make sure the user you use has the appropriate permissions.
+
+An example of this might look something like this:
+
+`npx nodeshift --username developer --password develer --apiServer https://apiserver_for_cluster --insecure --namespace.name nodejs-examples`
 
 
 ## Advanced Options
