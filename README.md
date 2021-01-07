@@ -177,6 +177,18 @@ Changes the default location of where to look for your project. Defaults to your
 #### configLocation
 This option is passed through to the [Openshift Rest Client](https://www.npmjs.com/package/openshift-rest-client).  Defaults to the `~/.kube/config`
 
+#### username
+username to pass into the openshift rest client for logging in with the API Server.
+
+#### password
+password to pass into the openshift rest client for logging in with the API Server.
+
+#### apiServer
+apiServer to pass into the openshift rest client for logging in with the API Server.
+
+#### insecure
+flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false.
+
 #### imageTag
 Specify the tag of the docker image to use for the deployed application. defaults to latest.
 These version tags correspond to the RHSCL tags of the [ubi8/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/nodejs-10)
@@ -255,6 +267,15 @@ Shows the below help
                            cluster.  At the moment only Minikube is supported.
                                                                                  [boolean]
             --configLocation         change the default location of the config    [string]
+            --username               username to pass into the openshift rest client for
+                                     logging in                                   [string]
+            --password               password to pass into the openshift rest client for
+                                     logging in                                   [string]
+            --apiServer              server address to pass into the openshift rest client
+                                     for logging in                               [string]
+            --insecure               flag to pass into the openshift rest client for
+                                     logging in with a self signed cert.  Only used with
+                                     apiServer login                             [boolean]
             --imageTag           The tag of the docker image to use for the deployed
                                 application.                 [string] [default: "latest"]
             --web-app                flag to automatically set the appropriate docker image

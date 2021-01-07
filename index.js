@@ -12,6 +12,10 @@ const cli = require('./bin/cli');
 
   @param {object} [options] - Options object for the deploy function
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
+  @param {string} [options.username] - username to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.password] - password to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.apiServer] - apiServer to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.insecure] - flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
@@ -47,6 +51,10 @@ function deploy (options = {}) {
 
   @param {object} [options] - Options object for the resource function
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
+  @param {string} [options.username] - username to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.password] - password to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.apiServer] - apiServer to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.insecure] - flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
@@ -75,6 +83,10 @@ function resource (options = {}) {
 
   @param {object} [options] - Options object for the apply-resource function
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
+  @param {string} [options.username] - username to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.password] - password to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.apiServer] - apiServer to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.insecure] - flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
@@ -107,6 +119,10 @@ function applyResource (options = {}) {
 
   @param {object} [options] - Options object for the undeploy function
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
+  @param {string} [options.username] - username to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.password] - password to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.apiServer] - apiServer to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.insecure] - flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {boolean} [options.namespace.remove] - flag to remove the user created namespace.  Only applicable for the undeploy command.  Must be used with namespace.name
@@ -139,6 +155,10 @@ function undeploy (options = {}) {
 
   @param {object} [options] - Options object for the build function
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
+  @param {string} [options.username] - username to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.password] - password to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.apiServer] - apiServer to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.insecure] - flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {boolean} [options.namespace.create] - flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name
