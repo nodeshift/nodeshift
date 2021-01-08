@@ -50,6 +50,22 @@ yargs
     describe: 'change the default location of the config',
     type: 'string'
   })
+  .options('username', {
+    describe: 'username to pass into the openshift rest client for logging in',
+    type: 'string'
+  })
+  .options('password', {
+    describe: 'password to pass into the openshift rest client for logging in',
+    type: 'string'
+  })
+  .options('apiServer', {
+    describe: 'server address to pass into the openshift rest client for logging in',
+    type: 'string'
+  })
+  .options('insecure', {
+    describe: 'flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login',
+    type: 'boolean'
+  })
   .options('dockerImage', {
     describe: 'the s2i image to use, defaults to registry.access.redhat.com/ubi8/nodejs-10',
     type: 'string'
@@ -187,6 +203,12 @@ function createOptions (argv) {
   const options = {};
 
   options.useDeployment = argv.useDeployment;
+
+  // Not sure about storing these
+  options.username = argv.username;
+  options.password = argv.password;
+  options.apiServer = argv.apiServer;
+  options.insecure = argv.insecure === true || argv.insecure === 'true';
 
   options.knative = argv.knative === true || argv.knative === 'true';
 
