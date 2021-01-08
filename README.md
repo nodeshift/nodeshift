@@ -172,7 +172,7 @@ Also note, that when accessing the cluster this way,  the namespace will default
 
 An example of this might look something like this:
 
-`npx nodeshift --username developer --password develer --apiServer https://apiserver_for_cluster --insecure --namespace.name nodejs-examples`
+`npx nodeshift --username developer --password developer --apiServer https://apiserver_for_cluster --insecure --namespace.name nodejs-examples`
 
 
 ## Advanced Options
