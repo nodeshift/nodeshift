@@ -164,7 +164,7 @@ This connect to Minikubes docker server, create a new container and then deploy 
 
 #### Openshift Rest Client Configuration
 
-Nodeshift uses the [Openshift Rest Client](https://github.com/nodeshift/openshift-rest-client) under the hood to make all REST calls to the cluster.  By default, the rest client will look at your `~/.kube/config` file to autheticate you.  This file will be created when you do an `oc login`.
+Nodeshift uses the [Openshift Rest Client](https://github.com/nodeshift/openshift-rest-client) under the hood to make all REST calls to the cluster.  By default, the rest client will look at your `~/.kube/config` file to authenticate you.  This file will be created when you do an `oc login`.
 
 If you don't want to use `oc` to login first, you can pass in a username, password, and the apiServer of the cluster to authenticate against.  If you are using a cluster with a self-signed certificate(like code ready containers), then you will need to add the `insecure` flag.
 
