@@ -59,6 +59,10 @@ yargs
     type: 'string'
   })
   .options('apiServer', {
+    describe: 'Deprecated - use the "server" flag instead. server address to pass into the openshift rest client for logging in',
+    type: 'string'
+  })
+  .options('server', {
     describe: 'server address to pass into the openshift rest client for logging in',
     type: 'string'
   })
@@ -207,7 +211,11 @@ function createOptions (argv) {
   // Not sure about storing these
   options.username = argv.username;
   options.password = argv.password;
+  // TODO: Remove in the next major release
   options.apiServer = argv.apiServer;
+
+  options.server = argv.server;
+
   options.insecure = argv.insecure === true || argv.insecure === 'true';
 
   options.knative = argv.knative === true || argv.knative === 'true';

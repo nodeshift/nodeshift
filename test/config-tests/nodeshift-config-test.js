@@ -534,6 +534,44 @@ test('nodeshift-config options username, pasword, apiServer insecure(true)', (t)
   });
 });
 
+test('nodeshift-config options username, pasword, server insecure(true)', (t) => {
+  const options = {
+    server: 'https://server',
+    username: 'developer',
+    password: 'developer',
+    insecure: true
+  };
+
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
+    'openshift-rest-client': {
+      OpenshiftClient: (settings) => {
+        t.equal(settings.config.url, options.server, 'should be passed in');
+        t.equal(settings.config.auth.username, options.username, 'should be passed in');
+        t.equal(settings.config.auth.password, options.password, 'should be passed in');
+        t.equal(settings.config.insecureSkipTlsVerify, options.insecure, 'should be passed in');
+        return Promise.resolve({
+          kubeconfig: {
+            getCurrentContext: () => {
+              return 'nodey/ip/other';
+            },
+            getCurrentCluster: () => {
+              return { server: 'http://mock-cluster' };
+            },
+            getContexts: () => {
+              return [{ name: 'nodey/ip/other', namespace: 'test-namespace' }];
+            }
+          }
+        });
+      }
+    }
+  });
+
+  nodeshiftConfig(options).then((config) => {
+    t.pass();
+    t.end();
+  });
+});
+
 test('nodeshift-config options username, pasword, apiServer, insecure(false)', (t) => {
   const options = {
     apiServer: 'https://server',
