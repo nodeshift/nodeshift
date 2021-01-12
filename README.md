@@ -166,13 +166,13 @@ This connect to Minikubes docker server, create a new container and then deploy 
 
 Nodeshift uses the [Openshift Rest Client](https://github.com/nodeshift/openshift-rest-client) under the hood to make all REST calls to the cluster.  By default, the rest client will look at your `~/.kube/config` file to authenticate you.  This file will be created when you do an `oc login`.
 
-If you don't want to use `oc` to login first, you can pass in a username, password, and the apiServer of the cluster to authenticate against.  If you are using a cluster with a self-signed certificate(like code ready containers), then you will need to add the `insecure` flag.
+If you don't want to use `oc` to login first, you can pass in a username, password, and the server of the cluster to authenticate against.  If you are using a cluster with a self-signed certificate(like code ready containers), then you will need to add the `insecure` flag.
 
 Also note, that when accessing the cluster this way,  the namespace will default to `default`.  If you need to target another namespace,  use the `namespace.name` flag.  Just make sure the user you use has the appropriate permissions.
 
 An example of this might look something like this:
 
-`npx nodeshift --username developer --password developer --apiServer https://apiserver_for_cluster --insecure --namespace.name nodejs-examples`
+`npx nodeshift --username developer --password developer --server https://apiserver_for_cluster --insecure --namespace.name nodejs-examples`
 
 
 ## Advanced Options
@@ -194,8 +194,11 @@ username to pass into the openshift rest client for logging in with the API Serv
 #### password
 password to pass into the openshift rest client for logging in with the API Server.
 
-#### apiServer
-apiServer to pass into the openshift rest client for logging in with the API Server.
+#### server
+server to pass into the openshift rest client for logging in with the API Server.
+
+#### apiServer - Deprecated
+Use server instead. apiServer to pass into the openshift rest client for logging in with the API Server.
 
 #### insecure
 flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false.
@@ -282,7 +285,9 @@ Shows the below help
                                      logging in                                   [string]
             --password               password to pass into the openshift rest client for
                                      logging in                                   [string]
-            --apiServer              server address to pass into the openshift rest client
+            --apiServer              Deprecated - use the "server" flag instead. server address to pass into the openshift rest client
+                                     for logging in                               [string]
+            --server                 server address to pass into the openshift rest client
                                      for logging in                               [string]
             --insecure               flag to pass into the openshift rest client for
                                      logging in with a self signed cert.  Only used with
