@@ -608,3 +608,77 @@ test('nodeshift-config options username, pasword, apiServer, insecure(false)', (
     t.end();
   });
 });
+
+test('nodeshift-config options token', (t) => {
+  const options = {
+    apiServer: 'https://server',
+    token: '123456'
+  };
+
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
+    'openshift-rest-client': {
+      OpenshiftClient: (settings) => {
+        t.equal(settings.config.url, options.apiServer, 'should be passed in');
+        t.equal(settings.config.auth.token, options.token, 'should be passed in');
+        t.equal(settings.config.insecureSkipTlsVerify, undefined, 'should be passed in');
+        return Promise.resolve({
+          kubeconfig: {
+            getCurrentContext: () => {
+              return 'nodey/ip/other';
+            },
+            getCurrentCluster: () => {
+              return { server: 'http://mock-cluster' };
+            },
+            getContexts: () => {
+              return [{ name: 'nodey/ip/other', namespace: 'test-namespace' }];
+            }
+          }
+        });
+      }
+    }
+  });
+
+  nodeshiftConfig(options).then((config) => {
+    t.pass();
+    t.end();
+  });
+});
+
+test('nodeshift-config options username, pasword, token, apiServer, insecure(false)', (t) => {
+  const options = {
+    apiServer: 'https://server',
+    username: 'developer',
+    password: 'developer',
+    token: '123456'
+  };
+
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
+    'openshift-rest-client': {
+      OpenshiftClient: (settings) => {
+        t.equal(settings.config.url, options.apiServer, 'should be passed in');
+        t.equal(settings.config.auth.username, undefined, 'should be passed in');
+        t.equal(settings.config.auth.password, undefined, 'should be passed in');
+        t.equal(settings.config.auth.token, options.token, 'should be passed in');
+        t.equal(settings.config.insecureSkipTlsVerify, undefined, 'should be passed in');
+        return Promise.resolve({
+          kubeconfig: {
+            getCurrentContext: () => {
+              return 'nodey/ip/other';
+            },
+            getCurrentCluster: () => {
+              return { server: 'http://mock-cluster' };
+            },
+            getContexts: () => {
+              return [{ name: 'nodey/ip/other', namespace: 'test-namespace' }];
+            }
+          }
+        });
+      }
+    }
+  });
+
+  nodeshiftConfig(options).then((config) => {
+    t.pass();
+    t.end();
+  });
+});

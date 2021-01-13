@@ -50,6 +50,10 @@ yargs
     describe: 'change the default location of the config',
     type: 'string'
   })
+  .options('token', {
+    describe: 'auth token to pass into the openshift rest client for logging in.  Overrides the username/password',
+    type: 'string'
+  })
   .options('username', {
     describe: 'username to pass into the openshift rest client for logging in',
     type: 'string'
@@ -215,6 +219,8 @@ function createOptions (argv) {
   options.apiServer = argv.apiServer;
 
   options.server = argv.server;
+
+  options.token = argv.token;
 
   options.insecure = argv.insecure === true || argv.insecure === 'true';
 

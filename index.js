@@ -12,6 +12,7 @@ const cli = require('./bin/cli');
 
   @param {object} [options] - Options object for the deploy function
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
+  @param {string} [options.token] - auth token to pass into the openshift rest client for logging in with the API Server.  Overrides the username/password
   @param {string} [options.username] - username to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.password] - password to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.apiServer] - @deprecated - use server instead. apiServer to pass into the openshift rest client for logging in with the API Server
@@ -52,6 +53,7 @@ function deploy (options = {}) {
 
   @param {object} [options] - Options object for the resource function
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
+  @param {string} [options.token] - auth token to pass into the openshift rest client for logging in with the API Server.  Overrides the username/password
   @param {string} [options.username] - username to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.password] - password to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.apiServer] - @deprecated - use server instead. apiServer to pass into the openshift rest client for logging in with the API Server
@@ -85,6 +87,7 @@ function resource (options = {}) {
 
   @param {object} [options] - Options object for the apply-resource function
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
+  @param {string} [options.token] - auth token to pass into the openshift rest client for logging in with the API Server.  Overrides the username/password
   @param {string} [options.username] - username to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.password] - password to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.apiServer] - @deprecated - use server instead. apiServer to pass into the openshift rest client for logging in with the API Server
@@ -122,6 +125,7 @@ function applyResource (options = {}) {
 
   @param {object} [options] - Options object for the undeploy function
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
+  @param {string} [options.token] - auth token to pass into the openshift rest client for logging in with the API Server.  Overrides the username/password
   @param {string} [options.username] - username to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.password] - password to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.apiServer] - @deprecated - use server instead. apiServer to pass into the openshift rest client for logging in with the API Server
@@ -159,6 +163,7 @@ function undeploy (options = {}) {
 
   @param {object} [options] - Options object for the build function
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
+  @param {string} [options.token] - auth token to pass into the openshift rest client for logging in with the API Server.  Overrides the username/password
   @param {string} [options.username] - username to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.password] - password to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.apiServer] - @deprecated - use server instead. apiServer to pass into the openshift rest client for logging in with the API Server
