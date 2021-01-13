@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.5.0](https://www.github.com/nodeshift/nodeshift/compare/v7.4.0...v7.5.0) (2021-01-13)
+
+
+### Features
+
+*  add a token flag to pass in an auth token for API calls ([#529](https://www.github.com/nodeshift/nodeshift/issues/529)) ([4093fe0](https://www.github.com/nodeshift/nodeshift/commit/4093fe03588504aac8fcbee7acabb2c796ff632a))
+* deprecate apiServer and replace with server ([#527](https://www.github.com/nodeshift/nodeshift/issues/527)) ([e80e1d9](https://www.github.com/nodeshift/nodeshift/commit/e80e1d91d01b57850dafdb6a7d9d8e42a0f3807b))
+
 ## [7.4.0](https://www.github.com/nodeshift/nodeshift/compare/v7.3.0...v7.4.0) (2021-01-08)
 
 
