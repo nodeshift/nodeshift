@@ -174,6 +174,9 @@ An example of this might look something like this:
 
 `npx nodeshift --username developer --password developer --server https://apiserver_for_cluster --insecure --namespace.name nodejs-examples`
 
+You can also pass in a valid auth token using the `token` flag.  If both a token and username/password is specified,  the token will take the preference.
+
+`npx nodeshift --token 123456789  --server https://apiserver_for_cluster --insecure --namespace.name nodejs-examples`
 
 ## Advanced Options
 
@@ -187,6 +190,9 @@ Changes the default location of where to look for your project. Defaults to your
 
 #### configLocation
 This option is passed through to the [Openshift Rest Client](https://www.npmjs.com/package/openshift-rest-client).  Defaults to the `~/.kube/config`
+
+#### token
+Auth token to pass into the openshift rest client for logging in with the API Server.  Overrides the username/password
 
 #### username
 username to pass into the openshift rest client for logging in with the API Server.
@@ -281,6 +287,8 @@ Shows the below help
                            cluster.  At the moment only Minikube is supported.
                                                                                  [boolean]
             --configLocation         change the default location of the config    [string]
+            --token                  auth token to pass into the openshift rest client for
+                                     logging in.  Overrides the username/password [string]
             --username               username to pass into the openshift rest client for
                                      logging in                                   [string]
             --password               password to pass into the openshift rest client for
