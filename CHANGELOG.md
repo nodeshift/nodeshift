@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.5.1](https://www.github.com/nodeshift/nodeshift/compare/v7.5.0...v7.5.1) (2021-02-01)
+
+
+### Bug Fixes
+
+* package.json & package-lock.json to reduce vulnerabilities ([#531](https://www.github.com/nodeshift/nodeshift/issues/531)) ([4cfdc8f](https://www.github.com/nodeshift/nodeshift/commit/4cfdc8f03099341b8f873dd4e1c6ecda48db8522))
+* upgrade sinon from 9.2.2 to 9.2.3 ([#534](https://www.github.com/nodeshift/nodeshift/issues/534)) ([dc77ebc](https://www.github.com/nodeshift/nodeshift/commit/dc77ebc3fabe9ad53aef6debe43a9d9a6f1bb872))
+* upgrade standard-version from 9.0.0 to 9.1.0 ([#532](https://www.github.com/nodeshift/nodeshift/issues/532)) ([7e46c89](https://www.github.com/nodeshift/nodeshift/commit/7e46c8977a250241edb3bc1074662b5e16da907b))
+* upgrade tar from 6.0.5 to 6.1.0 ([#535](https://www.github.com/nodeshift/nodeshift/issues/535)) ([f600596](https://www.github.com/nodeshift/nodeshift/commit/f60059631e55f89931813d72849344b91b11b269))
+
 ## [7.5.0](https://www.github.com/nodeshift/nodeshift/compare/v7.4.0...v7.5.0) (2021-01-13)
 
 
