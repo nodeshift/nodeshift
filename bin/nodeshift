@@ -75,7 +75,7 @@ yargs
     type: 'boolean'
   })
   .options('dockerImage', {
-    describe: 'the s2i image to use, defaults to registry.access.redhat.com/ubi8/nodejs-10',
+    describe: 'the s2i image to use, defaults to registry.access.redhat.com/ubi8/nodejs-14',
     type: 'string'
   })
   .options('imageTag', {

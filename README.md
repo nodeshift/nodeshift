@@ -211,10 +211,10 @@ flag to pass into the openshift rest client for logging in with a self signed ce
 
 #### imageTag
 Specify the tag of the docker image to use for the deployed application. defaults to latest.
-These version tags correspond to the RHSCL tags of the [ubi8/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/nodejs-10)
+These version tags correspond to the RHSCL tags of the [ubi8/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/nodejs-14)
 
 #### dockerImage
-Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to [ubi8/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/nodejs-10)
+Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to [ubi8/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/nodejs-14)
 
 #### web-app
 Flag to automatically set the appropriate docker image for web app deployment. Defaults to false
