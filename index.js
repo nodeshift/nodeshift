@@ -24,7 +24,7 @@ const cli = require('./bin/cli');
   @param {boolean} [options.namespace.create] - flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name
   @param {string} [options.namespace.name] - flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.resourceProfile] - Define a subdirectory below .nodeshift/ that indicates where Openshift resources are stored
-  @param {string} [options.imageTag] - set the version to use for the ubi8/nodejs-10.  Versions are ubi8/nodejs-10 tags: https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8/nodejs-10
+  @param {string} [options.imageTag] - set the version to use for the ubi8/nodejs-14.  Versions are ubi8/nodejs-14 tags: https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8/nodejs-14
   @param {string} [options.outputImageStream] - the name of the ImageStream to output to.  Defaults to project name from package.json
   @param {string} [options.outputImageTag] - The tag of the ImageStream to output to. Defaults to latest
   @param {boolean} [options.quiet] - suppress INFO and TRACE lines from output logs
@@ -64,7 +64,7 @@ function deploy (options = {}) {
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.namespace.name] - flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.resourceProfile] - Define a subdirectory below .nodeshift/ that indicates where Openshift resources are stored
-  @param {string} [options.imageTag] - set the version to use for the ubi8/nodejs-10.  Versions are ubi8/nodejs-10 tags: https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8/nodejs-10
+  @param {string} [options.imageTag] - set the version to use for the ubi8/nodejs-14.  Versions are ubi8/nodejs-14 tags: https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8/nodejs-14
   @param {string} [options.outputImageStream] - the name of the ImageStream to output to.  Defaults to project name from package.json
   @param {string} [options.outputImageTag] - The tag of the ImageStream to output to. Defaults to latest
   @param {boolean} [options.quiet] - suppress INFO and TRACE lines from output logs
@@ -99,7 +99,7 @@ function resource (options = {}) {
   @param {boolean} [options.namespace.create] - flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name
   @param {string} [options.namespace.name] - flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.resourceProfile] - Define a subdirectory below .nodeshift/ that indicates where Openshift resources are stored
-  @param {string} [options.imageTag] - set the version to use for the ubi8/nodejs-10.  Versions are ubi8/nodejs-10 tags: https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8/nodejs-10
+  @param {string} [options.imageTag] - set the version to use for the ubi8/nodejs-14.  Versions are ubi8/nodejs-14 tags: https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8/nodejs-14
   @param {string} [options.outputImageStream] - the name of the ImageStream to output to.  Defaults to project name from package.json
   @param {string} [options.outputImageTag] - The tag of the ImageStream to output to. Defaults to latest
   @param {boolean} [options.quiet] - suppress INFO and TRACE lines from output logs
@@ -136,7 +136,7 @@ function applyResource (options = {}) {
   @param {boolean} [options.namespace.remove] - flag to remove the user created namespace.  Only applicable for the undeploy command.  Must be used with namespace.name
   @param {string} [options.namespace.name] - flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.resourceProfile] - Define a subdirectory below .nodeshift/ that indicates where Openshift resources are stored
-  @param {string} [options.imageTag] - set the version to use for the ubi8/nodejs-10.  Versions are ubi8/nodejs-10 tags: https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8/nodejs-10
+  @param {string} [options.imageTag] - set the version to use for the ubi8/nodejs-14.  Versions are ubi8/nodejs-14 tags: https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8/nodejs-14
   @param {string} [options.outputImageStream] - the name of the ImageStream to output to.  Defaults to project name from package.json
   @param {string} [options.outputImageTag] - The tag of the ImageStream to output to. Defaults to latest
   @param {boolean} [options.quiet] - suppress INFO and TRACE lines from output logs
@@ -173,7 +173,7 @@ function undeploy (options = {}) {
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {boolean} [options.namespace.create] - flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name
   @param {string} [options.namespace.name] - flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
-  @param {string} [options.imageTag] - set the version to use for the ubi8/nodejs-10.  Versions are ubi8/nodejs-10 tags: https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8/nodejs-10
+  @param {string} [options.imageTag] - set the version to use for the ubi8/nodejs-14.  Versions are ubi8/nodejs-14 tags: https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8/nodejs-14
   @param {string} [options.outputImageStream] - the name of the ImageStream to output to.  Defaults to project name from package.json
   @param {string} [options.outputImageTag] - The tag of the ImageStream to output to. Defaults to latest
   @param {boolean} [options.quiet] - suppress INFO and TRACE lines from output logs

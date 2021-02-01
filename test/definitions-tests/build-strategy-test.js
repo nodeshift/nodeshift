@@ -8,7 +8,7 @@ test('default strategy', (t) => {
 
   t.equal(result.type, 'Source', 'default is Source type');
   t.ok(result.sourceStrategy, 'Source strategy object');
-  t.equal(result.sourceStrategy.from.name, 'registry.access.redhat.com/ubi8/nodejs-10:latest', 'docker image should be ubi8/nodejs-10:latest image');
+  t.equal(result.sourceStrategy.from.name, 'registry.access.redhat.com/ubi8/nodejs-14:latest', 'docker image should be ubi8/nodejs-14:latest image');
   t.equal(result.sourceStrategy.forcePull, undefined, 'no forcePull by default');
 
   t.end();
@@ -16,7 +16,7 @@ test('default strategy', (t) => {
 
 test('strategy with changed dockerTag', (t) => {
   const result = buildStrategy({ imageTag: '1-20', buildStrategy: 'Source' });
-  t.equal(result.sourceStrategy.from.name, 'registry.access.redhat.com/ubi8/nodejs-10:1-20', 'docker image should be 1-20 ubi8/nodejs-10 image');
+  t.equal(result.sourceStrategy.from.name, 'registry.access.redhat.com/ubi8/nodejs-14:1-20', 'docker image should be 1-20 ubi8/nodejs-14 image');
   t.end();
 });
 
@@ -67,17 +67,17 @@ test('strategy with env vars', (t) => {
   t.end();
 });
 
-test('defaults to using latest ubi8/nodejs-10 s2i builder image', t => {
+test('defaults to using latest ubi8/nodejs-14 s2i builder image', t => {
   const result = buildStrategy({ buildStrategy: 'Source' });
 
-  t.equals(result.sourceStrategy.from.name, 'registry.access.redhat.com/ubi8/nodejs-10:latest');
+  t.equals(result.sourceStrategy.from.name, 'registry.access.redhat.com/ubi8/nodejs-14:latest');
   t.end();
 });
 
 test('accepts a node version using imageTag option', t => {
   const result = buildStrategy({ imageTag: '1-20', buildStrategy: 'Source' });
 
-  t.equals(result.sourceStrategy.from.name, 'registry.access.redhat.com/ubi8/nodejs-10:1-20');
+  t.equals(result.sourceStrategy.from.name, 'registry.access.redhat.com/ubi8/nodejs-14:1-20');
   t.end();
 });
 
