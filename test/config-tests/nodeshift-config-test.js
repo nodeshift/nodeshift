@@ -217,7 +217,8 @@ test('nodeshift-config valid "@scope name" in package.json', (t) => {
 
   nodeshiftConfig(options)
     .then(config => {
-      console.log(config);
+      t.equal(config.projectName, 'org-pkg', 'modified name');
+      t.equal(config.projectPackage.name, '@org/pkg', 'not modified');
       t.pass('Valid Scoped Name');
       t.end();
     })
