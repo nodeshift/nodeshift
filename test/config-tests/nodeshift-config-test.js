@@ -168,6 +168,66 @@ test('nodeshift-config no package.json', (t) => {
   });
 });
 
+test('nodeshift-config valid "@scope name" in package.json', (t) => {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
+    'openshift-rest-client': {
+      OpenshiftClient: () => {
+        return Promise.resolve({
+          kubeconfig: {
+            getCurrentContext: () => {
+              return 'nodey/ip/other';
+            },
+            getCurrentCluster: () => {
+              return { server: 'http://mock-cluster' };
+            },
+            getContexts: () => {
+              return [{ name: 'nodey/ip/other', namespace: 'test-namespace' }];
+            }
+          }
+        });
+      }
+    }
+  });
+
+  const tmpDir = require('os').tmpdir();
+  const join = require('path').join;
+  const fs = require('fs');
+
+  const options = {
+    projectLocation: join(tmpDir, 'nodeshift-valid-scope-package-name-test')
+  };
+
+  if (!fs.existsSync(options.projectLocation)) {
+    fs.mkdirSync(options.projectLocation);
+  }
+
+  // Create a temp package that has an invalid name, but extends the example JSON
+  fs.writeFileSync(
+    join(options.projectLocation, 'package.json'),
+    JSON.stringify(
+      Object.assign(
+        {},
+        require('../../examples/sample-project/package.json'),
+        {
+          name: '@org/pkg'
+        }
+      )
+    )
+  );
+
+  nodeshiftConfig(options)
+    .then(config => {
+      t.equal(config.projectName, 'org-pkg', 'modified name');
+      t.equal(config.projectPackage.name, '@org/pkg', 'not modified');
+      t.pass('Valid Scoped Name');
+      t.end();
+    })
+    .catch((err) => {
+      t.fail(err);
+      t.end();
+    });
+});
+
 test('nodeshift-config invalid "name" in package.json', (t) => {
   const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
     'openshift-rest-client': {
