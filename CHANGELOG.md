@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.1](https://www.github.com/nodeshift/nodeshift/compare/v8.0.0...v8.0.1) (2021-02-12)
+
+
+### Bug Fixes
+
+* **config:** Allow scoped applications in the package name. ([#539](https://www.github.com/nodeshift/nodeshift/issues/539)) ([0e4a5db](https://www.github.com/nodeshift/nodeshift/commit/0e4a5db9941468dc88afc75c88d463ed7c7ef8df)), closes [#538](https://www.github.com/nodeshift/nodeshift/issues/538)
+
 ## [8.0.0](https://www.github.com/nodeshift/nodeshift/compare/v7.5.0...v8.0.0) (2021-02-01)
 
 
