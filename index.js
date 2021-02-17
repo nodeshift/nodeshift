@@ -8,6 +8,36 @@ const cli = require('./bin/cli');
 */
 
 /**
+  The login function will login
+
+  @param {object} [options] - Options object for the deploy function
+  @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
+  @param {string} [options.token] - auth token to pass into the openshift rest client for logging in with the API Server.  Overrides the username/password
+  @param {string} [options.username] - username to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.password] - password to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.apiServer] - @deprecated - use server instead. apiServer to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.server] - server to pass into the openshift rest client for logging in with the API Server
+  @param {string} [options.insecure] - flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false
+  @param {string} [options.forceLogin] - Force a login when using the apiServer login.  Only used with apiServer login.  default to false
+  @returns {Promise<object>} - Returns a JSON Object
+*/
+function login (options = {}) {
+  options.cmd = 'login';
+  return cli(options);
+}
+
+/**
+  The login function will login
+
+  @param {object} [options] - Options object for the deploy function
+  @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
+*/
+function logout (options = {}) {
+  options.cmd = 'logout';
+  return cli(options);
+}
+
+/**
   The deploy function will do the combination of resource, build and apply-resource
 
   @param {object} [options] - Options object for the deploy function
@@ -18,6 +48,7 @@ const cli = require('./bin/cli');
   @param {string} [options.apiServer] - @deprecated - use server instead. apiServer to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.server] - server to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.insecure] - flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false
+  @param {string} [options.forceLogin] - Force a login when using the apiServer login.  Only used with apiServer login.  default to false
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
@@ -59,6 +90,7 @@ function deploy (options = {}) {
   @param {string} [options.apiServer] - @deprecated - use server instead. apiServer to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.server] - server to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.insecure] - flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false
+  @param {string} [options.forceLogin] - Force a login when using the apiServer login.  Only used with apiServer login.  default to false
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
@@ -93,6 +125,7 @@ function resource (options = {}) {
   @param {string} [options.apiServer] - @deprecated - use server instead. apiServer to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.server] - server to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.insecure] - flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false
+  @param {string} [options.forceLogin] - Force a login when using the apiServer login.  Only used with apiServer login.  default to false
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
@@ -131,6 +164,7 @@ function applyResource (options = {}) {
   @param {string} [options.apiServer] - @deprecated - use server instead. apiServer to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.server] - server to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.insecure] - flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false
+  @param {string} [options.forceLogin] - Force a login when using the apiServer login.  Only used with apiServer login.  default to false
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {boolean} [options.namespace.remove] - flag to remove the user created namespace.  Only applicable for the undeploy command.  Must be used with namespace.name
@@ -169,6 +203,7 @@ function undeploy (options = {}) {
   @param {string} [options.apiServer] - @deprecated - use server instead. apiServer to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.server] - server to pass into the openshift rest client for logging in with the API Server
   @param {string} [options.insecure] - flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false
+  @param {string} [options.forceLogin] - Force a login when using the apiServer login.  Only used with apiServer login.  default to false
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {boolean} [options.namespace.create] - flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name
@@ -192,6 +227,8 @@ function build (options = {}) {
 }
 
 module.exports = {
+  login,
+  logout,
   deploy,
   resource,
   applyResource,
