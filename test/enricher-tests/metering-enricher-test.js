@@ -141,7 +141,7 @@ test('metering enricher - metering, override node version', async (t) => {
     }
   ];
 
-  const me = await meteringEnricher.enrich({ ...config, metering: { 'component-version': '14.15.4' } }, resourceList);
+  const me = await meteringEnricher.enrich({ ...config, metering: { nodeVersion: '14.15.4' } }, resourceList);
 
   t.equal(Array.isArray(me), true, 'should return an array');
   t.notEqual(me, resourceList, 'should not be equal');
@@ -178,7 +178,7 @@ test('metering enricher - metering, unknown node version', async (t) => {
     }
   ];
 
-  const me = await meteringEnricher.enrich({ ...config, metering: { 'component-version': '16.1.0' } }, resourceList);
+  const me = await meteringEnricher.enrich({ ...config, metering: { nodeVersion: '16.1.0' } }, resourceList);
 
   t.equal(Array.isArray(me), true, 'should return an array');
   t.notEqual(me, resourceList, 'should not be equal');
