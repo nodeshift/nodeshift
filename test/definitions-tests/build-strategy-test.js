@@ -4,7 +4,7 @@ const test = require('tape');
 const buildStrategy = require('../../lib/definitions/build-strategy');
 
 test('default strategy', (t) => {
-  const result = buildStrategy({ buildStrategy: 'Source' });
+  const result = buildStrategy({ buildStrategy: 'Source', dockerImage: 'registry.access.redhat.com/ubi8/nodejs-14', imageTag: 'latest' });
 
   t.equal(result.type, 'Source', 'default is Source type');
   t.ok(result.sourceStrategy, 'Source strategy object');
@@ -15,7 +15,7 @@ test('default strategy', (t) => {
 });
 
 test('strategy with changed dockerTag', (t) => {
-  const result = buildStrategy({ imageTag: '1-20', buildStrategy: 'Source' });
+  const result = buildStrategy({ imageTag: '1-20', buildStrategy: 'Source', dockerImage: 'registry.access.redhat.com/ubi8/nodejs-14' });
   t.equal(result.sourceStrategy.from.name, 'registry.access.redhat.com/ubi8/nodejs-14:1-20', 'docker image should be 1-20 ubi8/nodejs-14 image');
   t.end();
 });
@@ -45,7 +45,7 @@ test('strategy with changed incremental to false', (t) => {
 });
 
 test('strategy with change dockerImage', (t) => {
-  const result = buildStrategy({ dockerImage: 'lholmquist/centos7-s2i-nodejs', buildStrategy: 'Source' });
+  const result = buildStrategy({ dockerImage: 'lholmquist/centos7-s2i-nodejs', buildStrategy: 'Source', imageTag: 'latest' });
 
   t.equal(result.sourceStrategy.from.name, 'lholmquist/centos7-s2i-nodejs:latest', 'docker image should be latest lholmquist image');
   t.end();
@@ -68,21 +68,21 @@ test('strategy with env vars', (t) => {
 });
 
 test('defaults to using latest ubi8/nodejs-14 s2i builder image', t => {
-  const result = buildStrategy({ buildStrategy: 'Source' });
+  const result = buildStrategy({ buildStrategy: 'Source', dockerImage: 'registry.access.redhat.com/ubi8/nodejs-14', imageTag: 'latest' });
 
   t.equals(result.sourceStrategy.from.name, 'registry.access.redhat.com/ubi8/nodejs-14:latest');
   t.end();
 });
 
 test('accepts a node version using imageTag option', t => {
-  const result = buildStrategy({ imageTag: '1-20', buildStrategy: 'Source' });
+  const result = buildStrategy({ imageTag: '1-20', buildStrategy: 'Source', dockerImage: 'registry.access.redhat.com/ubi8/nodejs-14' });
 
   t.equals(result.sourceStrategy.from.name, 'registry.access.redhat.com/ubi8/nodejs-14:1-20');
   t.end();
 });
 
 test('strategy with web-app option enabled', (t) => {
-  const result = buildStrategy({ webApp: true, buildStrategy: 'Source' });
+  const result = buildStrategy({ webApp: true, buildStrategy: 'Source', imageTag: 'latest' });
 
   t.equal(result.sourceStrategy.from.name, 'nodeshift/ubi8-s2i-web-app:latest', 'docker image should be latest web-app image');
   t.end();

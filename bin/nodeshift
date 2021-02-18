@@ -212,6 +212,16 @@ function createOptions (argv) {
 
   options.useDeployment = argv.useDeployment;
 
+  // User wants to add red hat metering
+  // This could be just use defaults based on the rh node image
+  // or can override the node version
+  // Keeping this feature undocumented for now
+  options.metering = argv['rh-metering'];
+
+  if (Array.isArray(options.metering)) {
+    options.metering = helpers.parseMeteringEntry(options.metering);
+  }
+
   // Not sure about storing these
   options.username = argv.username;
   options.password = argv.password;
