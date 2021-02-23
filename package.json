@@ -44,7 +44,7 @@
     "dockerode": "~3.2.1",
     "git-repo-info": "^2.0.0",
     "js-yaml": "~3.14.1",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "minimatch": "^3.0.4",
     "mkdirp": "^1.0.3",
     "openshift-rest-client": "~5.1.0",
