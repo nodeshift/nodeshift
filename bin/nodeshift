@@ -38,6 +38,8 @@ yargs
   .command('resource', 'resource command', { cmd: { default: 'resource' } }, commandHandler)
   .command('apply-resource', 'apply resource command', { cmd: { default: 'apply-resource' } }, commandHandler)
   .command('undeploy [removeAll]', 'undeploy resources', { cmd: { default: 'undeploy' } }, commandHandler)
+  .command('login', 'login to the cluster', { cmd: { default: 'login' } }, commandHandler)
+  .command('logout', 'logout of the cluster', { cmd: { default: 'logout' } }, commandHandler)
   .option('projectLocation', {
     describe: 'change the default location of the project',
     type: 'string'
@@ -72,6 +74,10 @@ yargs
   })
   .options('insecure', {
     describe: 'flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login',
+    type: 'boolean'
+  })
+  .options('forceLogin', {
+    describe: 'Force a login when using the apiServer login',
     type: 'boolean'
   })
   .options('dockerImage', {
@@ -231,6 +237,8 @@ function createOptions (argv) {
   options.server = argv.server;
 
   options.token = argv.token;
+
+  options.forceLogin = argv.forceLogin;
 
   options.insecure = argv.insecure === true || argv.insecure === 'true';
 

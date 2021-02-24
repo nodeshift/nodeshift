@@ -8,6 +8,10 @@ test('api export', (t) => {
     './bin/cli': () => {}
   });
 
+  t.ok(api.login, 'should have a login function');
+  t.equals(typeof api.login, 'function', 'should be a function');
+  t.ok(api.logout, 'should have a logout function');
+  t.equals(typeof api.logout, 'function', 'should be a function');
   t.ok(api.deploy, 'should have a deploy function');
   t.equals(typeof api.deploy, 'function', 'should be a function');
   t.ok(api.resource, 'should have a resource function');
@@ -20,6 +24,28 @@ test('api export', (t) => {
   t.equals(typeof api.build, 'function', 'should be a function');
 
   t.end();
+});
+
+test('login api', (t) => {
+  const api = proxyquire('../', {
+    './bin/cli': (options) => {
+      t.equal(options.cmd, 'login', 'should be the login cmd');
+      t.end();
+    }
+  });
+
+  api.login();
+});
+
+test('logout api', (t) => {
+  const api = proxyquire('../', {
+    './bin/cli': (options) => {
+      t.equal(options.cmd, 'logout', 'should be the logout cmd');
+      t.end();
+    }
+  });
+
+  api.logout();
 });
 
 test('deploy api', (t) => {

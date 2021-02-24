@@ -10,6 +10,48 @@ test('export test', (t) => {
   t.end();
 });
 
+test('login goal', (t) => {
+  const cli = proxyquire('../bin/cli', {
+    '../lib/config/nodeshift-config': () => {
+      return Promise.resolve({});
+    },
+    '../lib/goals/resource': (config) => {
+      t.fail('should not be here for the login goal');
+    },
+    '../lib/goals/build': (config) => {
+      t.fail('should not be here for the login goal');
+    },
+    '../lib/goals/apply-resources': (config) => {
+      t.fail('should not be here for the login goal');
+    }
+  });
+
+  cli({ cmd: 'login' }).then(() => {
+    t.end();
+  });
+});
+
+test('logout goal', (t) => {
+  const cli = proxyquire('../bin/cli', {
+    '../lib/config/nodeshift-config': () => {
+      return Promise.resolve({});
+    },
+    '../lib/goals/resource': (config) => {
+      t.fail('should not be here for the logout goal');
+    },
+    '../lib/goals/build': (config) => {
+      t.fail('should not be here for the logout goal');
+    },
+    '../lib/goals/apply-resources': (config) => {
+      t.fail('should not be here for the logout goal');
+    }
+  });
+
+  cli({ cmd: 'logout' }).then(() => {
+    t.end();
+  });
+});
+
 test('default goal', (t) => {
   const cli = proxyquire('../bin/cli', {
     '../lib/config/nodeshift-config': () => {

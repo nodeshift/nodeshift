@@ -34,6 +34,10 @@ or to use in an npm script
 
 By default, if you run just `nodeshift`, it will run the `deploy` goal, which is a shortcut for running `resource`, `build` and `apply-resource`.
 
+**login** - will login to the cluster
+
+**logout** - will logout of the cluster
+
 **resource** - will parse and create the application resources files on disk
 
 **apply-resource** - does the resource goal and then deploys the resources to your running cluster
@@ -44,6 +48,47 @@ By default, if you run just `nodeshift`, it will run the `deploy` goal, which is
 
 **undeploy** - removes resources that were deployed with the apply-resource command
 
+
+### Using Login and Logout
+
+By default, the Nodeshift CLI will look for a kube config in `~/.kube/config`.  This is usually created when a user does an `oc login`,  but that requires the `oc` to be installed and the extra step of running the `oc login` command.  The Nodeshift CLI allows you to pass a username/password or a valid auth token along with the clusters API server address to authenticate requests without the need to run `oc login` first.
+
+While these parameters can be specified for each command, the `nodeshift login` command helps to simplify that.  You can now run `nodeshift login` with the parameters mentioned to first login, then run the usual `nodeshift deploy` without neededing to add the flags.
+
+CLI Usage - Login:
+
+```
+$ nodeshift login --username=developer --password=password --server=https://api.server
+
+or
+
+$ nodeshift login --token=12345 --server=https://api.server
+```
+
+CLI Usage - Logout
+
+```
+$ nodeshift logout
+```
+
+API usage using async/await would look something like this:
+
+```
+const nodeshift = require('nodeshift');
+
+const options = {
+  username: 'kubeadmin',
+  password: '...',
+  server: '...',
+  insecure: true
+};
+
+(async () => {
+  await nodeshift.login(options);
+  await nodeshift.deploy();
+  await nodeshift.logout();
+})();
+```
 
 ### `.nodeshift` Directory
 
@@ -209,6 +254,9 @@ Use server instead. apiServer to pass into the openshift rest client for logging
 #### insecure
 flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false.
 
+#### forceLogin
+Force a login when using the apiServer login.  Only used with apiServer login.  default to false
+
 #### imageTag
 Specify the tag of the docker image to use for the deployed application. defaults to latest.
 These version tags correspond to the RHSCL tags of the [ubi8/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/nodejs-14)
@@ -279,6 +327,8 @@ Shows the below help
             nodeshift resource        resource command
             nodeshift apply-resource  apply resource command
             nodeshift undeploy        undeploy resources
+            nodeshift login           login to the cluster
+            nodeshift logout          logout of the cluster
 
         Options:
             --version                Show version number                         [boolean]
@@ -300,6 +350,7 @@ Shows the below help
             --insecure               flag to pass into the openshift rest client for
                                      logging in with a self signed cert.  Only used with
                                      apiServer login                             [boolean]
+            --forceLogin             Force a login when using the apiServer login[boolean]
             --imageTag           The tag of the docker image to use for the deployed
                                 application.                 [string] [default: "latest"]
             --web-app                flag to automatically set the appropriate docker image
