@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.1.0](https://www.github.com/nodeshift/nodeshift/compare/v8.0.1...v8.1.0) (2021-02-24)
+
+
+### Features
+
+* nodeshift login/logout ([#545](https://www.github.com/nodeshift/nodeshift/issues/545)) ([f197389](https://www.github.com/nodeshift/nodeshift/commit/f197389717bbd13a765a6c7b67a1d093154f22e9))
+* **enricher:** Adds the rh-metering flag for adding Red Hat Runtimes metering to your application. ([#543](https://www.github.com/nodeshift/nodeshift/issues/543)) ([0486d33](https://www.github.com/nodeshift/nodeshift/commit/0486d33dd6acfaa6753429a2ee33fcfab6741a06))
+
+
+### Bug Fixes
+
+* package.json & package-lock.json to reduce vulnerabilities ([#546](https://www.github.com/nodeshift/nodeshift/issues/546)) ([509f0a5](https://www.github.com/nodeshift/nodeshift/commit/509f0a548e75c8ae6edd597b7d07a631426c6efd))
+* upgrade sinon from 9.2.3 to 9.2.4 ([#541](https://www.github.com/nodeshift/nodeshift/issues/541)) ([089809e](https://www.github.com/nodeshift/nodeshift/commit/089809e0fe7c8b95be1c6334175dd87b937075b6))
+
 ### [8.0.1](https://www.github.com/nodeshift/nodeshift/compare/v8.0.0...v8.0.1) (2021-02-12)
 
 
