@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.1.1](https://www.github.com/nodeshift/nodeshift/compare/v8.1.0...v8.1.1) (2021-03-05)
+
+
+### Bug Fixes
+
+* dockerImage was undefined. ([#548](https://www.github.com/nodeshift/nodeshift/issues/548)) ([e3da626](https://www.github.com/nodeshift/nodeshift/commit/e3da6268ac113050529019e283de0d5d929a1d13))
+* upgrade eslint-plugin-promise from 4.2.1 to 4.3.1 ([#547](https://www.github.com/nodeshift/nodeshift/issues/547)) ([f352aff](https://www.github.com/nodeshift/nodeshift/commit/f352affccb6533e1354d30bbe61783efd7bdd90e))
+
 ## [8.1.0](https://www.github.com/nodeshift/nodeshift/compare/v8.0.1...v8.1.0) (2021-02-24)
 
 
