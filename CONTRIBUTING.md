@@ -64,7 +64,7 @@ Use `git rebase` to sync your work from time to time.
 
 ```
 git fetch upstream
-git rebase upstream/master
+git rebase upstream/main
 ```
 
 ### Development cycle
