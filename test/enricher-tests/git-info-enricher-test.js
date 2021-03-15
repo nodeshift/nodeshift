@@ -60,7 +60,7 @@ test('git-info-enricher - no service or deployment', async (t) => {
   const gie = proxyquire('../../lib/resource-enrichers/git-info-enricher', {
     'git-repo-info': () => {
       return {
-        branch: 'master'
+        branch: 'main'
       };
     }
   });
@@ -86,7 +86,7 @@ test('git-info-enricher - service', async (t) => {
   const gie = proxyquire('../../lib/resource-enrichers/git-info-enricher', {
     'git-repo-info': () => {
       return {
-        branch: 'master',
+        branch: 'main',
         sha: 'abcd1234'
       };
     }
@@ -97,7 +97,7 @@ test('git-info-enricher - service', async (t) => {
   t.equal(Array.isArray(list), true, 'should return an array');
   t.notEqual(list, resourceList, 'arrays should not be equal');
   t.ok(list[0].metadata.annotations, 'annotations');
-  t.equal(list[0].metadata.annotations['nodeshift/git-branch'], 'master', 'branch prop is master');
+  t.equal(list[0].metadata.annotations['nodeshift/git-branch'], 'main', 'branch prop is main');
   t.equal(list[0].metadata.annotations['nodeshift/git-commit'], 'abcd1234', 'commit prop is abcd1234');
   t.end();
 });
@@ -122,7 +122,7 @@ test('git-info-enricher - deploymentConfig', async (t) => {
   const gie = proxyquire('../../lib/resource-enrichers/git-info-enricher', {
     'git-repo-info': () => {
       return {
-        branch: 'master',
+        branch: 'main',
         sha: 'abcd1234'
       };
     }
@@ -133,10 +133,10 @@ test('git-info-enricher - deploymentConfig', async (t) => {
   t.equal(Array.isArray(list), true, 'should return an array');
   t.notEqual(list, resourceList, 'arrays should not be equal');
   t.ok(list[0].metadata.annotations, 'annotations');
-  t.equal(list[0].metadata.annotations['nodeshift/git-branch'], 'master', 'branch prop is master');
+  t.equal(list[0].metadata.annotations['nodeshift/git-branch'], 'main', 'branch prop is main');
   t.equal(list[0].metadata.annotations['nodeshift/git-commit'], 'abcd1234', 'commit prop is abcd1234');
   t.ok(list[0].spec.template.metadata.annotations, 'annotations');
-  t.equal(list[0].spec.template.metadata.annotations['nodeshift/git-branch'], 'master', 'branch prop is master');
+  t.equal(list[0].spec.template.metadata.annotations['nodeshift/git-branch'], 'main', 'branch prop is main');
   t.equal(list[0].spec.template.metadata.annotations['nodeshift/git-commit'], 'abcd1234', 'commit prop is abcd1234');
   t.end();
 });
@@ -167,7 +167,7 @@ test('git-info-enricher - deploymentConfig - merge test', async (t) => {
   const gie = proxyquire('../../lib/resource-enrichers/git-info-enricher', {
     'git-repo-info': () => {
       return {
-        branch: 'master',
+        branch: 'main',
         sha: 'abcd1234'
       };
     }
@@ -178,11 +178,11 @@ test('git-info-enricher - deploymentConfig - merge test', async (t) => {
   t.equal(Array.isArray(list), true, 'should return an array');
   t.notEqual(list, resourceList, 'arrays should not be equal');
   t.ok(list[0].metadata.annotations, 'annotations');
-  t.equal(list[0].metadata.annotations['nodeshift/git-branch'], 'master', 'branch prop is master');
+  t.equal(list[0].metadata.annotations['nodeshift/git-branch'], 'main', 'branch prop is main');
   t.equal(list[0].metadata.annotations['nodeshift/git-commit'], 'abcd1234', 'commit prop is abcd1234');
   t.equal(list[0].metadata.annotations.key, 'value', 'commit prop is abcd1234');
   t.ok(list[0].spec.template.metadata.annotations, 'annotations');
-  t.equal(list[0].spec.template.metadata.annotations['nodeshift/git-branch'], 'master', 'branch prop is master');
+  t.equal(list[0].spec.template.metadata.annotations['nodeshift/git-branch'], 'main', 'branch prop is main');
   t.equal(list[0].spec.template.metadata.annotations['nodeshift/git-commit'], 'abcd1234', 'commit prop is abcd1234');
   t.equal(list[0].spec.template.metadata.annotations.key, 'value', 'commit prop is abcd1234');
   t.end();
