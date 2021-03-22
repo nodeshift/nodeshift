@@ -316,6 +316,9 @@ Since this feature is experimental,  it is subject to change without a Major ver
 #### kube
 Flag to deploy an application to a vanilla kubernetes cluster.  At the moment only Minikube is supported.
 
+#### rh-metering
+Flag to add some metering labels to a deployment.  To change the nodeVersion label, use `--rh-metering.nodeVersion` flag.  Intended for use with Red Hat product images.  For more information on metering for Red Hat images, see [here](https://access.redhat.com/documentation/en-us/red_hat_build_of_node.js/14/html/release_notes_for_node.js_14/features-nodejs#node_js_metering_labels_for_openshift)
+
 #### help
 Shows the below help
 
