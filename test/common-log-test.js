@@ -49,10 +49,10 @@ test('common-log info method', (t) => {
   const cache = process.env.NODESHIFT_QUIET;
   process.env.NODESHIFT_QUIET = false;
 
-  const spy = sinon.spy(console, 'log');
+  const logger = proxyquire('../lib/common-log', {})();
+  const spy = sinon.spy(logger, 'info');
 
-  const { info } = proxyquire('../lib/common-log', {})();
-  info();
+  logger.info();
 
   t.equal(spy.callCount, 1, 'should call console.log');
   t.end();
@@ -66,10 +66,10 @@ test('common-log trace method', (t) => {
   const cache = process.env.NODESHIFT_QUIET;
   process.env.NODESHIFT_QUIET = false;
 
-  const spy = sinon.spy(console, 'log');
+  const logger = proxyquire('../lib/common-log', {})();
+  const spy = sinon.spy(logger, 'trace');
 
-  const { trace } = proxyquire('../lib/common-log', {})();
-  trace();
+  logger.trace();
 
   t.equal(spy.callCount, 1, 'should call console.log');
   t.end();

@@ -40,7 +40,6 @@
   },
   "homepage": "https://github.com/nodeshift/nodeshift#readme",
   "dependencies": {
-    "chalk": "^3.0.0",
     "dockerode": "~3.2.1",
     "git-repo-info": "^2.0.0",
     "js-yaml": "~3.14.1",
@@ -49,6 +48,8 @@
     "mkdirp": "^1.0.3",
     "openshift-rest-client": "~5.1.0",
     "parse-gitignore": "^1.0.1",
+    "pino": "^6.11.2",
+    "pino-pretty": "^4.7.1",
     "tar": "~6.1.0",
     "yargs": "^16.2.0"
   },
