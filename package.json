@@ -6,11 +6,12 @@
     "nodeshift": "./bin/nodeshift"
   },
   "scripts": {
-    "pretest": "eslint bin/* lib/**/*.js lib/**/**/*.js test/*-test.js test/**/*-test.js index.js",
+    "prepare": "husky install",
+    "pretest": "eslint --ignore-path .gitignore .",
     "test": "cross-env NODESHIFT_QUIET=true nyc tape test/*-test.js test/**/*-test.js | tap-spec",
     "coverage": "nyc npm test && nyc report --reporter=html",
     "docs": "documentation build index.js --shallow -f html -o docs --config documentation.yml",
-    "prerelease": "npm run lint && npm run test",
+    "prerelease": "npm run test",
     "release": "standard-version -a"
   },
   "standard-version": {
@@ -63,6 +64,7 @@
     "eslint-plugin-node": "~11.1.0",
     "eslint-plugin-promise": "~4.3.1",
     "eslint-plugin-standard": "^4.1.0",
+    "husky": "^6.0.0",
     "ink-docstrap": "^1.3.2",
     "nock": "^12.0.2",
     "nyc": "~15.1.0",
