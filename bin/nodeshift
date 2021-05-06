@@ -119,6 +119,10 @@ yargs
     type: 'boolean',
     default: false
   })
+  .options('exposeHost', {
+    describe: 'Alias/DNS that points to the service. Must be used with expose',
+    type: 'string'
+  })
   .options('namespace.displayName', {
     describe: 'flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files',
     type: 'string'
@@ -262,6 +266,7 @@ function createOptions (argv) {
   options.removeAll = argv.removeAll;
   options.namespace = argv.namespace;
   options.expose = argv.expose;
+  options.exposeHost = argv.exposeHost;
   options.configLocation = argv.configLocation;
 
   // Check for the --build.env array
