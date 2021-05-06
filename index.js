@@ -50,7 +50,7 @@ function logout (options = {}) {
   @param {string} [options.insecure] - flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false
   @param {string} [options.forceLogin] - Force a login when using the apiServer login.  Only used with apiServer login.  default to false
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
-  @param {boolean} [options.exposeHost] - Alias/DNS that points to the service. Must be used with expose
+  @param {string} [options.exposeHost] - Alias/DNS that points to the service. Must be used with expose
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {boolean} [options.namespace.create] - flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name
@@ -93,7 +93,7 @@ function deploy (options = {}) {
   @param {string} [options.insecure] - flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false
   @param {string} [options.forceLogin] - Force a login when using the apiServer login.  Only used with apiServer login.  default to false
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
-  @param {boolean} [options.exposeHost] - Alias/DNS that points to the service. Must be used with expose
+  @param {string} [options.exposeHost] - Alias/DNS that points to the service. Must be used with expose
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.namespace.name] - flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
@@ -129,7 +129,7 @@ function resource (options = {}) {
   @param {string} [options.insecure] - flag to pass into the openshift rest client for logging in with a self signed cert.  Only used with apiServer login.  default to false
   @param {string} [options.forceLogin] - Force a login when using the apiServer login.  Only used with apiServer login.  default to false
   @param {boolean} [options.expose] - Set to true to create a default Route and expose the default service.  defaults to false
-  @param {boolean} [options.exposeHost] - Alias/DNS that points to the service. Must be used with expose
+  @param {string} [options.exposeHost] - Alias/DNS that points to the service. Must be used with expose
   @param {object} [options.namespace] -
   @param {string} [options.namespace.displayName] - flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {boolean} [options.namespace.create] - flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name
