@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.2.0](https://www.github.com/nodeshift/nodeshift/compare/v8.1.1...v8.2.0) (2021-05-07)
+
+
+### Features
+
+* add exposeHost option ([#558](https://www.github.com/nodeshift/nodeshift/issues/558)) ([497f8d3](https://www.github.com/nodeshift/nodeshift/commit/497f8d3a0a985fcaf63f04115bcc5532162d48f1))
+
+
+### Bug Fixes
+
+* upgrade standard-version from 9.1.0 to 9.1.1 ([#550](https://www.github.com/nodeshift/nodeshift/issues/550)) ([b684a2a](https://www.github.com/nodeshift/nodeshift/commit/b684a2a403e261f3742daafbf6cd23940d1fd47c))
+
 ### [8.1.1](https://www.github.com/nodeshift/nodeshift/compare/v8.1.0...v8.1.1) (2021-03-05)
 
 
