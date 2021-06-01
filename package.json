@@ -24,7 +24,8 @@
     "index.js",
     "example.js",
     "lib",
-    "bin"
+    "bin",
+    "package-support.json"
   ],
   "engines": {
     "node": "^16 || ^14 || ^12"
