@@ -143,7 +143,10 @@ yargs
     describe: 'flag to update the default ports on the resource files. Defaults to 8080',
     default: 8080
   })
-  .array('deploy.env')
+  .option('deploy.env', {
+    array: true,
+    describe: 'flag to pass deployment config environment variables in the form NAME=VALUE'
+  })
   .option('build.recreate', {
     describe: 'flag to recreate a buildConfig or Imagestream',
     choices: ['buildConfig', 'imageStream', false, true],
@@ -165,7 +168,10 @@ yargs
     describe: 'flag to change the build strategy.  Defaults to Source',
     choices: ['Source', 'Docker']
   })
-  .array('build.env')
+  .option('build.env', {
+    array: true,
+    describe: 'flag to pass build config environment variables in the form NAME=VALUE'
+  })
   .options('metadata.out', {
     describe: 'determines what should be done with the response metadata from OpenShift',
     choices: ['stdout', 'ignore', '<filename>'],
