@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.2.1](https://www.github.com/nodeshift/nodeshift/compare/v8.2.0...v8.2.1) (2021-07-13)
+
+
+### Bug Fixes
+
+* Adding package-support.json to the files array ([#566](https://www.github.com/nodeshift/nodeshift/issues/566)) ([dfb6c37](https://www.github.com/nodeshift/nodeshift/commit/dfb6c37232079dfcdcc630e8687b45cc6f5a3c13))
+
 ## [8.2.0](https://www.github.com/nodeshift/nodeshift/compare/v8.1.1...v8.2.0) (2021-05-07)
 
 
