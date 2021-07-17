@@ -36,9 +36,10 @@ const kubeUrl = require('../lib/kube-url');
 module.exports = async function run (options) {
   try {
     const config = await nodeshiftConfig(options);
-    if (options.cmd === 'login' || options.cmd === 'logout') {
+    if (options.cmd === 'login' || options.cmd === 'logout' || options.cmd === 'getNodeshiftConfig') {
       return config;
     }
+
     const response = {};
 
     switch (options.cmd) {
