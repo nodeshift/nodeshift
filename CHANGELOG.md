@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.3.0](https://www.github.com/nodeshift/nodeshift/compare/v8.2.1...v8.3.0) (2021-07-17)
+
+
+### Features
+
+* **api:** add a getNodeshiftConfig method ([1e34a8d](https://www.github.com/nodeshift/nodeshift/commit/1e34a8d5fedd04d93a2d7fc8bcdac211fc4e6bdd))
+
 ### [8.2.1](https://www.github.com/nodeshift/nodeshift/compare/v8.2.0...v8.2.1) (2021-07-13)
 
 
