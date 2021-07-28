@@ -10,7 +10,7 @@ const cli = require('./bin/cli');
 /**
   The login function will login
 
-  @param {object} [options] - Options object for the deploy function
+  @param {object} [options] - Options object for the login function
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
   @param {string} [options.token] - auth token to pass into the openshift rest client for logging in with the API Server.  Overrides the username/password
   @param {string} [options.username] - username to pass into the openshift rest client for logging in with the API Server
@@ -27,9 +27,9 @@ function login (options = {}) {
 }
 
 /**
-  The login function will login
+  The logout function will logout
 
-  @param {object} [options] - Options object for the deploy function
+  @param {object} [options] - Options object for the logout function
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
 */
 function logout (options = {}) {
@@ -40,7 +40,7 @@ function logout (options = {}) {
 /**
   The getNodeshiftConfig function will return the config
 
-  @param {object} [options] - Options object for the deploy function
+  @param {object} [options] - Options object for the getNodeshiftConfig function
   @param {string} [options.projectLocation] - the location(directory) of your projects package.json. Defaults to `process.cwd`
   @param {string} [options.token] - auth token to pass into the openshift rest client for logging in with the API Server.  Overrides the username/password
   @param {string} [options.username] - username to pass into the openshift rest client for logging in with the API Server
