@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.4.0](https://www.github.com/nodeshift/nodeshift/compare/v8.3.0...v8.4.0) (2021-07-28)
+
+
+### Features
+
+* add typescript typings ([#577](https://www.github.com/nodeshift/nodeshift/issues/577)) ([e6f09f5](https://www.github.com/nodeshift/nodeshift/commit/e6f09f55edb311259cda2c2de5a265a2c89b71ae))
+
+
+### Bug Fixes
+
+* add deprecation for the health check enricher ([#576](https://www.github.com/nodeshift/nodeshift/issues/576)) ([b20701e](https://www.github.com/nodeshift/nodeshift/commit/b20701e361c6044b1d32f113f7123186d4ef2205))
+* upgrade dockerode from 3.2.1 to 3.3.0 ([#575](https://www.github.com/nodeshift/nodeshift/issues/575)) ([0dc01a1](https://www.github.com/nodeshift/nodeshift/commit/0dc01a1a7ffd8fddf376ec36b961a8dc63ebdd57))
+* upgrade documentation from 13.1.1 to 13.2.5 ([#571](https://www.github.com/nodeshift/nodeshift/issues/571)) ([5d4b5d6](https://www.github.com/nodeshift/nodeshift/commit/5d4b5d69cd22fdf35bd84ce833032bc1dced4b03))
+
 ## [8.3.0](https://www.github.com/nodeshift/nodeshift/compare/v8.2.1...v8.3.0) (2021-07-17)
 
 

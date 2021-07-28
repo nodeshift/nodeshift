@@ -1,6 +1,6 @@
 {
   "name": "nodeshift",
-  "version": "8.3.0",
+  "version": "8.4.0",
   "description": "Plugin for running openshift deployments",
   "bin": {
     "nodeshift": "./bin/nodeshift"
@@ -21,7 +21,7 @@
       "precommit": "git add docs/"
     }
   },
-  "typings":"index.d.ts",
+  "typings": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
