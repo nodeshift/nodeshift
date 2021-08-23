@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.5.0](https://www.github.com/nodeshift/nodeshift/compare/v8.4.0...v8.5.0) (2021-08-23)
+
+
+### Features
+
+* upgrade tape from 4.13.3 to 5.2.2 ([#584](https://www.github.com/nodeshift/nodeshift/issues/584)) ([828a851](https://www.github.com/nodeshift/nodeshift/commit/828a851d0a48f4ab745fb2c528677b9ea900563c))
+
+
+### Bug Fixes
+
+* package.json & package-lock.json to reduce vulnerabilities ([#580](https://www.github.com/nodeshift/nodeshift/issues/580)) ([f9773a5](https://www.github.com/nodeshift/nodeshift/commit/f9773a5191203add5ad4f681cf39ab22fe8adfe8))
+* package.json & package-lock.json to reduce vulnerabilities ([#582](https://www.github.com/nodeshift/nodeshift/issues/582)) ([43edbcc](https://www.github.com/nodeshift/nodeshift/commit/43edbcc88a5c84343434d52d32e74c5e103a6a7b))
+
 ## [8.4.0](https://www.github.com/nodeshift/nodeshift/compare/v8.3.0...v8.4.0) (2021-07-28)
 
 
