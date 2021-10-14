@@ -16,7 +16,7 @@ test('docker-config', (t) => {
     DOCKER_HOST: 'tcp://192.168.39.50:2376',
     DOCKER_CERT_PATH: '/home/lucasholmquist/.minikube/certs'
   };
-  dockerClientSetup({}, kubeEnvVars);
+  dockerClientSetup({ kube: 'minikube' }, kubeEnvVars);
 
   t.pass();
   t.end();
@@ -35,7 +35,22 @@ test('docker-config - no port', (t) => {
     DOCKER_HOST: 'tcp://192.168.39.50',
     DOCKER_CERT_PATH: '/home/lucasholmquist/.minikube/certs'
   };
-  dockerClientSetup({}, kubeEnvVars);
+  dockerClientSetup({ kube: 'minikube' }, kubeEnvVars);
+
+  t.pass();
+  t.end();
+});
+
+test('docker-config - docker-desktop', (t) => {
+  const dockerClientSetup = proxyquire('../../lib/config/docker-config', {
+    fs: {
+      readFileSync: (path) => {
+        t.fail();
+      }
+    }
+  });
+
+  dockerClientSetup({ kube: 'docker-desktop' });
 
   t.pass();
   t.end();
