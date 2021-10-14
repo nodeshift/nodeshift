@@ -71,7 +71,7 @@ function logout (options = {}) {
   @param {array} [options.definedProperties] - Array of objects with the format { key: value }.  Used for template substitution
   @param {boolean} [options.useDeployment] - Flag to deploy the application using a Deployment instead of a DeploymentConfig. Defaults to false
   @param {boolean} [options.knative] - EXPERIMENTAL. flag to deploy an application as a Knative Serving Service.  Defaults to false
-  @param {boolean} [options.kube] - Flag to deploy an application to a vanilla kubernetes cluster.  At the moment only Minikube is supported.  Defaults to false
+  @param {string/boolean} [options.kube] - Flag to deploy an application to a vanilla kubernetes cluster. Defaults to false. options are 'minikube' or 'docker-desktop'
   @returns {Promise<object>} - Returns a JSON Object
 */
 function getNodeshiftConfig (options = {}) {
@@ -113,7 +113,7 @@ function getNodeshiftConfig (options = {}) {
   @param {array} [options.definedProperties] - Array of objects with the format { key: value }.  Used for template substitution
   @param {boolean} [options.useDeployment] - Flag to deploy the application using a Deployment instead of a DeploymentConfig. Defaults to false
   @param {boolean} [options.knative] - EXPERIMENTAL. flag to deploy an application as a Knative Serving Service.  Defaults to false
-  @param {boolean} [options.kube] - Flag to deploy an application to a vanilla kubernetes cluster.  At the moment only Minikube is supported.  Defaults to false
+  @param {string/boolean} [options.kube] - Flag to deploy an application to a vanilla kubernetes cluster. Defaults to false. options are 'minikube' or 'docker-desktop'
   @returns {Promise<object>} - Returns a JSON Object
 */
 function deploy (options = {}) {
@@ -150,7 +150,7 @@ function deploy (options = {}) {
   @param {array} [options.definedProperties] - Array of objects with the format { key: value }.  Used for template substitution
   @param {boolean} [options.useDeployment] - Flag to deploy the application using a Deployment instead of a DeploymentConfig. Defaults to false
   @param {boolean} [options.knative] - EXPERIMENTAL. flag to deploy an application as a Knative Serving Service.  Defaults to false
-  @param {boolean} [options.kube] - Flag to deploy an application to a vanilla kubernetes cluster.  At the moment only Minikube is supported.  Defaults to false
+  @param {string/boolean} [options.kube] - Flag to deploy an application to a vanilla kubernetes cluster. Defaults to false. options are 'minikube' or 'docker-desktop'
   @returns {Promise<object>} - Returns a JSON Object
 */
 function resource (options = {}) {
@@ -190,7 +190,7 @@ function resource (options = {}) {
   @param {array} [options.definedProperties] - Array of objects with the format { key: value }.  Used for template substitution
   @param {boolean} [options.useDeployment] - Flag to deploy the application using a Deployment instead of a DeploymentConfig. Defaults to false
   @param {boolean} [options.knative] - EXPERIMENTAL. flag to deploy an application as a Knative Serving Service.  Defaults to false
-  @param {boolean} [options.kube] - Flag to deploy an application to a vanilla kubernetes cluster.  At the moment only Minikube is supported.  Defaults to false
+  @param {string/boolean} [options.kube] - Flag to deploy an application to a vanilla kubernetes cluster. Defaults to false. options are 'minikube' or 'docker-desktop'
   @returns {Promise<object>} - Returns a JSON Object
 */
 function applyResource (options = {}) {
@@ -229,7 +229,7 @@ function applyResource (options = {}) {
   @param {array} [options.definedProperties] - Array of objects with the format { key: value }.  Used for template substitution
   @param {boolean} [options.useDeployment] - Flag to deploy the application using a Deployment instead of a DeploymentConfig. Defaults to false
   @param {boolean} [options.knative] - EXPERIMENTAL. flag to deploy an application as a Knative Serving Service.  Defaults to false
-  @param {boolean} [options.kube] - Flag to deploy an application to a vanilla kubernetes cluster.  At the moment only Minikube is supported.  Defaults to false
+  @param {string/boolean} [options.kube] - Flag to deploy an application to a vanilla kubernetes cluster. Defaults to false. options are 'minikube' or 'docker-desktop'
   @returns {Promise<object>} - Returns a JSON Object
 */
 function undeploy (options = {}) {
@@ -263,7 +263,7 @@ function undeploy (options = {}) {
   @param {boolean} [options.build.forcePull] - flag to make your BuildConfig always pull a new image from dockerhub or not. Defaults to false
   @param {Array} [options.build.env] - an array of objects to pass build config environment variables.  [{name: NAME_PROP, value: VALUE}]
   @param {array} [options.definedProperties] - Array of objects with the format { key: value }.  Used for template substitution
-  @param {boolean} [options.kube] - Flag to deploy an application to a vanilla kubernetes cluster.  At the moment only Minikube is supported.  Defaults to false
+  @param {string/boolean} [options.kube] - Flag to deploy an application to a vanilla kubernetes cluster. Defaults to false. options are 'minikube' or 'docker-desktop'
   @returns {Promise<object>} - Returns a JSON Object
 */
 function build (options = {}) {
