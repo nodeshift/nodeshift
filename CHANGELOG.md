@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.6.0](https://www.github.com/nodeshift/nodeshift/compare/v8.5.0...v8.6.0) (2021-10-18)
+
+
+### Features
+
+* docker-desktop kube option ([#601](https://www.github.com/nodeshift/nodeshift/issues/601)) ([ddd45e9](https://www.github.com/nodeshift/nodeshift/commit/ddd45e97dc2148fc8d7864ecc96d5b8758fa5877))
+
+
+### Bug Fixes
+
+* package.json & package-lock.json to reduce vulnerabilities ([#592](https://www.github.com/nodeshift/nodeshift/issues/592)) ([cdd1ac8](https://www.github.com/nodeshift/nodeshift/commit/cdd1ac8eda6054b9cad4761e0d54855193ed4e95))
+* package.json & package-lock.json to reduce vulnerabilities ([#594](https://www.github.com/nodeshift/nodeshift/issues/594)) ([32a36bb](https://www.github.com/nodeshift/nodeshift/commit/32a36bb2c7cbe26624131b2f79073e14d3ecc001))
+* upgrade dockerode from 3.3.0 to 3.3.1 ([#599](https://www.github.com/nodeshift/nodeshift/issues/599)) ([82cd6b1](https://www.github.com/nodeshift/nodeshift/commit/82cd6b11f3d163b13e423a31beab530828f313f9))
+* upgrade eslint from 7.16.0 to 7.32.0 ([#596](https://www.github.com/nodeshift/nodeshift/issues/596)) ([649d391](https://www.github.com/nodeshift/nodeshift/commit/649d391bdee6a4c7867d6705f031354f5607b6bb))
+* upgrade eslint-plugin-import from 2.23.4 to 2.24.0 ([#590](https://www.github.com/nodeshift/nodeshift/issues/590)) ([63ce7fd](https://www.github.com/nodeshift/nodeshift/commit/63ce7fd33828fc001c4527805938204404404d0a))
+* upgrade eslint-plugin-import from 2.24.0 to 2.24.1 ([#593](https://www.github.com/nodeshift/nodeshift/issues/593)) ([fe8d7c4](https://www.github.com/nodeshift/nodeshift/commit/fe8d7c45ae261c1b8e562417dd21fa1c1d8cb11e))
+* upgrade eslint-plugin-import from 2.24.1 to 2.24.2 ([#598](https://www.github.com/nodeshift/nodeshift/issues/598)) ([0adf9cf](https://www.github.com/nodeshift/nodeshift/commit/0adf9cf968d9332ec5ddbbbc07aa6806d93047a2))
+* upgrade tape from 5.2.2 to 5.3.1 ([#589](https://www.github.com/nodeshift/nodeshift/issues/589)) ([89533a8](https://www.github.com/nodeshift/nodeshift/commit/89533a852d4da80883dfe87c7543913e063ab9df))
+* upgrade tar from 6.1.4 to 6.1.6 ([#587](https://www.github.com/nodeshift/nodeshift/issues/587)) ([f99fa8c](https://www.github.com/nodeshift/nodeshift/commit/f99fa8c9b9ef87415847af2654511c5cef152b32))
+* upgrade tar from 6.1.9 to 6.1.11 ([#597](https://www.github.com/nodeshift/nodeshift/issues/597)) ([84ae60a](https://www.github.com/nodeshift/nodeshift/commit/84ae60aef0ee7afb91056a18ef2adedb15092741))
+* upgrade typescript from 4.3.5 to 4.4.2 ([#595](https://www.github.com/nodeshift/nodeshift/issues/595)) ([aa81f2b](https://www.github.com/nodeshift/nodeshift/commit/aa81f2b0ceaee6e35f151d19e265968510d7a98c))
+* upgrade typescript from 4.4.2 to 4.4.3 ([#600](https://www.github.com/nodeshift/nodeshift/issues/600)) ([3997b53](https://www.github.com/nodeshift/nodeshift/commit/3997b532998c065b9034c7dc4b12914cbcbdfb77))
+
 ## [8.5.0](https://www.github.com/nodeshift/nodeshift/compare/v8.4.0...v8.5.0) (2021-08-23)
 
 
