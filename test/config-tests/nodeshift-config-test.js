@@ -831,7 +831,60 @@ test('nodeshift-config basic setup kube option', (t) => {
   });
 
   const options = {
-    kube: true
+    kube: 'minikube'
+  };
+
+  const p = nodeshiftConfig(options).then((config) => {
+    t.equal(config.namespace.name, 'default', 'Kube flag uses default by default');
+    t.end();
+  }).catch(t.fail);
+
+  t.equal(p instanceof Promise, true, 'should return a Promise');
+});
+
+test('nodeshift-config docker-desktop kube option', (t) => {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
+    './kubernetes-config': () => {
+      t.fail();
+    },
+    './docker-config': () => {
+      t.pass();
+      return Promise.resolve();
+    },
+    './login-config': {
+      doNodeshiftLogin: () => {
+        t.fail('This should not be called');
+      },
+      doNodeshiftLogout: () => {
+        t.fail('This should not be called');
+        return Promise.resolve();
+      },
+      checkForNodeshiftLogin: () => {
+        t.pass();
+        return Promise.resolve();
+      }
+    },
+    'openshift-rest-client': {
+      OpenshiftClient: () => {
+        return Promise.resolve({
+          kubeconfig: {
+            getCurrentContext: () => {
+              return 'nodey/ip/other';
+            },
+            getCurrentCluster: () => {
+              return { server: 'http://mock-cluster' };
+            },
+            getContexts: () => {
+              return [{ name: 'nodey/ip/other' }];
+            }
+          }
+        });
+      }
+    }
+  });
+
+  const options = {
+    kube: 'docker-desktop'
   };
 
   const p = nodeshiftConfig(options).then((config) => {

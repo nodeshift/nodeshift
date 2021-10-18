@@ -45,8 +45,7 @@ yargs
     type: 'string'
   })
   .option('kube', {
-    describe: 'Flag to deploy an application to a vanilla kubernetes cluster.  At the moment only Minikube is supported.',
-    type: 'boolean'
+    describe: 'Flag to deploy an application to a vanilla kubernetes cluster.  At the moment only Minikube is supported.'
   })
   .option('configLocation', {
     describe: 'change the default location of the config',
@@ -255,6 +254,12 @@ function createOptions (argv) {
   options.knative = argv.knative === true || argv.knative === 'true';
 
   options.kube = argv.kube === true || argv.kube === 'true';
+
+  if (argv.kube === 'docker-desktop') {
+    options.kube = argv.kube;
+  } else if (argv.kube === 'minikube' || options.kube) {
+    options.kube = 'minikube';
+  }
 
   options.projectLocation = argv.projectLocation;
   options.dockerImage = argv.dockerImage;

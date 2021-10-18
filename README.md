@@ -199,13 +199,20 @@ _please note: Currently, once a route, service, deployment config, build config,
 
 #### Using with Kubernetes
 
-Nodeshift can deploy Node.js applications to a Kubernetes Cluster using the `--kube` flag.  At the moment, there is only support for [minikube](https://minikube.sigs.k8s.io/docs/start/).
+Nodeshift can deploy Node.js applications to a Kubernetes Cluster using the `--kube` flag.
 
-Nodeshift expects that your code has a Dockerfile in its root directory.  Then deploying to Minikube is as easy as running:
+There are 2 options that can be passed.  `minikube` or `docker-desktop` . Passing just the `--kube` flag will default to minikube
 
-`npx nodeshift --kube`
+Nodeshift expects that your code has a Dockerfile in its root directory.  Then deploying to kubernetes is as easy as running:
 
-This connect to Minikubes docker server, create a new container and then deploy and expose that container with a `Deployment` and `Service`
+`npx nodeshift --kube=minikube`
+
+Note on Minikube: This connects to Minikubes docker server, create a new container and then deploy and expose that container with a `Deployment` and `Service`
+
+To learn more about [minikube](https://minikube.sigs.k8s.io/docs/start/).
+
+To learn more about [docker-desktop](https://docs.docker.com/desktop/kubernetes/).
+
 
 #### Openshift Rest Client Configuration
 
