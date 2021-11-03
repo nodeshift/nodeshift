@@ -23,8 +23,8 @@ test('test ingress, already created', (t) => {
     projectVersion: '1.0.0',
     openshiftRestClient: {
       apis: {
-        extensions: {
-          v1beta1: {
+        'networking.k8s.io': {
+          v1: {
             ns: (namespace) => {
               return {
                 ingresses: (ingressName) => {
@@ -56,7 +56,7 @@ test('test ingress, already created', (t) => {
 test('test ingress, not created', (t) => {
   const ingress = require('../lib/ingress');
   const resource = {
-    apiVersion: 'extensions/v1beta1',
+    apiVersion: 'networking.k8s.io/v1',
     kind: 'Ingress',
     metadata: {
       name: 'nodejs-istio-circuit-breaker-gateway'
@@ -73,8 +73,8 @@ test('test ingress, not created', (t) => {
     projectVersion: '1.0.0',
     openshiftRestClient: {
       apis: {
-        extensions: {
-          v1beta1: {
+        'networking.k8s.io': {
+          v1: {
             ns: (namespace) => {
               if (call === 0) {
                 call++;
