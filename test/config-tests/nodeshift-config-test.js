@@ -280,6 +280,51 @@ test('nodeshift-config no project Version', (t) => {
   });
 });
 
+test('nodeshift-config no project name', (t) => {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
+    './login-config': {
+      doNodeshiftLogin: () => {
+        t.fail('This should not be called');
+      },
+      doNodeshiftLogout: () => {
+        t.fail('This should not be called');
+        return Promise.resolve();
+      },
+      checkForNodeshiftLogin: () => {
+        t.pass();
+        return Promise.resolve();
+      }
+    },
+    'openshift-rest-client': {
+      OpenshiftClient: () => {
+        return Promise.resolve({
+          kubeconfig: {
+            getCurrentContext: () => {
+              return 'nodey/ip/other';
+            },
+            getCurrentCluster: () => {
+              return { server: 'http://mock-cluster' };
+            },
+            getContexts: () => {
+              return [{ name: 'nodey/ip/other', namespace: 'test-namespace' }];
+            }
+          }
+        });
+      }
+    }
+  });
+
+  const options = {
+    projectLocation: './examples/sample-project-no-name'
+  };
+
+  nodeshiftConfig(options).catch((error) => {
+    console.log(error);
+    t.equal(error.message.includes('could not find required field "name" in package.json'), true);
+    t.end();
+  });
+});
+
 test('nodeshift-config no package.json', (t) => {
   const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
     './login-config': {
