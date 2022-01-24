@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.6.1](https://www.github.com/nodeshift/nodeshift/compare/v8.6.0...v8.6.1) (2022-01-24)
+
+
+### Bug Fixes
+
+* nodeshift should check that there is a name field in the package.json ([2003a7c](https://www.github.com/nodeshift/nodeshift/commit/2003a7c57a4274059439a8336dff9c7332d9dcca))
+* upgrade eslint-plugin-import from 2.24.2 to 2.25.2 ([#603](https://www.github.com/nodeshift/nodeshift/issues/603)) ([d4e0c36](https://www.github.com/nodeshift/nodeshift/commit/d4e0c360833b9aee14aa1aa72c23f117fc76f5a7))
+* upgrade eslint-plugin-import from 2.25.2 to 2.25.3 ([#607](https://www.github.com/nodeshift/nodeshift/issues/607)) ([ba304f3](https://www.github.com/nodeshift/nodeshift/commit/ba304f365bd06e3ca844e99792b3653d94b7bf3b))
+* upgrade tape from 5.3.1 to 5.3.2 ([#608](https://www.github.com/nodeshift/nodeshift/issues/608)) ([965e8f9](https://www.github.com/nodeshift/nodeshift/commit/965e8f965df536321d7a7a81d8513169d2dbf00e))
+* upgrade typescript from 4.4.3 to 4.4.4 ([#604](https://www.github.com/nodeshift/nodeshift/issues/604)) ([38be080](https://www.github.com/nodeshift/nodeshift/commit/38be0805d55576ac88fa7c1b49192e26cc53162d))
+* upgrade typescript from 4.4.4 to 4.5.2 ([#609](https://www.github.com/nodeshift/nodeshift/issues/609)) ([caa4da6](https://www.github.com/nodeshift/nodeshift/commit/caa4da6f39641cb6d594399fdcb8f41b490667f6))
+
 ## [8.6.0](https://www.github.com/nodeshift/nodeshift/compare/v8.5.0...v8.6.0) (2021-10-18)
 
 
