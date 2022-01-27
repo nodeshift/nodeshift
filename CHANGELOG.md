@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.6.2](https://www.github.com/nodeshift/nodeshift/compare/v8.6.1...v8.6.2) (2022-01-27)
+
+
+### Bug Fixes
+
+* upgrade eslint-plugin-import from 2.25.3 to 2.25.4 ([#612](https://www.github.com/nodeshift/nodeshift/issues/612)) ([524a3a2](https://www.github.com/nodeshift/nodeshift/commit/524a3a276cdc8a426a492a69e8b6408bddd18cea))
+* upgrade tape from 5.3.2 to 5.4.0 ([#613](https://www.github.com/nodeshift/nodeshift/issues/613)) ([a5ac507](https://www.github.com/nodeshift/nodeshift/commit/a5ac5077bd631bd5921a15b632e53cfec358f0b4))
+* upgrade typescript from 4.5.2 to 4.5.4 ([#611](https://www.github.com/nodeshift/nodeshift/issues/611)) ([e2a956d](https://www.github.com/nodeshift/nodeshift/commit/e2a956d8d028477e8bfe0ac06b7876d6c3fd7d65))
+
 ### [8.6.1](https://www.github.com/nodeshift/nodeshift/compare/v8.6.0...v8.6.1) (2022-01-24)
 
 
