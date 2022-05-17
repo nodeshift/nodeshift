@@ -265,11 +265,15 @@ flag to pass into the openshift rest client for logging in with a self signed ce
 Force a login when using the apiServer login.  Only used with apiServer login.  default to false
 
 #### imageTag
-Specify the tag of the docker image to use for the deployed application. defaults to latest.
-These version tags correspond to the RHSCL tags of the [ubi8/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/nodejs-14)
+Specify the tag of the docker image or image stream to use for the deployed application. defaults to latest.
+For docker images these version tags correspond to the RHSCL tags of the [ubi8/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/nodejs-14)
 
 #### dockerImage
 Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to [ubi8/nodejs s2i images](https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/nodejs-14)
+
+#### imageStream
+Specify the image stream from which to get the s2i image of Node.js to use for the deployed application. If not specified defaults to
+using a docker image instead.
 
 #### web-app
 Flag to automatically set the appropriate docker image for web app deployment. Defaults to false

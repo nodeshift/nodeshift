@@ -20,6 +20,12 @@ test('strategy with changed dockerTag', (t) => {
   t.end();
 });
 
+test('strategy with imageStream specified and updated tag', (t) => {
+  const result = buildStrategy({ imageTag: '1-20', buildStrategy: 'Source', imageStream: 'odbc-base' });
+  t.equal(result.sourceStrategy.from.name, 'odbc-base:1-20', 'image stream should be odbc-base:1-20');
+  t.end();
+});
+
 test('strategy with changed forcePull', (t) => {
   const result = buildStrategy({ forcePull: true, buildStrategy: 'Source' });
   t.equal(result.sourceStrategy.forcePull, true, 'forcePull on');
@@ -48,6 +54,15 @@ test('strategy with change dockerImage', (t) => {
   const result = buildStrategy({ dockerImage: 'lholmquist/centos7-s2i-nodejs', buildStrategy: 'Source', imageTag: 'latest' });
 
   t.equal(result.sourceStrategy.from.name, 'lholmquist/centos7-s2i-nodejs:latest', 'docker image should be latest lholmquist image');
+  t.equal(result.sourceStrategy.from.kind, 'DockerImage', 'kind should be DockerImage');
+  t.end();
+});
+
+test('strategy with imageStream specified', (t) => {
+  const result = buildStrategy({ imageStream: 'odbc-base', buildStrategy: 'Source', imageTag: 'latest' });
+
+  t.equal(result.sourceStrategy.from.name, 'odbc-base:latest', 'image name should be odbc-base:latest');
+  t.equal(result.sourceStrategy.from.kind, 'ImageStreamTag', 'kind should be ImageStreamTag');
   t.end();
 });
 
