@@ -86,7 +86,7 @@ export function deploy(options?: {
     };
     resourceProfile?: string;
     imageTag?: string;
-    ImageStram?: string;
+    ImageStream?: string;
     outputImageStream?: string;
     outputImageTag?: string;
     quiet?: boolean;
