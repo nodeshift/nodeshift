@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.7.0](https://www.github.com/nodeshift/nodeshift/compare/v8.6.1...v8.7.0) (2022-05-23)
+
+
+### Features
+
+* allow pulling s2i image from image stream ([#639](https://www.github.com/nodeshift/nodeshift/issues/639)) ([6c4c2a9](https://www.github.com/nodeshift/nodeshift/commit/6c4c2a988a76435e7d3cf26e4853a7b987538441))
+* upgrade eslint-config-semistandard from 15.0.1 to 16.0.0 ([#624](https://www.github.com/nodeshift/nodeshift/issues/624)) ([313434f](https://www.github.com/nodeshift/nodeshift/commit/313434f0e9cd9e40f4c8edc82bf6e703571ebd86))
+* upgrade eslint-plugin-promise from 4.3.1 to 6.0.0 ([#620](https://www.github.com/nodeshift/nodeshift/issues/620)) ([b993b3a](https://www.github.com/nodeshift/nodeshift/commit/b993b3a9b7eff0769ad8ea6f91b425562e53c968))
+* upgrade husky from 6.0.0 to 7.0.4 ([#621](https://www.github.com/nodeshift/nodeshift/issues/621)) ([fc6bd33](https://www.github.com/nodeshift/nodeshift/commit/fc6bd33fce69f58c2b74f417cfb9321dd24d1fe9))
+* upgrade minimatch from 3.1.2 to 5.0.1 ([#634](https://www.github.com/nodeshift/nodeshift/issues/634)) ([e00bda9](https://www.github.com/nodeshift/nodeshift/commit/e00bda9922a559f32c9b1292dfdd22fd0874b661))
+* upgrade openshift-rest-client from 5.1.0 to 7.0.0 ([#622](https://www.github.com/nodeshift/nodeshift/issues/622)) ([5f3bb1e](https://www.github.com/nodeshift/nodeshift/commit/5f3bb1e9d9bc97b9aeb2d78e52d2e44dc1bf392e))
+* upgrade sinon from 12.0.1 to 13.0.0 ([#627](https://www.github.com/nodeshift/nodeshift/issues/627)) ([4acc346](https://www.github.com/nodeshift/nodeshift/commit/4acc3462356754d1e7baf2b5c26a3ab7a57e2432))
+* upgrade sinon from 9.2.4 to 12.0.1 ([#617](https://www.github.com/nodeshift/nodeshift/issues/617)) ([0150b11](https://www.github.com/nodeshift/nodeshift/commit/0150b111771055371a8053814297a28fde95460d))
+* upgrade yargs from 16.2.0 to 17.3.1 ([#615](https://www.github.com/nodeshift/nodeshift/issues/615)) ([5a7d656](https://www.github.com/nodeshift/nodeshift/commit/5a7d656ce05a4454ff5f633b595f594dea0cecca))
+
+
+### Bug Fixes
+
+* upgrade eslint-plugin-import from 2.25.3 to 2.25.4 ([#612](https://www.github.com/nodeshift/nodeshift/issues/612)) ([524a3a2](https://www.github.com/nodeshift/nodeshift/commit/524a3a276cdc8a426a492a69e8b6408bddd18cea))
+* upgrade eslint-plugin-import from 2.25.4 to 2.26.0 ([#632](https://www.github.com/nodeshift/nodeshift/issues/632)) ([e1b1288](https://www.github.com/nodeshift/nodeshift/commit/e1b1288bffad7e24a557b1a529cfbb64f7711897))
+* upgrade sinon from 13.0.0 to 13.0.2 ([#635](https://www.github.com/nodeshift/nodeshift/issues/635)) ([f8c1156](https://www.github.com/nodeshift/nodeshift/commit/f8c115630daca324d34e56151f3b3befebad0e9d))
+* upgrade tape from 5.3.2 to 5.4.0 ([#613](https://www.github.com/nodeshift/nodeshift/issues/613)) ([a5ac507](https://www.github.com/nodeshift/nodeshift/commit/a5ac5077bd631bd5921a15b632e53cfec358f0b4))
+* upgrade typescript from 4.5.2 to 4.5.4 ([#611](https://www.github.com/nodeshift/nodeshift/issues/611)) ([e2a956d](https://www.github.com/nodeshift/nodeshift/commit/e2a956d8d028477e8bfe0ac06b7876d6c3fd7d65))
+* upgrade typescript from 4.5.4 to 4.5.5 ([#628](https://www.github.com/nodeshift/nodeshift/issues/628)) ([2cce6d2](https://www.github.com/nodeshift/nodeshift/commit/2cce6d2b5d95ed2253fb1d234cb9822c3887172b))
+* upgrade typescript from 4.5.5 to 4.6.3 ([#633](https://www.github.com/nodeshift/nodeshift/issues/633)) ([cce656d](https://www.github.com/nodeshift/nodeshift/commit/cce656de331f58d698cb8e9aecfd1705ebde452b))
+* upgrade yargs from 17.3.1 to 17.4.0 ([#631](https://www.github.com/nodeshift/nodeshift/issues/631)) ([685a683](https://www.github.com/nodeshift/nodeshift/commit/685a68357a8ffbbde34a582e816ce37d38bbfd3b))
+* upgrade yargs from 17.4.0 to 17.4.1 ([#636](https://www.github.com/nodeshift/nodeshift/issues/636)) ([95e12fb](https://www.github.com/nodeshift/nodeshift/commit/95e12fb390a77fd8ccef43c8c5373bc833d0263c))
+
 ### [8.6.1](https://www.github.com/nodeshift/nodeshift/compare/v8.6.0...v8.6.1) (2022-01-24)
 
 
