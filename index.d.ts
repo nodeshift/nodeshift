@@ -86,6 +86,7 @@ export function deploy(options?: {
     };
     resourceProfile?: string;
     imageTag?: string;
+    ImageStream?: string;
     outputImageStream?: string;
     outputImageTag?: string;
     quiet?: boolean;
@@ -117,6 +118,8 @@ export function deploy(options?: {
   @param {string} [options.namespace.name] - flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
   @param {string} [options.resourceProfile] - Define a subdirectory below .nodeshift/ that indicates where Openshift resources are stored
   @param {string} [options.imageTag] - set the version to use for the ubi8/nodejs-14.  Versions are ubi8/nodejs-14 tags: https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8/nodejs-14
+  @param {string} [options.dockerImage] - set the s2i Node.js docker image to use. The current default is ubi8/nodejs-14.
+  @param {string} [options.imageStream] - the image stream from which to get the Node.js s2i image to use. If not specified defaults to useing a Node.js docker image instead.
   @param {string} [options.outputImageStream] - the name of the ImageStream to output to.  Defaults to project name from package.json
   @param {string} [options.outputImageTag] - The tag of the ImageStream to output to. Defaults to latest
   @param {boolean} [options.quiet] - suppress INFO and TRACE lines from output logs

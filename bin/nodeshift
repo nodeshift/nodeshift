@@ -83,8 +83,12 @@ yargs
     describe: 'the s2i image to use, defaults to registry.access.redhat.com/ubi8/nodejs-14',
     type: 'string'
   })
+  .options('imageStream', {
+    describe: 'the imageStream fromw which to pull the s2i image to use, if not specified defaults to using a docker image instead.',
+    type: 'string'
+  })
   .options('imageTag', {
-    describe: 'The tag of the docker image to use for the deployed application.',
+    describe: 'The tag of the docker image or image stream to use for the deployed application.',
     type: 'string',
     default: 'latest'
   })
@@ -263,6 +267,7 @@ function createOptions (argv) {
 
   options.projectLocation = argv.projectLocation;
   options.dockerImage = argv.dockerImage;
+  options.imageStream = argv.imageStream;
   options.imageTag = argv.imageTag;
   options.webApp = argv.webApp;
   options.resourceProfile = argv.resourceProfile;
