@@ -45,7 +45,7 @@
     "minimatch": "^5.0.1",
     "mkdirp": "^1.0.3",
     "openshift-rest-client": "~7.0.0",
-    "parse-gitignore": "^1.0.1",
+    "parse-gitignore": "^2.0.0",
     "tar": "~6.1.11",
     "yargs": "^17.4.1"
   },
