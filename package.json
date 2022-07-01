@@ -23,7 +23,7 @@
     "package-support.json"
   ],
   "engines": {
-    "node": "^16 || ^14 || ^12"
+    "node": "^16 || ^14"
   },
   "repository": {
     "type": "git",
