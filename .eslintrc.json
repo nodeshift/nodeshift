@@ -2,6 +2,8 @@
   "extends": "semistandard",
   "ignorePatterns": ["docs/**/*.js"],
   "rules": {
+    "no-unreachable-loop": "off",
+    "array-callback-return": "off",
     "prefer-const": "error",
     "block-scoped-var": "error",
     "prefer-template": "warn",
