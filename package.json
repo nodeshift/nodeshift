@@ -5,6 +5,7 @@
   "bin": {
     "nodeshift": "./bin/nodeshift"
   },
+  "type": "commonjs",
   "scripts": {
     "types": "tsc",
     "prepare": "husky install",
