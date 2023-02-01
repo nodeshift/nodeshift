@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.7.1](https://www.github.com/nodeshift/nodeshift/compare/v8.7.0...v8.7.1) (2023-02-01)
+
+
+### Bug Fixes
+
+* upgrade eslint from 8.14.0 to 8.15.0 ([#642](https://www.github.com/nodeshift/nodeshift/issues/642)) ([4ef3067](https://www.github.com/nodeshift/nodeshift/commit/4ef3067cf9d583fc2a69c24e64551cc77b052177))
+* upgrade minimatch from 5.0.1 to 5.1.0 ([#649](https://www.github.com/nodeshift/nodeshift/issues/649)) ([b25fad5](https://www.github.com/nodeshift/nodeshift/commit/b25fad52e9287e36fea71e1b950e8bd43593d5f4))
+* upgrade yargs from 17.4.1 to 17.5.0 ([#647](https://www.github.com/nodeshift/nodeshift/issues/647)) ([79dc8f5](https://www.github.com/nodeshift/nodeshift/commit/79dc8f526b9e2dad494d4f9cd5da6355861d02ad))
+
 ## [8.7.0](https://www.github.com/nodeshift/nodeshift/compare/v8.6.1...v8.7.0) (2022-05-23)
 
 
