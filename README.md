@@ -9,7 +9,7 @@ Nodeshift is an opinionated command line application and programmable API that y
 
 ## Prerequisites
 
-* Node.js - version 12.x or greater
+* Node.js - version 14.x or greater
 
 ## Install
 
