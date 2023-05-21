@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.0.0](https://github.com/nodeshift/nodeshift/compare/v8.7.0...v9.0.0) (2023-05-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop Node.js 12 ([#652](https://github.com/nodeshift/nodeshift/issues/652))
+
+### Features
+
+* upgrade husky from 7.0.4 to 8.0.1 ([#644](https://github.com/nodeshift/nodeshift/issues/644)) ([c7b01eb](https://github.com/nodeshift/nodeshift/commit/c7b01eb7e3017d98a4be7f8cadc07bbd765a6f1b))
+* upgrade nock from 12.0.3 to 13.3.0 ([#663](https://github.com/nodeshift/nodeshift/issues/663)) ([866a52a](https://github.com/nodeshift/nodeshift/commit/866a52a06e7c286395fc64e42214b9c0f96c3df1))
+* upgrade sinon from 13.0.2 to 15.0.1 ([#665](https://github.com/nodeshift/nodeshift/issues/665)) ([80186ac](https://github.com/nodeshift/nodeshift/commit/80186ac011a8a5881094ebc2e792f909c9f68e44))
+
+
+### Bug Fixes
+
+* upgrade dockerode from 3.3.1 to 3.3.4 ([#667](https://github.com/nodeshift/nodeshift/issues/667)) ([c385281](https://github.com/nodeshift/nodeshift/commit/c385281f6ef87f0dc8038219b7dfb312451ef0ad))
+* upgrade eslint from 8.14.0 to 8.15.0 ([#642](https://github.com/nodeshift/nodeshift/issues/642)) ([4ef3067](https://github.com/nodeshift/nodeshift/commit/4ef3067cf9d583fc2a69c24e64551cc77b052177))
+* upgrade husky from 8.0.1 to 8.0.3 ([#668](https://github.com/nodeshift/nodeshift/issues/668)) ([2bf0de8](https://github.com/nodeshift/nodeshift/commit/2bf0de8a588d16016f4e024d186588bd7a9d9704))
+* upgrade minimatch from 5.0.1 to 5.1.0 ([#649](https://github.com/nodeshift/nodeshift/issues/649)) ([b25fad5](https://github.com/nodeshift/nodeshift/commit/b25fad52e9287e36fea71e1b950e8bd43593d5f4))
+* upgrade minimatch from 5.1.0 to 5.1.2 ([#669](https://github.com/nodeshift/nodeshift/issues/669)) ([e57e227](https://github.com/nodeshift/nodeshift/commit/e57e227e145dd4ed000aef27a666375ed1d13f9c))
+* upgrade typescript from 4.6.3 to 4.9.4 ([#662](https://github.com/nodeshift/nodeshift/issues/662)) ([9871e32](https://github.com/nodeshift/nodeshift/commit/9871e3255dc4103f590b3abb3075237a6859754a))
+* upgrade yargs from 17.4.1 to 17.5.0 ([#647](https://github.com/nodeshift/nodeshift/issues/647)) ([79dc8f5](https://github.com/nodeshift/nodeshift/commit/79dc8f526b9e2dad494d4f9cd5da6355861d02ad))
+* upgrade yargs from 17.5.0 to 17.6.2 ([#666](https://github.com/nodeshift/nodeshift/issues/666)) ([c197d2e](https://github.com/nodeshift/nodeshift/commit/c197d2eda207c3ee81a10b3db1b591643c06e9c0))
+
+
+### Miscellaneous Chores
+
+* drop Node.js 12 ([#652](https://github.com/nodeshift/nodeshift/issues/652)) ([49cf11f](https://github.com/nodeshift/nodeshift/commit/49cf11fb30d77d3b6b55e7a86d9e429b21830140))
+
 ## [8.7.0](https://www.github.com/nodeshift/nodeshift/compare/v8.6.1...v8.7.0) (2022-05-23)
 
 
