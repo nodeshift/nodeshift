@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.0.0](https://github.com/nodeshift/nodeshift/compare/v9.0.0...v10.0.0) (2023-05-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove Node 14 ([#675](https://github.com/nodeshift/nodeshift/issues/675))
+
+### Features
+
+* remove Node 14 ([#675](https://github.com/nodeshift/nodeshift/issues/675)) ([8ccc1fa](https://github.com/nodeshift/nodeshift/commit/8ccc1fab5127cc6ecaee7199cf35d2cf0d3e9f02))
+
 ## [9.0.0](https://github.com/nodeshift/nodeshift/compare/v8.7.0...v9.0.0) (2023-05-21)
 
 
