@@ -43,7 +43,7 @@
     "git-repo-info": "^2.0.0",
     "js-yaml": "~3.14.1",
     "lodash": "^4.17.21",
-    "minimatch": "^5.1.2",
+    "minimatch": "^9.0.0",
     "mkdirp": "^1.0.3",
     "openshift-rest-client": "~7.0.0",
     "parse-gitignore": "^1.0.1",
