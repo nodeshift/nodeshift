@@ -45,7 +45,7 @@
     "lodash": "^4.17.21",
     "minimatch": "^5.1.2",
     "mkdirp": "^1.0.3",
-    "openshift-rest-client": "~7.0.0",
+    "openshift-rest-client": "~8.0.1",
     "parse-gitignore": "^1.0.1",
     "tar": "~6.1.15",
     "yargs": "^17.6.2"
