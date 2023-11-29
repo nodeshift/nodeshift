@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.0.0](https://github.com/nodeshift/nodeshift/compare/v10.0.0...v11.0.0) (2023-11-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove node 16 ([#722](https://github.com/nodeshift/nodeshift/issues/722))
+
+### Features
+
+* remove node 16 ([#722](https://github.com/nodeshift/nodeshift/issues/722)) ([197a372](https://github.com/nodeshift/nodeshift/commit/197a372e5ba743d2a376943825a0f1842b69f98a))
+* upgrade openshift-rest-client from 7.0.0 to 8.0.1 ([#708](https://github.com/nodeshift/nodeshift/issues/708)) ([fd31db0](https://github.com/nodeshift/nodeshift/commit/fd31db0116c0c09152f430b8c4a069f977199c79))
+* upgrade typescript from 4.9.4 to 5.1.3 ([#690](https://github.com/nodeshift/nodeshift/issues/690)) ([0f25b5a](https://github.com/nodeshift/nodeshift/commit/0f25b5a83968f3ff34afef04aa0ebfdba9834aad))
+
+
+### Bug Fixes
+
+* package.json & package-lock.json to reduce vulnerabilities ([#688](https://github.com/nodeshift/nodeshift/issues/688)) ([258e31c](https://github.com/nodeshift/nodeshift/commit/258e31ca71296b4d98c518768ef18743da650a23))
+* update minimatch to the latest. ([#713](https://github.com/nodeshift/nodeshift/issues/713)) ([7640be8](https://github.com/nodeshift/nodeshift/commit/7640be864c24a776866bd18a7dc185e78db5b709))
+* upgrade eslint from 8.33.0 to 8.43.0 ([#701](https://github.com/nodeshift/nodeshift/issues/701)) ([1e1a8ed](https://github.com/nodeshift/nodeshift/commit/1e1a8ed34585b7e766590aba52793c57c064635b))
+* upgrade eslint from 8.43.0 to 8.44.0 ([#710](https://github.com/nodeshift/nodeshift/issues/710)) ([b5861ee](https://github.com/nodeshift/nodeshift/commit/b5861ee21973057eaa2ab2f8c4b691caf94e7d07))
+* upgrade eslint from 8.47.0 to 8.48.0 ([#717](https://github.com/nodeshift/nodeshift/issues/717)) ([4ed51b7](https://github.com/nodeshift/nodeshift/commit/4ed51b794c518f0beb421187a29ac6782e640be8))
+* upgrade eslint-config-standard from 17.0.0 to 17.1.0 ([#698](https://github.com/nodeshift/nodeshift/issues/698)) ([96abce7](https://github.com/nodeshift/nodeshift/commit/96abce7fb744cfee33f4037c0277905951081617))
+* upgrade nock from 13.3.0 to 13.3.1 ([#699](https://github.com/nodeshift/nodeshift/issues/699)) ([6e84cd5](https://github.com/nodeshift/nodeshift/commit/6e84cd5763bb259ffd0ddfc3ce77f7afaa96211a))
+* upgrade nock from 13.3.1 to 13.3.2 ([#711](https://github.com/nodeshift/nodeshift/issues/711)) ([994123f](https://github.com/nodeshift/nodeshift/commit/994123f687164d9aeb524df1c06140009225faf5))
+* upgrade nock from 13.3.2 to 13.3.3 ([#714](https://github.com/nodeshift/nodeshift/issues/714)) ([4faebe8](https://github.com/nodeshift/nodeshift/commit/4faebe829fbb2af433a79fbdb2baede92a6f5c6c))
+* upgrade sinon from 15.0.1 to 15.1.0 ([#695](https://github.com/nodeshift/nodeshift/issues/695)) ([229e381](https://github.com/nodeshift/nodeshift/commit/229e38153ae49d2416cb0585c5087bbac1a2367a))
+* upgrade sinon from 15.1.0 to 15.1.2 ([#700](https://github.com/nodeshift/nodeshift/issues/700)) ([307a196](https://github.com/nodeshift/nodeshift/commit/307a196d6e2feacd264bc8a077c1aa662c8ecc97))
+* upgrade tape from 5.5.3 to 5.6.5 ([#709](https://github.com/nodeshift/nodeshift/issues/709)) ([77770d9](https://github.com/nodeshift/nodeshift/commit/77770d919d39075981974120b9325c21a036f3a8))
+* upgrade tape from 5.6.6 to 5.7.0 ([#720](https://github.com/nodeshift/nodeshift/issues/720)) ([7049c03](https://github.com/nodeshift/nodeshift/commit/7049c03cb5e34b6b85a9c262ef4ecf58e81f89f0))
+* upgrade tar from 6.1.11 to 6.1.15 ([#694](https://github.com/nodeshift/nodeshift/issues/694)) ([889692f](https://github.com/nodeshift/nodeshift/commit/889692f353a61889e178db2d5202026991261eb8))
+* upgrade tar from 6.1.15 to 6.2.0 ([#718](https://github.com/nodeshift/nodeshift/issues/718)) ([b294446](https://github.com/nodeshift/nodeshift/commit/b2944465d71623fc42513eac5befe4cacf95f33d))
+
 ## [10.0.0](https://github.com/nodeshift/nodeshift/compare/v9.0.0...v10.0.0) (2023-05-23)
 
 
