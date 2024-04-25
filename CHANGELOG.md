@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.1.0](https://github.com/nodeshift/nodeshift/compare/v11.0.0...v11.1.0) (2024-04-25)
+
+
+### Features
+
+* upgrade dockerode from 3.3.5 to 4.0.0 ([#721](https://github.com/nodeshift/nodeshift/issues/721)) ([b178926](https://github.com/nodeshift/nodeshift/commit/b178926d0172ae699335892bd6d6596748e95046))
+
+
+### Bug Fixes
+
+* package.json & package-lock.json to reduce vulnerabilities ([#729](https://github.com/nodeshift/nodeshift/issues/729)) ([e46b535](https://github.com/nodeshift/nodeshift/commit/e46b53551787405d9aa45f413eb9580a4eea2804))
+
 ## [11.0.0](https://github.com/nodeshift/nodeshift/compare/v10.0.0...v11.0.0) (2023-11-29)
 
 
