@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.2.0](https://github.com/nodeshift/nodeshift/compare/v11.1.0...v11.2.0) (2024-04-26)
+
+
+### Features
+
+* add flag to change the name. ([#742](https://github.com/nodeshift/nodeshift/issues/742)) ([2e8385f](https://github.com/nodeshift/nodeshift/commit/2e8385f83ae50b40b763fce5d189d8b9c73a70c7))
+
+
+### Bug Fixes
+
+* upgrade minimatch from 9.0.3 to 9.0.4 ([#741](https://github.com/nodeshift/nodeshift/issues/741)) ([f09652e](https://github.com/nodeshift/nodeshift/commit/f09652e1db2e12174dad38c15788e2ab64601a59))
+
 ## [11.1.0](https://github.com/nodeshift/nodeshift/compare/v11.0.0...v11.1.0) (2024-04-25)
 
 
