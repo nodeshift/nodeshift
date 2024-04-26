@@ -1191,3 +1191,48 @@ test('nodeshift-config options username, pasword, token, apiServer, insecure(fal
     t.end();
   });
 });
+
+test('nodeshift-config options - differernt name than package.json', (t) => {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
+    './login-config': {
+      doNodeshiftLogin: () => {
+        t.fail('This should not be called');
+      },
+      doNodeshiftLogout: () => {
+        t.fail('This should not be called');
+        return Promise.resolve();
+      },
+      checkForNodeshiftLogin: () => {
+        t.pass();
+        return Promise.resolve();
+      }
+    },
+    'openshift-rest-client': {
+      OpenshiftClient: () => {
+        return Promise.resolve({
+          kubeconfig: {
+            getCurrentContext: () => {
+              return 'nodey/ip/other';
+            },
+            getCurrentCluster: () => {
+              return { server: 'http://mock-cluster' };
+            },
+            getContexts: () => {
+              return [{ name: 'nodey/ip/other', namespace: 'test-namespace' }];
+            }
+          }
+        });
+      }
+    }
+  });
+
+  const options = {
+    name: 'funTimes'
+  };
+
+  const { name: currentName } = require('../../package.json');
+  nodeshiftConfig(options).then((config) => {
+    t.notEqual(config.name, currentName, 'should not be the project name');
+    t.end();
+  });
+});
