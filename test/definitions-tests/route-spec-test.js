@@ -20,6 +20,7 @@ test('route spec test', (t) => {
   t.equal(rs.spec.host, 'project.name', 'host should be project.name');
   t.equal(rs.spec.to.kind, 'Service', 'should have a kind of Service');
   t.equal(rs.spec.to.name, config.projectName, `name should be config.name ${config.projectName}`);
+  t.equal(rs.spec.tls.insecureEdgeTerminationPolicy, 'Redirect', 'tls.insecureEdgeTerminationPoliocy shoud be redirect');
   t.end();
 });
 
