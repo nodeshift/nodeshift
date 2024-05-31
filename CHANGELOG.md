@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.3.0](https://github.com/nodeshift/nodeshift/compare/v11.2.0...v11.3.0) (2024-05-31)
+
+
+### Features
+
+* upgrade tar from 6.2.1 to 7.0.0 ([#744](https://github.com/nodeshift/nodeshift/issues/744)) ([7d38c52](https://github.com/nodeshift/nodeshift/commit/7d38c522313f0fab32618ba82067f5b7c5e5f95c))
+
+
+### Bug Fixes
+
+* non-secure routes should redirect to the secure version. ([#745](https://github.com/nodeshift/nodeshift/issues/745)) ([d3222da](https://github.com/nodeshift/nodeshift/commit/d3222da79523a10db43e5ba4291b0f77d72c649b))
+
 ## [11.2.0](https://github.com/nodeshift/nodeshift/compare/v11.1.0...v11.2.0) (2024-04-26)
 
 
