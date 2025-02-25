@@ -8,7 +8,6 @@
   "type": "commonjs",
   "scripts": {
     "types": "tsc",
-    "prepare": "husky install",
     "pretest": "eslint --ignore-path .gitignore .",
     "test": "cross-env NODESHIFT_QUIET=true nyc tape test/*-test.js test/**/*-test.js | tap-spec",
     "coverage": "nyc npm test && nyc report --reporter=html",
@@ -62,7 +61,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-standard": "^5.0.0",
-    "husky": "^8.0.3",
     "ink-docstrap": "^1.3.2",
     "nock": "^13.3.3",
     "nyc": "~15.1.0",
