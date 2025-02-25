@@ -92,7 +92,7 @@ const options = {
 
 ### `.nodeshift` Directory
 
-The `.nodeshift` directory contains your resource fragments.  These are `.yml` files that describe your services, deployments, routes, etc.  By default, nodeshift will create a `Service` and `DeploymentConfig` in memory, if none are provided.  A `Route` resource fragment should be provided or use the `expose` flag if you want to expose your application to the outside world.
+The `.nodeshift` directory contains your resource fragments.  These are `.yml` files that describe your services, deployments, routes, etc.  By default, nodeshift will create a `Service` and `Deployment` in memory, if none are provided.  A `Route` resource fragment should be provided or use the `expose` flag if you want to expose your application to the outside world.
 
 For kubernetes based deployments,  a `Service` and `Deployment` will be created by default, if none are provided.  The `Service` is of a `LoadBalancer` type, so no `Ingress` is needed to expose the application.
 
@@ -108,7 +108,7 @@ The resource object's `Kind`, if not given, will be extracted from the filename.
 
 Enrichers will add things to the resource fragments, like missing metadata and labels.  If your project uses git, then annotations with the git branch and commit hash will be added to the metadata.
 
-Default Enrichers will also create a default Service and DeploymentConfig when none are provided.
+Default Enrichers will also create a default Service and Deployment when none are provided.
 
 The default port value is 8080, but that can be overridden with the `--deploy.port` flag.
 
@@ -195,7 +195,7 @@ nodeshift.deploy().then((response) => {
     console.log(err);
 })
 ````
-_please note: Currently, once a route, service, deployment config, build config, and imagestream config are created, those are re-used. The only thing that changes from deployment to deployment is the source code.  For application resources, you can update them by undeploying and then deploying again.  BuildConfigs and Imagestreams can be re-created using the --build.recreate flag_
+_please note: Currently, once a route, service, deployment, deployment config, build config, and imagestream config are created, those are re-used. The only thing that changes from deployment to deployment is the source code.  For application resources, you can update them by undeploying and then deploying again.  BuildConfigs and Imagestreams can be re-created using the --build.recreate flag_
 
 #### Using with Kubernetes
 
@@ -300,7 +300,7 @@ option to remove builds, buildConfigs and Imagestreams.  Defaults to false - **O
 Flag to update the default ports on the resource files. Defaults to 8080
 
 #### deploy.env
-Flag to pass deployment config environment variables as NAME=Value.  Can be used multiple times.  ex: `nodeshift --deploy.env NODE_ENV=development --deploy.env YARN_ENABLED=true`
+Flag to pass deployment/deploymeny config environment variables as NAME=Value.  Can be used multiple times.  ex: `nodeshift --deploy.env NODE_ENV=development --deploy.env YARN_ENABLED=true`
 
 #### build.recreate
 Flag to recreate a BuildConfig or Imagestream.  Defaults to false. Choices are "buildConfig", "imageStream", false, true.  If true, both are re-created
@@ -317,8 +317,8 @@ Flag to pass build config environment variables as NAME=Value.  Can be used mult
 #### build.strategy
 Flag to change the build strategy used.  Values can be Docker or Source.  Defaults to Source
 
-#### useDeployment
-Flag to deploy the application using a Deployment instead of a DeploymentConfig. Defaults to false
+#### useDeploymentConfig
+Flag to deploy the application using a DeploymentConfig instead of a Deployment. Defaults to false
 
 #### knative
 EXPERIMENTAL. Flag to deploy an application as a Knative Serving Service.  Defaults to false
@@ -408,8 +408,8 @@ Shows the below help
             --metadata.out           determines what should be done with the response
                                     metadata from OpenShift
                     [string] [choices: "stdout", "ignore", "<filename>"] [default: "ignore"]
-            --useDeployment          flag to deploy the application using a Deployment
-                           instead of a DeploymentConfig
+            --useDeploymentConfig          flag to deploy the application using a DeploymentConfig
+                           instead of a Deployment
                                [boolean] [choices: true, false] [default: false]
             --knative                EXPERIMENTAL. flag to deploy an application
                            as a Knative Serving Service

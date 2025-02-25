@@ -181,8 +181,8 @@ yargs
     type: 'string',
     default: 'ignore'
   })
-  .options('useDeployment', {
-    describe: 'flag to deploy the application using a Deployment instead of a DeploymentConfig',
+  .options('useDeploymentConfig', {
+    describe: 'flag to deploy the application using a DeploymentConfig instead of a Deployment',
     choices: [true, false],
     type: 'boolean',
     default: false
@@ -229,7 +229,7 @@ function commandHandler (argv) {
 function createOptions (argv) {
   const options = {};
 
-  options.useDeployment = argv.useDeployment;
+  options.useDeploymentConfig = argv.useDeploymentConfig;
 
   // User wants to add red hat metering
   // This could be just use defaults based on the rh node image
