@@ -92,11 +92,6 @@ yargs
     type: 'string',
     default: 'latest'
   })
-  .option('web-app', {
-    describe: 'flag to automatically set the appropriate docker image for web app deployment',
-    type: 'boolean',
-    default: false
-  })
   .option('resourceProfile', {
     describe: 'Define a subdirectory below .nodeshift/ that indicates where Openshift resources are stored',
     type: 'string'
@@ -271,7 +266,6 @@ function createOptions (argv) {
   options.dockerImage = argv.dockerImage;
   options.imageStream = argv.imageStream;
   options.imageTag = argv.imageTag;
-  options.webApp = argv.webApp;
   options.resourceProfile = argv.resourceProfile;
   options.outputImageStreamName = argv.outputImageStream;
   options.outputImageStreamTag = argv.outputImageStreamTag;
