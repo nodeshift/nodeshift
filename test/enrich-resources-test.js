@@ -27,29 +27,32 @@ test('enrich-resource - enricher is not a function', (t) => {
   const enrichResource = proxyquire('../lib/enrich-resources', {
     './load-enrichers': () => {
       return {
-        'deployment-config': () => {
+        deployment: () => {
           i++;
-          t.pass('should get called');
+          t.pass('deployment should get called by default');
+        },
+        'deployment-config': () => {
+          t.fail('deployment-config should not get called by default');
         },
         route: () => {
           i++;
-          t.pass('should get called');
+          t.pass('route should get called by default');
         },
         service: () => {
           i++;
-          t.pass('should get called');
+          t.pass('service should get called by default');
         },
         labels: () => {
           i++;
-          t.pass('should get called');
+          t.pass('labels should get called by default');
         },
         'git-info': () => {
           i++;
-          t.pass('should get called');
+          t.pass('git-info should get called by default');
         },
         'health-check': () => {
           i++;
-          t.pass('should get called');
+          t.pass('health-check should get called by default');
         }
       };
     }
@@ -113,37 +116,36 @@ test('enrich-resource - deployment enrichers', (t) => {
       return {
         'deployment-config': () => {
           i++;
-          t.fail('should not get called');
+          t.pass('deployment-config should get called');
         },
         deployment: () => {
-          i++;
-          t.pass('should get called');
+          t.fail('deployment should not get called');
         },
         route: () => {
           i++;
-          t.pass('should get called');
+          t.pass('route should get called');
         },
         service: () => {
           i++;
-          t.pass('should get called');
+          t.pass('service should get called');
         },
         labels: () => {
           i++;
-          t.pass('should get called');
+          t.pass('labels should get called');
         },
         'git-info': () => {
           i++;
-          t.pass('should get called');
+          t.pass('git-info should get called');
         },
         'health-check': () => {
           i++;
-          t.pass('should get called');
+          t.pass('health-check should get called');
         }
       };
     }
   });
 
-  const p = enrichResource({ useDeployment: true }, []);
+  const p = enrichResource({ useDeploymentConfig: true }, []);
   t.ok(p instanceof Promise, 'should return a promise');
 
   p.then(() => {
