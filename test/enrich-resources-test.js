@@ -49,10 +49,6 @@ test('enrich-resource - enricher is not a function', (t) => {
         'git-info': () => {
           i++;
           t.pass('git-info should get called by default');
-        },
-        'health-check': () => {
-          i++;
-          t.pass('health-check should get called by default');
         }
       };
     }
@@ -62,7 +58,7 @@ test('enrich-resource - enricher is not a function', (t) => {
   t.ok(p instanceof Promise, 'should return a promise');
 
   p.then(() => {
-    t.equal(i, 6, 'should have 6 default enrichers');
+    t.equal(i, 5, 'should have 5 default enrichers');
     t.pass('success');
     t.end();
   });
@@ -90,9 +86,6 @@ test('enrich-resource - knative enrichers', (t) => {
           t.fail('should not get called');
         },
         'git-info': () => {
-          t.fail('should not get called');
-        },
-        'health-check': () => {
           t.fail('should not get called');
         }
       };
@@ -136,10 +129,6 @@ test('enrich-resource - deployment enrichers', (t) => {
         'git-info': () => {
           i++;
           t.pass('git-info should get called');
-        },
-        'health-check': () => {
-          i++;
-          t.pass('health-check should get called');
         }
       };
     }
@@ -149,7 +138,7 @@ test('enrich-resource - deployment enrichers', (t) => {
   t.ok(p instanceof Promise, 'should return a promise');
 
   p.then(() => {
-    t.equal(i, 6, 'should have 6 enrichers');
+    t.equal(i, 5, 'should have 5 enrichers');
     t.pass('success');
     t.end();
   });
