@@ -96,13 +96,6 @@ test('accepts a node version using imageTag option', t => {
   t.end();
 });
 
-test('strategy with web-app option enabled', (t) => {
-  const result = buildStrategy({ webApp: true, buildStrategy: 'Source', imageTag: 'latest' });
-
-  t.equal(result.sourceStrategy.from.name, 'nodeshift/ubi8-s2i-web-app:latest', 'docker image should be latest web-app image');
-  t.end();
-});
-
 test('Docker strategy', (t) => {
   const result = buildStrategy({ buildStrategy: 'Docker' });
 
