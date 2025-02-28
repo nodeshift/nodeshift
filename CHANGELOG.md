@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.0.0](https://github.com/nodeshift/nodeshift/compare/v11.3.0...v12.0.0) (2025-02-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove the health check enricher ([#759](https://github.com/nodeshift/nodeshift/issues/759))
+* remove the web-app flag ([#758](https://github.com/nodeshift/nodeshift/issues/758))
+* make Deployment the default resource ([#757](https://github.com/nodeshift/nodeshift/issues/757))
+* make ubi9/node 20 the default ([#755](https://github.com/nodeshift/nodeshift/issues/755))
+
+### Features
+
+* make Deployment the default resource ([#757](https://github.com/nodeshift/nodeshift/issues/757)) ([ae6b254](https://github.com/nodeshift/nodeshift/commit/ae6b2541ff13e65deb54bb2f66518256f9361e3e))
+* make ubi9/node 20 the default ([#755](https://github.com/nodeshift/nodeshift/issues/755)) ([e32a25d](https://github.com/nodeshift/nodeshift/commit/e32a25d20811d9feefbc959ce6f8a258ba8640af))
+* remove the health check enricher ([#759](https://github.com/nodeshift/nodeshift/issues/759)) ([27151c6](https://github.com/nodeshift/nodeshift/commit/27151c66674b8ba09778518c6262083a0372c425))
+* remove the web-app flag ([#758](https://github.com/nodeshift/nodeshift/issues/758)) ([9ca7a72](https://github.com/nodeshift/nodeshift/commit/9ca7a724d690caa3b0fb46100835b96ebc0c1680))
+
 ## [11.3.0](https://github.com/nodeshift/nodeshift/compare/v11.2.0...v11.3.0) (2024-05-31)
 
 
