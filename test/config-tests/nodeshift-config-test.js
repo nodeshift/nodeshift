@@ -85,6 +85,7 @@ test('nodeshift-config basic setup', (t) => {
     t.equal(config.nodeshiftDirectory, '.nodeshift', 'nodeshiftDir prop should be .nodeshift by default');
     t.equal(config.outputImageStreamName, 'nodeshift', 'outputImageStreamName should be the package name by default');
     t.equal(config.outputImageStreamTag, 'latest', 'outputImageStreamTag should be the latest by default');
+    t.equal(config.buildName, `${config.projectName}-s2i`);
     t.end();
   }).catch(t.fail);
 
@@ -1233,6 +1234,53 @@ test('nodeshift-config options - differernt name than package.json', (t) => {
   const { name: currentName } = require('../../package.json');
   nodeshiftConfig(options).then((config) => {
     t.notEqual(config.name, currentName, 'should not be the project name');
+    t.end();
+  });
+});
+
+test('nodeshift-config options - set the proper buildname suffix when using the Docker build strategy', (t) => {
+  const nodeshiftConfig = proxyquire('../../lib/config/nodeshift-config', {
+    './login-config': {
+      doNodeshiftLogin: () => {
+        t.fail('This should not be called');
+      },
+      doNodeshiftLogout: () => {
+        t.fail('This should not be called');
+        return Promise.resolve();
+      },
+      checkForNodeshiftLogin: () => {
+        t.pass();
+        return Promise.resolve();
+      }
+    },
+    'openshift-rest-client': {
+      OpenshiftClient: () => {
+        return Promise.resolve({
+          kubeconfig: {
+            getCurrentContext: () => {
+              return 'nodey/ip/other';
+            },
+            getCurrentCluster: () => {
+              return { server: 'http://mock-cluster' };
+            },
+            getContexts: () => {
+              return [{ name: 'nodey/ip/other', namespace: 'test-namespace' }];
+            }
+          }
+        });
+      }
+    }
+  });
+
+  const options = {
+    build: {
+      strategy: 'Docker'
+    }
+  };
+
+  nodeshiftConfig(options).then((config) => {
+    t.equal(config.buildName, `${config.projectName}-docker`);
+    t.equal(config.build.strategy, 'Docker', 'should be Docker');
     t.end();
   });
 });
