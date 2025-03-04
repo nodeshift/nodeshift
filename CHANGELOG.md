@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.1.0](https://github.com/nodeshift/nodeshift/compare/v12.0.0...v12.1.0) (2025-03-04)
+
+
+### Features
+
+* upgrade minimatch from 9.0.5 to 10.0.1 ([#770](https://github.com/nodeshift/nodeshift/issues/770)) ([4acd9a1](https://github.com/nodeshift/nodeshift/commit/4acd9a19fea4565dbbf808bfe5149e610cd0239a))
+* upgrade nock from 13.5.6 to 14.0.1 ([#764](https://github.com/nodeshift/nodeshift/issues/764)) ([e13f134](https://github.com/nodeshift/nodeshift/commit/e13f1349fda44b0bd011c7080594ec4e8e7ba2b1))
+* upgrade sinon from 15.1.2 to 19.0.2 ([#765](https://github.com/nodeshift/nodeshift/issues/765)) ([8191261](https://github.com/nodeshift/nodeshift/commit/81912616836979cd8de7987643382425eb438c47))
+
+
+### Bug Fixes
+
+* add the correct buildname suffix ([#772](https://github.com/nodeshift/nodeshift/issues/772)) ([6ee6235](https://github.com/nodeshift/nodeshift/commit/6ee6235a68abbd70c01527d4831b4b2f56c7851b))
+* upgrade typescript from 5.1.6 to 5.7.3 ([#761](https://github.com/nodeshift/nodeshift/issues/761)) ([bb3b7ab](https://github.com/nodeshift/nodeshift/commit/bb3b7ab62b6edb4b38bed16a556633f2c0b4429f))
+
 ## [12.0.0](https://github.com/nodeshift/nodeshift/compare/v11.3.0...v12.0.0) (2025-02-28)
 
 
