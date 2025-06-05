@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.0.0](https://github.com/nodeshift/nodeshift/compare/v12.1.0...v13.0.0) (2025-06-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove Node 18 support ([#786](https://github.com/nodeshift/nodeshift/issues/786))
+
+### Features
+
+* add node 24 support ([#784](https://github.com/nodeshift/nodeshift/issues/784)) ([8ab6913](https://github.com/nodeshift/nodeshift/commit/8ab69135e58ad306dab374dffeec8d882258471b))
+* remove Node 18 support ([#786](https://github.com/nodeshift/nodeshift/issues/786)) ([1c30846](https://github.com/nodeshift/nodeshift/commit/1c30846e5a73a830c46b66a485a9ffb53553a1d7))
+
+
+### Bug Fixes
+
+* upgrade sinon from 19.0.2 to 19.0.4 ([#782](https://github.com/nodeshift/nodeshift/issues/782)) ([998363a](https://github.com/nodeshift/nodeshift/commit/998363a28bfdda08ca750802f48d8a40f24f61a5))
+
 ## [12.1.0](https://github.com/nodeshift/nodeshift/compare/v12.0.0...v12.1.0) (2025-03-04)
 
 
