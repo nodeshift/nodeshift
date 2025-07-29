@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [13.1.0](https://github.com/nodeshift/nodeshift/compare/v13.0.0...v13.1.0) (2025-07-29)
+
+
+### Features
+
+* upgrade sinon from 19.0.4 to 21.0.0 ([2e07584](https://github.com/nodeshift/nodeshift/commit/2e07584d10b5923c92f8c3c928212550f1efd46b))
+
+
+### Bug Fixes
+
+* upgrade dockerode from 4.0.4 to 4.0.7 ([339959b](https://github.com/nodeshift/nodeshift/commit/339959bd1e6b4a58425fb3b037d43e27eb2fd958))
+* upgrade eslint-plugin-import from 2.31.0 to 2.32.0 ([90223a3](https://github.com/nodeshift/nodeshift/commit/90223a312ef7b39c7661823c4258a1e3d58aae3d))
+* upgrade minimatch from 10.0.1 to 10.0.3 ([39c6d4d](https://github.com/nodeshift/nodeshift/commit/39c6d4dddeb2b9905927f135ba55d141ddb1f63b))
+* upgrade nock from 14.0.1 to 14.0.5 ([00e4cdb](https://github.com/nodeshift/nodeshift/commit/00e4cdb07b2f62df63fa9e17b0705e26ba418618))
+* upgrade typescript from 5.7.3 to 5.8.3 ([5c63c53](https://github.com/nodeshift/nodeshift/commit/5c63c532e753b1fe2bc1ed49c91000f0694715be))
+
 ## [13.0.0](https://github.com/nodeshift/nodeshift/compare/v12.1.0...v13.0.0) (2025-06-05)
 
 
